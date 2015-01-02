@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+////////////////////////////////////////////////////////////////////////////////
+//
+// Developed by Robert Scheitlin
+//
+////////////////////////////////////////////////////////////////////////////////
+-->
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				autoDrawBackground="false"
+				click="itemrenderer_clickHandler(event)"
+				mouseOver="itemrenderer_mouseOverHandler(event)"
+				mouseOut="itemrenderer_mouseOutHandler(event)"
+				minHeight="30"
+				toolTip="{zoom2msg}">
+	
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.conversion.TextConverter;
+			import flashx.textLayout.elements.TextFlow;
+			
+			import mx.events.FlexEvent;
+			
+			private const ID_RESULT_CLICK:String = "idResultClick";
+			private const ID_RESULT_OVER:String = "idResultOver";
+			private const ID_RESULT_OUT:String = "idResultOut";
+			
+			[Bindable]
+			private var zoom2msg:String;
+			
+			[Bindable]
+			private var linkicon:String;
+			
+			[Bindable]
+			private var idResult:IdResult;
+			
+			override public function set data(value:Object):void{
+				super.data = value;
+				if (value is IdResult) {
+					idResult = IdResult(value);
+				}
+			}
+			
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void{
+				super.updateDisplayList(unscaledWidth,unscaledHeight);
+				if(idResult){
+					linkGroup.includeInLayout = linkGroup.visible = false;
+					lContent.textFlow = TextConverter.importToFlow(idResult.content, TextConverter.TEXT_FIELD_HTML_FORMAT);
+					zoom2msg = (idResult.zoom2msg != "")?idResult.zoom2msg:"Click to Zoom to Point";
+					linkGroup.removeAllElements();
+					for(var l:int = 0; l < idResult.links.length; l++){
+						var lImg:Image = new Image();
+						lImg.width = lImg.height = 18;
+						lImg.buttonMode = true;
+						lImg.useHandCursor = true;
+						lImg.source = (idResult.links[l].icon != null)?idResult.links[l].icon:"assets/images/w_link.png";
+						lImg.addEventListener(MouseEvent.CLICK, showLink);
+						lImg.name = idResult.links[l].link;
+						linkGroup.addElement(lImg);
+					}
+					if(idResult.links[0])
+						if(idResult.links[0].link)
+							linkGroup.includeInLayout = linkGroup.visible = true;
+				}
+			}
+			
+			private function itemrenderer_mouseOverHandler(event:MouseEvent):void
+			{
+				dispatchEvent(new Event(ID_RESULT_OVER, true)); // bubbles
+			}
+			
+			private function itemrenderer_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent(new Event(ID_RESULT_CLICK, true)); // bubbles
+			}
+			
+			private function itemrenderer_mouseOutHandler(event:MouseEvent):void
+			{
+				dispatchEvent(new Event(ID_RESULT_OUT, true)); // bubbles
+			}
+			
+			private function showLink(event:MouseEvent):void
+			{
+				event.stopImmediatePropagation(); // don't dispatch ID_RESULT_CLICK since we don't want to zoom to feature
+				navigateToURL(new URLRequest(event.currentTarget.name));
+			}
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="hovered"/>
+	</s:states>
+	
+	<!-- border/background rectangle -->
+	<s:Rect bottom="0"
+			left="0"
+			radiusX="4"
+			radiusY="4"
+			right="0"
+			top="0" >
+		<s:stroke>
+			<mx:SolidColorStroke alpha="{getStyle('borderAlpha')}"
+								 color="{getStyle('borderColor')}"
+								 weight="1"/>
+		</s:stroke>
+		<s:fill>
+			<mx:SolidColor alpha="0.3"
+						   alpha.hovered="0.8"
+						   color.hovered="{getStyle('rollOverColor')}"
+						   color.normal="{getStyle('contentBackgroundColor')}"/>
+		</s:fill>
+	</s:Rect>
+	<s:VGroup minHeight="80"
+			  paddingLeft="5"
+			  paddingRight="5"
+			  paddingBottom="2"
+			  paddingTop="4"
+			  width="97%"
+			  verticalAlign="middle">
+		<s:HGroup minHeight="80"
+				  paddingLeft="5"
+				  paddingRight="5"
+				  paddingBottom="2"
+				  paddingTop="4"
+				  verticalAlign="middle"
+				  width="100%">
+			<mx:Image left="5"
+					  maxHeight="20"
+					  maxWidth="20"
+					  source="{idResult.icon}">
+				<mx:filters>
+					<mx:GlowFilter alpha="0.5"
+								   blurX="10"
+								   blurY="10"
+								   color="#000000"/>
+				</mx:filters>
+			</mx:Image>
+			<s:VGroup height="100%"
+					  verticalAlign="middle"
+					  width="100%">
+				<s:Label fontWeight="normal"
+						 fontWeight.hovered="bold"
+						 maxDisplayedLines="1"
+						 styleName="RecordText"
+						 text="{idResult.title}"
+						 width="100%"/>
+				<s:RichText id="lContent" fontWeight="normal"
+							styleName="RecordText"
+							width="100%"/>
+			</s:VGroup>
+		</s:HGroup>
+		<s:HGroup gap="8" id="linkGroup" height="18"
+				  verticalAlign="middle" horizontalAlign="center"
+				  width="100%"/>
+	</s:VGroup>
+</s:ItemRenderer>

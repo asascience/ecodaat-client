@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--=============================================================================
+* 
+* =============================================================================-->
+<viewer:BaseWidget xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx" 
+				   xmlns:viewer="com.esri.viewer.*" 
+				   layout="vertical" xmlns:esri="http://www.esri.com/2008/ags"
+				   xmlns:symbols="com.esri.ags.symbols.*"
+				   widgetConfigLoaded="init()" 
+				   xmlns:components="widgets.ElevationProfile.components.*"
+				   >
+	<fx:Script>
+		<![CDATA[
+			import com.esri.ags.events.DrawEvent;
+			import com.esri.ags.utils.JSONUtil;			
+			import mx.core.IFlexDisplayObject;
+			import mx.events.ItemClickEvent;
+			import mx.managers.PopUpManager;
+			import mx.managers.PopUpManagerChildList;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.AsyncToken;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			//import mx.controls.Alert;
+			
+			[Bindable]
+			private var _configXML:XML;
+			
+			
+			private function init():void {
+				if ( configXML ) _configXML = configXML;
+			}
+			protected function onOpened( event:Event ):void
+			{
+				//Alert.show(map.extent.toString());
+				// Add layers
+				map.addLayer( glProfileLine );
+				draw.activate( DrawTool.LINE, false );
+			}
+			private function onClosed( event:Event ):void {
+				closeChartWindow();
+				map.removeLayer( glProfileLine );
+				draw.deactivate();
+			}
+			private function onDrawProfile( event:DrawEvent ):void {
+				// Revert to navigation
+				draw.deactivate();
+				
+				// Get geometries for each point
+				var sGeoms:String = JSONUtil.encode( [ event.graphic.geometry ] );
+				var oParams:Object = {
+					"f"				: "json",
+					"geometries"	: sGeoms
+				}
+					
+				// Send geometries off to SOE to get elevations
+				var atToken:AsyncToken = websvcElevations.send( oParams );
+				atToken.addResponder( new AsyncResponder( 
+					function( event:ResultEvent, token:Object ):void {
+						try {
+							var oResult:Object = JSONUtil.decode( event.result.toString() );
+							
+							var aryDistances:Array = distancesAlongProfile( oResult.geometries[ 0 ].paths[ 0 ] );
+							var aryData:Array = consolidateDataForCharts( oResult, aryDistances );
+	
+							chtWindow.chartData = aryData;
+							
+							if ( !systemManager.popUpChildren.contains( chtWindow ) ) {
+								PopUpManager.addPopUp( chtWindow as IFlexDisplayObject, map, false, PopUpManagerChildList.POPUP );
+								PopUpManager.centerPopUp( chtWindow );
+							}
+						}
+						catch ( err:Error ) {
+							showError( "A problem occurred while parsing and charting the returned elevation data:\n" + err.message.toString() );
+						}
+					},
+					function( event:FaultEvent, token:Object ):void {
+						showError( "Error getting elevation data:\n" + event.fault.message.toString() );
+					} )
+				);
+			}
+			
+			// Utility functions
+			/**
+			 * Given an array of web mercator points, produce a new array of the same length
+			 * indicating how many kilometers along the profile path each data point lies.
+			 */
+			private function distancesAlongProfile( aryLocs:Array ):Array {
+				var aryDists:Array = new Array();
+				if ( aryLocs.length > 0 ) {
+					aryDists.push( 0 );
+					
+					for ( var iPt:int = 1; iPt < aryLocs.length; iPt++ ) {
+						var nDistFromLast:Number = Math.sqrt(
+							Math.pow( ( aryLocs[iPt][0] - aryLocs[iPt - 1][0] ), 2 ) +
+							Math.pow( ( aryLocs[iPt][1] - aryLocs[iPt - 1][1] ), 2 )
+						) / 1000; // Web Mercator is in meters, so divide by 1000 to get kilometers
+						aryDists.push( aryDists[ iPt - 1 ] + nDistFromLast );
+					}
+				}
+				return aryDists;
+			}
+			/**
+			 * Merge various arrays of data into a single array of objects for use 
+			 * as a dataProvider for charting components.
+			 */
+			private function consolidateDataForCharts( oResult:Object, aryDistances:Array ):Array {
+				// Get the global minimum elevation value so the chart area is correctly filled in for 
+				// negative values. If min value > 0, lower it to zero to fill in for highly positive values. 
+				var nElevationMin:Number = Math.min(
+					Math.min.apply( null, oResult.elevations[0] ),
+					0
+				);
+				
+				var aryData:Array = new Array();
+				for ( var iItem:int = 0; iItem < aryDistances.length; iItem++ ) {
+					aryData.push( {
+						"elevation"		: oResult.elevations[0][iItem],
+						"geometry"		: oResult.geometries[0].paths[0][iItem],
+						"distance"		: aryDistances[iItem],
+						"elevationMin"	: nElevationMin
+					} );
+				}
+				return aryData;
+			}
+			/**
+			 * Close chart window and remove user-drawn line graphic
+			 **/ 
+			private function closeChartWindow():void {
+				glProfileLine.clear();
+				PopUpManager.removePopUp( chtWindow );
+			}
+		]]>
+	</fx:Script>
+	<viewer:WidgetTemplate width="274" height="170" id="wTemplate" open="onOpened(event)" closed="onClosed(event)">
+		<viewer:layout>
+			<s:VerticalLayout/>
+		</viewer:layout>
+		<s:Label text="{_configXML.description}" lineBreak="toFit" width="100%">
+		</s:Label>
+		<mx:ToggleButtonBar id="tbbTools" direction="horizontal" selectedIndex="0" buttonHeight="42" buttonWidth="42">
+			<mx:dataProvider>
+				<fx:Array>
+					<fx:Object icon="@Embed('assets/images/i_draw_line.png')" toolTip="Draw line (click, drag, release)"/>
+					<fx:Object icon="@Embed('assets/images/i_draw_polyline.png')" toolTip="Draw polyline (click once for each vertex)"/>
+				</fx:Array>
+			</mx:dataProvider>
+			<mx:itemClick>
+				<![CDATA[
+				switch ( (event as ItemClickEvent).index ) {
+					case 0:		
+						draw.activate( DrawTool.LINE, false );
+						break;
+					case 1:
+						draw.activate( DrawTool.POLYLINE, false );
+						// Navigation-while-drawing issue
+						// Workaround from forum post: http://forums.esri.com/Thread.asp?c=158&f=2421&t=299768#936563
+						map.panEnabled = false; 
+						map.mapNavigationEnabled = false; 
+						map.rubberbandZoomEnabled = false; 
+						break;
+				}
+				]]>
+			</mx:itemClick>
+		</mx:ToggleButtonBar>
+	</viewer:WidgetTemplate>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<esri:DrawTool id="draw" map="{map}" graphicsLayer="{glProfileLine}" drawStart="(event.currentTarget as DrawTool).graphicsLayer.clear()" drawEnd="onDrawProfile(event)"/>
+		<esri:GraphicsLayer id="glProfileLine" mouseEnabled="false">
+			<esri:symbol>
+				<esri:SimpleLineSymbol color="{_configXML.profileLineColor}" width="{_configXML.profileLineWidth}"/>
+			</esri:symbol>
+		</esri:GraphicsLayer>
+
+		<s:HTTPService showBusyCursor="true" id="websvcElevations" url="{_configXML.elevationSOEURL}" resultFormat="text"/>
+		
+		<!-- Chart pop-up window -->
+		<components:ChartWindow title="{_configXML.chartTitle}" close="closeChartWindow()" id="chtWindow" glProfileLine="{glProfileLine}"/>
+	</fx:Declarations>
+</viewer:BaseWidget>

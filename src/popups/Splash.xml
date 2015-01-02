@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<configuration>
+    <SplashContent>
+    	<Title>EcoDAAT</Title>
+    	<SubTitle>Alaska Fisheries Science Center</SubTitle>
+    	<Version>Version 2.0.8</Version>
+    	<Content><![CDATA[The Alaska Region of NOAA Fisheries oversees sustainable fisheries that produce about half the fish caught in US waters, with responsibilities covering 842,000 square nautical miles off Alaska. The Alaska Region also works to ensure the viability of protected species—principally marine mammals—and to protect and enhance Alaska's marine habitat.  EcoDAAT provides access to the NOAA Alaska's Fisheries Database. ]]>
+    	</Content>
+    	<Contacts><![CDATA[For more information contact &nbsp;<a href="mailto:tiffany.c.vance@noaa.gov" class="email"><u>Tiffany Vance</u></a><br>]]></Contacts>
+    	<Address>Alaska Fisheries Science Center</Address>
+    	<Address1>National Marine Fisheries Service</Address1>
+		<Address2>National Oceanic and Atmospheric Administration</Address2>
+		<Address5>Department of Commerce</Address5>
+		<Address3>7600 Sand Point Way N.E., Building 4</Address3>
+		<Address4>Seattle, Washington 98115</Address4>
+    </SplashContent>
+    <proxy>http://services.asascience.com/proxy/Proxy.ashx?u=https://www.google.com/accounts/ClientLogin</proxy>
+    <noproxy>https://www.google.com/accounts/ClientLogin</noproxy>
+    <pubsite>http://services.asascience.com/MapApp/ecodaat/</pubsite>
+    <fociraceGroup>nmfs.afsc.race.foci@noaa.gov: steve.porter@noaa.gov, jay.clark@noaa.gov, kevin.bailey@noaa.gov, lisa.deforest@noaa.gov, debbie.blood@noaa.gov, nissa.ferm@noaa.gov, tiffany.c.vance@noaa.gov, jeff.napp@noaa.gov, kimberly.bahl@noaa.gov, melanie.paquin@noaa.gov, miriam.doyle@noaa.gov, mike.canino@noaa.gov, dan.cooper@noaa.gov, ann.matarese@noaa.gov, art.kendall@noaa.gov, annette.dougherty@noaa.gov, sarah.hinckley@noaa.gov, janet.duffy-anderson@noaa.gov, morgan.busby@noaa.gov, christina.jump@noaa.gov, ashlee.overdick@noaa.gov, matt.wilson@noaa.gov, stephen.sontag@noaa.gov, colleen.harpold@noaa.gov, lisa.guy@noaa.gov, kathy.mier@noaa.gov, adam.spear@noaa.gov, jan.benson@noaa.gov,</fociraceGroup> 
+</configuration>

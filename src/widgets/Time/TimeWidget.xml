@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<configuration label="April - June 2010">
+
+    <dateformat>MMMM, YYYY</dateformat>
+    <loop>true</loop>
+    <singlethumbastimeinstant>true</singlethumbastimeinstant>
+    <thumbcount>2</thumbcount>
+    <thumbmovingrate>2000</thumbmovingrate>
+    <timeextent publicSite="false" setfromlayer="EcoDAAT">
+        <starttime>1978/04/25 UTC</starttime>
+        <endtime>2001/06/04 UTC</endtime>
+    </timeextent>
+    <timestops>
+        <timestopsinterval>30</timestopsinterval>
+        <timestopsunits>days</timestopsunits>
+    </timestops>
+
+</configuration>

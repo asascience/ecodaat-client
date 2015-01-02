@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+///////////////////////////////////////////////////////////////////////////
+//EcoDAAT
+//NOAA
+//Powered by RPS-ASA
+///////////////////////////////////////////////////////////////////////////
+-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" creationPolicy="all"
+               xmlns:s="library://ns.adobe.com/flex/spark" scriptTimeLimit="55"
+               xmlns:viewer="com.esri.viewer.*" backgroundColor="0x7C9FBF"
+               xmlns:managers="com.esri.viewer.managers.*"
+			   initialize="application1_initializeHandler(event)"
+			   creationComplete="application1_creationCompleteHandler(event)"
+			   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:Splash="popups.*"
+               pageTitle="EcoDAAT">
+
+	<s:states>
+		<s:State name="login"/>
+		<s:State name="main"/>
+	</s:states>
+	
+	<fx:Style source="defaults.css"/>
+	
+	<fx:Script>
+		<![CDATA[
+			import popups.SplashWindow;
+			
+			import com.esri.viewer.AppEvent;
+			import com.esri.viewer.ViewerContainer;
+			import com.esri.viewer.utils.Hashtable;
+			
+			import flash.events.Event;
+			import flash.external.ExternalInterface;
+			
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			import mx.resources.ResourceManager;
+			
+			private var loginCookie:SharedObject=SharedObject.getLocal("loginCookie");
+			
+			private var splashWindow:SplashWindow;
+			private var loginUser:Array;
+			
+			protected function application1_initializeHandler(event:FlexEvent):void
+			{
+				XML.prettyPrinting=false;
+				this.currentState="main";
+			}
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				AppEvent.addListener(AppEvent.SYSTEM_LOGIN_SUCCESS,EnterSystemNow);
+				AppEvent.addListener(AppEvent.SYSTEM_LOGOUT_SUCCESS,systemLogoutNow);
+				
+				ResourceManager.getInstance().localeChain = ["en_US"];
+				
+				if(loginCookie.data.loginUser!=null&&loginCookie.data.loginTime!=null)
+				{
+					loginUser=loginCookie.data.loginUser as Array;
+					
+					this.currentState="main";
+					var objectLoginUser:Object=
+						{
+							key:"loginuser",
+							data:loginUser
+						};
+					ViewerContainer.dispatchEvent(new AppEvent(AppEvent.DATA_PUBLISH,objectLoginUser));
+				}
+				else
+				{
+					//showLoginPanel();
+				} 
+			}
+			
+			private function showLoginPanel():void
+			{
+				splashWindow=new SplashWindow();
+				//popup
+				PopUpManager.addPopUp(splashWindow,this,true);
+				PopUpManager.centerPopUp(splashWindow);
+			}
+			
+			private function EnterSystemNow(event:AppEvent):void
+			{
+				this.currentState="main";
+				
+				var successLoginData:Array=event.data as Array;
+				var boolCookie:Boolean=Boolean(successLoginData[2]);
+				//var resultXML:XML=new XML(successLoginData[1].toString());
+				//views.visible = true;	
+				
+				//save session
+				if(boolCookie)
+				{
+					loginCookie.data.loginUser=loginUser;
+					var _loginTime:Date=new Date();
+					loginCookie.data.loginTime= _loginTime.time;
+				}
+				var objectLoginUser:Object=
+					{
+						key:"loginuser",
+						data:loginUser
+					};
+				
+				ViewerContainer.dispatchEvent(new AppEvent(AppEvent.DATA_PUBLISH,objectLoginUser));
+			}
+			
+			private function systemLogoutNow(event:AppEvent):void
+			{
+				loginCookie.clear();
+				var urlRequest:URLRequest=new URLRequest("javascript:location.reload();");
+				
+				navigateToURL(urlRequest,"_self");
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup  width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" includeIn="login" >
+	</s:VGroup>
+	<viewer:ViewerContainer id="views" includeIn="main" >
+		<viewer:mapManager>
+			<managers:MapManager/>
+		</viewer:mapManager>
+		<viewer:uiManager>
+			<managers:UIManager/>
+		</viewer:uiManager>
+		<viewer:widgetManager>
+			<managers:WidgetManager/>
+		</viewer:widgetManager>
+		<viewer:configManager>
+			<managers:ConfigManager/>
+		</viewer:configManager>
+		<viewer:dataManager>
+			<managers:DataManager/>
+		</viewer:dataManager>
+	</viewer:ViewerContainer>	
+</s:Application>
