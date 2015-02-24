@@ -158,7 +158,7 @@
                 AppEvent.addListener(AppEvent.MAP_LAYER_VISIBLE, mapLayerVisibleHandler);
 				
 				//fixes bug on the popup window for the new api 
-				ChangeWatcher.watch(map.infoWindow, "content", infoWindowContentChangeHandler);
+				//ChangeWatcher.watch(map.infoWindow, "content", infoWindowContentChangeHandler);
             }
 			
 			private function infoWindowContentChangeHandler(event:Event):void

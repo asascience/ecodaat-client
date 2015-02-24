@@ -116,6 +116,7 @@
             private var step2ErrorLabel:String;
             private var emptyResultsLabel:String;
             private var saveDataFileLabel:String;
+			private var tokenneeded:String;
 
             private function init():void
             {
@@ -141,6 +142,15 @@
                     {
                         useCurrentExtentAsAIO = false;
                     }
+					if (String(configXML.token) != "")
+					{
+						tokenneeded = configXML.token;
+						gp.token = configXML.token;
+					}
+					else
+					{
+						tokenneeded = "";
+					}
                     //useproxy
                     if (configXML.useproxy.length() > 0)
                     {
@@ -728,7 +738,7 @@
                            concurrency="last"
                            fault="gp_faultHandler(event)"
                            getResultDataComplete="gp_getResultDataCompleteHandler(event)"
-                           jobComplete="gp_jobCompleteHandler(event)"
+                           jobComplete="gp_jobCompleteHandler(event)" 
                            url="{gpURL}"/>
         <!-- Effects and Filters-->
         <s:GlowFilter id="glowFilter"

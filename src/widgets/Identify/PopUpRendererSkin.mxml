@@ -18,9 +18,8 @@
              xmlns:s="library://ns.adobe.com/flex/spark"
              xmlns:mx="library://ns.adobe.com/flex/mx"
              xmlns:esri="http://www.esri.com/2008/ags"
-             xmlns:supportClasses="com.esri.ags.skins.supportClasses.*"
-             width="270"
-             maxHeight="300"
+             width="320"
+             maxHeight="210"
              preinitialize="skin_preinitializeHandler(event)">
 
     <fx:Metadata>
@@ -39,6 +38,7 @@
             paddingLeft: 0;
             paddingRight: 0;
             paddingTop: 5;
+			labelWidth: 150;
         }
     </fx:Style>
 
@@ -51,15 +51,16 @@
             import com.esri.ags.geometry.MapPoint;
             import com.esri.ags.geometry.Multipoint;
             import com.esri.ags.layers.FeatureLayer;
-            import com.esri.ags.layers.supportClasses.LayerDetails;
-            import com.esri.ags.skins.supportClasses.*;
-            import com.esri.ags.utils.StringUtil;
+			import com.esri.ags.layers.supportClasses.LayerDetails;
             import com.esri.ags.portal.supportClasses.PopUpFieldInfo;
             import com.esri.ags.portal.supportClasses.PopUpInfo;
-
+            //import com.esri.ags.events.AttachmentEvent;
+            import com.esri.ags.utils.StringUtil;
+            
             import mx.containers.Form;
             import mx.containers.FormItem;
             import mx.controls.Label;
+            import mx.core.FlexGlobals;
             import mx.core.ScrollPolicy;
             import mx.events.FlexEvent;
 
@@ -84,7 +85,7 @@
                 textStyleSheet.setStyle("a:hover", { color: getCSSStyleColor("linkHoverColor"), textDecoration: "underline" });
                 textStyleSheet.setStyle("a:active", { color: getCSSStyleColor("linkActiveColor"), textDecoration: "underline" });
 
-                attachmentInspector.addEventListener(AttachmentMouseEvent.ATTACHMENT_CLICK, attachmentInspector_attachmentClickHandler);
+                //attachmentInspector.addEventListener(AttachmentMouseEvent.ATTACHMENT_CLICK, attachmentInspector_attachmentClickHandler);
             }
 
             private function getCSSStyleColor(styleProp:String):String
@@ -95,10 +96,10 @@
                 return "#" + cssColor;
             }
 
-            private function attachmentInspector_attachmentClickHandler(event:AttachmentMouseEvent):void
-            {
-                navigateToURL(new URLRequest(event.attachmentInfo.url));
-            }
+//            private function attachmentInspector_attachmentClickHandler(event:AttachmentMouseEvent):void
+//            {
+//                navigateToURL(new URLRequest(event.attachmentInfo.url));
+//            }
 
             /**
              * @private
@@ -117,53 +118,47 @@
                 var layerDetails:LayerDetails = featureLayer ? featureLayer.layerDetails : null;
 
                 vGroup.removeAllElements();
-                if (popUpInfo)
-                {
-                    if (popUpInfo.title)
-                    {
+				//vGroup.addElement(ToggleLayers);
+                if (popUpInfo){
+                    if (popUpInfo.title){
                         titleText.text = StringUtil.substitute(popUpInfo.title, formattedAttributes);
-                        if (titleText.text)
-                        {
+                        if (titleText.text){
                             vGroup.addElement(titleText);
                             vGroup.addElement(titleLine);
                         }
                     }
 
                     var htmlText:String;
-                    if (popUpInfo.description)
-                    {
+                    if (popUpInfo.description){
                         htmlText = StringUtil.substitute(popUpInfo.description, formattedAttributes);
-                        if (htmlText)
-                        {
-                            /* var descriptionText:Text = new PopUpText();
+                        if (htmlText){
+                            var descriptionText:Text = new Text();
                             descriptionText.percentWidth = 100;
                             descriptionText.styleSheet = textStyleSheet;
+							
                             cleanAndSetHtmlText(descriptionText, htmlText);
-                            vGroup.addElement(descriptionText); */
+							//trace(descriptionText.htmlText);
+                            vGroup.addElement(descriptionText);
                         }
-                    }
-                    else
-                    {
+                    }else{
                         var descriptionForm:Form;
-                        for each (var fieldInfo:PopUpFieldInfo in popUpInfo.popUpFieldInfos)
-                        {
-                            if (fieldInfo.visible)
-                            {
+                        for each (var fieldInfo:PopUpFieldInfo in popUpInfo.popUpFieldInfos){
+                            if (fieldInfo.visible){
                                 var formItem:FormItem = new FormItem();
                                 formItem.label = fieldInfo.label || fieldInfo.fieldName;
+								
                                 var label:Label;
                                 htmlText = formattedAttributes[fieldInfo.fieldName];
-                                if (htmlText)
-                                {
+                                if (htmlText){
                                     // convert attribute field values that just contain URLs into links 
                                     var match:Array = htmlText.match(/^\s*((https?|ftp):\/\/\S+)\s*$/i);
-                                    if (match && match.length > 0)
-                                    {
+                                    if (match && match.length > 0){
                                         label = new Label();
                                         htmlText = '<a href="' + match[1] + '" target="_blank">' + match[1] + "</a>";
-                                    }
-                                    else
-                                    {
+                                    }else if (fieldInfo.fieldName == "PROJNUM"){
+										label = new mx.controls.Label();
+										htmlText = "<a href='http://webistehere/PW/WebForm2.aspx?FirstName=" + FlexGlobals.topLevelApplication.firstName + "&LastName=" + FlexGlobals.topLevelApplication.lastName + "&email=" + FlexGlobals.topLevelApplication.email + "&ConstId=" + htmlText + "' target='_blank'><b>MP 116-1284</b></a>";
+									}else{
                                         //label = new PopUpText();
                                     }
                                     cleanAndSetHtmlText(label, htmlText);
@@ -172,8 +167,7 @@
                                     label.width = 150;
                                     formItem.addChild(label);
                                 }
-                                if (!descriptionForm)
-                                {
+                                if (!descriptionForm){
                                     descriptionForm = new Form();
                                     descriptionForm.percentWidth = 100;
                                     descriptionForm.horizontalScrollPolicy = ScrollPolicy.OFF;
@@ -184,38 +178,31 @@
                             }
                         }
                         if (descriptionForm)
-                        {
                             vGroup.addElement(descriptionForm);
-                        }
                     }
 
-                    if (validMediaInfos && validMediaInfos.length > 0)
-                    {
-                        vGroup.addElement(mediaBrowser);
-                        mediaBrowser.attributes = graphic.attributes;
-                        mediaBrowser.formattedAttributes = formattedAttributes;
-                        mediaBrowser.popUpFieldInfos = popUpInfo.popUpFieldInfos;
-                        mediaBrowser.popUpMediaInfos = validMediaInfos;
-                    }
+//                    if (validMediaInfos && validMediaInfos.length > 0){
+//                        vGroup.addElement(mediaBrowser);
+//                        mediaBrowser.attributes = graphic.attributes;
+//                        mediaBrowser.formattedAttributes = formattedAttributes;
+//                        mediaBrowser.popUpFieldInfos = popUpInfo.popUpFieldInfos;
+//                        mediaBrowser.popUpMediaInfos = validMediaInfos;
+//                    }
 
-                    if (popUpInfo.showAttachments && graphic && featureLayer
-                        && layerDetails && layerDetails.hasAttachments && layerDetails.objectIdField)
-                    {
+                    /*if (popUpInfo.showAttachments && graphic && featureLayer
+                        && layerDetails && layerDetails.hasAttachments && layerDetails.objectIdField){
                         vGroup.addElement(attachmentInspector);
                         attachmentInspector.showAttachments(graphic, featureLayer);
-                    }
+                    }*/
 
                     if (map && geometry)
-                    {
                         vGroup.addElement(zoomToButton);
-                    }
                 }
             }
 
             private function cleanAndSetHtmlText(labelCntrl:Label, htmlText:String):void
             {
-                if (labelCntrl && htmlText != null)
-                {
+                if (labelCntrl && htmlText != null){
                     htmlText = htmlText.replace(/<div/gi, "<br /><div"); // divs are ignored so put br's in front of them
                     htmlText = htmlText.replace(/<div><br ?\/><\/div>/gi, ""); // remove existing <div><br /></div>'s so we don't have too many new lines
                     // add target="_blank" to all anchor tags
@@ -229,41 +216,38 @@
                 var graphic:Graphic = hostComponent.graphic;
                 var map:Map = hostComponent.map;
                 var geometry:Geometry = graphic.geometry;
-
-                var extent:Extent = geometry.extent; // returns null for MapPoint or Multipoint's with only one point
-                if (extent)
-                {
-                    map.extent = extent;
-                    // make sure the whole extent is visible
-                    if (!map.extent.contains(extent))
-                    {
-                        map.level--;
-                    }
-                }
-                else
-                {
-                    var mapPoint:MapPoint;
-                    if (geometry is MapPoint)
-                    {
-                        mapPoint = geometry as MapPoint;
-                    }
-                    else if (geometry is Multipoint)
-                    {
-                        var multipoint:Multipoint = geometry as Multipoint;
-                        if (multipoint.points && multipoint.points.length > 0)
-                        {
-                            mapPoint = multipoint.points[0];
-                        }
-                    }
-                    if (mapPoint)
-                    {
-                        // Zoom to 1/16th the size of the current extent.
-                        // This is the same as calling map.zoomIn() four times.
-                        map.zoom(1 / 16, mapPoint);
-                    }
-                }
+				
+				if(geometry){
+					var extent:Extent = geometry.extent; // returns null for MapPoint or Multipoint's with only one point
+					if (extent){
+						if(isNaN(graphic.attributes.zoomscale)){
+							map.extent = geometry.extent.expand(graphic.attributes.zoompercent);
+							if (!map.extent.contains(geometry))
+								map.level--;
+						}else{
+							if (map.scale > graphic.attributes.zoomscale)
+								map.scale = graphic.attributes.zoomScale;
+							map.centerAt(graphic.attributes.point);
+						}
+					}else{
+						var mapPoint:MapPoint;
+						if (geometry is MapPoint){
+							mapPoint = geometry as MapPoint;
+						}else if (geometry is Multipoint){
+							var multipoint:Multipoint = geometry as Multipoint;
+							if (multipoint.points && multipoint.points.length > 0)
+								mapPoint = multipoint.points[0];
+						}
+						if (mapPoint){
+							// Zoom to 1/16th the size of the current extent.
+							// This is the same as calling map.zoomIn() four times.
+							map.zoom(1 / 16, mapPoint);
+						}
+					}
+				}
             }
-        ]]>
+			
+		]]>
     </fx:Script>
 
     <fx:Declarations>
@@ -281,21 +265,21 @@
             </s:stroke>
         </s:Line>
 
-        <!--- @private -->
+        <!--- @private 
         <supportClasses:PopUpMediaBrowser id="mediaBrowser"
                                           width="100%"
-                                          skinClass="com.esri.ags.skins.supportClasses.PopUpMediaBrowserSkin"/>
+                                          skinClass="com.esri.ags.skins.supportClasses.PopUpMediaBrowserSkin"/>-->
 
-        <!--- @private -->
+        <!--- @private 
         <esri:AttachmentInspector id="attachmentInspector"
                                   width="100%"
                                   addEnabled="false"
-                                  deleteEnabled="false"/>
+                                  deleteEnabled="false"/>-->
 
         <!--- @private -->
         <mx:LinkButton id="zoomToButton"
                        click="zoomToButton_clickHandler(event)"
-                       fontWeight="bold"
+                       fontWeight="bold" textDecoration="underline"
                        label="{resourceManager.getString('ESRIMessages', 'zoomLabel')}"/>
     </fx:Declarations>
 
@@ -309,5 +293,4 @@
             <!-- elements are added in commitProperties() -->
         </s:VGroup>
     </s:Scroller>
-
 </s:SparkSkin>

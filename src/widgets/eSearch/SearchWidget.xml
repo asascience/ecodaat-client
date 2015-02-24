@@ -7,7 +7,8 @@
 <trawlfieldsList>haul_name,preserve_id,comments_length_weight,comments_stomach_content,prey_quality,prey_weight,prey_count,comments_prey,haul_id,process_date,examiner,stomach_fullness_code,fullness_desc,stomach_intact_wt_g,stomach_lining_wt_g,stomach_digestion_code,digestion_desc,prey_code_trawl,alt_common_name_trawl,prey_group_code_trawl,alt_common_name_trawl,prey_quality,prey_weight,prey_count,alt_specimen_number,frequency,total_length,alt_common_name_trawl,weight_units,total_weight,subsample_weight,subsample_number,comments,mesh,door,max_gear_depth,max_wire_out,netmouth_height_m,sea_surface_temp_c,water_temp_at_gear_depth,trawl_haulback_start_gmt,trawl_haulback_start_lat,trawl_haulback_start_lon,gmt_date_time_end,lat_end,lon_end,foci_grid,trawl_deployed_gmt,trawl_deployed_lat,trawl_deployed_lon,net_path,lat,lon,bottom_depth,gear_id,standard_length,fork_length,alt_common_name_trawl,foci_id,total_length,whole_wet_body_weight,stomach_id,age_growth_sample,genetic_sample,stomach_content_wt_g,documents,notes,publications,gmt_date_time,haul,purpose,haul_performance,foci_cruise_name,ship_name</trawlfieldsList>
 <ichfieldsList>gmt_date_time,geographic_area,lat,lon,corrected_value,bottom_depth,max_gear_depth,min_gear_depth,mesh,number_caught,number_measured_counted,purpose,haul_performance,flowmeter_revs,tow_seconds,standard_haul_factor_a,standard_haul_factor_b,calibration_factor,foci_haul_id,volume_filtered,net_info,haul_comments,flowmeter_number,polygonal_area,max_wire_out,min_wire_out,foci_ich_species_code,gear_code,common_name_ichbase,species_code_ichbase,number_eggs,raw_value,displacement_volume,preservative,LARVALCATCHPERM3,LARVALCATCHPERM2,stage_name,species_name,net,gear_name,haul_name,station_name,cruise</ichfieldsList>
 <zoopfieldsList>gear_name,haul_name,sample_order,nut_id,f_b,f_a,chlor_door,dilution_factor,volume_filtered_chlor,Acetone_vol,calibration_id,ship_cruise_name,ctd_id,purpose,project,alt_station_name,foci_grid,gmt_date_time,bottom_depth,lat,lon,geographic_area,min_wire_out,max_wire_out,rec_hist_haul,flowmeter_number,flowmeter_revs,tow_minutes,tow_seconds,volume_filtered,polygonal_area,wire_angle,zoop_proc,subsample_factor,number_counted_measured,sorter_name,zoop_wet_weight,EST_NUM_PERSAMPLE,EST_NUM_PERM2,EST_NUM_PERM3,BIO_MASS_PERM3,BIO_MASS_PERM2,BIO_MASS_PERSAMPLE,DIS_PERVOLM2,DIS_PERVOLM3,sample_volume,CHLOROCONC_L,PHAECONC_L,quality,samplecomments,no3,no2,nh4,po4,sio4,bottle_num,CHLOROCONC_L,PHAECONC_L,SPECIMEN_SIZE,sex,EST_NUM_PERM3,ZOOPSTAGE,STAGEID,stage_desc,taxon_name,comments,haul_performance,min_gear_depth,max_gear_depth,mesh,net,gear_abbrv,cruise,haul,station_name,ship_cruise_name,haul_id,foci_sample_id</zoopfieldsList>
-<token>_n7LreypDF56CHHmT84ROS69R2kAOnAppdyy9BoWvWR9RwHNhhgXJtbwWm2rmHPo</token>
+<!-- <token>sd_CJpRvLgsKHZR2DgROUVP-xr0m9y8rzvoSuDmQeMJqFEwJW9Jtb1lL_D8JXg4T6fVOuI3zn84OHi9lukY7Zw..</token> -->
+<token>klala2Rbu8lKw1JT3YsxrjjZX9C7TxwEMuoyQrTvWGogYUodeW7E06o3KT9GBqUv</token>
 <!--  TABLE RECORDS -->	
 	<tables>
 	<!-- FlowMeter RECORDS -->
@@ -597,6 +598,10 @@
 		<taxonArray>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/17</taxonArray>
 		<geo_loc>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/18/</geo_loc>
 		<gearArray>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/20/</gearArray>
+		<cruiseArray_nutrient>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/25</cruiseArray_nutrient>
+		<cruiseArray_ctdb>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/26</cruiseArray_ctdb>
+		<cruiseArray_seacat>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/23</cruiseArray_seacat>
+		<cruiseArray_chlor>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/24</cruiseArray_chlor>
 	</dataproviders>
 	<symbols>
 		<simplefillsymbol color="0x5F9E61" alpha="0.7">

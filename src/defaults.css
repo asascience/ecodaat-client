@@ -80,6 +80,11 @@ PopupWindows|ResizableTitleWindow
 	skinClass: ClassReference("popups.ResizableTitleWindowSkin");
 }
 
+/*esri|PopUpRenderer
+{
+	skinClass:ClassReference("widgets.eSearch.skins.PopUpRendererSkin");
+}*/
+
 .WidgetTitle
 {
     fontSize: 12;

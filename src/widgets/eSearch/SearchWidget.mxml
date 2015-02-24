@@ -98,7 +98,6 @@
 			import com.esri.ags.layers.supportClasses.TableDetails;
 			import com.esri.ags.portal.PopUpRenderer;
 			import com.esri.ags.portal.supportClasses.PopUpInfo;
-			import com.esri.ags.portal.supportClasses.PopUpMediaInfo;
 			import com.esri.ags.symbols.PictureMarkerSymbol;
 			import com.esri.ags.symbols.SimpleFillSymbol;
 			import com.esri.ags.symbols.SimpleLineSymbol;
@@ -116,7 +115,10 @@
 			import com.esri.viewer.components.TitlebarButton;
 			import com.esri.viewer.components.toc.utils.MapUtil;
 			
-			import mx.collections.*;
+			import flash.utils.clearTimeout;
+			import flash.utils.setTimeout;
+			
+			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.controls.ToolTip;
 			import mx.events.CloseEvent;
@@ -134,9 +136,12 @@
 			import mx.utils.StringUtil;
 			import mx.validators.NumberValidator;
 			
+			import spark.collections.Sort;
+			import spark.collections.SortField;
 			import spark.components.supportClasses.ItemRenderer;
 			
-			import widgets.eSearch.skins.PopUpRendererSkin;
+			import widgets.Identify.PopUpRendererSkin;
+			//import widgets.eSearch.skins.PopUpRendererSkin;
 						
 			//labels
 			[Bindable]
@@ -263,6 +268,14 @@
 			private var speciesTrawlArray:ArrayCollection;
 			[Bindable]
 			private var cruiseArray:ArrayCollection;
+			[Bindable]
+			private var cruiseArray_seacat:ArrayCollection;
+			[Bindable]
+			private var cruiseArray_chlor:ArrayCollection;
+			[Bindable]
+			private var cruiseArray_ctdb:ArrayCollection;
+			[Bindable]
+			private var cruiseArray_nutr:ArrayCollection;
 			[Bindable]
 			private var gearnamesArray:ArrayCollection;
 			[Bindable]
@@ -986,6 +999,10 @@
 				var IchSpecies:QueryTask = new QueryTask(configXML.dataproviders.ichSpeciesArray);
 				var TrawlSpecies:QueryTask = new QueryTask(configXML.dataproviders.trawlSpeciesArray);
 				var cruiseCall:QueryTask = new QueryTask(configXML.dataproviders.cruiseArray);
+				var cruiseCall_chlor:QueryTask = new QueryTask(configXML.dataproviders.cruiseArray_chlor);
+				var cruiseCall_nutr:QueryTask = new QueryTask(configXML.dataproviders.cruiseArray_nutrient);
+				var cruiseCall_seacat:QueryTask = new QueryTask(configXML.dataproviders.cruiseArray_seacat);
+				var cruiseCall_ctdb:QueryTask = new QueryTask(configXML.dataproviders.cruiseArray_ctdb);
 				var taxonCall:QueryTask = new QueryTask(configXML.dataproviders.taxonArray);
 				var geoCall:QueryTask = new QueryTask(configXML.dataproviders.geo_loc);
 				var gearCall:QueryTask = new QueryTask(configXML.dataproviders.gearArray);
@@ -993,6 +1010,10 @@
 					IchSpecies.token = tokenUse;
 					TrawlSpecies.token = tokenUse;
 					cruiseCall.token = tokenUse;
+					cruiseCall_nutr.token = tokenUse;
+					cruiseCall_seacat.token = tokenUse;
+					cruiseCall_ctdb.token = tokenUse;
+					cruiseCall_chlor.token = tokenUse;
 					taxonCall.token = tokenUse;
 					geoCall.token = tokenUse;
 					gearCall.token = tokenUse;
@@ -1001,6 +1022,10 @@
 				IchSpecies.useAMF = true;
 				cruiseCall.useAMF = true;
 				taxonCall.useAMF = true;
+				cruiseCall_nutr.useAMF = true
+				cruiseCall_seacat.useAMF = true;
+				cruiseCall_ctdb.useAMF = true;
+				cruiseCall_chlor.useAMF = true;
 				geoCall.useAMF = true;
 				gearCall.useAMF = true;
 				var iQuery:Query = new Query();
@@ -1009,6 +1034,10 @@
 				IchSpecies.execute(iQuery,new AsyncResponder(onResultIch,onFault));
 				TrawlSpecies.execute(iQuery,new AsyncResponder(onResulttraw,onFault));
 				cruiseCall.execute(iQuery,new AsyncResponder(onResultCruise,onFault));
+				cruiseCall_nutr.execute(iQuery,new AsyncResponder(onResultCruiseN,onFault));
+				cruiseCall_seacat.execute(iQuery,new AsyncResponder(onResultCruiseS,onFault));
+				cruiseCall_ctdb.execute(iQuery,new AsyncResponder(onResultCruiseC,onFault));
+				cruiseCall_chlor.execute(iQuery,new AsyncResponder(onResultCruiseCH,onFault));
 				taxonCall.execute(iQuery,new AsyncResponder(onResulttaxon,onFault));
 				geoCall.execute(iQuery,new AsyncResponder(onResultgeo,onFault));
 				gearCall.execute(iQuery,new AsyncResponder(onResultgear,onFault));
@@ -1051,6 +1080,54 @@
 					}
 					speciesTrawlArray.refresh();
 					speciesTra.dataProvider= speciesTrawlArray;
+				}
+				function onResultCruiseS(featureSet:FeatureSet, token:Object = null):void
+				{
+					var obj:Object = new Object;
+					obj.alias = "SELECT ALL";
+					obj.selectall = true;
+					cruiseArray_seacat= new ArrayCollection();
+					cruiseArray_seacat.addItem(obj);
+					for (var p:int=0;p < featureSet.attributes.length; p++){
+						cruiseArray_seacat.addItem({alias:featureSet.attributes[p].CRUISE,selectall:false});
+					}
+					cruiseArray_seacat.refresh();
+				}
+				function onResultCruiseN(featureSet:FeatureSet, token:Object = null):void
+				{
+					var obj:Object = new Object;
+					obj.alias = "SELECT ALL";
+					obj.selectall = true;
+					cruiseArray_nutr= new ArrayCollection();
+					cruiseArray_nutr.addItem(obj);
+					for (var p:int=0;p < featureSet.attributes.length; p++){
+						cruiseArray_nutr.addItem({alias:featureSet.attributes[p].CRUISE,selectall:false});
+					}
+					cruiseArray_nutr.refresh();
+				}
+				function onResultCruiseCH(featureSet:FeatureSet, token:Object = null):void
+				{
+					var obj:Object = new Object;
+					obj.alias = "SELECT ALL";
+					obj.selectall = true;
+					cruiseArray_ctdb= new ArrayCollection();
+					cruiseArray_ctdb.addItem(obj);
+					for (var p:int=0;p < featureSet.attributes.length; p++){
+						cruiseArray_ctdb.addItem({alias:featureSet.attributes[p].CRUISE,selectall:false});
+					}
+					cruiseArray_ctdb.refresh();
+				}
+				function onResultCruiseC(featureSet:FeatureSet, token:Object = null):void
+				{
+					var obj:Object = new Object;
+					obj.alias = "SELECT ALL";
+					obj.selectall = true;
+					cruiseArray_chlor= new ArrayCollection();
+					cruiseArray_chlor.addItem(obj);
+					for (var p:int=0;p < featureSet.attributes.length; p++){
+						cruiseArray_chlor.addItem({alias:featureSet.attributes[p].CRUISE,selectall:false});
+					}
+					cruiseArray_chlor.refresh();
 				}
 				function onResultCruise(featureSet:FeatureSet, token:Object = null):void
 				{
@@ -1140,26 +1217,22 @@
 				
 				monthArray.refresh();
 				dgMonth.dataProvider.refresh();
-			}
+			}			
 			
-			private function flareClickHandler(event:FlareMouseEvent):void
+			
+			
+			private function flareClickHandler(event:MouseEvent):void
 			{
-				popUpRenderer.popUpInfo = configurePopUpInfo(event.graphic.attributes.links);
-				popUpRenderer.graphic = event.graphic;
-				popUpRenderer.setStyle("skinClass", widgets.eSearch.skins.PopUpRendererSkin);
-				map.infoWindow.content = popUpRenderer;
-				map.infoWindow.contentOwner = popUpRenderer.graphic;
-				map.infoWindow.show(map.toMapFromStage(event.stageX, event.stageY));
+				var searchResult:SearchResult = event.target.cluster.graphics[0].attributes as SearchResult;
+				clearTimeout(hitimer);
+				hitimer = setTimeout(showHighlight, 300, [searchResult]);
 			}
 			
 			private function pointClickHandler(event:MouseEvent):void
 			{
-				popUpRenderer.popUpInfo = configurePopUpInfo(event.target.attributes.links);
-				popUpRenderer.graphic = event.target.attributes.graphic;
-				popUpRenderer.setStyle("skinClass", widgets.eSearch.skins.PopUpRendererSkin);
-				map.infoWindow.content = popUpRenderer;
-				map.infoWindow.contentOwner = popUpRenderer.graphic;
-				map.infoWindow.show(map.toMapFromStage(event.stageX, event.stageY));
+				var searchResult:SearchResult = event.target.attributes as SearchResult;
+				clearTimeout(hitimer);
+				hitimer = setTimeout(showHighlight, 300, [searchResult]);
 			}
 			
 			private function myFaultFunction(fault:Fault,ob:Object):void
@@ -1486,6 +1559,23 @@
 					databaseTypeLabel.visible = true;
 				}
 				
+				//select out different cruises based on data set
+				if(String(configSearchText[i].label).search('SEACAT')>-1){
+					cruiseSample.dataProvider = cruiseArray_seacat;	
+				}
+				else if(String(configSearchText[i].label).search('CTDB')>-1){
+					cruiseSample.dataProvider = cruiseArray_ctdb;	
+				}
+				else if(String(configSearchText[i].label).search('CHLOR')>-1){
+					cruiseSample.dataProvider = cruiseArray_chlor;	
+				}
+				else if(String(configSearchText[i].label).search('NUTRIENT')>-1){
+					cruiseSample.dataProvider = cruiseArray_nutr;	
+				}
+				else{
+					cruiseSample.dataProvider = cruiseArray;	
+				}		
+				
 				cbSearch.visible = false;
 				cbSearch.includeInLayout = false;
 				txtSearch.visible = true;
@@ -1726,6 +1816,7 @@
 							for (var j1:int = 0; j1 < poly.rings[i2].length; j1++)
 							{
 								var mp2:MapPoint = poly.getPoint(i2,j1) as MapPoint;
+								mp2.normalize();
 								mp2.spatialReference = poly.spatialReference;
 								ringArray.push(mp2);
 							}
@@ -1791,25 +1882,38 @@
 				addSharedData("Deactivate_DrawTool", null); // to be able to deactivate drawTool on other widgets
 				var geom:Geometry;
 				var graLayAC:ArrayCollection = graGraphicsLayer.graphicProvider as ArrayCollection;
+				/*if(graLayAC[0].geometry.hasOwnProperty('rings')){
+					if(graLayAC[0].geometry.rings.length>1){
+						geom = unionGeoms2(graGraphicsLayer);
+					}
+					else{
+						geom = (graLayAC[0] as Graphic).geometry;
+					}
+				}
+				else{
+					
+				}*/
+				
 				if (graLayAC.length > 1)
-					 geom = unionGeoms2(graGraphicsLayer);
+					geom = unionGeoms2(graGraphicsLayer);
 				else if (graLayAC.length == 1)
-					geom = (graLayAC[0] as Graphic).geometry;
+					geom = graLayAC[0].geometry;//(graLayAC[0] as Graphic).geometry;
 				else
 					return;
 				
 				selectedDrawingIcon = null;
 				clearSelectionFilter();
-				//clearBuffer();
+				
 				if (geom is Polygon && GeometryUtil.polygonSelfIntersecting(geom as Polygon))
 				{
-					geometryService.simplify([geom], new AsyncResponder(simpResult, null));
+					geometryService.([geom], new AsyncResponder(simpResult, null));
 					function simpResult(item:Object ,spatialRelat:String):void{
 						var simpGeoms:Array = item as Array;
 						if(bufferUserGraphic.selected){
 							applyBuffer(true);
 						}else{
-							queryFeaturesGraphical(simpGeoms[0] as Polygon, "esriSpatialRelIntersects", configSearchGraphical[cboLayerGraphical.selectedIndex]);
+							//esriSpatialRelIndexIntersects 
+							queryFeaturesGraphical(simpGeoms[0] as Polygon, "esriSpatialRelIndexIntersects", configSearchGraphical[cboLayerGraphical.selectedIndex]);
 						}
 					}
 				}else{
@@ -1824,7 +1928,39 @@
 						queryFeaturesGraphical(geom, "esriSpatialRelIntersects", configSearchGraphical[cboLayerGraphical.selectedIndex]);
 					}
 				}
-				//graGraphicsLayer.clear();
+				//GeometryUtil.normalizeCentralMeridian([graLayAC[0].geometry],geometryService,  new AsyncResponder(postnormalize, null));				
+				/*geometryService.union([graLayAC[0].geometry], new AsyncResponder(postnormalize, null));
+				selectedDrawingIcon = null;
+				clearSelectionFilter();
+				function postnormalize(item:Object ,spatialRelat:String):void{
+					
+					geom = item as Geometry;
+					//clearBuffer();
+					if (geom is Polygon && GeometryUtil.polygonSelfIntersecting(geom as Polygon))
+					{
+						geometryService.simplify([geom], new AsyncResponder(simpResult, null));
+						function simpResult(item:Object ,spatialRelat:String):void{
+							var simpGeoms:Array = item as Array;
+							if(bufferUserGraphic.selected){
+								applyBuffer(true);
+							}else{
+								queryFeaturesGraphical(simpGeoms[0] as Polygon, "esriSpatialRelIntersects", configSearchGraphical[cboLayerGraphical.selectedIndex]);
+							}
+						}
+					}else{
+						//create extent around map point to improve search results
+						if (geom.type == Geometry.MAPPOINT && addTolerance.selected)
+						{
+							geom = createExtentAroundMapPoint(geom as MapPoint, pointSearchTolerance);
+						}
+						if(bufferUserGraphic.selected){
+							applyBuffer(true);
+						}else{
+							queryFeaturesGraphical(geom, "esriSpatialRelIntersects", configSearchGraphical[cboLayerGraphical.selectedIndex]);
+						}
+					}
+					//graGraphicsLayer.clear();	
+				}*/				
 			}
 			
 			private function createExtentAroundMapPoint(centerPoint:MapPoint, tolerance:Number):Extent
@@ -2835,7 +2971,14 @@
 								}
 								else{
 									queryforCatch = "select distinct h_id from specimen_main_geom where SPECIES_NAME "+speciesIch.selectedViewsSQL;
+									if(stageBob.selectedAll == false && stageBob.selectedViewsSQL != "noneSelected"){
+										queryforCatch+=" AND STAGEID "+stageBob.selectedViewsSQL;
+									}
+									if(stageIch.selectedAll == false && stageIch.selectedViewsSQL != "noneSelected"){
+										queryforCatch+=" AND STAGE_NAME "+stageIch.selectedViewsSQL;
+									}
 								}
+								
 								break;
 							}
 						}
@@ -3035,17 +3178,31 @@
 										}
 										
 										querycatch.where = catchExpression;
+										//doesn't work
+										//querycatch.returnDistinctValues = true;
 										//querycatch.outFields = ["CRUISE_NAME","HAUL_NAME","STATION_NAME","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_ABBREV"];
 										//Alert.show(catchExpression);
-										queryLayerHaul.outFields = ["CRUISE","HAUL_NAME","STATION_NAME","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_NAME"];
+										querycatch.returnGeometry = false;
+										queryLayerHaul.outFields = ["CRUISE","HAUL_NAME","STATION_NAME","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_NAME","GEOGRAPHIC_AREA","BOTTOM_DEPTH","MIN_GEAR_DEPTH","MAX_GEAR_DEPTH"];
 										//["CRUISE","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_NAME"];
 										queryLayerHaul.queryFeatures(querycatch, new AsyncResponder(onResultHaul, onFault));
 										// on result
 										function onResultHaul(featureSetHaul:FeatureSet, token:XMLList = null):void                
 										{
-											var haulArray:ArrayCollection =new ArrayCollection(featureSetHaul.attributes);
+											//var haulArray:ArrayCollection =new ArrayCollection(featureSetHaul.attributes);
 											showMessage(selectionLabel + " " + featureSet.features.length +"\nZero Catch: "+ featureSetHaul.attributes.length, false);
-											addSharedData("addCatchzero", haulArray);
+											var newFieldArrayC:ArrayCollection = new ArrayCollection;
+											for (var f2:int =0; f2<featureSetHaul.attributes.length; f2++){
+												var featureObj:Object = featureSetHaul.attributes[f2];
+												var featureDate:Date = new Date(featureObj.GMT_DATE_TIME);
+												featureObj['YEAR'] = featureDate.fullYear;
+												featureObj['MONTH'] = featureDate.month+1;
+												featureObj['DAY'] = featureDate.date;
+												newFieldArrayC.addItem(featureObj);
+											}
+											
+											//addSharedData("addCatchzero", haulArray);
+											addSharedData("addCatchzero", newFieldArrayC);
 										}
 										//on fault
 										function onFault(info:Object, token:Object = null) : void
@@ -3448,14 +3605,16 @@
 							}
 							try{
 								var gid:Number = 0;
-								for each (var gra:Graphic in featureSet.features){   
-									var obj:Object = gra.attributes;
-									if(!queryLayer.layerDetails.objectIdField){
-										obj["oid"] = gid;
-										gid ++;
-									}else{
-										obj["oid"] = gra.attributes[queryLayer.layerDetails.objectIdField];
-									}
+								for each (var gra:Graphic in featureSet.features){ 
+									//if(graGraphicsLayer.contains(gra.geometry as MapPoint)){
+										
+										var obj:Object = gra.attributes;
+										if(!queryLayer.layerDetails.objectIdField){
+											obj["oid"] = gid;
+											gid ++;
+										}else{
+											obj["oid"] = gra.attributes[queryLayer.layerDetails.objectIdField];
+										}
 								} 
 								gridDataProvider = featureSet.attributes;
 								resultsFeatureSet = featureSet;
@@ -4041,13 +4200,17 @@
 					graphic.attributes = searchResult;
 					result.addItem(searchResult);
 				
-					if (searchResult.point && !isNaN(searchResult.point.x) && !isNaN(searchResult.point.y)) // make sure it is a valid point
+					if (searchResult.point && !isNaN(searchResult.point.x) && !isNaN(searchResult.point.y)){
+						
+						// make sure it is a valid point
 						graphic.addEventListener(MouseEvent.CLICK,pointClickHandler);
 						graphicsLayer.add(graphic);
-					// infowWindowRenderer on each graphic
-					var infoWindowRenderer:ClassFactory = new ClassFactory(PopUpRenderer);
-					infoWindowRenderer.properties = {popUpInfo:configurePopUpInfo(lyrQLinks)};
-					graphic.infoWindowRenderer = infoWindowRenderer;
+						// infowWindowRenderer on each graphic
+						var infoWindowRenderer:ClassFactory = new ClassFactory(PopUpRenderer);
+						infoWindowRenderer.properties = {popUpInfo:configurePopUpInfo(lyrQLinks)};
+						graphic.infoWindowRenderer = infoWindowRenderer;
+					}
+						
 				}
 				graphicsLayer.visible = true;
 				graphicsLayer.refresh();
@@ -4664,7 +4827,7 @@
 				var showHighlightPoint:MapPoint = params[0].point as MapPoint;
 				popUpRenderer.popUpInfo = configurePopUpInfo(params[0].graphic.attributes.links);
 				popUpRenderer.graphic = params[0].graphic;
-				popUpRenderer.setStyle("skinClass", widgets.eSearch.skins.PopUpRendererSkin);
+				popUpRenderer.setStyle("skinClass", Class(widgets.Identify.PopUpRendererSkin));
 				map.infoWindow.content = popUpRenderer;
 				map.infoWindow.contentOwner = popUpRenderer.graphic;
 				map.infoWindow.show(showHighlightPoint);
@@ -4678,7 +4841,7 @@
 				var pminfos:Array = [];
 				
 				for(var l:int=0; l<links.length; l++){
-					if (links[l].link){
+					/*if (links[l].link){
 						var pos:Number = links[l].link.length - 4;
 						var sfx:String = String(links[l].link).substr(pos, 4).toLowerCase();
 						if ((sfx == ".jpg") || (sfx == ".png") || (sfx == ".gif")){ // use PopUpMediaInfo if it is an image
@@ -4691,7 +4854,7 @@
 							var lText:String = (links[l].alias != "") ? links[l].alias : links[l].link;
 							popUpInfo.description += "<br /><a href='" + links[l].link + "'>" + lText + "</a>"
 						}
-					}
+					}*/
 				}
 				popUpInfo.popUpMediaInfos = pminfos;
 				

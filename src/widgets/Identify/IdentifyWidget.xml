@@ -11,7 +11,8 @@
 	<enablepolyselect>false</enablepolyselect>
 	<enablemouseovergraphicsinfo>true</enablemouseovergraphicsinfo>
 	<enablemouseoverrecordinfo>false</enablemouseoverrecordinfo>
-	<usemaptime>true</usemaptime>
+	<usemaptime>false</usemaptime>
+	<token>sd_CJpRvLgsKHZR2DgROUVP-xr0m9y8rzvoSuDmQeMJqFEwJW9Jtb1lL_D8JXg4T6fVOuI3zn84OHi9lukY7Zw..</token>
 	<autoactivatedtool>mappoint</autoactivatedtool><!-- possible values are extent or polygon or mappoint or polyline or nothing -->
 	<labels>
 		<zoom2message>Click to Zoom to Point</zoom2message>

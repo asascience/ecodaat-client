@@ -18,8 +18,7 @@
              xmlns:s="library://ns.adobe.com/flex/spark"
              xmlns:mx="library://ns.adobe.com/flex/mx"
              xmlns:esri="http://www.esri.com/2008/ags"
-             xmlns:supportClasses="com.esri.ags.skins.supportClasses.*"
-             width="320"
+             width="290"
              maxHeight="210"
              preinitialize="skin_preinitializeHandler(event)">
 
@@ -52,10 +51,10 @@
             import com.esri.ags.geometry.MapPoint;
             import com.esri.ags.geometry.Multipoint;
             import com.esri.ags.layers.FeatureLayer;
-            import com.esri.ags.layers.supportClasses.LayerDetails;
+			import com.esri.ags.layers.supportClasses.LayerDetails;
             import com.esri.ags.portal.supportClasses.PopUpFieldInfo;
             import com.esri.ags.portal.supportClasses.PopUpInfo;
-            import com.esri.ags.skins.supportClasses.AttachmentMouseEvent;
+            //import com.esri.ags.events.AttachmentEvent;
             import com.esri.ags.utils.StringUtil;
             
             import mx.containers.Form;
@@ -67,16 +66,13 @@
 
             private var textStyleSheet:StyleSheet;
 
-            /* Define the symbol fill items that should be colored by the "symbolColor" style.*/
-            private static const symbols:Array = [ "titleLineSymbol" ];
+            /* Define the symbol fill items that should be colored by the "symbolColor" style.
+            private static const symbols:Array = [];
 
-            /**
-             * @private
-             */
             override public function get symbolItems():Array
             {
                 return symbols;
-            }
+            }*/
 
             private function skin_preinitializeHandler(event:FlexEvent):void
             {
@@ -86,7 +82,7 @@
                 textStyleSheet.setStyle("a:hover", { color: getCSSStyleColor("linkHoverColor"), textDecoration: "underline" });
                 textStyleSheet.setStyle("a:active", { color: getCSSStyleColor("linkActiveColor"), textDecoration: "underline" });
 
-                attachmentInspector.addEventListener(AttachmentMouseEvent.ATTACHMENT_CLICK, attachmentInspector_attachmentClickHandler);
+                //attachmentInspector.addEventListener(AttachmentMouseEvent.ATTACHMENT_CLICK, attachmentInspector_attachmentClickHandler);
             }
 
             private function getCSSStyleColor(styleProp:String):String
@@ -97,10 +93,10 @@
                 return "#" + cssColor;
             }
 
-            private function attachmentInspector_attachmentClickHandler(event:AttachmentMouseEvent):void
-            {
-                navigateToURL(new URLRequest(event.attachmentInfo.url));
-            }
+//            private function attachmentInspector_attachmentClickHandler(event:AttachmentMouseEvent):void
+//            {
+//                navigateToURL(new URLRequest(event.attachmentInfo.url));
+//            }
 
             /**
              * @private
@@ -182,19 +178,19 @@
                             vGroup.addElement(descriptionForm);
                     }
 
-                    if (validMediaInfos && validMediaInfos.length > 0){
-                        vGroup.addElement(mediaBrowser);
-                        mediaBrowser.attributes = graphic.attributes;
-                        mediaBrowser.formattedAttributes = formattedAttributes;
-                        mediaBrowser.popUpFieldInfos = popUpInfo.popUpFieldInfos;
-                        mediaBrowser.popUpMediaInfos = validMediaInfos;
-                    }
+//                    if (validMediaInfos && validMediaInfos.length > 0){
+//                        vGroup.addElement(mediaBrowser);
+//                        mediaBrowser.attributes = graphic.attributes;
+//                        mediaBrowser.formattedAttributes = formattedAttributes;
+//                        mediaBrowser.popUpFieldInfos = popUpInfo.popUpFieldInfos;
+//                        mediaBrowser.popUpMediaInfos = validMediaInfos;
+//                    }
 
-                    if (popUpInfo.showAttachments && graphic && featureLayer
+                    /*if (popUpInfo.showAttachments && graphic && featureLayer
                         && layerDetails && layerDetails.hasAttachments && layerDetails.objectIdField){
                         vGroup.addElement(attachmentInspector);
                         attachmentInspector.showAttachments(graphic, featureLayer);
-                    }
+                    }*/
 
                     if (map && geometry)
                         vGroup.addElement(zoomToButton);
@@ -266,16 +262,16 @@
             </s:stroke>
         </s:Line>
 
-        <!--- @private -->
+        <!--- @private 
         <supportClasses:PopUpMediaBrowser id="mediaBrowser"
                                           width="100%"
-                                          skinClass="com.esri.ags.skins.supportClasses.PopUpMediaBrowserSkin"/>
+                                          skinClass="com.esri.ags.skins.supportClasses.PopUpMediaBrowserSkin"/>-->
 
-        <!--- @private -->
+        <!--- @private 
         <esri:AttachmentInspector id="attachmentInspector"
                                   width="100%"
                                   addEnabled="false"
-                                  deleteEnabled="false"/>
+                                  deleteEnabled="false"/>-->
 
         <!--- @private -->
         <mx:LinkButton id="zoomToButton"

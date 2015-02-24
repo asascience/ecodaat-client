@@ -23,15 +23,15 @@
                xmlns:s="library://ns.adobe.com/flex/spark"
                xmlns:mx="library://ns.adobe.com/flex/mx"
                x="60" y="150" width="400" height="200"
-               close="close()"
+               close="close()" 
                title="Application Error">
 
     <fx:Script>
         <![CDATA[
+            import mx.managers.PopUpManager;
+            
             import flashx.textLayout.conversion.TextConverter;
             import flashx.textLayout.elements.TextFlow;
-
-            import mx.managers.PopUpManager;
 
             [Bindable]
             /**
@@ -41,7 +41,7 @@
 
             private function close():void
             {
-                PopUpManager.removePopUp(this);
+				PopUpManager.removePopUp(this);
             }
 
             private function convertToTextFlow(value:String):TextFlow
@@ -56,11 +56,11 @@
         ]]>
     </fx:Script>
 
-    <s:Scroller left="6" right="6" top="6" bottom="6">
-        <s:RichEditableText id="msg"
+    <s:HGroup id="mainp" left="6" right="6" top="6"  bottom="6">
+        <s:RichEditableText id="msg" 
                             editable="false"
                             selectable="true"
                             textFlow="{convertToTextFlow(errorMessage)}"/>
-    </s:Scroller>
+    </s:HGroup>
 
 </s:TitleWindow>

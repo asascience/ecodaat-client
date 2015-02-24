@@ -26,7 +26,7 @@ import com.esri.ags.layers.ArcGISDynamicMapServiceLayer;
 import com.esri.ags.layers.ArcGISImageServiceLayer;
 import com.esri.ags.layers.ArcGISTiledMapServiceLayer;
 import com.esri.ags.layers.FeatureLayer;
-import com.esri.ags.layers.KMLLayer;
+//import com.esri.ags.layers.KMLLayer;
 import com.esri.ags.layers.Layer;
 import com.esri.ags.layers.OpenStreetMapLayer;
 import com.esri.ags.layers.WMSLayer;
@@ -710,7 +710,7 @@ public class ConfigManager extends EventDispatcher
                                 lyrXML.@displaylevels = veLyr.displayLevels.join();
                             }
                         }
-                        else if (layer is KMLLayer)
+                        /*else if (layer is KMLLayer)
                         {
                             var kmlLayer:KMLLayer = layer as KMLLayer;
                             lyrXML = <layer label={label}
@@ -718,7 +718,7 @@ public class ConfigManager extends EventDispatcher
                                     visible={kmlLayer.visible}
                                     alpha={kmlLayer.alpha}
                                     url={kmlLayer.url}/>;
-                        }
+                        }*/
                         else if (layer is WMSLayer)
                         {
                             var wmsLayer:WMSLayer = layer as WMSLayer;

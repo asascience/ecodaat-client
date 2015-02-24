@@ -31,12 +31,12 @@
         
         <operationallayers>
         	<layer label="Graticules" usemaptime="false" type="dynamic" visible="true" layers="0,1,2" url="http://akc0ss-v-136.afsc.noaa.gov/mapapp/rest/services/ECODAAT/Graticules/MapServer" />
-            <layer label="EcoDAAT" token="_n7LreypDF56CHHmT84ROS69R2kAOnAppdyy9BoWvWR9RwHNhhgXJtbwWm2rmHPo" usemaptime="true" type="dynamic" visible="true" layers="0,1,2,3,4,5,6,7,8" url="http://akc0ss-v-136.afsc.noaa.gov/mapapp/rest/services/ECODAAT/ecodaat_development/MapServer" >
+            <layer label="EcoDAAT" token="klala2Rbu8lKw1JT3YsxrjjZX9C7TxwEMuoyQrTvWGogYUodeW7E06o3KT9GBqUv" usemaptime="true" type="dynamic" visible="true" layers="0,1,2,3,4,5,6,7,8" url="http://akc0ss-v-136.afsc.noaa.gov/mapapp/rest/services/ECODAAT/ecodaat_development/MapServer" >
             	
             	<!--
             	for website: http://services.asascience.com/MapApp/ecodaat/        	
-            	for NOAA: odo4FgmvYt-6Jiy55Ic_8MjL3Cjl9SuxAGSkj1-5S5YgKME17_MqZo-HrbFM97SUsqUFwAKHCKiP2PNNBNGBDg..
-            	local: MK68ZSRs1j_d-ACBtZbLKcpuaSl93915ne-xi-59JwMiZUUL7Otm9VL1U3M4qX1i
+            	for NOAA: sd_CJpRvLgsKHZR2DgROUVP-xr0m9y8rzvoSuDmQeMJqFEwJW9Jtb1lL_D8JXg4T6fVOuI3zn84OHi9lukY7Zw..
+            	local: klala2Rbu8lKw1JT3YsxrjjZX9C7TxwEMuoyQrTvWGogYUodeW7E06o3KT9GBqUv
             	asa:
             	home: 
             	<clustering mingraphiccount="5" sizeinpixels="80">

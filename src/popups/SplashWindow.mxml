@@ -9,17 +9,17 @@
 	<fx:Script>
 		<![CDATA[			
 			import com.esri.viewer.AppEvent;
-			import com.esri.viewer.DataUtilities;
+			//import com.esri.viewer.DataUtilities;
 			import com.esri.viewer.ViewerContainer;
 			
 			import flash.events.IOErrorEvent;
 			
 			import mx.controls.Alert;
 			import mx.controls.TextArea;
-			import mx.events.CloseEvent;
+			//import mx.events.CloseEvent;
 			import mx.events.FlexEvent;
 			import mx.managers.PopUpManager;
-			import mx.resources.ResourceManager;
+			//import mx.resources.ResourceManager;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
 			import mx.rpc.http.HTTPService;
