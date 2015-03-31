@@ -1149,7 +1149,7 @@
 						resultsGrid.dataProvider= mergedData;
 						//this to match and add the new columns
 						var currentColumns:Array = resultsGrid.columns;
-						var newColumns:Array = new Array("CRUISE","HAUL_NAME","STATION_NAME","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_NAME","GEOGRAPHIC_AREA","BOTTOM_DEPTH","MIN_GEAR_DEPTH","MAX_GEAR_DEPTH","YEAR","MONTH","DAY");
+						var newColumns:Array = new Array("CRUISE","HAUL_NAME","STATION_NAME","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_NAME","GEOGRAPHIC_AREA","BOTTOM_DEPTH","COMMENTS_HAUL","MAX_GEAR_DEPTH","YEAR","MONTH","DAY");
 						for each(var c:String in newColumns){
 							var included:Boolean = false;
 							for each(var cc:DataGridColumn in currentColumns){

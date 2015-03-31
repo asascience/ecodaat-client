@@ -2600,7 +2600,7 @@
 						expr += " AND to_char(GMT_DATE_TIME,'DD') < 15";	
 					}
 					
-					var catchExpression = expr;
+					var catchExpression:String = expr;
 										
 					//Start of Query text options
 					if(microZoopVisible == true)
@@ -2943,40 +2943,42 @@
 						switch(databaseText.selectedLabel){
 							case "Zooplankton":
 							{
-								if(taxaBob.selectedItems.length != 1)
+								/*if(taxaBob.selectedItems.length != 1)
 								{
 									Alert.show("Please only select one Taxon Name to query Catch with Zero Results.", "Issue");
 								}
 								else{
-									queryforCatch = "select distinct h_id from specimen_main_geom where TAXON_NAME "+taxaBob.selectedViewsSQL;
-								}
+									
+								}*/
+								queryforCatch = "select distinct h_id from specimen_main_geom where TAXON_NAME "+taxaBob.selectedViewsSQL;
 								break;
 							}
 							case "TRAWL":
 							{
-								if(speciesTra.selectedItems.length != 1)
+								/*if(speciesTra.selectedItems.length != 1)
 								{
 									Alert.show("Please only select one Species to query Catch with Zero Results.", "Issue");
 								}
 								else{
-									queryforCatch = "select distinct h_id from specimen_main_geom where SPECIES_NAME "+speciesTra.selectedViewsSQL;
-								}
+								}*/
+								queryforCatch = "select distinct h_id from specimen_main_geom where SPECIES_NAME "+speciesTra.selectedViewsSQL;
 								break;
 							}
 							case "Ichthyoplankton":
 							{
-								if(speciesIch.selectedItems.length != 1)
-								{
-									Alert.show("Alert", "Please only select one Species to query Catch with Zero Results.");
+//								if(speciesIch.selectedItems.length != 1)
+//								{
+//									Alert.show("Please only select one Species to query Catch with Zero Results.", "Alert");
+//								}
+//								else{
+//									
+//								}
+								queryforCatch = "select distinct h_id from specimen_main_geom where SPECIES_NAME "+speciesIch.selectedViewsSQL;
+								if(stageBob.selectedAll == false && stageBob.selectedViewsSQL != "noneSelected"){
+									queryforCatch+=" AND STAGEID "+stageBob.selectedViewsSQL;
 								}
-								else{
-									queryforCatch = "select distinct h_id from specimen_main_geom where SPECIES_NAME "+speciesIch.selectedViewsSQL;
-									if(stageBob.selectedAll == false && stageBob.selectedViewsSQL != "noneSelected"){
-										queryforCatch+=" AND STAGEID "+stageBob.selectedViewsSQL;
-									}
-									if(stageIch.selectedAll == false && stageIch.selectedViewsSQL != "noneSelected"){
-										queryforCatch+=" AND STAGE_NAME "+stageIch.selectedViewsSQL;
-									}
+								if(stageIch.selectedAll == false && stageIch.selectedViewsSQL != "noneSelected"){
+									queryforCatch+=" AND STAGE_NAME "+stageIch.selectedViewsSQL;
 								}
 								
 								break;
@@ -3030,11 +3032,13 @@
 						}
 						queryLayer.outFields = qOutFields;
 						query.outFields = qOutFields;
+						query.orderByFields = ['SPECIES_NAME ASC, TAXON_NAME'];
 						if(tokenUse != ""){
 							queryLayer.token = tokenUse;
 						}
 						if(queryDefExpr != "")
 							queryLayer.definitionExpression = queryDefExpr; 
+						
 						queryLayer.queryFeatures(query, new AsyncResponder(onResult, onFault, queryFields));
 						
 						showMessage(loadingLabel, true); 
@@ -3183,7 +3187,7 @@
 										//querycatch.outFields = ["CRUISE_NAME","HAUL_NAME","STATION_NAME","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_ABBREV"];
 										//Alert.show(catchExpression);
 										querycatch.returnGeometry = false;
-										queryLayerHaul.outFields = ["CRUISE","HAUL_NAME","STATION_NAME","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_NAME","GEOGRAPHIC_AREA","BOTTOM_DEPTH","MIN_GEAR_DEPTH","MAX_GEAR_DEPTH"];
+										queryLayerHaul.outFields = ["CRUISE","HAUL_NAME","STATION_NAME","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_NAME","GEOGRAPHIC_AREA","BOTTOM_DEPTH","COMMENTS_HAUL","MAX_GEAR_DEPTH"];
 										//["CRUISE","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_NAME"];
 										queryLayerHaul.queryFeatures(querycatch, new AsyncResponder(onResultHaul, onFault));
 										// on result
@@ -3198,6 +3202,20 @@
 												featureObj['YEAR'] = featureDate.fullYear;
 												featureObj['MONTH'] = featureDate.month+1;
 												featureObj['DAY'] = featureDate.date;
+												//add null values for catch and Ich for Debbie
+												//only if one species or taxa is chosen
+												if(speciesIch.selectedAll == false && speciesIch.selectedViewsSQL != "noneSelected"&& speciesIch.selectedItems.length == 1){
+													featureObj['LARVALCATCHPERM3'] = 0;
+													featureObj['LARVALCATCHPERM2'] = 0;
+													if(speciesIch.selectedItems[0].alias){
+														featureObj['SPECIES_NAME'] = speciesIch.selectedItems[0].alias;
+													}
+												}
+												if(taxaBob.selectedAll == false && taxaBob.selectedViewsSQL != "noneSelected"&& taxaBob.selectedItems.length == 1){
+													if(taxaBob.selectedItems[0].alias){
+														featureObj['TAXON_NAME'] = taxaBob.selectedItems[0].alias;
+													}
+												}
 												newFieldArrayC.addItem(featureObj);
 											}
 											

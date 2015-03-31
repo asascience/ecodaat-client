@@ -1,4 +1,4 @@
-bin-release2/*
+bin-release/*
 bin-debug/*
 .actionScriptProperties
 .flexProperties
