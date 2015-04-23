@@ -310,7 +310,7 @@
 						 width="268"
 						 labels="{['ZoomToMakeVisible','ExpandAll','CollapseAll']}"
 						 useesridescription="true" scroller="{scr}"
-						 expanded="true" verticalScrollPolicy="auto"
+						 expanded="true" verticalScrollPolicy="off"
 						 disableZoomTo="false" excludeGraphicsLayers="true" excludeLayers="{'Oceans','Streets','Topographic','Imagery'}"
 						 fullexpanded="false"
 						 legendCollapsed="false" loader="{boxMessage}"

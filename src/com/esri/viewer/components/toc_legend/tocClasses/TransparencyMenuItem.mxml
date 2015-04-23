@@ -61,7 +61,7 @@
         <layers:Layer id="layer"/>
     </fx:Declarations>
     <s:VGroup width="100%"
-              gap="2"
+              gap="2" 
 			  paddingTop="2"
               paddingBottom="2"
               paddingLeft="10"

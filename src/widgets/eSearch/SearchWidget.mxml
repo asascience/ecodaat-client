@@ -3032,7 +3032,9 @@
 						}
 						queryLayer.outFields = qOutFields;
 						query.outFields = qOutFields;
-						query.orderByFields = ['SPECIES_NAME ASC, TAXON_NAME'];
+						
+						//order by fields
+						//query.orderByFields = ['SPECIES_NAME ASC, TAXON_NAME'];
 						if(tokenUse != ""){
 							queryLayer.token = tokenUse;
 						}

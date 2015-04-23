@@ -17,14 +17,14 @@ package com.esri.viewer.components.toc_legend
 	import com.esri.ags.events.MapEvent;
 	import com.esri.ags.layers.ArcGISDynamicMapServiceLayer;
 	import com.esri.ags.layers.ArcGISTiledMapServiceLayer;
-	import com.esri.ags.layers.ArcIMSMapServiceLayer;
+	//import com.esri.ags.layers.ArcIMSMapServiceLayer;
 	import com.esri.ags.layers.FeatureLayer;
 	import com.esri.ags.layers.GraphicsLayer;
-	import com.esri.ags.layers.KMLLayer;
+	//import com.esri.ags.layers.KMLLayer;
 	import com.esri.ags.layers.Layer;
 	import com.esri.ags.layers.TiledMapServiceLayer;
-	import com.esri.ags.layers.WMSLayer;
-	import com.esri.ags.virtualearth.VETiledLayer;
+	//import com.esri.ags.layers.WMSLayer;
+	//import com.esri.ags.virtualearth.VETiledLayer;
 	import com.esri.viewer.components.toc_legend.tocClasses.TocItem;
 	import com.esri.viewer.components.toc_legend.tocClasses.TocItemRenderer;
 	import com.esri.viewer.components.toc_legend.tocClasses.TocMapLayerItem;
@@ -186,16 +186,16 @@ package com.esri.viewer.components.toc_legend
 		
 		override protected function mouseOverHandler(event:MouseEvent):void 
 		{
-			var item:TocItem = mouseEventToItemRenderer(event).data as TocItem;
-			if (item != null && item.label != "dummy") 
-				super.mouseOverHandler(event);
+			//var item:TocItem = mouseEventToItemRenderer(event).data as TocItem;
+			//if (item != null && item.label != "dummy") 
+			//	super.mouseOverHandler(event);
 		}
 		
 		override protected function mouseDownHandler(event:MouseEvent):void 
 		{
-			var item:TocItem = mouseEventToItemRenderer(event).data as TocItem;
-			if (item != null && item.label != "dummy") 
-				super.mouseDownHandler(event);
+			//var item:TocItem = mouseEventToItemRenderer(event).data as TocItem;
+			//if (item != null && item.label != "dummy") 
+			//	super.mouseDownHandler(event);
 		}
 	
 	    public function set isMapServiceOnly(value:Boolean):void
@@ -594,10 +594,7 @@ package com.esri.viewer.components.toc_legend
 			}
 			lLoader.visible = lLoader.includeInLayout = true;
 			numOfLayers += 1;
-			if(layer is ArcIMSMapServiceLayer || layer is  WMSLayer || layer is VETiledLayer || 
-				layer.name == "dummy" || (layer is KMLLayer && !layer.visible)){
-				numOfLayers -= 1;
-			}
+			
 	
 	        // Init any layer properties, styles, and effects
 	        if (useLayerFadeEffect)
@@ -616,10 +613,8 @@ package com.esri.viewer.components.toc_legend
 			} else if (layer is ArcGISDynamicMapServiceLayer) {
 				tocItem.ttooltip = ArcGISDynamicMapServiceLayer(layer).serviceDescription;
 				order++;
-			} else if (layer is KMLLayer) {
-				tocItem.ttooltip = KMLLayer(layer).description;
-				order++;
-			} else if (layer is FeatureLayer) {
+			} 
+			else if (layer is FeatureLayer) {
 				const florder:int = order;
 				var msName:String = FeatureLayer(layer).url.replace("FeatureServer","MapServer");
 				if(msName.substring(msName.length - 9) != "MapServer"){

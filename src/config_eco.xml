@@ -31,7 +31,7 @@
         
         <operationallayers>
         	<layer label="Graticules" usemaptime="false" type="dynamic" visible="true" layers="0,1,2" url="http://akc0ss-v-136.afsc.noaa.gov/mapapp/rest/services/ECODAAT/Graticules/MapServer" />
-            <layer label="EcoDAAT" token="xiwysCR9YBvFRqwEuRH-YMx6ZXhYgXXMkqy5Mo4MMRTvf6IWsYZV9nhb77zQ-pxQ" usemaptime="true" type="dynamic" visible="true" layers="0,1,2,3,4,5,6,7,8" url="http://akc0ss-v-136.afsc.noaa.gov/mapapp/rest/services/ECODAAT/ecodaat_development/MapServer" >
+            <layer label="EcoDAAT" token="flZYhkUXpb2n5Rm8Y5q0lbGfDzPDcV0VKGjRcJum2teBecq8FZxvD2-McR4rOfzZ" usemaptime="true" type="dynamic" visible="true" layers="0,1,2,3,4,5,6,7,8" url="http://akc0ss-v-136.afsc.noaa.gov/mapapp/rest/services/ECODAAT/ecodaat_development/MapServer" >
             	
             	<!--
             	for website: http://services.asascience.com/MapApp/ecodaat/        	

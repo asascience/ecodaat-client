@@ -41,8 +41,8 @@
 		]]>
 	</fx:Script>
 	
-	<s:Scroller width="100%" height="100%"
-				hasFocusableChildren="false"
+	<s:Scroller width="100%" height="100%" verticalScrollPolicy="off"
+				hasFocusableChildren="false" 
 				measuredSizeIncludesScrollBars="false"
 				minViewportInset="1">
 		<s:RichEditableText editable="false"
@@ -56,6 +56,6 @@
 	<TOC:controlBarContent>
 	</TOC:controlBarContent>
 	<TOC:controlBarLayout>
-		<s:HorizontalLayout horizontalAlign="right" paddingTop="3" paddingBottom="2" paddingRight="5" clipAndEnableScrolling="true" />
+		<s:HorizontalLayout horizontalAlign="right" paddingTop="3" paddingBottom="2" paddingRight="5" clipAndEnableScrolling="false" />
 	</TOC:controlBarLayout>
 </TOC:ResizeTitleWindow>

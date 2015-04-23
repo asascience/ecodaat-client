@@ -38,7 +38,7 @@
 			import com.esri.ags.events.GeometryServiceEvent;
 			import com.esri.ags.geometry.Extent;
 			import com.esri.ags.layers.FeatureLayer;
-			import com.esri.ags.layers.KMLLayer;
+			//import com.esri.ags.layers.KMLLayer;
 			import com.esri.ags.layers.Layer;
 			import com.esri.ags.layers.OpenStreetMapLayer;
 			import com.esri.ags.layers.WMSLayer;
@@ -46,14 +46,14 @@
 			import com.esri.ags.tasks.supportClasses.ProjectParameters;
 			import com.esri.ags.utils.WebMercatorUtil;
 			import com.esri.viewer.AppEvent;
-			import com.esri.viewer.ViewerContainer;
+			//import com.esri.viewer.ViewerContainer;
 			
 			import mx.collections.ArrayCollection;
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			import mx.managers.PopUpManager;
 			import mx.managers.PopUpManagerChildList;
-			import mx.rpc.AsyncResponder;
+			//import mx.rpc.AsyncResponder;
 			
 			import spark.components.supportClasses.ItemRenderer;
 			
@@ -630,7 +630,7 @@
                               url="http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer"/>
     </fx:Declarations>
     <s:layout>
-        <s:VerticalLayout gap="0"/>
+        <s:VerticalLayout gap="0" clipAndEnableScrolling="false"/>
     </s:layout>
     
 	<Toc:MenuItemDataGroup id="menuListDG"
