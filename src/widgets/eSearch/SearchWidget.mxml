@@ -3207,10 +3207,13 @@
 												//add null values for catch and Ich for Debbie
 												//only if one species or taxa is chosen
 												if(speciesIch.selectedAll == false && speciesIch.selectedViewsSQL != "noneSelected"&& speciesIch.selectedItems.length == 1){
-													featureObj['LARVALCATCHPERM3'] = 0;
-													featureObj['LARVALCATCHPERM2'] = 0;
+													featureObj['LARVALCATCHPER1000M3'] = 0;
+													featureObj['LARVACATCHPER10M2'] = 0;
 													if(speciesIch.selectedItems[0].alias){
 														featureObj['SPECIES_NAME'] = speciesIch.selectedItems[0].alias;
+													}
+													if(stageIch.selectedItems[0].alias){
+														featureObj['STAGE_NAME'] = stageIch.selectedItems[0].alias;
 													}
 												}
 												if(taxaBob.selectedAll == false && taxaBob.selectedViewsSQL != "noneSelected"&& taxaBob.selectedItems.length == 1){
