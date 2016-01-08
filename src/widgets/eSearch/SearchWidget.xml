@@ -7,8 +7,7 @@
 <trawlfieldsList>haul_name,preserve_id,comments_length_weight,comments_stomach_content,prey_quality,prey_weight,prey_count,comments_prey,haul_id,process_date,examiner,stomach_fullness_code,fullness_desc,stomach_intact_wt_g,stomach_lining_wt_g,stomach_digestion_code,digestion_desc,prey_code_trawl,alt_common_name_trawl,prey_group_code_trawl,alt_common_name_trawl,prey_quality,prey_weight,prey_count,alt_specimen_number,frequency,total_length,alt_common_name_trawl,weight_units,total_weight,subsample_weight,subsample_number,comments,mesh,door,max_gear_depth,max_wire_out,netmouth_height_m,sea_surface_temp_c,water_temp_at_gear_depth,trawl_haulback_start_gmt,trawl_haulback_start_lat,trawl_haulback_start_lon,gmt_date_time_end,lat_end,lon_end,foci_grid,trawl_deployed_gmt,trawl_deployed_lat,trawl_deployed_lon,net_path,lat,lon,bottom_depth,gear_id,standard_length,fork_length,alt_common_name_trawl,foci_id,total_length,whole_wet_body_weight,stomach_id,age_growth_sample,genetic_sample,stomach_content_wt_g,documents,notes,publications,gmt_date_time,haul,purpose,haul_performance,foci_cruise_name,ship_name</trawlfieldsList>
 <ichfieldsList>gmt_date_time,geographic_area,lat,lon,corrected_value,bottom_depth,max_gear_depth,min_gear_depth,mesh,number_caught,number_measured_counted,purpose,haul_performance,flowmeter_revs,tow_seconds,standard_haul_factor_a,standard_haul_factor_b,calibration_factor,foci_haul_id,volume_filtered,net_info,haul_comments,flowmeter_number,polygonal_area,max_wire_out,min_wire_out,foci_ich_species_code,gear_code,common_name_ichbase,species_code_ichbase,number_eggs,raw_value,displacement_volume,preservative,LARVALCATCHPER1000M3,LARVACATCHPER10M2,stage_name,species_name,net,gear_name,haul_name,station_name,cruise</ichfieldsList>
 <zoopfieldsList>gear_name,haul_name,sample_order,nut_id,f_b,f_a,chlor_door,dilution_factor,volume_filtered_chlor,Acetone_vol,calibration_id,ship_cruise_name,ctd_id,purpose,project,alt_station_name,foci_grid,gmt_date_time,bottom_depth,lat,lon,geographic_area,min_wire_out,max_wire_out,rec_hist_haul,flowmeter_number,flowmeter_revs,tow_minutes,tow_seconds,volume_filtered,polygonal_area,wire_angle,zoop_proc,subsample_factor,number_counted_measured,sorter_name,zoop_wet_weight,EST_NUM_PERSAMPLE,EST_NUM_PERM2,EST_NUM_PERM3,BIO_MASS_PERM3,BIO_MASS_PERM2,BIO_MASS_PERSAMPLE,DIS_PERVOLM2,DIS_PERVOLM3,sample_volume,CHLOROCONC_L,PHAECONC_L,quality,samplecomments,no3,no2,nh4,po4,sio4,bottle_num,CHLOROCONC_L,PHAECONC_L,SPECIMEN_SIZE,sex,EST_NUM_PERM3,ZOOPSTAGE,STAGEID,stage_desc,taxon_name,comments,haul_performance,min_gear_depth,max_gear_depth,mesh,net,gear_abbrv,cruise,haul,station_name,ship_cruise_name,haul_id,foci_sample_id</zoopfieldsList>
-<!-- <token>sd_CJpRvLgsKHZR2DgROUVP-xr0m9y8rzvoSuDmQeMJqFEwJW9Jtb1lL_D8JXg4T6fVOuI3zn84OHi9lukY7Zw..</token> -->
-<token>6jBuLkVrvboy4-LfGDvzRVSNOsnRXdc8xIvMEo-6tOl_sR0m3SLYklwVr4q9Lz0f</token>
+<token></token>
 <!--  TABLE RECORDS -->	
 	<tables>
 	<!-- FlowMeter RECORDS -->
@@ -16,7 +15,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>FLOWMETER RECORDS</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/10</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/10</url>
 			<expressions>
 				<expression alias="FOCI CRUISE NAME" textsearchlabel="CRUISE NAME"
 					field="CRUISE_NAME" usedomain="false" userlist="0MF91,10MF96,10MF97,1AE10,1AK10,1AK11,1AR06,1AR07,1AR08,1AR09,1BA85,1BB87,1CH83,1CH84,1DA81,1DA82,1DI85,1DI96,1DN88,1DY08,1DY09,1DY10,1DY11,1EQ83,1EW02,1EW04,1FA05,1GI86,1GP99,1HE07,1HX01,1HX03,1HX04,1KN09,1KR04,1KR09,1MA02,1MB11,1ME08,1MF00,1MF01,1MF02,1MF03,1MF08,1MF09,1MF10,1MF79,1MF81,1MF83,1MF85,1MF86,1MF87,1MF88,1MF89,1MF90,1MF91,1MF92,1MF93,1MF94,1MF95,1MF98,1MF99,1MM92,1MP91,1NW02,1NW06,1NW10,1OC88,1OE08,1OM00,1OM01,1OM02,1OM03,1OM04,1OM05,1OM06,1OM07,1OM95,1OM96,1OM97,1OM98,1OM99,1PK98,1PO79,1PO80,1PO81,1PO82,1PO84,1PO85,1PS94,1RB00,1RB01,1SH81,1SH84,1SS02,1SS03,1SS04,1SS05,1SS06,1SS07,1SU94,1TK80,1TT05,1TT06,1TT07,1TT10,1TT11,1TT99,1WE10,1WE78,1WE99,2AK10,2AK11,2AR07,2AR08,2AR09,2CH84,2DA82,,2DY07,2DY08,2DY09,2DY11,2HX01,2HX03,2HX04,2KE72,2KM03,2MF00,2MF01,2MF03,2MF04,2MF05,2MF06,2MF07,2MF09,2MF78,2MF81,2MF85,2MF86,2MF87,2MF88,2MF89,2MF90,2MF91,2MF92,2MF93,2MF94,2MF95,2MF96,2MF98,2MF99,2NW10,2OM03,2PO85,2SH81,2SU95,2WE98,2WE99,3AK10,3AK11,3AR08,3AR09,3CH84,3DY08,3DY09,3DY10,3DY11,3HX01,3HX04,3KM03,3MF00,3MF01,3MF02,3MF03,3MF04,3MF05,3MF06,,3MF07,3MF08,3MF78,3MF79,3MF81,3MF87,3MF88,3MF89,3MF90,3MF91,3MF92,3MF93,3MF94,3MF96,3MF98,3MF99,3SH81,3TT05,3WE98,4CH84,4DI78,4DY08,4DY09,4HX01,4MF00,4MF01,4MF02,4MF03,4MF06,4MF07,4MF08,4MF77,4MF78,4MF81,4MF87,4MF88,4MF89,4MF90,4MF91,4MF92,4MF93,4MF94,4MF95,4MF98,4MF99,4WE97,5CH84,5MF00,5MF02,5MF03,5MF04,5MF05,5MF06,5MF07,5MF78,5MF90,5MF91,5MF93,5MF94,5MF96,5MF97,5MF98,5MF99,5TK79,6DY08,6MF00,6MF02,6MF04,6MF05,6MF06,6MF07,6MF78,6MF93,6MF94,6MF95,6MF96,6MF97,7DY11,7MF00,7MF03,7MF04,7MF05,7MF06,7MF07,7MF94,7MF95,7MF96,7MF97,7MF99,8MF00,8MF03,8MF04,8MF05,8MF07,8MF93,8MF94,8MF95,8MF96,8MF97,9MF95,9MF96,9MF97,MF0209,MF862">CRUISE_NAME ='[value]'</expression>
@@ -43,7 +42,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>GEAR TYPE  INFO</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/11</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/11</url>
 			<expressions>
 				<expression alias="GEAR ABBREVIATION" userlist="160,170,20BON,30,302,3PSBT,60BON,ALEUTIAN,ANCHO,ASOUND,BEAM,BIOOTHER,BONG,BOT,BOTT,BOTTLES,CALVET,CAT,CTD,CTDB,CUFES,DIAM,DRIFTER,DUAL-4,EASTERN,EBKG,GRAB,ICE,IKMT,IKS,LG-CB,LIVE,MANTA,MARIN,MARMAP,MBT,METH,MOC1,MOC3,MOOR,MPS,NETFLUOR,NEU,NEUTUCK,NOR,OTHER,PUMP,QUADNET,RADBUOY,RING.8,RING1,ROPE,SATBUOY,SCAMP,SCANMAR,SEDTRAP,SHIPBUOY,SHRIMP,SLED,SM-CB,TAPS-6,TRANS,TRIAXUS,TUCK1,TUCK3,UTOW,V60BON,VIDEONET,XBT"
 					textsearchlabel="Search by GEAR ABBREVIATION" field="GEAR_ABBREV" usedomain="false">GEAR_ABBREV = '[value]'</expression>
@@ -76,7 +75,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>CRUISE INFO</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/23</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/23</url>
 			<expressions>
 				<expression alias="SHIP NAME" userlist="Mys Babyshkina,Chapman,Darvin,Academic Lavrentiev,Maritime Maid,Mlechney Put,Great Pacific,Professor Khromov,Northwest Explorer,Shantar,Gissar,Arcturus,Mys Dalnyi,Healy,Surveyor,Babagevsk,MacArthur,Poseydon,Knorr,Miller Freeman,Oscar Dyson,Oceanographer,Ocean Explorer,Alaska Knight,Discoverer,Maurice Ewing,Mystery Bay,Melville,Thomas G. Thompson,Alaskan Enterprise,Equator,Professor Kagonovsky,Sea Storm,Tikhookeanski,Wecoma,Kilo Moana,Fairweather,Alpha Helix,Oshoro Maru,Pusan,Ron Brown,George B. Kelez" textsearchlabel="Select SHIP NAME"
 					field="SHIP_NAME" usedomain="false">SHIP_NAME = '[value]'</expression>
@@ -105,7 +104,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>PRESERVATIVE TYPE INFO</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/12</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/12</url>
 			<expressions>
 				<expression alias="PRESERVATIVE" userlist="ETOH_100%,FCONV,FORM_5%,LFORM,FORMALIN_10%,ETOH_95%,FRESH,FROZEN" textsearchlabel="Search by PRESERVATIVE NAME"
 					field="PRESERVATIVE" usedomain="false">PRESERVATIVE LIKE '%[value]%'</expression>
@@ -132,7 +131,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>PROJECT CODE INFO</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/13</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/13</url>
 			<expressions>
 				<expression alias="PROJECTS" userlist="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z" textsearchlabel="Search by PROJECT CODE NAME"
 					field="PROJECT_CODE" usedomain="false">PROJECT_CODE LIKE '%[value]%'</expression>
@@ -159,7 +158,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>SPECIES CODE INFO</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/21</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/21</url>
 			<expressions>
 				<expression alias="FOCI TAXON CODE BOB" textsearchlabel="Search by SPECIES"
 					field="SPECIES" usedomain="true">SPECIES LIKE '%[value]%'</expression>
@@ -190,7 +189,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>FOCI STAGE CODE INFO</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/14</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/14</url>
 			<expressions>
 				<expression alias="FOCI DATABASE" userlist="ICHBASE,BOB" textsearchlabel="Search by Original Database"
 					field="ORIG_DB" usedomain="false">ORIG_DB = '[value]'</expression>
@@ -219,7 +218,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>TAXON CODE TYPE INFO</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/16</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/16</url>
 			<expressions>
 				<expression alias="FOCI TAXON TYPE" userlist="ICHBASE,BOB" textsearchlabel="Search by FOCI TAXON TYPE" field="ORIG_DB" usedomain="false">ORIG_DB = '[value]'</expression>
 				<expression alias="FOCI STAGE NAME" userlist="Adult,Adult and Juvenile,CI,CII,CIII,CIV,CV,CV + CVI,Calyptopis 1,Calyptopis 2,Calyptopis 3,Cypris,Egg,Egg/Larv,Furcilia,Juv/Adult,Juvenile,Larv/Juv,Larva,Larvae,Medusa,ND,Nauplius,egg stage 1,egg stage 10,egg stage 11,egg stage 12,egg stage 13,egg stage 14,egg stage 15,egg stage 16,egg stage 17,egg stage 18,egg stage 19,egg stage 2,egg stage 20,egg stage 21,egg stage 22,egg stage 23,egg stage 24,egg stage 3,egg stage 4,egg stage 5,egg stage 6,egg stage 7,egg stage 8,egg stage 9" textsearchlabel="Search by STAGE NAME" field="STAGE_NAME" usedomain="false">STAGE_NAME = '[value]'</expression>
@@ -248,7 +247,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>FOCI SAMPLE RECORDS</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/1</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/1</url>
 			<expressions>
 				<expression alias="MESH" userlist="0,3,32,41,53,150,153,215,253,300,333,335,500,505,1000,1153,1410,1500,3000,6000,32000" textsearchlabel="MESH"
 					field="MESH" usedomain="false">MESH = [value]</expression>
@@ -275,7 +274,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>SPECIMEN RECORDS</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/2</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/2</url>
 			<expressions>
 				<expression alias="GEAR ABBREVIATION" userlist="160,170,20BON,30,302,3PSBT,60BON,ALEUTIAN,ANCHO,ASOUND,BEAM,BIOOTHER,BONG,BOT,BOTT,BOTTLES,CALVET,CAT,CTD,CTDB,CUFES,DIAM,DRIFTER,DUAL-4,EASTERN,EBKG,GRAB,ICE,IKMT,IKS,LG-CB,LIVE,MANTA,MARIN,MARMAP,MBT,METH,MOC1,MOC3,MOOR,MPS,NETFLUOR,NEU,NEUTUCK,NOR,OTHER,PUMP,QUADNET,RADBUOY,RING.8,RING1,ROPE,SATBUOY,SCAMP,SCANMAR,SEDTRAP,SHIPBUOY,SHRIMP,SLED,SM-CB,TAPS-6,TRANS,TRIAXUS,TUCK1,TUCK3,UTOW,V60BON,VIDEONET,XBT"
 					textsearchlabel="GEAR ABBREVIATION" field="GEAR_ABBREV" usedomain="false">GEAR_ABBREV = '[value]'</expression>
@@ -302,7 +301,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>HAUL RECORDS</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/0</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/0</url>
 			<expressions>
 				<expression alias="NET" userlist="0,1,2,3,4,5,6,7,8,9" textsearchlabel="Search by NET"
 					field="NET" usedomain="false">NET = [value]</expression>
@@ -329,7 +328,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>SUBSPECIMEN-ICH RECORDS</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/3</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/3</url>
 			<expressions>
 				<expression alias="GEAR ABBREVIATION" userlist="160,170,20BON,30,302,3PSBT,60BON,ALEUTIAN,ANCHO,ASOUND,BEAM,BIOOTHER,BONG,BOT,BOTT,BOTTLES,CALVET,CAT,CTD,CTDB,CUFES,DIAM,DRIFTER,DUAL-4,EASTERN,EBKG,GRAB,ICE,IKMT,IKS,LG-CB,LIVE,MANTA,MARIN,MARMAP,MBT,METH,MOC1,MOC3,MOOR,MPS,NETFLUOR,NEU,NEUTUCK,NOR,PUMP,QUADNET,RADBUOY,RING.8,RING1,ROPE,SATBUOY,SCAMP,SCANMAR,SEDTRAP,SHIPBUOY,SHRIMP,SLED,SM-CB,TAPS-6,TRANS,TRIAXUS,TUCK1,TUCK3,UTOW,V60BON,VIDEONET,XBT"
 					textsearchlabel="GEAR ABBREVIATION" field="GEAR_ABBREV" usedomain="false">GEAR_ABBREV = '[value]'</expression>
@@ -356,7 +355,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>SEACAT CTD RECORDS</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/4</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/4</url>
 			<expressions>
 				<expression alias="FOCI HAUL ID" textsearchlabel="Search by FOCI Haul ID"
 					field="HAUL_ID" usedomain="true">HAUL_ID LIKE '%[value]%'</expression>
@@ -383,7 +382,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>CHLOROPHYLL RECORDS</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/5</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/5</url>
 			
 			<expressions>
 				<expression alias="FOCI HAUL ID" textsearchlabel="Search by FOCI HAUL ID"
@@ -415,7 +414,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>CTDB RECORDS</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/8</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/8</url>
 			<expressions>
 				<expression alias="DEPTH" userlist="0,10,20,30,40,50,75,100,150,200,250,300" textsearchlabel="Search by CTD MAX DEPTH"
 					field="DEPTH" usedomain="false">DEPTH &#60; '[value]'</expression>
@@ -444,7 +443,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>DIET RECORDS</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/7</url>
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/7</url>
 			<expressions>
 				<expression alias="PREY_QUALITY" userlist="0,1,2,3,4" textsearchlabel="Search by PREY QUALITY"
 					field="PREY_QUALITY" usedomain="false">PREY_QUALITY LIKE '%[value]%'</expression>
@@ -477,7 +476,7 @@
 			<definitionexpression></definitionexpression>
 			<enableexport>true</enableexport>
 			<name>NUTRIENT RECORDS</name>
-			<url>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/6</url>			
+			<url>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/6</url>			
 			<expressions>
 				<expression alias="SAMPLE DEPTH" userlist="0,10,20,30,40,50,75,100,150,200,250,300" textsearchlabel="Search by BOTTLE DEPTH"
 					field="SAMPLE_DEPTH" usedomain="false">SAMPLE_DEPTH = '[value]'</expression>
@@ -592,17 +591,24 @@
 		<buffercolor>Select buffer color</buffercolor>
 	</labels>
 	<dataproviders>
-		<ichSpeciesArray>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/14</ichSpeciesArray>
-		<trawlSpeciesArray>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/15</trawlSpeciesArray>
-		<cruiseArray>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/16</cruiseArray>
-		<taxonArray>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/17</taxonArray>
-		<geo_loc>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/18/</geo_loc>
-		<gearArray>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/20/</gearArray>
-		<cruiseArray_nutrient>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/25</cruiseArray_nutrient>
-		<cruiseArray_ctdb>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/26</cruiseArray_ctdb>
-		<cruiseArray_seacat>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/23</cruiseArray_seacat>
-		<cruiseArray_chlor>http://akc0ss-p001-111.nmfs.local:6080/arcgis/rest/services/ECODAAT/ecodaat_development/MapServer/24</cruiseArray_chlor>
+		<ichSpeciesArray>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/14</ichSpeciesArray>
+		<trawlSpeciesArray>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/15</trawlSpeciesArray>
+		<cruiseArray>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/16</cruiseArray>
+		<taxonArray>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/17</taxonArray>
+		<geo_loc>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/18/</geo_loc>
+		<gearArray>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/20/</gearArray>
+		<cruiseArray_nutrient>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/25</cruiseArray_nutrient>
+		<cruiseArray_ctdb>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/26</cruiseArray_ctdb>
+		<cruiseArray_seacat>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/23</cruiseArray_seacat>
+		<cruiseArray_chlor>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/24</cruiseArray_chlor>
 	</dataproviders>
+	<datatools>
+		<ichlength>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/Length_Frequency_ICH/GPServer/ICH_Length_Frequency</ichlength>
+		<trawllength>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/Length_Frequency_TRAWL/GPServer/TRAWL_Length_Frequency</trawllength>
+		<catchzero>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/MultiSpeciesCatchZero/GPServer/Multi_Species_Catch_Zero</catchzero>
+		<catchzeroBob>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/MultiSpeciesCatchZeroBOB/GPServer/Multi_Species_Catch_ZeroBOB</catchzeroBob>
+		<ichabundance>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ICH_Abudance_Occurance/GPServer/ICH_Abundance_Occurance</ichabundance>
+	</datatools>
 	<symbols>
 		<simplefillsymbol color="0x5F9E61" alpha="0.7">
 			<outline color="0x9C9797" alpha="0.8" width="1" />

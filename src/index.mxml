@@ -28,12 +28,12 @@
 			
 			import com.esri.viewer.AppEvent;
 			import com.esri.viewer.ViewerContainer;
-			import com.esri.viewer.utils.Hashtable;
+			/*import com.esri.viewer.utils.Hashtable;
 			
 			import flash.events.Event;
 			import flash.external.ExternalInterface;
 			
-			import mx.controls.Alert;
+			import mx.controls.Alert;*/
 			import mx.events.FlexEvent;
 			import mx.managers.PopUpManager;
 			import mx.resources.ResourceManager;

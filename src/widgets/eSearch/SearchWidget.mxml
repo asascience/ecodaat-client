@@ -75,6 +75,7 @@
 			import com.esri.ags.events.DrawEvent;
 			import com.esri.ags.events.FlareMouseEvent;
 			import com.esri.ags.events.GeometryServiceEvent;
+			import com.esri.ags.events.GeoprocessorEvent;
 			import com.esri.ags.events.GraphicEvent;
 			import com.esri.ags.events.GraphicsLayerEvent;
 			import com.esri.ags.events.LayerEvent;
@@ -103,14 +104,18 @@
 			import com.esri.ags.symbols.SimpleLineSymbol;
 			import com.esri.ags.symbols.SimpleMarkerSymbol;
 			import com.esri.ags.symbols.Symbol;
+			import com.esri.ags.symbols.TextSymbol;
 			import com.esri.ags.tasks.GeometryService;
 			import com.esri.ags.tasks.GeometryServiceSingleton;
+			import com.esri.ags.tasks.Geoprocessor;
 			import com.esri.ags.tasks.QueryTask;
 			import com.esri.ags.tasks.supportClasses.BufferParameters;
+			//import com.esri.ags.tasks.supportClasses.ParameterValue;
 			import com.esri.ags.tasks.supportClasses.Query;
 			import com.esri.ags.tools.DrawTool;
 			import com.esri.ags.utils.GeometryUtil;
 			import com.esri.ags.utils.GraphicUtil;
+			import com.esri.ags.utils.WebMercatorUtil;
 			import com.esri.viewer.AppEvent;
 			import com.esri.viewer.components.TitlebarButton;
 			import com.esri.viewer.components.toc.utils.MapUtil;
@@ -388,6 +393,13 @@
 			private var resultSATSymbol:Symbol;
 			private var overFillSymbol:Symbol;
 			
+			//tools - geoprocessing
+			private var ichlengthGP:String;
+			private var trawllengthGP:String;
+			private var ichabundanceGP:String;
+			private var catchzerotoolGP:String;
+			private var catchzerotoolGPbob:String;
+			
 			[Embed(source="assets/images/i_about.png")]
 			private var iconClass:Class;
 			[Embed(source="widgets/eSearch/assets/images/i_relate.png")]
@@ -465,6 +477,12 @@
 					trawl_fieldsL = configXML.trawlfieldsList;
 					ich_fieldsL = configXML.ichfieldsList;
 					zoop_fieldsL = configXML.zoopfieldsList;
+					
+					ichlengthGP = configXML.datatools.ichlength;
+					trawllengthGP = configXML.datatools.trawllength;
+					ichabundanceGP = configXML.datatools.ichabundance;
+					catchzerotoolGP = configXML.datatools.catchzero;
+					catchzerotoolGPbob = configXML.datatools.catchzeroBob;
 					
 					configSpatialSearchRelation = [];
 					var operList:XMLList = configXML..spatialrelationship;
@@ -882,6 +900,7 @@
 					
 					graphicsLayer = new GraphicsLayer();
 					graphicsLayer.name = "Search Results";
+					
 					graphicsLayer.id = "graResult";
 					graphicsLayer.symbol = resultMarkerSymbol;
 					graphicsLayer.clusterer = clusterer;
@@ -2360,6 +2379,389 @@
 				} 
 			}
 			
+			private function constructQuery(sqlquery:Boolean):String{
+				var expr:String = '';
+				//Dyanimc date query
+				//year
+				var yearStringArray:String = "";
+				for(var ye:int=0; ye < yearArray.length; ye++){
+					if(yearArray[ye].gridfield == "true")
+					{
+						yearStringArray += yearArray[ye].alias+",";
+					}
+				}
+				if(sqlquery == true){
+					expr = "to_char(GMT_DATE_TIME,'YYYY') in ("+yearStringArray.slice( 0, -1 )+")";
+				}
+				else{
+					expr = 'EXTRACT(YEAR FROM "GMT_DATE_TIME") in ('+yearStringArray.slice( 0, -1 )+")";	
+				}
+				
+				
+				//month
+				var monthStringArray:String = "";
+				var mlast:Boolean = false;
+				for(var mo:int=0; mo < monthArray.length; mo++){
+					if(monthArray[mo].gridfield == "true")
+					{
+						monthStringArray += monthArray[mo].data+",";
+					}
+				}
+				
+				if(sqlquery == true){
+					expr += " AND to_char(GMT_DATE_TIME,'MM') in ("+monthStringArray.slice( 0, -1 )+")";
+				}
+				else{
+					expr += ' AND EXTRACT(MONTH FROM "GMT_DATE_TIME") in ('+monthStringArray.slice( 0, -1 )+")";	
+				}
+				
+				//day
+				var dayStringArray:String = "";
+				if(dayArray[0].gridfield == "true" &&dayArray[1].gridfield == "true")
+				{
+					//do nothing because all days are selected
+				}
+				else if(dayArray[0].gridfield == "false" &&dayArray[1].gridfield == "true"){
+					if(sqlquery == true){
+						expr += " AND to_char(GMT_DATE_TIME,'DD') > 14";
+					}
+					else{
+						expr += ' AND EXTRACT(DAY FROM "GMT_DATE_TIME") > 14';	
+					}
+				}
+				else{
+					
+					if(sqlquery == true){
+						expr += " AND to_char(GMT_DATE_TIME,'DD') < 15";
+					}
+					else{
+						expr += ' AND EXTRACT(DAY FROM "GMT_DATE_TIME") < 15';
+					}
+				}
+				
+				//Start of Query text options
+				if(microZoopVisible == true)
+				{
+					//check to make sure haul performance values have been check and select all if not
+					if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
+						expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
+					}
+					if(cruiseSample.selectedAll == false && cruiseSample.selectedViewsSQL != "noneSelected"){
+						expr+= " AND CRUISE "+cruiseSample.selectedViewsSQL;
+					}
+					if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND GEAR_ABBREV "+gearSample.selectedViewsSQL;
+					}
+					if(meshSample.selectedAll == false && meshSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND MESH "+meshSample.selectedViewsSQL;
+					}
+					if(netSample.selectedAll == false && netSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND NET "+netSample.selectedViewsSQL;
+					}
+					if(haulSample.text != ""){
+						expr+=" AND HAUL_NAME LIKE '%"+haulSample.text+"%'";
+					}
+					if(sampleSample.text != ""){
+						expr+=" AND HAUL_NAME LIKE '%"+sampleSample.text+"%'";
+					}
+					if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
+					}
+					if(showallDepGear.selected == false){
+						expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
+					}
+					if(speciesIch.selectedAll == false && speciesIch.selectedViewsSQL != "noneSelected"){
+						expr+=" AND SPECIES_NAME "+speciesIch.selectedViewsSQL;
+					}
+					return expr;
+				}
+				else if(cboLayerText.text.search('SPECIMEN') > -1)
+				{						
+					if(databaseText.selectedLabel.toUpperCase() == "TRAWL")
+					{
+						//check to make sure haul performance values have been check and select all if not
+						expr+= " AND ORIG_DB = 'TRAWL'";
+						if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
+							expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
+						}
+						if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
+						}
+						if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
+							expr+= " AND CRUISE "+cruiseSample.selectedViewsSQL;
+						}
+						if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND GEAR_ABBREV "+gearSample.selectedViewsSQL;
+						}
+						if(projectSample.selectedAll == false && projectSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND PROJECT "+projectSample.selectedViewsSQL;
+						}
+						if(purposeSample.selectedAll == false && purposeSample.selectedViewsSQL != "noneSelected"){
+							expr+= " AND PURPOSE "+purposeSample.selectedViewsSQL;
+						}
+						if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND MESH "+meshSample.selectedViewsSQL;
+						}
+						if(netSample.selectedAll== false && netSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND NET "+netSample.selectedViewsSQL;
+						}
+						if(haulSample.text != ""){
+							expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
+						}
+						if(sampleSample.text != ""){
+							expr+=" AND FOCI_SAMPLE_ID LIKE '%"+sampleSample.text+"%'";
+						}
+						if(showallLeng.selected == false){
+							expr+=" AND LENGTH_TOTAL > "+minleng.value + " AND LENGTH_TOTAL < "+maxleng.value;
+						}
+						if(speciesTra.selectedAll== false && speciesTra.selectedViewsSQL != "noneSelected"){
+							expr+=" AND SPECIES_NAME "+speciesTra.selectedViewsSQL;
+						}
+						if(showallDepGear.selected == false){
+							expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
+						}
+						if(stationN.text != ""){
+							expr+=" AND STATION_NAME LIKE '%"+stationN.text+"%'";
+						}
+					}
+					if(databaseText.selectedLabel == "Ichthyoplankton")
+					{
+						//check to make sure haul performance values have been check and select all if not
+						expr+= " AND ORIG_DB = 'ICHBASE'";
+						if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
+							expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
+						}
+						if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
+							expr+= " AND CRUISE "+cruiseSample.selectedViewsSQL;
+						}
+						if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND GEAR_ABBREV "+gearSample.selectedViewsSQL;
+						}
+						if(projectSample.selectedAll == false && projectSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND PROJECT "+projectSample.selectedViewsSQL;
+						}
+						if(purposeSample.selectedAll == false && purposeSample.selectedViewsSQL != "noneSelected"){
+							expr+= " AND PURPOSE "+purposeSample.selectedViewsSQL;
+						}
+						if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND MESH "+meshSample.selectedViewsSQL;
+						}
+						if(netSample.selectedAll == false && netSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND NET "+netSample.selectedViewsSQL;
+						}
+						if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
+						}
+						if(haulSample.text != ""){
+							expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
+						}
+						if(sampleSample.text != ""){
+							expr+=" AND FOCI_SAMPLE_ID LIKE '%"+sampleSample.text+"%'";
+						}
+						if(showallDep.selected == false){
+							expr+=" AND BOTTOM_DEPTH > "+minDep.value + " AND BOTTOM_DEPTH< "+maxDep.value;
+						}
+						if(stageIch.selectedAll == false && stageIch.selectedViewsSQL != "noneSelected"){
+							expr+=" AND STAGE_NAME "+stageIch.selectedViewsSQL;
+						}
+						/* if(showallDispIch.selected == false){
+						expr+=" AND VOLUME_DISPLACEMENT > "+minDispIch.value + " AND VOLUME_DISPLACEMENT < "+maxDispIch.value;
+						} */
+						if(speciesIch.selectedAll == false && speciesIch.selectedViewsSQL != "noneSelected"){
+							expr+=" AND SPECIES_NAME "+speciesIch.selectedViewsSQL;
+						}
+						if(showallDepGear.selected == false){
+							expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
+						}
+						if(stationN.text != ""){
+							expr+=" AND STATION_NAME LIKE '%"+stationN.text+"%'";
+						}
+					}
+					if(databaseText.selectedLabel == "Zooplankton")
+					{
+						//check to make sure haul performance values have been check and select all if not
+						expr+= " AND ORIG_DB = 'BOB'";
+						if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
+							expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
+						}
+						if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
+							expr+= " AND CRUISE "+ cruiseSample.selectedViewsSQL;
+						}
+						if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND GEAR_ABBREV "+gearSample.selectedViewsSQL;
+						}
+						if(projectSample.selectedAll == false && projectSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND PROJECT "+projectSample.selectedViewsSQL;
+						}
+						if(purposeSample.selectedAll == false && purposeSample.selectedViewsSQL != "noneSelected"){
+							expr+= " AND PURPOSE "+purposeSample.selectedViewsSQL;
+						}
+						if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND MESH "+meshSample.selectedViewsSQL;
+						}
+						if(netSample.selectedAll == false && netSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND NET "+netSample.selectedViewsSQL;
+						}
+						if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
+							expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
+						}
+						if(haulSample.text != ""){
+							expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
+						}
+						if(sampleSample.text != ""){
+							expr+=" AND FOCI_SAMPLE_ID LIKE '%"+sampleSample.text+"%'";
+						}
+						if(showallDep.selected == false){
+							expr+=" AND BOTTOM_DEPTH > "+minDep.value + " AND BOTTOM_DEPTH< "+maxDep.value;
+						}
+						/* if(showallDisp.selected == false){
+						expr+=" AND VOLUME_DISPLACEMENT > "+minDisp.value + " AND VOLUME_DISPLACEMENT < "+maxDisp.value;
+						} */
+						if(stageBob.selectedAll == false && stageBob.selectedViewsSQL != "noneSelected"){
+							expr+=" AND STAGEID "+stageBob.selectedViewsSQL;
+						}
+						if(sizeBob.selectedAll == false && sizeBob.selectedViewsSQL != "noneSelected"){
+							expr+=" AND SPECIMEN_SIZE "+sizeBob.selectedViewsSQL;
+						}
+						if(typeBob.selectedAll == false && typeBob.selectedViewsSQL != "noneSelected"){
+							expr+=" AND ZOOP_PROTOCOL "+typeBob.selectedViewsSQL;
+						}
+						if(taxaBob.selectedAll == false && taxaBob.selectedViewsSQL != "noneSelected"){
+							expr+=" AND TAXON_NAME "+taxaBob.selectedViewsSQL;
+						}
+						if(sexText.selectedLabel != "ALL"){
+							expr+=" AND SEX_NAME = '"+sexText.selectedLabel+"'";
+						}
+						if(showallDepGear.selected == false){
+							expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
+						}
+						if(stationN.text != ""){
+							expr+=" AND STATION_NAME LIKE '%"+stationN.text+"%'";
+						}
+					}
+					return expr;
+				}
+				else if(cboLayerText.text.search('SAMPLE') > -1)
+				{
+					//check to make sure haul performance values have been check and select all if not
+					expr+= " AND SAMPLE_TYPE IN ( "+databaseTextSamp.selectedItem.data+")";
+					if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
+						expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
+					}
+					if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
+						expr+= " AND CRUISE "+ cruiseSample.selectedViewsSQL;
+					}
+					if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND GEAR_ABBREV "+gearSample.selectedViewsSQL;
+					}
+					if(projectSample.selectedAll == false && projectSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND PROJECT "+projectSample.selectedViewsSQL;
+					}
+					if(purposeSample.selectedAll == false && purposeSample.selectedViewsSQL != "noneSelected"){
+						expr+= " AND PURPOSE "+purposeSample.selectedViewsSQL;
+					}
+					if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
+					}
+					if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND MESH "+meshSample.selectedViewsSQL;
+					}
+					if(netSample.selectedAll == false && netSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND NET "+netSample.selectedViewsSQL;
+					}
+					if(haulSample.text != ""){
+						expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
+					}
+					if(sampleSample.text != ""){
+						expr+=" AND FOCI_SAMPLE_ID LIKE '%"+sampleSample.text+"%'";
+					}
+					if(showallDep.selected == false){
+						expr+=" AND BOTTOM_DEPTH > "+minDep.value + " AND BOTTOM_DEPTH< "+maxDep.value;
+					}
+					if(showallDepGear.selected == false){
+						expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
+					}
+					if(stationN.text != ""){
+						expr+=" AND STATION_NAME LIKE '%"+stationN.text+"%'";
+					}
+					return expr;
+				}
+				else if(cboLayerText.text.search('HAUL') > -1)
+				{
+					//check to make sure haul performance values have been check and select all if not
+					if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
+						expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
+					}
+					if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
+						expr+= " AND CRUISE "+ cruiseSample.selectedViewsSQL;
+					}
+					if(projectSample.selectedAll == false && projectSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND PROJECT "+projectSample.selectedViewsSQL;
+					}
+					if(purposeSample.selectedAll == false && purposeSample.selectedViewsSQL != "noneSelected"){
+						expr+= " AND PURPOSE "+purposeSample.selectedViewsSQL;
+					}
+					if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND GEAR_NAME "+gearSample.selectedViewsSQL;
+					}
+					if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
+					}
+					if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND MESH "+meshSample.selectedViewsSQL;
+					}
+					if(netSample.selectedAll == false && netSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND NET "+netSample.selectedViewsSQL;
+					}
+					if(haulSample.text != ""){
+						expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
+					}
+					if(sampleSample.text != ""){
+						expr+=" AND FOCI_SAMPLE_ID LIKE '%"+sampleSample.text+"%'";
+					}
+					if(stationN.text != ""){
+						expr+=" AND STATION_NAME LIKE '%"+stationN.text+"%'";
+					}
+					return expr;
+				}
+				else if(cboLayerText.text.search('SEACAT')>-1||cboLayerText.text.search('CTDB')>-1||cboLayerText.text.search('CHLOROPHYLL')>-1||cboLayerText.text.search('NUTRIENT')>-1){
+					if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
+						expr+= " AND CRUISE "+ cruiseSample.selectedViewsSQL;
+					}
+					if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND GEAR_NAME "+gearSample.selectedViewsSQL;
+					}
+					if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
+						expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
+					}
+					if(haulSample.text != ""){
+						expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
+					}
+					if(sampleSample.text != ""){
+						expr+=" AND HAUL_ID LIKE '%"+sampleSample.text+"%'";
+					}
+					if(stationN.text != ""){
+						expr+=" AND HAUL_ID LIKE '%"+stationN.text+"%'";
+					}
+					return expr;
+				}
+				else{
+					return expr;
+				}
+//				else{
+//					if (txtSearch.visible){
+//						if(queryExpr != "[value]")//meaning an open SQL expression
+//							eVal = txtSearch.text.replace("'","''");
+//						else
+//							eVal = txtSearch.text;
+//						expr = queryExpr.replace(myPattern, eVal.toUpperCase()); 
+//					}else{
+//						eVal = cbSearch.selectedItem.value.replace("'","''");
+//						expr = queryExpr.replace(myPattern, eVal); 
+//					}
+//					
+//				}
+			}
 			//query features text from button click
 			private function queryFeaturesText2():void
 			{
@@ -2565,356 +2967,9 @@
 					var myPattern:RegExp = /\[value\]/g;
 					var expr:String;
 					var eVal:String;
+															
+					expr= constructQuery(false);
 					
-					//Dyanimc date query
-					//year
-					var yearStringArray:String = "";
-					for(var ye:int=0; ye < yearArray.length; ye++){
-						if(yearArray[ye].gridfield == "true")
-						{
-							yearStringArray += yearArray[ye].alias+",";
-						}
-					}
-					expr = "to_char(GMT_DATE_TIME,'YYYY') in ("+yearStringArray.slice( 0, -1 )+")";
-					
-					//month
-					var monthStringArray:String = "";
-					var mlast:Boolean = false;
-					for(var mo:int=0; mo < monthArray.length; mo++){
-						if(monthArray[mo].gridfield == "true")
-						{
-							monthStringArray += monthArray[mo].data+",";
-						}
-					}
-					expr += " AND to_char(GMT_DATE_TIME,'MM') in ("+monthStringArray.slice( 0, -1 )+")";
-					//day
-					var dayStringArray:String = "";
-					if(dayArray[0].gridfield == "true" &&dayArray[1].gridfield == "true")
-					{
-						//do nothing because all days are selected
-					}
-					else if(dayArray[0].gridfield == "false" &&dayArray[1].gridfield == "true"){
-						expr += " AND to_char(GMT_DATE_TIME,'DD') > 14";	
-					}
-					else{
-						expr += " AND to_char(GMT_DATE_TIME,'DD') < 15";	
-					}
-					
-					var catchExpression:String = expr;
-										
-					//Start of Query text options
-					if(microZoopVisible == true)
-					{
-						//check to make sure haul performance values have been check and select all if not
-						if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
-							expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
-						}
-						if(cruiseSample.selectedAll == false && cruiseSample.selectedViewsSQL != "noneSelected"){
-							expr+= " AND CRUISE "+cruiseSample.selectedViewsSQL;
-						}
-						if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND GEAR_ABBREV "+gearSample.selectedViewsSQL;
-						}
-						if(meshSample.selectedAll == false && meshSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND MESH "+meshSample.selectedViewsSQL;
-						}
-						if(netSample.selectedAll == false && netSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND NET "+netSample.selectedViewsSQL;
-						}
-						if(haulSample.text != ""){
-							expr+=" AND HAUL_NAME LIKE '%"+haulSample.text+"%'";
-						}
-						if(sampleSample.text != ""){
-							expr+=" AND HAUL_NAME LIKE '%"+sampleSample.text+"%'";
-						}
-						if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
-						}
-						if(showallDepGear.selected == false){
-							expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
-						}
-						if(speciesIch.selectedAll == false && speciesIch.selectedViewsSQL != "noneSelected"){
-							expr+=" AND SPECIES_NAME "+speciesIch.selectedViewsSQL;
-						}
-					}
-					else if(cboLayerText.text.search('SPECIMEN') > -1)
-					{						
-						if(databaseText.selectedLabel.toUpperCase() == "TRAWL")
-						{
-							//check to make sure haul performance values have been check and select all if not
-							expr+= " AND ORIG_DB = 'TRAWL'";
-							if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
-								expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
-							}
-							if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
-							}
-							if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
-								expr+= " AND CRUISE "+cruiseSample.selectedViewsSQL;
-							}
-							if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND GEAR_ABBREV "+gearSample.selectedViewsSQL;
-							}
-							if(projectSample.selectedAll == false && projectSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND PROJECT "+projectSample.selectedViewsSQL;
-							}
-							if(purposeSample.selectedAll == false && purposeSample.selectedViewsSQL != "noneSelected"){
-								expr+= " AND PURPOSE "+purposeSample.selectedViewsSQL;
-							}
-							if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND MESH "+meshSample.selectedViewsSQL;
-							}
-							if(netSample.selectedAll== false && netSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND NET "+netSample.selectedViewsSQL;
-							}
-							if(haulSample.text != ""){
-								expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
-							}
-							if(sampleSample.text != ""){
-								expr+=" AND FOCI_SAMPLE_ID LIKE '%"+sampleSample.text+"%'";
-							}
-							if(showallLeng.selected == false){
-								expr+=" AND LENGTH_TOTAL > "+minleng.value + " AND LENGTH_TOTAL < "+maxleng.value;
-							}
-							if(speciesTra.selectedAll== false && speciesTra.selectedViewsSQL != "noneSelected"){
-								expr+=" AND SPECIES_NAME "+speciesTra.selectedViewsSQL;
-							}
-							if(showallDepGear.selected == false){
-								expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
-							}
-							if(stationN.text != ""){
-								expr+=" AND STATION_NAME LIKE '%"+stationN.text+"%'";
-							}
-						}
-						if(databaseText.selectedLabel == "Ichthyoplankton")
-						{
-							//check to make sure haul performance values have been check and select all if not
-							expr+= " AND ORIG_DB = 'ICHBASE'";
-							if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
-								expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
-							}
-							if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
-								expr+= " AND CRUISE "+cruiseSample.selectedViewsSQL;
-							}
-							if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND GEAR_ABBREV "+gearSample.selectedViewsSQL;
-							}
-							if(projectSample.selectedAll == false && projectSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND PROJECT "+projectSample.selectedViewsSQL;
-							}
-							if(purposeSample.selectedAll == false && purposeSample.selectedViewsSQL != "noneSelected"){
-								expr+= " AND PURPOSE "+purposeSample.selectedViewsSQL;
-							}
-							if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND MESH "+meshSample.selectedViewsSQL;
-							}
-							if(netSample.selectedAll == false && netSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND NET "+netSample.selectedViewsSQL;
-							}
-							if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
-							}
-							if(haulSample.text != ""){
-								expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
-							}
-							if(sampleSample.text != ""){
-								expr+=" AND FOCI_SAMPLE_ID LIKE '%"+sampleSample.text+"%'";
-							}
-							if(showallDep.selected == false){
-								expr+=" AND BOTTOM_DEPTH > "+minDep.value + " AND BOTTOM_DEPTH< "+maxDep.value;
-							}
-							if(stageIch.selectedAll == false && stageIch.selectedViewsSQL != "noneSelected"){
-								expr+=" AND STAGE_NAME "+stageIch.selectedViewsSQL;
-							}
-							/* if(showallDispIch.selected == false){
-								expr+=" AND VOLUME_DISPLACEMENT > "+minDispIch.value + " AND VOLUME_DISPLACEMENT < "+maxDispIch.value;
-							} */
-							if(speciesIch.selectedAll == false && speciesIch.selectedViewsSQL != "noneSelected"){
-								expr+=" AND SPECIES_NAME "+speciesIch.selectedViewsSQL;
-							}
-							if(showallDepGear.selected == false){
-								expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
-							}
-							if(stationN.text != ""){
-								expr+=" AND STATION_NAME LIKE '%"+stationN.text+"%'";
-							}
-						}
-						if(databaseText.selectedLabel == "Zooplankton")
-						{
-							//check to make sure haul performance values have been check and select all if not
-							expr+= " AND ORIG_DB = 'BOB'";
-							if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
-								expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
-							}
-							if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
-								expr+= " AND CRUISE "+ cruiseSample.selectedViewsSQL;
-							}
-							if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND GEAR_ABBREV "+gearSample.selectedViewsSQL;
-							}
-							if(projectSample.selectedAll == false && projectSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND PROJECT "+projectSample.selectedViewsSQL;
-							}
-							if(purposeSample.selectedAll == false && purposeSample.selectedViewsSQL != "noneSelected"){
-								expr+= " AND PURPOSE "+purposeSample.selectedViewsSQL;
-							}
-							if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND MESH "+meshSample.selectedViewsSQL;
-							}
-							if(netSample.selectedAll == false && netSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND NET "+netSample.selectedViewsSQL;
-							}
-							if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
-								expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
-							}
-							if(haulSample.text != ""){
-								expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
-							}
-							if(sampleSample.text != ""){
-								expr+=" AND FOCI_SAMPLE_ID LIKE '%"+sampleSample.text+"%'";
-							}
-							if(showallDep.selected == false){
-								expr+=" AND BOTTOM_DEPTH > "+minDep.value + " AND BOTTOM_DEPTH< "+maxDep.value;
-							}
-							/* if(showallDisp.selected == false){
-								expr+=" AND VOLUME_DISPLACEMENT > "+minDisp.value + " AND VOLUME_DISPLACEMENT < "+maxDisp.value;
-							} */
-							if(stageBob.selectedAll == false && stageBob.selectedViewsSQL != "noneSelected"){
-								expr+=" AND STAGEID "+stageBob.selectedViewsSQL;
-							}
-							if(sizeBob.selectedAll == false && sizeBob.selectedViewsSQL != "noneSelected"){
-								expr+=" AND SPECIMEN_SIZE "+sizeBob.selectedViewsSQL;
-							}
-							if(typeBob.selectedAll == false && typeBob.selectedViewsSQL != "noneSelected"){
-								expr+=" AND ZOOP_PROTOCOL "+typeBob.selectedViewsSQL;
-							}
-							if(taxaBob.selectedAll == false && taxaBob.selectedViewsSQL != "noneSelected"){
-								expr+=" AND TAXON_NAME "+taxaBob.selectedViewsSQL;
-							}
-							if(sexText.selectedLabel != "ALL"){
-								expr+=" AND SEX_NAME = '"+sexText.selectedLabel+"'";
-							}
-							if(showallDepGear.selected == false){
-								expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
-							}
-							if(stationN.text != ""){
-								expr+=" AND STATION_NAME LIKE '%"+stationN.text+"%'";
-							}
-						}
-					}
-					else if(cboLayerText.text.search('SAMPLE') > -1)
-					{
-						//check to make sure haul performance values have been check and select all if not
-						expr+= " AND SAMPLE_TYPE IN ( "+databaseTextSamp.selectedItem.data+")";
-						if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
-							expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
-						}
-						if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
-							expr+= " AND CRUISE "+ cruiseSample.selectedViewsSQL;
-						}
-						if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND GEAR_ABBREV "+gearSample.selectedViewsSQL;
-						}
-						if(projectSample.selectedAll == false && projectSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND PROJECT "+projectSample.selectedViewsSQL;
-						}
-						if(purposeSample.selectedAll == false && purposeSample.selectedViewsSQL != "noneSelected"){
-							expr+= " AND PURPOSE "+purposeSample.selectedViewsSQL;
-						}
-						if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
-						}
-						if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND MESH "+meshSample.selectedViewsSQL;
-						}
-						if(netSample.selectedAll == false && netSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND NET "+netSample.selectedViewsSQL;
-						}
-						if(haulSample.text != ""){
-							expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
-						}
-						if(sampleSample.text != ""){
-							expr+=" AND FOCI_SAMPLE_ID LIKE '%"+sampleSample.text+"%'";
-						}
-						if(showallDep.selected == false){
-							expr+=" AND BOTTOM_DEPTH > "+minDep.value + " AND BOTTOM_DEPTH< "+maxDep.value;
-						}
-						if(showallDepGear.selected == false){
-							expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
-						}
-						if(stationN.text != ""){
-							expr+=" AND STATION_NAME LIKE '%"+stationN.text+"%'";
-						}
-					}
-					else if(cboLayerText.text.search('HAUL') > -1)
-					{
-						//check to make sure haul performance values have been check and select all if not
-						if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
-							expr+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
-						}
-						if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
-							expr+= " AND CRUISE "+ cruiseSample.selectedViewsSQL;
-						}
-						if(projectSample.selectedAll == false && projectSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND PROJECT "+projectSample.selectedViewsSQL;
-						}
-						if(purposeSample.selectedAll == false && purposeSample.selectedViewsSQL != "noneSelected"){
-							expr+= " AND PURPOSE "+purposeSample.selectedViewsSQL;
-						}
-						if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND GEAR_NAME "+gearSample.selectedViewsSQL;
-						}
-						if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
-						}
-						if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND MESH "+meshSample.selectedViewsSQL;
-						}
-						if(netSample.selectedAll == false && netSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND NET "+netSample.selectedViewsSQL;
-						}
-						if(haulSample.text != ""){
-							expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
-						}
-						if(sampleSample.text != ""){
-							expr+=" AND FOCI_SAMPLE_ID LIKE '%"+sampleSample.text+"%'";
-						}
-						if(stationN.text != ""){
-							expr+=" AND STATION_NAME LIKE '%"+stationN.text+"%'";
-						}
-					}
-					else if(cboLayerText.text.search('SEACAT')>-1||cboLayerText.text.search('CTDB')>-1||cboLayerText.text.search('CHLOROPHYLL')>-1||cboLayerText.text.search('NUTRIENT')>-1){
-						if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
-							expr+= " AND CRUISE "+ cruiseSample.selectedViewsSQL;
-						}
-						if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND GEAR_NAME "+gearSample.selectedViewsSQL;
-						}
-						if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
-							expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
-						}
-						if(haulSample.text != ""){
-							expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
-						}
-						if(sampleSample.text != ""){
-							expr+=" AND HAUL_ID LIKE '%"+sampleSample.text+"%'";
-						}
-						if(stationN.text != ""){
-							expr+=" AND HAUL_ID LIKE '%"+stationN.text+"%'";
-						}
-					}
-					else{
-						if (txtSearch.visible){
-							if(queryExpr != "[value]")//meaning an open SQL expression
-								eVal = txtSearch.text.replace("'","''");
-							else
-								eVal = txtSearch.text;
-							expr = queryExpr.replace(myPattern, eVal.toUpperCase()); 
-						}else{
-							eVal = cbSearch.selectedItem.value.replace("'","''");
-							expr = queryExpr.replace(myPattern, eVal); 
-						}
-					}
 					
 					//combo of geometry and text search
 					if(useSpatial.selected == true && useSpatial.visible == true)
@@ -2938,114 +2993,40 @@
 					else{
 						querySum.text ="Query "+cboLayerText.text+" where: \n\n" + expr + "\n\nNo Map Query Used.\n\nPercentage (%) in search returns any values with the search value in it.";
 					}
-					var queryforCatch:String = "";
-					if(catchzero.selected && catchzero.visible){
-						switch(databaseText.selectedLabel){
-							case "Zooplankton":
-							{
-								/*if(taxaBob.selectedItems.length != 1)
-								{
-									Alert.show("Please only select one Taxon Name to query Catch with Zero Results.", "Issue");
-								}
-								else{
-									
-								}*/
-								queryforCatch = "select distinct h_id from specimen_main_geom where TAXON_NAME "+taxaBob.selectedViewsSQL;
-								break;
-							}
-							case "TRAWL":
-							{
-								/*if(speciesTra.selectedItems.length != 1)
-								{
-									Alert.show("Please only select one Species to query Catch with Zero Results.", "Issue");
-								}
-								else{
-								}*/
-								queryforCatch = "select distinct h_id from specimen_main_geom where SPECIES_NAME "+speciesTra.selectedViewsSQL;
-								break;
-							}
-							case "Ichthyoplankton":
-							{
-//								if(speciesIch.selectedItems.length != 1)
-//								{
-//									Alert.show("Please only select one Species to query Catch with Zero Results.", "Alert");
-//								}
-//								else{
-//									
-//								}
-								queryforCatch = "select distinct h_id from specimen_main_geom where SPECIES_NAME "+speciesIch.selectedViewsSQL;
-								if(stageBob.selectedAll == false && stageBob.selectedViewsSQL != "noneSelected"){
-									queryforCatch+=" AND STAGEID "+stageBob.selectedViewsSQL;
-								}
-								if(stageIch.selectedAll == false && stageIch.selectedViewsSQL != "noneSelected"){
-									queryforCatch+=" AND STAGE_NAME "+stageIch.selectedViewsSQL;
-								}
-								
-								break;
-							}
-						}
-						if(queryforCatch!=""){
-							if(haulPerText.selectedAll == false && haulPerText.selectedViewsSQL != "noneSelected"){
-								catchExpression+= " AND HAUL_PERFORMANCE "+haulPerText.selectedViewsSQL;
-							}
-							if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
-								catchExpression+= " AND CRUISE "+ cruiseSample.selectedViewsSQL;
-							}
-							if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
-								catchExpression+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
-							}
-							if(netSample.selectedAll == false && netSample.selectedViewsSQL != "noneSelected"){
-								catchExpression+=" AND NET "+netSample.selectedViewsSQL;
-							}
-							if(gearSample.selectedAll == false && gearSample.selectedViewsSQL != "noneSelected"){
-								catchExpression+=" AND GEAR_NAME "+gearSample.selectedViewsSQL;
-							}
-							if(haulSample.text != ""){
-								catchExpression+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
-							}
-							
-							catchExpression+= " AND H_ID NOT IN ("+	queryforCatch+")";
-						}
-					}	
-					else{
-						queryforCatch = "nope";
-					}
 					
-					if(queryforCatch !=""){
-						query.returnGeometry= true;
-						query.outSpatialReference = map.spatialReference;
-						/* if(microZoopVisible == true)
-						{
-						query.returnGeometry= false;
-						}
-						else{
-						query.returnGeometry= true;
-						query.outSpatialReference = map.spatialReference;
-						} */
-						queryLayer.useMapTime = false;
-						
-						query.where = expr;
-						//query.timeExtent = map.timeExtent;
-						if(qOutFields.length == 0)
-						{
-							qOutFields.push(fieldsArray[0].name);	
-						}
-						queryLayer.outFields = qOutFields;
-						query.outFields = qOutFields;
-						
-						//order by fields
-						//query.orderByFields = ['SPECIES_NAME ASC, TAXON_NAME'];
-						if(tokenUse != ""){
-							queryLayer.token = tokenUse;
-						}
-						if(queryDefExpr != "")
-							queryLayer.definitionExpression = queryDefExpr; 
-						
-						queryLayer.queryFeatures(query, new AsyncResponder(onResult, onFault, queryFields));
-						
-						showMessage(loadingLabel, true); 
-						showStateResults(); 
+					query.returnGeometry= true;
+					query.outSpatialReference = map.spatialReference;
+					/* if(microZoopVisible == true)
+					{
+					query.returnGeometry= false;
 					}
+					else{
+					query.returnGeometry= true;
+					query.outSpatialReference = map.spatialReference;
+					} */
+					queryLayer.useMapTime = false;
+					
+					query.where = expr;
+					//query.timeExtent = map.timeExtent;
+					if(qOutFields.length == 0)
+					{
+						qOutFields.push(fieldsArray[0].name);	
+					}
+					queryLayer.outFields = qOutFields;
+					query.outFields = qOutFields;
+					
+					//order by fields
+					//query.orderByFields = ['SPECIES_NAME ASC, TAXON_NAME'];
+					if(tokenUse != ""){
+						queryLayer.token = tokenUse;
+					}
+					if(queryDefExpr != "")
+						queryLayer.definitionExpression = queryDefExpr; 
+					
+					queryLayer.queryFeatures(query, new AsyncResponder(onResult, onFault, queryFields));
+					
+					showMessage(loadingLabel, true); 
+					showStateResults(); 
 					  
 					// on result
 					function onResult(featureSet:FeatureSet, token:XMLList = null):void                
@@ -3167,76 +3148,9 @@
 									}
 									var dgconfigArr:ArrayCollection = new ArrayCollection();
 									dgconfigArr.addItem(dgConfig);
-									if(queryforCatch != 'nope'){
-										//first add the catch data
-										showMessage(selectionLabel + " " + featureSet.features.length, true);
-										addSharedData("configFixedDatagrid", dgconfigArr);
-										
-										//then add the catch with zerro for haulls
-										var queryLayerHaul:FeatureLayer = new FeatureLayer;
-										queryLayerHaul = configSearchText[2].layer;
-										
-										var querycatch:Query = new Query();
-										querycatch.returnGeometry= false;
-										
-										if(tokenUse != ""){
-											queryLayerHaul.token = tokenUse;
-										}
-										
-										querycatch.where = catchExpression;
-										//doesn't work
-										//querycatch.returnDistinctValues = true;
-										//querycatch.outFields = ["CRUISE_NAME","HAUL_NAME","STATION_NAME","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_ABBREV"];
-										//Alert.show(catchExpression);
-										querycatch.returnGeometry = false;
-										queryLayerHaul.outFields = ["CRUISE","HAUL_NAME","STATION_NAME","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_NAME","GEOGRAPHIC_AREA","BOTTOM_DEPTH","COMMENTS_HAUL","MAX_GEAR_DEPTH"];
-										//["CRUISE","HAUL_ID","HAUL_PERFORMANCE","GMT_DATE_TIME","LAT","LON","NET","GEAR_NAME"];
-										queryLayerHaul.queryFeatures(querycatch, new AsyncResponder(onResultHaul, onFault));
-										// on result
-										function onResultHaul(featureSetHaul:FeatureSet, token:XMLList = null):void                
-										{
-											//var haulArray:ArrayCollection =new ArrayCollection(featureSetHaul.attributes);
-											showMessage(selectionLabel + " " + featureSet.features.length +"\nZero Catch: "+ featureSetHaul.attributes.length, false);
-											var newFieldArrayC:ArrayCollection = new ArrayCollection;
-											for (var f2:int =0; f2<featureSetHaul.attributes.length; f2++){
-												var featureObj:Object = featureSetHaul.attributes[f2];
-												var featureDate:Date = new Date(featureObj.GMT_DATE_TIME);
-												featureObj['YEAR'] = featureDate.fullYear;
-												featureObj['MONTH'] = featureDate.month+1;
-												featureObj['DAY'] = featureDate.date;
-												//add null values for catch and Ich for Debbie
-												//only if one species or taxa is chosen
-												if(speciesIch.selectedAll == false && speciesIch.selectedViewsSQL != "noneSelected"&& speciesIch.selectedItems.length == 1){
-													featureObj['LARVALCATCHPER1000M3'] = 0;
-													featureObj['LARVACATCHPER10M2'] = 0;
-													if(speciesIch.selectedItems[0].alias){
-														featureObj['SPECIES_NAME'] = speciesIch.selectedItems[0].alias;
-													}
-													if(stageIch.selectedItems[0].alias){
-														featureObj['STAGE_NAME'] = stageIch.selectedItems[0].alias;
-													}
-												}
-												if(taxaBob.selectedAll == false && taxaBob.selectedViewsSQL != "noneSelected"&& taxaBob.selectedItems.length == 1){
-													if(taxaBob.selectedItems[0].alias){
-														featureObj['TAXON_NAME'] = taxaBob.selectedItems[0].alias;
-													}
-												}
-												newFieldArrayC.addItem(featureObj);
-											}
-											
-											//addSharedData("addCatchzero", haulArray);
-											addSharedData("addCatchzero", newFieldArrayC);
-										}
-										//on fault
-										function onFault(info:Object, token:Object = null) : void
-										{                    
-											showMessage(selectionLabel + " " + featureSet.features.length +"\nZero Catch: Query Error", false);         
-										}
-									}
-									else{
-										showMessage(selectionLabel + " " + featureSet.features.length, false);
-										addSharedData("configFixedDatagrid", dgconfigArr);
-									}
+									
+									showMessage(selectionLabel + " " + featureSet.features.length, false);
+									addSharedData("configFixedDatagrid", dgconfigArr);
 								}
 							}
 							catch (error:Error){
@@ -3264,23 +3178,28 @@
 				showStateResults();
 				//set up relationship for layer
 				var relateQuery:RelationshipQuery = new RelationshipQuery;
+				//specimen relate link
 				if(cboLayerText.selectedLabel.search("DIET")>-1){
-					relateQuery.relationshipId =4;
+					relateQuery.relationshipId =5;
 				}
-				if(cboLayerText.selectedLabel.search("NUTRIENT")>-1){
-					relateQuery.relationshipId =1;
+				else if(cboLayerText.selectedLabel.search("SUBSPECIMEN")>-1){
+					relateQuery.relationshipId =6;
 				}
-				if(cboLayerText.selectedLabel.search("CHLOR")>-1){
+				//sample relate link
+				else if(cboLayerText.selectedLabel.search("SPECIMEN")>-1){
 					relateQuery.relationshipId =0;
 				}
-				if(cboLayerText.selectedLabel.search("CTDB")>-1){
+				else if(cboLayerText.selectedLabel.search("NUTRIENT")>-1){
+					relateQuery.relationshipId =4;
+				}
+				else if(cboLayerText.selectedLabel.search("CHLOR")>-1){
 					relateQuery.relationshipId =3;
 				}
-				if(cboLayerText.selectedLabel.search("SEACAT")>-1){
+				else if(cboLayerText.selectedLabel.search("CTDB")>-1){
 					relateQuery.relationshipId =2;
 				}
-				if(cboLayerText.selectedLabel.search("SUBSPECIMEN")>-1){
-					relateQuery.relationshipId =5;
+				else if(cboLayerText.selectedLabel.search("SEACAT")>-1){
+					relateQuery.relationshipId =1;
 				}
 								
 				var fLay:FeatureLayer = queryLayer;
@@ -3381,6 +3300,277 @@
 					}
 					querySum.text = "Query: "+ cboLayerText.selectedLabel+" related to sample/specimen search. \n\nNote: THIS QUERY MAY TAKE A WHLE.";
 				}
+			}
+			
+			private function generateCatch():void
+			{
+				var go:Boolean = true;
+				var inputData:Object = {};
+				var gptoolurl:String = '';				
+				var speciesList:Array = [];
+				
+				cboLayerText.selectedIndex = 2;
+				inputData['InputQueryHaul'] = constructQuery(false);
+				
+				if(databaseText.selectedLabel == 'Zooplankton'){
+					
+					gptoolurl =catchzerotoolGPbob;
+					
+					if(stageBob.selectedItems.length>0){
+						inputData['stage'] = stageBob.selectedItems[0].name;
+					}
+					else{
+						Alert.show("Please Select one stage for query.", "Query Problem");
+						go =false;
+					}
+					if(taxaBob.selectedItems.length>0){
+						
+						for (var s2:int =0; s2<taxaBob.selectedItems.length; s2++)
+						{
+							speciesList.push(taxaBob.selectedItems[s2].alias);
+						}
+						inputData['Taxa_List'] = speciesList;
+						inputData['InputSpeciesQuery'] = constructQuery(false)+ " and taxon_name = '%taxa%'";
+					}
+					else{
+						Alert.show("Please Select Species for query.", "Query Problem");
+						go =false;
+					}
+				}
+				else if(databaseText.selectedLabel == 'Ichthyoplankton'){
+					gptoolurl =catchzerotoolGP;
+					if(stageIch.selectedItems.length>0){
+						inputData['stage'] = stageIch.selectedItems[0].alias;
+					}
+					else{
+						Alert.show("Please Select one stage for query.", "Query Problem");
+						go =false;
+					}
+					if(speciesIch.selectedItems.length>0){
+						for (var s2:int =0; s2<speciesIch.selectedItems.length; s2++)
+						{
+							speciesList.push(speciesIch.selectedItems[s2].alias);
+						}
+						inputData['Species_List'] = speciesList;
+						inputData['InputSpeciesQuery'] = constructQuery(false)+ " and species_name = '%specie%'";
+					}
+					else{
+						Alert.show("Please Select Species for query.", "Query Problem");
+						go =false;
+					}
+				}
+				else if(databaseText.selectedLabel == 'TRAWL'){
+					gptoolurl =catchzerotoolGP;
+					//no trawl stage
+					inputData['stage'] = 'TRAWL';
+					
+					if(speciesTra.selectedItems.length>0){
+						for (var s2:int =0; s2<speciesTra.selectedItems.length; s2++)
+						{
+							speciesList.push(speciesTra.selectedItems[s2].alias);
+						}
+						inputData['Species_List'] = speciesList;
+						inputData['InputSpeciesQuery'] = constructQuery(false)+ " and species_name = '%specie%'";
+					}
+					else{
+						Alert.show("Please Select Species for query.", "Query Problem");
+						go =false;
+					}
+				}
+								
+				
+				if(go == true){
+										
+					cboLayerText.selectedIndex = 1;
+					var gps:Geoprocessor = new Geoprocessor(gptoolurl);
+					if(tokenUse !="")
+					{
+						gps.token = tokenUse;
+					}
+					
+					gps.showBusyCursor = true;
+					gps.addEventListener(GeoprocessorEvent.JOB_COMPLETE,getResultDataComplete);
+					gps.addEventListener(FaultEvent.FAULT,gp_faultHandler);
+					//gps.addEventListener(GeoprocessorEvent.STATUS_UPDATE,getstatusGP);
+					gps.submitJob(inputData);
+					
+					dataproc_status.includeInLayout = true;
+					dataproc_status.visible = true;
+					showError("\nThe Catch with Zero tool is currently running.  \nThis could take a couple of minutes to run.  \n\nAn excel file will be downloaded to your computer when done.  \nYou can continue querying data while the tool is running.", "Tool is Running");
+					
+					//queryFeaturesText2();
+					
+					function getResultDataComplete(event:GeoprocessorEvent):void
+					{
+						if(event.jobInfo.jobStatus == 'esriJobFailed'){
+							showError("\nThere was an error. \nTry running with different settings or query.", "Error");
+						}
+						else{
+							gps.addEventListener(GeoprocessorEvent.GET_RESULT_DATA_COMPLETE, onGetResult);
+							
+							gps.getResultData(event.jobInfo.jobId, 'output_catch_zero'); 
+							
+							function onGetResult(event : GeoprocessorEvent):void
+							{ 
+								var url:URLRequest = new URLRequest(event.parameterValue.value.url);
+								navigateToURL(url, "_blank");
+								//var fileReference:FileReference = new FileReference();
+								//fileReference.download(url);
+							} 
+						}
+						dataproc_status.includeInLayout = false;
+						dataproc_status.visible = false;
+					}
+				}
+			}
+			
+			private function generateTrawlLength():void{
+				var gps:Geoprocessor = new Geoprocessor(trawllengthGP);
+				var inputData:Object = {};
+				if(databaseText.selectedLabel != "TRAWL"){
+					Alert.show("Please Select Trawl Specimen Type for query.", "Query Problem");
+				}
+				else{
+					inputData['Input_Query_Filter'] = constructQuery(false);
+					
+					if(tokenUse !="")
+					{
+						gps.token = tokenUse;
+					}
+					
+					gps.showBusyCursor = true;
+					gps.addEventListener(GeoprocessorEvent.JOB_COMPLETE,getResultDataComplete);
+					//gps.addEventListener(GeoprocessorEvent.STATUS_UPDATE,getstatusGP);
+					gps.addEventListener(FaultEvent.FAULT,gp_faultHandler);
+					gps.submitJob(inputData);
+					showError("The Trawl Length analysis tool is currently running.  \nThis could take a couple of minutes to run.  \n\nFour(4) excel file will be downloaded to your computer when done. \n\nStandard Length \nTotal Length \nFork Length \nLegth at Sea \n\nYou can continue querying data while the tool is running.", "Tool is Running");
+					
+					dataproc_status.includeInLayout = true;
+					dataproc_status.visible = true;
+					
+					function getResultDataComplete(event:GeoprocessorEvent):void
+					{
+						if(event.jobInfo.jobStatus == 'esriJobFailed'){
+							showError("\nThere was an error. \nTry running with different settings or query.", "Error");
+						}
+						else{
+							gps.addEventListener(GeoprocessorEvent.GET_RESULT_DATA_COMPLETE, onGetResult);
+							
+							gps.getResultData(event.jobInfo.jobId, 'totallength_freq_trawl_xls');
+							gps.getResultData(event.jobInfo.jobId, 'lengthsea_freq_trawl_xls');
+							gps.getResultData(event.jobInfo.jobId, 'forklength_freq_trawl_xls');
+							gps.getResultData(event.jobInfo.jobId, 'standardlength_freq_trawl_xls');
+							
+							function onGetResult(event : GeoprocessorEvent):void
+							{ 
+								var url:URLRequest = new URLRequest(event.parameterValue.value.url);
+								navigateToURL(url, "_blank");
+							}	
+						}
+						dataproc_status.includeInLayout = false;
+						dataproc_status.visible = false;
+					}
+				}			
+			}
+			private function generateIchLength():void{
+				var gps:Geoprocessor = new Geoprocessor(ichlengthGP);
+				var inputData:Object = {};
+				if(cboLayerText.selectedIndex != 3){
+					Alert.show("Please Select SubSpecimen type Ichthyoplankton for query.", "Query Problem");
+				}
+				else{
+					inputData['Input_Query_Filter'] = constructQuery(false);
+					
+					if(tokenUse !="")
+					{
+						gps.token = tokenUse;
+					}
+					
+					gps.showBusyCursor = true;
+					gps.addEventListener(GeoprocessorEvent.JOB_COMPLETE,getResultDataComplete);
+					//gps.addEventListener(GeoprocessorEvent.STATUS_UPDATE,getstatusGP);
+					gps.addEventListener(FaultEvent.FAULT,gp_faultHandler);
+					gps.submitJob(inputData);
+					dataproc_status.includeInLayout = true;
+					dataproc_status.visible = true;
+					showError("\nThe Ichthyoplankton length analysis tool is currently running.  \nThis could take a couple of minutes to run.  \n\nAn excel file will be downloaded to your computer when done.  \nYou can continue querying data while the tool is running.", "Tool is Running");
+					
+					function getResultDataComplete(event:GeoprocessorEvent):void
+					{
+						if(event.jobInfo.jobStatus == 'esriJobFailed'){
+							showError("\nThere was an error. \nTry running with different settings or query.", "Error");
+						}
+						else{
+							gps.addEventListener(GeoprocessorEvent.GET_RESULT_DATA_COMPLETE, onGetResult);
+							
+							gps.getResultData(event.jobInfo.jobId, 'Output_Excel_FIle'); 
+							
+							function onGetResult(event : GeoprocessorEvent):void
+							{ 
+								var url:URLRequest = new URLRequest(event.parameterValue.value.url);
+								navigateToURL(url, "_blank");
+							}	
+						}
+					}
+					dataproc_status.includeInLayout = false;
+					dataproc_status.visible = false;
+				}
+			}
+			private function generateIchAbundance():void{
+				var gps:Geoprocessor = new Geoprocessor(ichabundanceGP);
+				var inputData:Object = {};
+				if(cboLayerText.selectedIndex != 3){
+					Alert.show("Please Select SubSpecimen type Ichthyoplankton for query.", "Query Problem");
+				}
+				else{
+					inputData['Input_Query '] = constructQuery(false);
+					
+					if(tokenUse !="")
+					{
+						gps.token = tokenUse;
+					}
+					
+					gps.showBusyCursor = true;
+					//gps.addEventListener(GeoprocessorEvent.STATUS_UPDATE,getstatusGP);
+					
+					gps.addEventListener(GeoprocessorEvent.JOB_COMPLETE,getResultDataComplete);
+					gps.addEventListener(FaultEvent.FAULT,gp_faultHandler);
+					gps.submitJob(inputData);
+					showError("\nThe Ichthyoplankton Abundance tool is currently running.  \nThis could take a couple of minutes to run.  \nAn excel file will be downloaded to your computer when done.  \nYou can continue querying data while the tool is running.", "Tool is Running");
+					dataproc_status.includeInLayout = true;
+					dataproc_status.visible = true;
+					
+					function getResultDataComplete(event:GeoprocessorEvent):void
+					{
+						if(event.jobInfo.jobStatus == 'esriJobFailed'){
+							showError("\nThere was an error. \nTry running with different settings or query.", "Error");
+						}
+						else{
+							gps.addEventListener(GeoprocessorEvent.GET_RESULT_DATA_COMPLETE, onGetResult);
+							
+							gps.getResultData(event.jobInfo.jobId, 'Output_Table'); 
+							
+							function onGetResult(event : GeoprocessorEvent):void
+							{ 
+								var url:URLRequest = new URLRequest(event.parameterValue.value.url);
+								navigateToURL(url, "_blank");
+							}	
+						}
+						dataproc_status.includeInLayout = false;
+						dataproc_status.visible = false;
+					}
+				}
+			}
+			private function gp_faultHandler(event:FaultEvent):void
+			{
+				var msg:String = "\n\n\n" + event.fault.faultString;
+				showError(msg);
+			}
+			
+			private function getstatusGP(event:Event):void
+			{
+				//var msg:String = "\n\n\n";
+				//showError(msg);
 			}
 			
 			//query features graphical
@@ -4227,6 +4417,34 @@
 						
 						// make sure it is a valid point
 						graphic.addEventListener(MouseEvent.CLICK,pointClickHandler);
+//						var myTextFormat:TextFormat = new TextFormat();
+//						myTextFormat.font = "Verdana";
+//						myTextFormat.size = 15;
+//						myTextFormat.bold = true;
+//						myTextFormat.italic = false;
+//						myTextFormat.underline = false;
+
+						var labelgraphic:Graphic = new Graphic();
+						labelgraphic.geometry =  WebMercatorUtil.geographicToWebMercator(graphic.geometry);
+						var textSymbol:TextSymbol = new TextSymbol();
+						textSymbol.background = false;
+						textSymbol.backgroundColor = 0xFFFFFF;
+						textSymbol.border = false;
+						textSymbol.borderColor = 0x000000;
+						textSymbol.color = 0x000000;
+						textSymbol.placement = "above";
+						textSymbol.text = graphic.attributes.title;
+						//textSymbol.textFormat = myTextFormat;
+						textSymbol.xoffset = 10;
+						textSymbol.yoffset = 0;
+						labelgraphic.symbol = textSymbol; 
+						
+						
+						graphic.geometry = WebMercatorUtil.geographicToWebMercator(graphic.geometry);
+						
+						//webMercatorUtils.
+						graphicsLayer.add(labelgraphic);
+						
 						graphicsLayer.add(graphic);
 						// infowWindowRenderer on each graphic
 						var infoWindowRenderer:ClassFactory = new ClassFactory(PopUpRenderer);
@@ -5649,15 +5867,23 @@
 			</s:VGroup>		
 			<s:HGroup paddingTop="1">
 				<s:VGroup gap="10" paddingTop="20">
-					<s:Label id="resultLoc" text="*Results will be shown on map and in table." fontStyle="italic" fontSize="13" color="0xFFFFFF"/>
+					<s:Label paddingLeft="50" id="resultLoc" text="*Results will be shown on map and in table." fontStyle="italic" fontSize="13" color="0xFFFFFF"/>
 					<s:HGroup width="100%" horizontalAlign="center" gap="6"  verticalAlign="middle">
 						<s:Button fontWeight="bold" id="timeButton" includeInLayout="{multipleSearch}" visible="{multipleSearch}" label="Define Time Range" toolTip="Set Time Range" click="showTimeSettings()" />
 						<s:Button fontWeight="bold" id="relateButton" includeInLayout="{associationOptions}" visible="{associationOptions}" label="View associated Records*" toolTip="View Records associated with existing Query" click="selectRelationshipData()" />
 						<s:Button fontWeight="bold" color="red" id="searchBtn" label="{submitLabel}"/>
 						<s:Button fontWeight="bold" click="showfields()" label="Select Fields"/>
 						<s:Button fontWeight="bold" click="clear()" label="{clearLabel}"/>
-						<s:CheckBox fontWeight="bold" id="catchzero" label="Catch w/ Zeros" toolTip="You can only select one Species/Taxon" visible="{cboLayerText.selectedIndex == 1}" includeInLayout="{cboLayerText.selectedIndex == 1}"/>
+						<!--<s:CheckBox fontWeight="bold" id="catchzero" label="Catch w/ Zeros" toolTip="Table will be downloaded.  Only one Species name can be used" visible="{cboLayerText.selectedIndex == 1}" includeInLayout="{cboLayerText.selectedIndex == 1}"/>-->
+						
 					</s:HGroup>
+					<s:HGroup width="100%" horizontalAlign="center" gap="6"  verticalAlign="middle">
+						<s:Button fontWeight="bold" click="generateCatch()" id="catchzero" label="Catch w/ Zeros" toolTip="Table will be downloaded.  Only one Species name can be used" visible="{cboLayerText.selectedIndex == 1}" includeInLayout="{cboLayerText.selectedIndex == 1}"/>
+						<s:Button fontWeight="bold" click="generateTrawlLength()" id="trawl_length_but" label="Trawl Length" toolTip="Table will be downloaded.  " visible="{cboLayerText.selectedIndex == 1}" includeInLayout="{cboLayerText.selectedIndex == 1}"/>
+						<s:Button fontWeight="bold" click="generateIchLength()" id="ich_length_but" label="Ich Length" toolTip="Table will be downloaded.  " visible="{cboLayerText.selectedIndex == 3}" includeInLayout="{cboLayerText.selectedIndex == 3}"/>
+						<s:Button fontWeight="bold" click="generateIchAbundance()" id="ich_abundance_but" label="Ich Abundance" toolTip="Table will be downloaded." visible="{cboLayerText.selectedIndex == 3}" includeInLayout="{cboLayerText.selectedIndex == 3}"/>
+					</s:HGroup>
+					<s:Label id="dataproc_status" paddingLeft="100" includeInLayout="false" text="Your Processing Tool is running..." fontSize="11" color="0xFF0000"/>
 					<s:Label includeInLayout="{associationOptions}" visible="{associationOptions}" text="*This will return all associated records with subsample search." fontStyle="italic" fontSize="13" color="0xFFFFFF"/>
 				</s:VGroup>
 			</s:HGroup>

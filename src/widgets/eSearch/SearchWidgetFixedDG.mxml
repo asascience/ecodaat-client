@@ -1376,14 +1376,16 @@
 				else{
 					for each( var graphic:Graphic in _graLyr.graphicProvider)
 					{
-						if ( graphic.attributes.oid === attributes)
-						{ 
-							graphic.symbol = selectedPoint;
-							return graphic;
-						}
-						else{
-							//graphic.symbol = nonselectedPoint;
-							//return graphic;
+						if(graphic.attributes){
+							if ( graphic.attributes.oid === attributes)
+							{ 
+								graphic.symbol = selectedPoint;
+								return graphic;
+							}
+							else{
+								//graphic.symbol = nonselectedPoint;
+								//return graphic;
+							}
 						}
 					}
 				}        
