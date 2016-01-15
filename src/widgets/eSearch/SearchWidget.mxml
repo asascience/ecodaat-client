@@ -318,7 +318,6 @@
 			private var queryDefExpr:String = "";
 			private var queryLinkIconIsField:Boolean;
 			private var queryEnableExport:Boolean;
-			private var timer:Timer;
 			private const ICON_URL:String = "assets/images/";
 			private var WIDGET_URL:String = "widgets/eSearch/assets/images/";
 			private var gridDataProvider:Object;
@@ -3398,7 +3397,7 @@
 					dataproc_status.visible = true;
 					showError("\nThe Catch with Zero tool is currently running.  \nThis could take a couple of minutes to run.  \n\nAn excel file will be downloaded to your computer when done.  \nYou can continue querying data while the tool is running.", "Tool is Running");
 					
-					//queryFeaturesText2();
+					queryFeaturesText2();
 					
 					function getResultDataComplete(event:GeoprocessorEvent):void
 					{
@@ -3457,9 +3456,31 @@
 							gps.addEventListener(GeoprocessorEvent.GET_RESULT_DATA_COMPLETE, onGetResult);
 							
 							gps.getResultData(event.jobInfo.jobId, 'totallength_freq_trawl_xls');
-							gps.getResultData(event.jobInfo.jobId, 'lengthsea_freq_trawl_xls');
-							gps.getResultData(event.jobInfo.jobId, 'forklength_freq_trawl_xls');
-							gps.getResultData(event.jobInfo.jobId, 'standardlength_freq_trawl_xls');
+							
+							var timer1:Timer = new Timer(400,0);
+							timer1.addEventListener(TimerEvent.TIMER, onTimer);
+							function onTimer(e:TimerEvent):void {
+								gps.getResultData(event.jobInfo.jobId, 'lengthsea_freq_trawl_xls');
+								timer1.stop();
+							}
+							timer1.start();
+							
+							var timer2:Timer = new Timer(800,0);
+							timer2.addEventListener(TimerEvent.TIMER, onTimer2);
+							function onTimer2(e:TimerEvent):void {
+								gps.getResultData(event.jobInfo.jobId, 'forklength_freq_trawl_xls');
+								timer2.stop();
+							}
+							timer2.start();
+							
+							var timer3:Timer = new Timer(1200,0);
+							timer3.addEventListener(TimerEvent.TIMER, onTimer3);
+							function onTimer3(e:TimerEvent):void {
+								gps.getResultData(event.jobInfo.jobId, 'standardlength_freq_trawl_xls');
+								timer3.stop();
+							}
+							timer3.start();
+							
 							
 							function onGetResult(event : GeoprocessorEvent):void
 							{ 
@@ -4102,7 +4123,12 @@
 				var result:ArrayCollection = new ArrayCollection();
 				if (!queryTitleField)
 					queryTitleField = featureSet.displayFieldName;
-
+				
+				var nolabel:Boolean = true;
+				if(featureSet.features.length>320){
+					nolabel = false;
+				}
+				
 				for each (var graphic:Graphic in featureSet.features){
 					var value:String = "";
 					var title:String = "";
@@ -4424,26 +4450,26 @@
 //						myTextFormat.italic = false;
 //						myTextFormat.underline = false;
 
-						var labelgraphic:Graphic = new Graphic();
-						labelgraphic.geometry =  WebMercatorUtil.geographicToWebMercator(graphic.geometry);
-						var textSymbol:TextSymbol = new TextSymbol();
-						textSymbol.background = false;
-						textSymbol.backgroundColor = 0xFFFFFF;
-						textSymbol.border = false;
-						textSymbol.borderColor = 0x000000;
-						textSymbol.color = 0x000000;
-						textSymbol.placement = "above";
-						textSymbol.text = graphic.attributes.title;
-						//textSymbol.textFormat = myTextFormat;
-						textSymbol.xoffset = 10;
-						textSymbol.yoffset = 0;
-						labelgraphic.symbol = textSymbol; 
+						if(nolabel == true){
+							var labelgraphic:Graphic = new Graphic();
+							labelgraphic.geometry =  graphic.geometry; //WebMercatorUtil.geographicToWebMercator(graphic.geometry);
+							var textSymbol:TextSymbol = new TextSymbol();
+							textSymbol.background = false;
+							textSymbol.backgroundColor = 0xFFFFFF;
+							textSymbol.border = false;
+							textSymbol.borderColor = 0x444444;
+							textSymbol.color = 0x444444;
+							textSymbol.placement = "above";
+							textSymbol.text = graphic.attributes.title;
+							//textSymbol.textFormat = myTextFormat;
+							textSymbol.xoffset = 10;
+							textSymbol.yoffset = 0;
+							labelgraphic.symbol = textSymbol; 
+							
+							graphicsLayer.add(labelgraphic);
+						}
 						
-						
-						graphic.geometry = WebMercatorUtil.geographicToWebMercator(graphic.geometry);
-						
-						//webMercatorUtils.
-						graphicsLayer.add(labelgraphic);
+						//graphic.geometry = WebMercatorUtil.geographicToWebMercator(graphic.geometry);
 						
 						graphicsLayer.add(graphic);
 						// infowWindowRenderer on each graphic

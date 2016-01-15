@@ -9,7 +9,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 -->
 <configuration label="Extract Data to ESRI format">
-    <dataextractionservice>http://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ECODAAT_DOWNLOAD_DATA/GPServer/Extract%20Data%20Task</dataextractionservice>
+    <dataextractionservice>http://akc0ss-p093:6080/arcgis/rest/services/ecodaat/ECODAAT_DOWNLOAD_DATA/GPServer/Extract%20Data%20Task</dataextractionservice>
     <aioselectionmethod>draw</aioselectionmethod>
     <token></token>
 </configuration>
