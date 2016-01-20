@@ -245,7 +245,7 @@
 			[Bindable]
 			private var associationOptions:Boolean = false;
 			[Bindable]
-			private var hideotherOptions:Boolean = false;			
+			private var hideotherOptions:Boolean = true;			
 			[Bindable]
 			private var yearArray:ArrayCollection = new ArrayCollection;
 			[Bindable]
@@ -2466,6 +2466,14 @@
 					if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
 						expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
 					}
+					if(primaryNetCX.selectedAll == false && primaryNetCX.selectedViewsSQL != "noneSelected"){
+						if(primaryNetCX.selectedItem.alias == 'TRUE'){
+							expr+=" AND PRIMARY_NET = 'Y'";
+						}
+						else{
+							expr+=" AND PRIMARY_NET NOT IN ('Y')";	
+						}
+					}
 					if(showallDepGear.selected == false){
 						expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
 					}
@@ -2485,6 +2493,14 @@
 						}
 						if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
 							expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
+						}
+						if(primaryNetCX.selectedAll == false && primaryNetCX.selectedViewsSQL != "noneSelected"){
+							if(primaryNetCX.selectedItem.alias == 'TRUE'){
+								expr+=" AND PRIMARY_NET = 'Y'";
+							}
+							else{
+								expr+=" AND PRIMARY_NET NOT IN ('Y')";	
+							}
 						}
 						if(cruiseSample.selectedAll == false&& cruiseSample.selectedViewsSQL != "noneSelected"){
 							expr+= " AND CRUISE "+cruiseSample.selectedViewsSQL;
@@ -2550,6 +2566,14 @@
 						}
 						if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
 							expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
+						}
+						if(primaryNetCX.selectedAll == false && primaryNetCX.selectedViewsSQL != "noneSelected"){
+							if(primaryNetCX.selectedItem.alias == 'TRUE'){
+								expr+=" AND PRIMARY_NET = 'Y'";
+							}
+							else{
+								expr+=" AND PRIMARY_NET NOT IN ('Y')";	
+							}
 						}
 						if(haulSample.text != ""){
 							expr+=" AND HAUL_ID LIKE '%"+haulSample.text+"%'";
@@ -2622,6 +2646,14 @@
 						if(sizeBob.selectedAll == false && sizeBob.selectedViewsSQL != "noneSelected"){
 							expr+=" AND SPECIMEN_SIZE "+sizeBob.selectedViewsSQL;
 						}
+						if(primaryNetCX.selectedAll == false && primaryNetCX.selectedViewsSQL != "noneSelected"){
+							if(primaryNetCX.selectedItem.alias == 'TRUE'){
+								expr+=" AND PRIMARY_NET = 'Y'";
+							}
+							else{
+								expr+=" AND PRIMARY_NET NOT IN ('Y')";	
+							}
+						}
 						if(typeBob.selectedAll == false && typeBob.selectedViewsSQL != "noneSelected"){
 							expr+=" AND ZOOP_PROTOCOL "+typeBob.selectedViewsSQL;
 						}
@@ -2661,6 +2693,14 @@
 					}
 					if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
 						expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
+					}
+					if(primaryNetCX.selectedAll == false && primaryNetCX.selectedViewsSQL != "noneSelected"){
+						if(primaryNetCX.selectedItem.alias == 'TRUE'){
+							expr+=" AND PRIMARY_NET = 'Y'";
+						}
+						else{
+							expr+=" AND PRIMARY_NET NOT IN ('Y')";	
+						}
 					}
 					if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
 						expr+=" AND MESH "+meshSample.selectedViewsSQL;
@@ -2705,6 +2745,14 @@
 					}
 					if(geolocSample.selectedAll == false && geolocSample.selectedViewsSQL != "noneSelected"){
 						expr+=" AND GEOGRAPHIC_AREA "+geolocSample.selectedViewsSQL;
+					}
+					if(primaryNetCX.selectedAll == false && primaryNetCX.selectedViewsSQL != "noneSelected"){
+						if(primaryNetCX.selectedItem.alias == 'TRUE'){
+							expr+=" AND PRIMARY_NET = 'Y'";
+						}
+						else{
+							expr+=" AND PRIMARY_NET NOT IN ('Y')";	
+						}
 					}
 					if(meshSample.selectedAll== false && meshSample.selectedViewsSQL != "noneSelected"){
 						expr+=" AND MESH "+meshSample.selectedViewsSQL;
@@ -3514,7 +3562,7 @@
 					gps.submitJob(inputData);
 					dataproc_status.includeInLayout = true;
 					dataproc_status.visible = true;
-					showError("\nThe Ichthyoplankton length analysis tool is currently running.  \nThis could take a couple of minutes to run.  \n\nAn excel file will be downloaded to your computer when done.  \nYou can continue querying data while the tool is running.", "Tool is Running");
+					showError("\nThe Ichthyoplankton length analysis tool is currently running.  \nThis could take a couple of minutes to run.  \n\nAn excel file will be downloaded to your computer when done.  \nYou can continue querying data while the tool is running.\nMake sure Popups are unblocked.", "Tool is Running");
 					
 					function getResultDataComplete(event:GeoprocessorEvent):void
 					{
@@ -3557,7 +3605,7 @@
 					gps.addEventListener(GeoprocessorEvent.JOB_COMPLETE,getResultDataComplete);
 					gps.addEventListener(FaultEvent.FAULT,gp_faultHandler);
 					gps.submitJob(inputData);
-					showError("\nThe Ichthyoplankton Abundance tool is currently running.  \nThis could take a couple of minutes to run.  \nAn excel file will be downloaded to your computer when done.  \nYou can continue querying data while the tool is running.", "Tool is Running");
+					showError("\nThe Ichthyoplankton Abundance tool is currently running.  \n\nThis could take a couple of minutes to run.  \nAn excel file will be downloaded to your computer when done.  \nYou can continue querying data while the tool is running.\n\nMake sure Popups are unblocked.", "Tool is Running");
 					dataproc_status.includeInLayout = true;
 					dataproc_status.visible = true;
 					
@@ -5553,7 +5601,7 @@
 	<viewer:WidgetTemplate id="wTemplate"
 						   closed="widgetClosedHandler(event)" 
 						   open="widgetOpenedHandler(event)"
-						   width="665" height="580"
+						   width="665" height="588"
 						   minHeight="190"
 						   minWidth="260"
 						   visible="false">
@@ -5889,10 +5937,14 @@
 						<s:Label width="130" includeInLayout="{microZoopVisible==false}" visible="{microZoopVisible==false}" color="0xA80000" fontWeight="bold" text="Station Name:"/>
 						<mx:TextInput id="stationN" includeInLayout="{microZoopVisible==false}" visible="{microZoopVisible==false}" toolTip="Optional"  width="135"/>
 					</s:HGroup>
-				</s:VGroup>
+					<s:HGroup width="100%" gap="15" includeInLayout="{hideotherOptions}" visible="{hideotherOptions}" horizontalAlign="left"  verticalAlign="middle">
+						<s:Label color="0xA80000" width="121" fontWeight="bold" text="Primary Net:"/>
+						<MultiDropDown:ComboCheck   deselectAll="{primaryNetCX.selectedAll = false}" selectAll="{primaryNetCX.selectedAll = true}" id="primaryNetCX" selectAllLabelField="selectall" labelField="alias" dataProvider="{new ArrayCollection([{selectall:true, alias:'ALL'},{selectall:false, alias:'TRUE'},{selectall:false, alias:'FALSE'}])}"/>
+					</s:HGroup>
+				</s:VGroup>				
 			</s:VGroup>		
 			<s:HGroup paddingTop="1">
-				<s:VGroup gap="10" paddingTop="20">
+				<s:VGroup gap="10" paddingTop="10">
 					<s:Label paddingLeft="50" id="resultLoc" text="*Results will be shown on map and in table." fontStyle="italic" fontSize="13" color="0xFFFFFF"/>
 					<s:HGroup width="100%" horizontalAlign="center" gap="6"  verticalAlign="middle">
 						<s:Button fontWeight="bold" id="timeButton" includeInLayout="{multipleSearch}" visible="{multipleSearch}" label="Define Time Range" toolTip="Set Time Range" click="showTimeSettings()" />
