@@ -6,14 +6,15 @@
 //Powered by RPS-ASA
 ///////////////////////////////////////////////////////////////////////////
 -->
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" creationPolicy="all"
-               xmlns:s="library://ns.adobe.com/flex/spark" scriptTimeLimit="55"
-               xmlns:viewer="com.esri.viewer.*" backgroundColor="0x7C9FBF"
-               xmlns:managers="com.esri.viewer.managers.*"
-			   initialize="application1_initializeHandler(event)"
-			   creationComplete="application1_creationCompleteHandler(event)"
-			   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:Splash="popups.*"
-               pageTitle="EcoDAAT">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:viewer="com.esri.viewer.*"
+			   xmlns:managers="com.esri.viewer.managers.*"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:Splash="popups.*"
+			   backgroundColor="0x7C9FBF"
+			   creationComplete="application1_creationCompleteHandler(event)" creationPolicy="all"
+			   initialize="application1_initializeHandler(event)" pageTitle="EcoDAAT">
 
 	<s:states>
 		<s:State name="login"/>
@@ -46,7 +47,8 @@
 			protected function application1_initializeHandler(event:FlexEvent):void
 			{
 				XML.prettyPrinting=false;
-				this.currentState="main";
+				//this.currentState="main";
+				//views.visible = true;
 			}
 			
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
@@ -70,7 +72,7 @@
 				}
 				else
 				{
-					//showLoginPanel();
+					showLoginPanel();
 				} 
 			}
 			
@@ -84,15 +86,16 @@
 			
 			private function EnterSystemNow(event:AppEvent):void
 			{
-				this.currentState="main";
+				views.visible = true;
+				//this.currentState="main";
 				
-				var successLoginData:Array=event.data as Array;
-				var boolCookie:Boolean=Boolean(successLoginData[2]);
+				//var successLoginData:Array=event.data as Array;
+				//var boolCookie:Boolean=Boolean(successLoginData[2]);
 				//var resultXML:XML=new XML(successLoginData[1].toString());
 				//views.visible = true;	
 				
 				//save session
-				if(boolCookie)
+				/*if(boolCookie)
 				{
 					loginCookie.data.loginUser=loginUser;
 					var _loginTime:Date=new Date();
@@ -102,23 +105,21 @@
 					{
 						key:"loginuser",
 						data:loginUser
-					};
+					};*/
 				
-				ViewerContainer.dispatchEvent(new AppEvent(AppEvent.DATA_PUBLISH,objectLoginUser));
+				//ViewerContainer.dispatchEvent(new AppEvent(AppEvent.DATA_PUBLISH,objectLoginUser));
 			}
 			
 			private function systemLogoutNow(event:AppEvent):void
 			{
-				loginCookie.clear();
+				//loginCookie.clear();
 				var urlRequest:URLRequest=new URLRequest("javascript:location.reload();");
 				
 				navigateToURL(urlRequest,"_self");
 			}
 		]]>
 	</fx:Script>
-	<s:VGroup  width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" includeIn="login" >
-	</s:VGroup>
-	<viewer:ViewerContainer id="views" includeIn="main" >
+	<viewer:ViewerContainer id="views" visible="false" includeIn="login">
 		<viewer:mapManager>
 			<managers:MapManager/>
 		</viewer:mapManager>

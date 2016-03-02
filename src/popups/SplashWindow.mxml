@@ -102,15 +102,17 @@
 			
 			protected function loginBtnClickHandler():void
 			{				
-				if(userNameTextInput.text.length>0&&passWordTextInput.text.length>0)
+				//if(userNameTextInput.text.length>0&&passWordTextInput.text.length>0)
+				if(userNameTextInput.text.length>0)
 				{
 					logMSG.text="Logging In..";
-					userInfo=new Array(userNameTextInput.text,passWordTextInput.text,boolCookie.selected);
-					google.send();
+					userInfo=new Array(userNameTextInput.text,'asdfasdf',false);
+					//google.send();
+					logInHandler();
 				}
 				else
 				{
-					logMSG.text="Please enter Username & Password";
+					logMSG.text="Please enter Username";
 				} 
 				
 				/* if(userNameTextInput.text == "ecoDaat"&&passWordTextInput.text == "p@ssword")
@@ -198,7 +200,7 @@
 			public function handleFaultdata(event:FaultEvent):void
 			{
 				//Alert.show(event.fault.faultString, "Error");
-				logMSG.text="Incorrect Username & Password";
+				logMSG.text="Incorrect Username";
 				
 				//URL to return users within a group
 				//http://docs.google.com/a/macros/noaa.gov/exec?service=AKfycbxea4A8JDmq52utIw0AXKGW4wcp3cO4-yL_NHmn
@@ -207,7 +209,7 @@
 	</fx:Script>
 	<fx:Declarations>
 		<s:Fade id="fadeToClear" target="{vbLogin}" alphaFrom="0.0" alphaTo="1.0" duration="1000"/>
-		<mx:HTTPService id="google"
+		<!--<mx:HTTPService id="google"
 						url="{proxyString}"
 						method="POST" fault="handleFaultdata(event);"
 						contentType="application/x-www-form-urlencoded"              
@@ -219,7 +221,7 @@
 				<service>groups2</service>
 			</mx:request>
 		</mx:HTTPService> 
-		<!--<mx:HTTPService id="googleaccount" resultFormat="text" method="POST"
+		<mx:HTTPService id="googleaccount" resultFormat="text" method="POST"
 						contentType="application/x-www-form-urlencoded" 
 						url="https://groups.google.com/grphp?hl=en"         
 						result="handlePlaindata(event);"
@@ -249,19 +251,20 @@
 	<mx:VBox width="100%" paddingLeft="18" paddingBottom="10" horizontalAlign="left" id="vbLogin" alpha="0" verticalGap="1" borderVisible="false" borderStyle="outset" paddingTop="0">
 		<mx:HBox horizontalAlign="left" width="100%" horizontalGap="10" borderVisible="true" height="40" borderStyle="none" borderColor="0xCCCCCC" paddingTop="0" verticalAlign="middle">
 			<s:Label paddingLeft="5" text="Username   "   id="userNameLabel"/>
-			<s:TextInput id="userNameTextInput" prompt="Enter username" width="165" text=""/>
+			<s:TextInput id="userNameTextInput" color="#000" prompt="Enter username" width="165" text=""/>
 			<s:Label text="@noaa.gov" fontSize="12"/>
 			<s:Label paddingTop="1" paddingLeft="1" fontWeight="bold" fontSize="11" color="#FF0000" id="logMSG" text="  "/>			
 		</mx:HBox>
-		<mx:HBox horizontalAlign="left" paddingLeft="5" horizontalGap="10" verticalAlign="middle" >
+		<s:Button label="Login" id="loginBtn" click="loginBtnClickHandler()"/>	
+		<!--<mx:HBox horizontalAlign="left" paddingLeft="5" horizontalGap="10" verticalAlign="middle" >
 			<s:Label paddingRight="3"  text="Password    "  id="passWordLabel"/>
 			<s:TextInput  displayAsPassword="true" id="passWordTextInput" width="165" text=""/>
-			<s:Button label="Login" id="loginBtn" click="loginBtnClickHandler()"/>		
+				
 			<s:CheckBox id="boolCookie" label="Remember Me" visible="false" />
 			<s:HGroup gap="20" paddingLeft="105">
 				<mx:Button cornerRadius="9" useHandCursor="true" enabled="false" id="lbtnGuestPub" fontSize="10" label="Public Site" click="navigateToURL(new URLRequest(publicSite), '_self')" buttonMode="true"/>
 				<mx:Button cornerRadius="9" useHandCursor="true" enabled="true" id="lbtnGuest" fontSize="10" label="Request Access" click="loginAsGuest()" buttonMode="true"/>
 			</s:HGroup>
-		</mx:HBox>
+		</mx:HBox>-->
 	</mx:VBox>
 </PopupWindows:ResizableTitleWindow>

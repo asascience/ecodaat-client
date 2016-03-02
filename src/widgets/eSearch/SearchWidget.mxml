@@ -3592,7 +3592,7 @@
 					Alert.show("Please Select SubSpecimen type Ichthyoplankton for query.", "Query Problem");
 				}
 				else{
-					inputData['Input_Query '] = constructQuery(false);
+					inputData['Input_Query'] = constructQuery(false);
 					
 					if(tokenUse !="")
 					{
