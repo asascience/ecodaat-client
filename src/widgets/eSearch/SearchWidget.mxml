@@ -110,7 +110,6 @@
 			import com.esri.ags.tasks.Geoprocessor;
 			import com.esri.ags.tasks.QueryTask;
 			import com.esri.ags.tasks.supportClasses.BufferParameters;
-			//import com.esri.ags.tasks.supportClasses.ParameterValue;
 			import com.esri.ags.tasks.supportClasses.Query;
 			import com.esri.ags.tools.DrawTool;
 			import com.esri.ags.utils.GeometryUtil;
@@ -2378,7 +2377,7 @@
 				} 
 			}
 			
-			private function constructQuery(sqlquery:Boolean):String{
+			private function constructQuery(sqlquery:Boolean,species:Boolean = false):String{
 				var expr:String = '';
 				//Dyanimc date query
 				//year
@@ -2529,8 +2528,10 @@
 						if(showallLeng.selected == false){
 							expr+=" AND LENGTH_TOTAL > "+minleng.value + " AND LENGTH_TOTAL < "+maxleng.value;
 						}
-						if(speciesTra.selectedAll== false && speciesTra.selectedViewsSQL != "noneSelected"){
-							expr+=" AND SPECIES_NAME "+speciesTra.selectedViewsSQL;
+						if(species == false){
+							if(speciesTra.selectedAll== false && speciesTra.selectedViewsSQL != "noneSelected"){
+								expr+=" AND SPECIES_NAME "+speciesTra.selectedViewsSQL;
+							}
 						}
 						if(showallDepGear.selected == false){
 							expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
@@ -2590,8 +2591,10 @@
 						/* if(showallDispIch.selected == false){
 						expr+=" AND VOLUME_DISPLACEMENT > "+minDispIch.value + " AND VOLUME_DISPLACEMENT < "+maxDispIch.value;
 						} */
-						if(speciesIch.selectedAll == false && speciesIch.selectedViewsSQL != "noneSelected"){
-							expr+=" AND SPECIES_NAME "+speciesIch.selectedViewsSQL;
+						if(species == false){
+							if(speciesIch.selectedAll == false && speciesIch.selectedViewsSQL != "noneSelected"){
+								expr+=" AND SPECIES_NAME "+speciesIch.selectedViewsSQL;
+							}
 						}
 						if(showallDepGear.selected == false){
 							expr+=" AND MAX_GEAR_DEPTH > "+minDepGear.value + " AND MAX_GEAR_DEPTH < "+maxDepGear.value;
@@ -2657,8 +2660,10 @@
 						if(typeBob.selectedAll == false && typeBob.selectedViewsSQL != "noneSelected"){
 							expr+=" AND ZOOP_PROTOCOL "+typeBob.selectedViewsSQL;
 						}
-						if(taxaBob.selectedAll == false && taxaBob.selectedViewsSQL != "noneSelected"){
-							expr+=" AND TAXON_NAME "+taxaBob.selectedViewsSQL;
+						if(species == false){
+							if(taxaBob.selectedAll == false && taxaBob.selectedViewsSQL != "noneSelected"){
+								expr+=" AND TAXON_NAME "+taxaBob.selectedViewsSQL;
+							}
 						}
 						if(sexText.selectedLabel != "ALL"){
 							expr+=" AND SEX_NAME = '"+sexText.selectedLabel+"'";
@@ -3358,6 +3363,7 @@
 				
 				cboLayerText.selectedIndex = 2;
 				inputData['InputQueryHaul'] = constructQuery(false);
+				cboLayerText.selectedIndex = 1;
 				
 				if(databaseText.selectedLabel == 'Zooplankton'){
 					
@@ -3377,7 +3383,7 @@
 							speciesList.push(taxaBob.selectedItems[s2].alias);
 						}
 						inputData['Taxa_List'] = speciesList;
-						inputData['InputSpeciesQuery'] = constructQuery(false)+ " and taxon_name = '%taxa%'";
+						inputData['InputSpeciesQuery'] = constructQuery(false,true)+ " and taxon_name = '%taxa%'";
 					}
 					else{
 						Alert.show("Please Select Species for query.", "Query Problem");
@@ -3399,7 +3405,7 @@
 							speciesList.push(speciesIch.selectedItems[s2].alias);
 						}
 						inputData['Species_List'] = speciesList;
-						inputData['InputSpeciesQuery'] = constructQuery(false)+ " and species_name = '%specie%'";
+						inputData['InputSpeciesQuery'] = constructQuery(false,true)+ " and species_name = '%specie%'";
 					}
 					else{
 						Alert.show("Please Select Species for query.", "Query Problem");
@@ -3423,12 +3429,10 @@
 						Alert.show("Please Select Species for query.", "Query Problem");
 						go =false;
 					}
-				}
-								
+				}			
 				
 				if(go == true){
-										
-					cboLayerText.selectedIndex = 1;
+								
 					var gps:Geoprocessor = new Geoprocessor(gptoolurl);
 					if(tokenUse !="")
 					{
