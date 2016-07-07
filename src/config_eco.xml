@@ -31,7 +31,7 @@
         
         <operationallayers>
         	<layer label="Graticules" usemaptime="false" type="dynamic" visible="true" layers="0,1,2" url="http://akc0ss-p093:6080/arcgis/rest/services/ecodaat/Graticules/MapServer" />
-            <layer label="EcoDAAT" token="QwWCts2Ikf1BL1LSIlWsGZbP5GsdLhAMvx9faPgWOcYZDJx0QrdowAnPEfRExRWyWr6VRjScSdI_VdbfPYjmJQ.." usemaptime="true" type="dynamic" visible="true" layers="0,1,2,3,4,5,6,7,8" url="http://akc0ss-p093:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer" >
+            <layer label="EcoDAAT" token="" usemaptime="true" type="dynamic" visible="true" layers="0,1,2,3,4,5,6,7,8" url="http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer" >
             	
             	<!--
             	for website: http://services.asascience.com/MapApp/ecodaat/        	

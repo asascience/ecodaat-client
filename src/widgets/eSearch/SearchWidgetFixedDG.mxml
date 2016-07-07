@@ -386,6 +386,7 @@
 			
 			private function msToDate(ms:Number, dateFormat:String, useUTC:Boolean):String
 			{
+				useUTC = true;
 				var date:Date = new Date(ms);
 				if (date.milliseconds == 999) // workaround for REST bug
 				{

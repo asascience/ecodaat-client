@@ -11,7 +11,7 @@
 			   xmlns:viewer="com.esri.viewer.*"
 			   xmlns:managers="com.esri.viewer.managers.*"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
-			   xmlns:Splash="popups.*"
+			   xmlns:Splash="popups.*" scriptTimeLimit="120"
 			   backgroundColor="0x7C9FBF"
 			   creationComplete="application1_creationCompleteHandler(event)" creationPolicy="all"
 			   initialize="application1_initializeHandler(event)" pageTitle="EcoDAAT">

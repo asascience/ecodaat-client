@@ -3385,6 +3385,14 @@
 						inputData['Taxa_List'] = speciesList;
 						inputData['InputSpeciesQuery'] = constructQuery(false,true)+ " and taxon_name = '%taxa%'";
 					}
+					else if(taxaBob.dataProvider[0].selected == true){
+						for (var s2:int =1; s2<taxaBob.dataProvider.length; s2++)
+						{
+							speciesList.push(taxaBob.dataProvider[s2].alias);
+						}
+						inputData['Taxa_List'] = speciesList;
+						inputData['InputSpeciesQuery'] = constructQuery(false,true)+ " and taxon_name = '%taxa%'";
+					}
 					else{
 						Alert.show("Please Select Species for query.", "Query Problem");
 						go =false;
@@ -3407,6 +3415,14 @@
 						inputData['Species_List'] = speciesList;
 						inputData['InputSpeciesQuery'] = constructQuery(false,true)+ " and species_name = '%specie%'";
 					}
+					else if(speciesIch.dataProvider[0].selected == true){
+						for (var s2:int =1; s2<speciesIch.dataProvider.length; s2++)
+						{
+							speciesList.push(speciesIch.dataProvider[s2].alias);
+						}
+						inputData['Species_List'] = speciesList;
+						inputData['InputSpeciesQuery'] = constructQuery(false,true)+ " and species_name = '%specie%'";
+					}
 					else{
 						Alert.show("Please Select Species for query.", "Query Problem");
 						go =false;
@@ -3424,6 +3440,14 @@
 						}
 						inputData['Species_List'] = speciesList;
 						inputData['InputSpeciesQuery'] = constructQuery(false)+ " and species_name = '%specie%'";
+					}
+					else if(speciesTra.dataProvider[0].selected == true){
+						for (var s2:int =1; s2<speciesTra.dataProvider.length; s2++)
+						{
+							speciesList.push(speciesTra.dataProvider[s2].alias);
+						}
+						inputData['Species_List'] = speciesList;
+						inputData['InputSpeciesQuery'] = constructQuery(false,true)+ " and species_name = '%specie%'";
 					}
 					else{
 						Alert.show("Please Select Species for query.", "Query Problem");
@@ -3844,6 +3868,7 @@
 					query.timeExtent = map.timeExtent;
 					querySum.text = "Query " + cboLayerGraphical.text +" \n\nSpatial Search:  Geometry location criteria is seen on map.\n\nZoom in closer to see more detail.";
 					query.spatialRelationship = querySpatialRel;
+					
 					query.outSpatialReference = map.spatialReference;
 					if(gridFieldsOut.length ==0)
 					{
@@ -3854,6 +3879,7 @@
 									
 					if(queryDefExpr != "")
 						queryLayer.definitionExpression = queryDefExpr;
+					
 					queryLayer.queryFeatures(query, new AsyncResponder(onResult, onFault, queryFields));
 					showMessage(loadingLabel, true); 
 					showStateResults();   
@@ -4598,6 +4624,7 @@
 			
 			private function msToDate(ms:Number, dateFormat:String, useUTC:Boolean):String
 			{
+				useUTC = true;
 				var date:Date = new Date(ms);
 				if (date.milliseconds == 999) // workaround for REST bug
 					date.milliseconds++;
