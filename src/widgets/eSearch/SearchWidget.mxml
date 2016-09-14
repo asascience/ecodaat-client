@@ -1264,7 +1264,7 @@
 					fieldsArray2.removeAll();
 					for each (var field:Field in LayerDetails(result).fields)
 					{
-						if(field.alias.toLowerCase() == "h_id"||field.alias.toLowerCase() == "objectid"||field.alias.toLowerCase() == "tc_id"||field.alias.toLowerCase() == "objectid_1")
+						if(field.alias.toLowerCase() == "geom"||field.alias.toLowerCase() == "h_id"||field.alias.toLowerCase() == "objectid"||field.alias.toLowerCase() == "tc_id"||field.alias.toLowerCase() == "objectid_1")
 						{
 							//do nothing
 						}
@@ -1302,7 +1302,7 @@
 				{
 					for each (var field:Field in LayerDetails(result).fields)
 					{
-						if(field.alias.toLowerCase() == "h_id"||field.alias.toLowerCase() == "objectid"||field.alias.toLowerCase() == "tc_id"||field.alias.toLowerCase() == "objectid_1")
+						if(field.alias.toLowerCase() == "h_id"||field.alias.toLowerCase() == "objectid"||field.alias.toLowerCase() == "tc_id"||field.alias.toLowerCase() == "objectid_1"||field.alias.toLowerCase() == "geom")
 						{
 						}
 						else{
@@ -1333,7 +1333,7 @@
 				{
 					for each (var field1:Field in TableDetails(result).fields)
 					{
-						if(field1.alias.toLowerCase() == "h_id"||field1.alias.toLowerCase() == "objectid"||field1.alias.toLowerCase() == "tc_id"||field1.alias.toLowerCase() == "objectid_1")
+						if(field1.alias.toLowerCase() == "h_id"||field1.alias.toLowerCase() == "objectid"||field1.alias.toLowerCase() == "tc_id"||field1.alias.toLowerCase() == "objectid_1"||field1.alias.toLowerCase() == "geom")
 						{
 						}
 						else{
@@ -3140,22 +3140,24 @@
 									}
 								}
 								if(timeField == true){
-									var newFieldArray:ArrayCollection = new ArrayCollection;
-									for (var f2:int =0; f2<featureSet.attributes.length; f2++){
-										var featureObj:Object = featureSet.attributes[f2];
-										var featureDate:Date = new Date(featureObj.GMT_DATE_TIME);
-										featureObj['YEAR'] = featureDate.fullYear;
-										featureObj['MONTH'] = featureDate.month+1;
-										featureObj['DAY'] = featureDate.date;
-										newFieldArray.addItem(featureObj);
-									}
-									gridDataProvider =newFieldArray;
-									gridFields.push("YEAR~YEAR~NA~NA~NA~NA");
-									gridFields.push("MONTH~MONTH~NA~NA~NA~NA");
-									gridFields.push("DAY~DAY~NA~NA~NA~NA");
-									gridHyperFields['MONTH'] = 'MONTH';
-									gridHyperFields['YEAR'] = 'YEAR';
-									gridHyperFields['DAY'] = 'DAY';
+									//this is for extracting out date time
+//									var newFieldArray:ArrayCollection = new ArrayCollection;
+//									for (var f2:int =0; f2<featureSet.attributes.length; f2++){
+//										var featureObj:Object = featureSet.attributes[f2];
+//										var featureDate:Date = new Date(featureObj.GMT_DATE_TIME);
+//										featureObj['YEAR'] = featureDate.fullYear;
+//										featureObj['MONTH'] = featureDate.month+1;
+//										featureObj['DAY'] = featureDate.date;
+//										newFieldArray.addItem(featureObj);
+//									}
+//									gridDataProvider =newFieldArray;
+//									gridFields.push("YEAR~YEAR~NA~NA~NA~NA");
+//									gridFields.push("MONTH~MONTH~NA~NA~NA~NA");
+//									gridFields.push("DAY~DAY~NA~NA~NA~NA");
+//									gridHyperFields['MONTH'] = 'MONTH';
+//									gridHyperFields['YEAR'] = 'YEAR';
+//									gridHyperFields['DAY'] = 'DAY';
+									gridDataProvider = featureSet.attributes;
 								}
 								else{
 									gridDataProvider = featureSet.attributes;
@@ -3506,7 +3508,7 @@
 					Alert.show("Please Select Trawl Specimen Type for query.", "Query Problem");
 				}
 				else{
-					inputData['Input_Query_Filter'] = constructQuery(false);
+					inputData['SQL_Query'] = constructQuery(false);
 					
 					if(tokenUse !="")
 					{
@@ -5984,10 +5986,9 @@
 						<s:Button fontWeight="bold" click="showfields()" label="Select Fields"/>
 						<s:Button fontWeight="bold" click="clear()" label="{clearLabel}"/>
 						<!--<s:CheckBox fontWeight="bold" id="catchzero" label="Catch w/ Zeros" toolTip="Table will be downloaded.  Only one Species name can be used" visible="{cboLayerText.selectedIndex == 1}" includeInLayout="{cboLayerText.selectedIndex == 1}"/>-->
-						
 					</s:HGroup>
 					<s:HGroup width="100%" horizontalAlign="center" gap="6"  verticalAlign="middle">
-						<s:Button fontWeight="bold" click="generateCatch()" id="catchzero" label="Catch w/ Zeros" toolTip="Table will be downloaded.  Only one Species name can be used" visible="{cboLayerText.selectedIndex == 1}" includeInLayout="{cboLayerText.selectedIndex == 1}"/>
+						<s:Button fontWeight="bold" click="generateCatch()" id="catchzero" label="Catch w/ Zeros" toolTip="Table will be downloaded.  Only one Stage can be used." visible="{cboLayerText.selectedIndex == 1}" includeInLayout="{cboLayerText.selectedIndex == 1}"/>
 						<s:Button fontWeight="bold" click="generateTrawlLength()" id="trawl_length_but" label="Trawl Length" toolTip="Table will be downloaded.  " visible="{cboLayerText.selectedIndex == 1}" includeInLayout="{cboLayerText.selectedIndex == 1}"/>
 						<s:Button fontWeight="bold" click="generateIchLength()" id="ich_length_but" label="Ich Length" toolTip="Table will be downloaded.  " visible="{cboLayerText.selectedIndex == 3}" includeInLayout="{cboLayerText.selectedIndex == 3}"/>
 						<s:Button fontWeight="bold" click="generateIchAbundance()" id="ich_abundance_but" label="Ich Abundance" toolTip="Table will be downloaded." visible="{cboLayerText.selectedIndex == 3}" includeInLayout="{cboLayerText.selectedIndex == 3}"/>

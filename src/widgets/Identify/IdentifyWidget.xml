@@ -2,7 +2,7 @@
 <configuration>
 	<betareturngeometryfix>false</betareturngeometryfix>
 	<identifylayeroption>visible</identifylayeroption>
-	<identifytolerance>3</identifytolerance>
+	<identifytolerance>2</identifytolerance>
 	<defaultzoomscale>5000</defaultzoomscale>
 	<keepidentifyactive>true</keepidentifyactive>
 	<returngeometryforzoom>true</returngeometryforzoom>
@@ -12,7 +12,7 @@
 	<enablemouseovergraphicsinfo>true</enablemouseovergraphicsinfo>
 	<enablemouseoverrecordinfo>false</enablemouseoverrecordinfo>
 	<usemaptime>false</usemaptime>
-	<token>sd_CJpRvLgsKHZR2DgROUVP-xr0m9y8rzvoSuDmQeMJqFEwJW9Jtb1lL_D8JXg4T6fVOuI3zn84OHi9lukY7Zw..</token>
+	<token></token>
 	<autoactivatedtool>mappoint</autoactivatedtool><!-- possible values are extent or polygon or mappoint or polyline or nothing -->
 	<labels>
 		<zoom2message>Click to Zoom to Point</zoom2message>

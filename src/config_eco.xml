@@ -30,22 +30,10 @@
         </basemaps>
         
         <operationallayers>
-        	<layer label="Graticules" usemaptime="false" type="dynamic" visible="true" layers="0,1,2" url="http://akc0ss-p093:6080/arcgis/rest/services/ecodaat/Graticules/MapServer" />
-            <layer label="EcoDAAT" token="" usemaptime="true" type="dynamic" visible="true" layers="0,1,2,3,4,5,6,7,8" url="http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer" >
-            	
-            	<!--
-            	for website: http://services.asascience.com/MapApp/ecodaat/        	
-            	for NOAA: 
-            	
-            	home: QwWCts2Ikf1BL1LSIlWsGUbE_-JhH3ToQPevBsdyJDUAXKA9eloFqtfZ1-zXYhwNLw2whkb_901NPmwy6K_Ziw..
-            	<clustering mingraphiccount="5" sizeinpixels="80">
-            		<clustersymbol type="simple"
-                	colors="0xFFFF00,0xFF5000,0xFF0000"
-               	 	sizes="30,60,90"
-                	textsize="14"
-                	weights="10,100,9999" />
-        		</clustering>-->
-        	</layer>
+            <layer label="Graticules" usemaptime="false" type="dynamic" visible="true" layers="0,1,2" url="http://akc0ss-p093:6080/arcgis/rest/services/ecodaat/Graticules/MapServer" />
+			
+            <layer label="EcoDAAT" token="" usemaptime="true" type="dynamic" visible="true" layers="0,1,2,3,4,5,6,7,8" url="http://akc0ss-p093.nmfs.local:6080/arcgis/rest/services/ecodaat/ecodaat_development/MapServer" />
+			      	
         </operationallayers>
 
 		<lods>
