@@ -3019,9 +3019,23 @@
 					var myPattern:RegExp = /\[value\]/g;
 					var expr:String;
 					var eVal:String;
-															
-					expr= constructQuery(false);
-					
+						
+					if(typeQ == "table"){
+						if (txtSearch.visible){
+							if(queryExpr != "[value]")//meaning an open SQL expression
+								eVal = txtSearch.text.replace("'","''");
+							else
+								eVal = txtSearch.text;
+							expr = queryExpr.replace(myPattern, eVal.toUpperCase()); 
+						}
+						else{
+							eVal = cbSearch.selectedItem.value.replace("'","''");
+							expr = queryExpr.replace(myPattern, eVal); 
+						}
+					}
+					else{
+						expr= constructQuery(false);
+					}					
 					
 					//combo of geometry and text search
 					if(useSpatial.selected == true && useSpatial.visible == true)
@@ -5981,7 +5995,7 @@
 					<s:Label paddingLeft="50" id="resultLoc" text="*Results will be shown on map and in table." fontStyle="italic" fontSize="13" color="0xFFFFFF"/>
 					<s:HGroup width="100%" horizontalAlign="center" gap="6"  verticalAlign="middle">
 						<s:Button fontWeight="bold" id="timeButton" includeInLayout="{multipleSearch}" visible="{multipleSearch}" label="Define Time Range" toolTip="Set Time Range" click="showTimeSettings()" />
-						<s:Button fontWeight="bold" id="relateButton" includeInLayout="{associationOptions}" visible="{associationOptions}" label="View associated Records*" toolTip="View Records associated with existing Query" click="selectRelationshipData()" />
+						<s:Button fontWeight="bold" id="relateButton" includeInLayout="{associationOptions}" visible="{associationOptions}" label="View associated Records*" toolTip="View Records associated with existing Query on the map.  Will search any similar haul or specimen data." click="selectRelationshipData()" />
 						<s:Button fontWeight="bold" color="red" id="searchBtn" label="{submitLabel}"/>
 						<s:Button fontWeight="bold" click="showfields()" label="Select Fields"/>
 						<s:Button fontWeight="bold" click="clear()" label="{clearLabel}"/>
