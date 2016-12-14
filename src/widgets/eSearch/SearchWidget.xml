@@ -1,14 +1,26 @@
 ﻿<?xml version="1.0" ?>
 <configuration>	
 <publicSite>false</publicSite>
-<ichfields>LARVALCATCHPER1000M3,LARVACATCHPER10M2,stage_name,species_name,net,gear_name,haul_name,station_name,cruise</ichfields>
-<zoopfields>quality,samplecomments,no3,no2,nh4,po4,sio4,bottle_num,CHLOROCONC_L,PHAECONC_L,SPECIMEN_SIZE,sex,EST_NUM_PERM3,ZOOPSTAGE,STAGEID,stage_desc,sample_depth,taxon_name,comments,haul_performance,min_gear_depth,max_gear_depth,mesh,net,gear_name,haul,station_name,cruise,haul_name,haul_id,foci_sample_id</zoopfields>
-<trawlfields>haul_id,net_path,lat,lon,bottom_depth,gear_id,standard_length,fork_length,alt_common_name_trawl,foci_id,total_length,whole_wet_body_weight,stomach_id,age_growth_sample,genetic_sample,stomach_content_wt_g,documents,notes,publications,gmt_date_time,haul,purpose,haul_performance,cruise,ship_name</trawlfields>
-<trawlfieldsList>haul_name,preserve_id,comments_length_weight,comments_stomach_content,prey_quality,prey_weight,prey_count,comments_prey,haul_id,process_date,examiner,stomach_fullness_code,fullness_desc,stomach_intact_wt_g,stomach_lining_wt_g,stomach_digestion_code,digestion_desc,prey_code_trawl,alt_common_name_trawl,prey_group_code_trawl,alt_common_name_trawl,prey_quality,prey_weight,prey_count,alt_specimen_number,frequency,total_length,alt_common_name_trawl,weight_units,total_weight,subsample_weight,subsample_number,comments,mesh,door,max_gear_depth,max_wire_out,netmouth_height_m,sea_surface_temp_c,water_temp_at_gear_depth,trawl_haulback_start_gmt,trawl_haulback_start_lat,trawl_haulback_start_lon,gmt_date_time_end,lat_end,lon_end,foci_grid,trawl_deployed_gmt,trawl_deployed_lat,trawl_deployed_lon,net_path,lat,lon,bottom_depth,gear_id,standard_length,fork_length,alt_common_name_trawl,foci_id,total_length,whole_wet_body_weight,stomach_id,age_growth_sample,genetic_sample,stomach_content_wt_g,documents,notes,publications,gmt_date_time,haul,purpose,haul_performance,foci_cruise_name,ship_name</trawlfieldsList>
-<ichfieldsList>gmt_date_time,geographic_area,lat,lon,corrected_value,bottom_depth,max_gear_depth,min_gear_depth,mesh,number_caught,number_measured_counted,purpose,haul_performance,flowmeter_revs,tow_seconds,standard_haul_factor_a,standard_haul_factor_b,calibration_factor,foci_haul_id,volume_filtered,net_info,haul_comments,flowmeter_number,polygonal_area,max_wire_out,min_wire_out,foci_ich_species_code,gear_code,common_name_ichbase,species_code_ichbase,number_eggs,raw_value,displacement_volume,preservative,LARVALCATCHPER1000M3,LARVACATCHPER10M2,stage_name,species_name,net,gear_name,haul_name,station_name,cruise</ichfieldsList>
-<zoopfieldsList>gear_name,haul_name,sample_order,nut_id,f_b,f_a,chlor_door,dilution_factor,volume_filtered_chlor,Acetone_vol,calibration_id,ship_cruise_name,ctd_id,purpose,project,alt_station_name,foci_grid,gmt_date_time,bottom_depth,lat,lon,geographic_area,min_wire_out,max_wire_out,rec_hist_haul,flowmeter_number,flowmeter_revs,tow_minutes,tow_seconds,volume_filtered,polygonal_area,wire_angle,zoop_proc,subsample_factor,number_counted_measured,sorter_name,zoop_wet_weight,EST_NUM_PERSAMPLE,EST_NUM_PERM2,EST_NUM_PERM3,BIO_MASS_PERM3,BIO_MASS_PERM2,BIO_MASS_PERSAMPLE,DIS_PERVOLM2,DIS_PERVOLM3,sample_volume,CHLOROCONC_L,PHAECONC_L,quality,samplecomments,no3,no2,nh4,po4,sio4,bottle_num,CHLOROCONC_L,PHAECONC_L,SPECIMEN_SIZE,sex,EST_NUM_PERM3,ZOOPSTAGE,STAGEID,stage_desc,taxon_name,comments,haul_performance,min_gear_depth,max_gear_depth,mesh,net,gear_abbrv,cruise,haul,station_name,ship_cruise_name,haul_id,foci_sample_id</zoopfieldsList>
+<ichfields>
+COMMENTS_HAUL,LARVALCATCHPER1000M3,LARVALCATCHPER10M2,NUMBER_EGGS,RAW_VALUE,CORRECTED_LENGTH,NUMBER_MEASURED_COUNTED,NUMBER_CAUGHT,STAGE_NAME,STAGE_ID,SPECIES_CODE_ICHBASE,SPECIES_NAME,YEAR,DAY,MONTH,FOCI_ID,HAUL_ID,NET,GEAR_NAME,GEAR_ABBREV,HAUL_NAME,STATION_NAME,CRUISE
+</ichfields>
+<zoopfields>
+BOTTLE_NUM,SIO4,PO4,NH4,NO2,NO3,COMMENTS_CHLOROPHYLL,QUALITY,SAMPLE_DEPTH,PHAECONC_L,CHLOROCONC_L,EST_NUM_PERM3,SPECIMEN_FORM,SEX,SEX_NAME,SIZE_NAME,TAXON_SIZE,STAGE_NAME,STAGE,TAXON_NAME,ZOOP_PROC,COMMENTS_HAUL,HAUL_PERFORMANCE,MAX_GEAR_DEPTH,MIN_GEAR_DEPTH,LON,LAT,MESH,NET,GEAR_NAME,HAUL_NAME,STATION_NAME,CRUISE,HAUL_ID,FOCI_ID,FOCI_SAMPLE_ID
+</zoopfields>
+<trawlfields>
+NET_PATH,LAT,LON,BOTTOM_DEPTH,GEAR_NAME,STANDARD_LENGTH,FORK_LENGTH,ALT_COMMON_NAME_TRAWL,TOTAL_LENGTH,WHOLE_WET_BODY_WEIGHT,STOMACH_ID,AGE_GROWTH_SAMPLE,GENETIC_SAMPLE,STOMACH_CONTENT_WT_G,DOCUMENTS,NOTES,PUBLICATIONS,GMT_DATE_TIME,PURPOSE,HAUL_PERFORMANCE,FOCI_ID,HAUL_ID,SHIP_CRUISE_NAME,CRUISE
+</trawlfields>
+<trawlfieldsList>
+COMMENTS_LENGTH_WEIGHT,COMMENTS_STOMACH_CONTENT,COMMENTS_PREY,PREY_QUALITY,PREY_WEIGHT,PREY_COUNT,PREY_CODE_TRAWL,PROCESS_DATE,EXAMINER,STOMACH_FULLNESS_CODE,FULLNESS_DESC,STOMACH_INTACT_WT_G,STOMACH_LINING_WT_G,STOMACH_DIGESTION_CODE,DIGESTION_DESC,ALT_SPECIMEN_NUMBER,ALT_COMMON_NAME_TRAWL,PREY_GROUP_CODE_TRAWL,PREY_QUALITY,PREY_WEIGHT,PREY_COUNT,FREQUENCY,WEIGHT_UNITS,TOTAL_WEIGHT,TOTAL_LENGTH,SUBSAMPLE_WEIGHT,SUBSAMPLE_NUMBER,COMMENTS_SPECIMEN,COMMENTS_SAMPLES,COMMENTS_HAUL,MESH,DIEL,DOOR_HEIGHT,DOOR_WIDTH,DOOR,MAX_GEAR_DEPTH,MIN_GEAR_DEPTH,MAX_WIRE_OUT,MIN_WIRE_OUT,NETMOUTH_HEIGHT_M,SEA_SURFACE_TEMP_C,WATER_TEMP_AT_GEAR_DEPTH,TRAWL_HAULBACK_START_GMT,TRAWL_HAULBACK_START_LAT,TRAWL_HAULBACK_START_LON,GMT_DATE_TIME_END,LAT_END,LON_END,FOCI_GRID,TRAWL_DEPLOYED_GMT,TRAWL_DEPLOYED_LAT,TRAWL_DEPLOYED_LON,NET_PATH,GMT_DATE_TIME,LAT,LON,BOTTOM_DEPTH,STANDARD_LENGTH,FORK_LENGTH,TOTAL_LENGTH,WHOLE_WET_BODY_WEIGHT,STOMACH_ID,AGE_GROWTH_SAMPLE,GENETIC_SAMPLE,STOMACH_CONTENT_WT_G,DOCUMENTS,NOTES,PUBLICATIONS,PURPOSE,HAUL_PERFORMANCE,FOCI_ID,HAUL_ID,NET,GEAR_NAME,HAUL_NAME,STATION_NAME,SHIP_CRUISE_NAME,CRUISE
+</trawlfieldsList>
+<ichfieldsList>
+POLYGONAL_AREA,STANDARD_HAUL_FACTOR_B,STANDARD_HAUL_FACTOR_A,VOLUME_FILTERED,CALIBRATION_FACTOR,FLOWMETER_REVS,FLOWMETER_NUMBER,TOW_SECONDS,TOW_MINUTES,MAX_WIRE_OUT,MIN_WIRE_OUT,MAX_GEAR_DEPTH,MIN_GEAR_DEPTH,BOTTOM_DEPTH,GEOGRAPHIC_AREA,LON,LAT,MESH,PURPOSE,HAUL_PERFORMANCE,GMT_DATE_TIME,COMMON_NAME,DISPLACEMENT_VOLUME,PRESERVATIVE,ICH_PROC,COMMENTS_HAUL,LARVALCATCHPER1000M3,LARVALCATCHPER10M2,NUMBER_EGGS,RAW_VALUE,CORRECTED_LENGTH,NUMBER_MEASURED_COUNTED,NUMBER_CAUGHT,STAGE_NAME,STAGE_ID,SPECIES_CODE_ICHBASE,SPECIES_NAME,YEAR,DAY,MONTH,FOCI_ID,HAUL_ID,NET,GEAR_NAME,GEAR_ABBREV,HAUL_NAME,STATION_NAME,CRUISE
+</ichfieldsList>
+<zoopfieldsList>
+COMMENTS_SAMPLES,ZOOP_EUPHAUSIID_EGG,ZOOP_COPEPOD_NAUPLII,BOTTLE_NUM,SIO4,PO4,NH4,NO2,NO3,SAMPLE_ORDER,COMMENTS_CHLOROPHYLL,QUALITY,CALIBRATION_ID,ACETONE_VOL,VOLUME_FILTERED_CHLOR,DILUTION_FACTOR,CHLOR_DOOR,F_A,F_B,SAMPLE_DEPTH,INTPHAEO,PHAECONC_L,INTCHL,CHLOROCONC_L,SAMPLE_VOLUME,DIS_PERVOLM2,DIS_PERVOLM3,VOLUME_DISPLACEMENT,BIO_MASS_PERM2,BIO_MASS_PERM3,BIO_MASS_PERSAMPLE,EST_NUM_PERM2,EST_NUM_PERM3,EST_NUM_PERSAMPLE,ZOOP_WET_WEIGHT,SORTER_NAME,NUMBER_MEASURED_COUNTED,SUBSAMPLE_FACTOR,SPECIMEN_FORM,SEX,SEX_NAME,SIZE_NAME,TAXON_SIZE,STAGE_NAME,STAGE,TAXON_NAME,TAXON_CODE_ID,ZOOP_PROC,WIRE_ANGLE,POLYGONAL_AREA,VOLUME_FILTERED,TOW_SECONDS,TOW_MINUTES,FLOWMETER_REVS,FLOWMETER,REC_HIST_HAUL,COMMENTS_HAUL,HAUL_PERFORMANCE,MAX_WIRE_OUT,MIN_WIRE_OUT,MAX_GEAR_DEPTH,MIN_GEAR_DEPTH,GEOGRAPHIC_AREA,LON,LAT,BOTTOM_DEPTH,YEAR,DAY,MONTH,GMT_DATE_TIME,MESH,FOCI_GRID,ALT_STATION_NAME,PROJECT,PURPOSE,CTD_ID,SHIP_CRUISE_NAME,NET,GEAR_NAME,HAUL_NAME,STATION_NAME,CRUISE,HAUL_ID,FOCI_ID,FOCI_SAMPLE_ID
+</zoopfieldsList>
 <token></token>
-<!--  TABLE RECORDS -->	
+<!--  TABLE RECORDS 7TPm3tF3sohQkUjlMmaOghC0HgfqRt7z29WbwXCfPXhlILhq84Jlho6wVq-GU6slnzXudRGmOwJ3iFta4OLMnw.. -->	
 	<tables>
 	<!-- FlowMeter RECORDS -->
 		<table>
@@ -607,14 +619,19 @@
 		<cruiseArray_nutrient>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/25</cruiseArray_nutrient>
 		<cruiseArray_ctdb>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/26</cruiseArray_ctdb>
 		<cruiseArray_seacat>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/23</cruiseArray_seacat>
+		<projectArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</projectArray>
+		<purposeArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</purposeArray>
+		<ichStageArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</ichStageArray>
+		<bobSizeArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</bobSizeArray>
+		<bobStageArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</bobStageArray>
 		<cruiseArray_chlor>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</cruiseArray_chlor>
 	</dataproviders>
 	<datatools>
-		<ichlength>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/Length_Frequency_ICH/GPServer/ICH_Length_Frequency</ichlength>
+		<ichlength>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ICHLengthFrequency/GPServer/ICH_Length_Frequency</ichlength>
 		<trawllength>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/TRAWLLengthFrequency/GPServer/TRAWL_Length_Frequency</trawllength>
 		<catchzero>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/MultiSpeciesCatchZero/GPServer/Multi_Species_Catch_Zero</catchzero>
 		<catchzeroBob>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/MultiSpeciesCatchZeroBOB/GPServer/Multi_Species_Catch_ZeroBOB</catchzeroBob>
-		<ichabundance>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ICH_Abudance_Occurance/GPServer/ICH_Abundance_Occurance</ichabundance>
+		<ichabundance>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ICH_Abundance_Occurance/GPServer/ICH_Abundance_Occurance</ichabundance>
 	</datatools>
 	<symbols>
 		<simplefillsymbol color="0x5F9E61" alpha="0.7">

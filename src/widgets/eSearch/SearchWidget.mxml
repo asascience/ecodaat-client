@@ -284,6 +284,16 @@
 			private var gearnamesArray:ArrayCollection;
 			[Bindable]
 			private var taxonArray:ArrayCollection;
+			[Bindable]
+			private var projectArray:ArrayCollection;
+			[Bindable]
+			private var purposeArray:ArrayCollection;
+			[Bindable]
+			private var bobSizeArray:ArrayCollection;
+			[Bindable]
+			private var bobStageArray:ArrayCollection;
+			[Bindable]
+			private var ichStageArray:ArrayCollection;
 			//Properties
 			private var relateIcon:String;
 			private var relateToolTip:String;
@@ -1021,6 +1031,13 @@
 				var cruiseCall_seacat:QueryTask = new QueryTask(configXML.dataproviders.cruiseArray_seacat);
 				var cruiseCall_ctdb:QueryTask = new QueryTask(configXML.dataproviders.cruiseArray_ctdb);
 				var taxonCall:QueryTask = new QueryTask(configXML.dataproviders.taxonArray);
+				
+				var ichStageCall:QueryTask = new QueryTask(configXML.dataproviders.ichStageArray);
+				var bobStageCall:QueryTask = new QueryTask(configXML.dataproviders.bobStageArray);
+				var bobSizeCall:QueryTask = new QueryTask(configXML.dataproviders.bobSizeArray);
+				var projectCall:QueryTask = new QueryTask(configXML.dataproviders.projectArray);
+				var purposeCall:QueryTask = new QueryTask(configXML.dataproviders.purposeArray);
+				
 				var geoCall:QueryTask = new QueryTask(configXML.dataproviders.geo_loc);
 				var gearCall:QueryTask = new QueryTask(configXML.dataproviders.gearArray);
 				if(tokenUse != ""){
@@ -1032,6 +1049,11 @@
 					cruiseCall_ctdb.token = tokenUse;
 					cruiseCall_chlor.token = tokenUse;
 					taxonCall.token = tokenUse;
+					projectCall.token = tokenUse;
+					purposeCall.token = tokenUse;
+					bobSizeCall.token = tokenUse;
+					bobStageCall.token = tokenUse;
+					ichStageCall.token = tokenUse;
 					geoCall.token = tokenUse;
 					gearCall.token = tokenUse;
 				}
@@ -1039,6 +1061,11 @@
 				IchSpecies.useAMF = true;
 				cruiseCall.useAMF = true;
 				taxonCall.useAMF = true;
+				purposeCall.useAMF = true;
+				projectCall.useAMF = true;
+				ichStageCall.useAMF = true;
+				bobSizeCall.useAMF = true;
+				bobStageCall.useAMF = true;
 				cruiseCall_nutr.useAMF = true
 				cruiseCall_seacat.useAMF = true;
 				cruiseCall_ctdb.useAMF = true;
@@ -1055,7 +1082,13 @@
 				cruiseCall_seacat.execute(iQuery,new AsyncResponder(onResultCruiseS,onFault));
 				cruiseCall_ctdb.execute(iQuery,new AsyncResponder(onResultCruiseC,onFault));
 				cruiseCall_chlor.execute(iQuery,new AsyncResponder(onResultCruiseCH,onFault));
-				taxonCall.execute(iQuery,new AsyncResponder(onResulttaxon,onFault));
+				
+				ichStageCall.execute(iQuery,new AsyncResponder(onResultIchStage,onFault));
+				bobSizeCall.execute(iQuery,new AsyncResponder(onResultbobSize,onFault));
+				bobStageCall.execute(iQuery,new AsyncResponder(onResultbobStage,onFault));
+				projectCall.execute(iQuery,new AsyncResponder(onResultProject,onFault));
+				purposeCall.execute(iQuery,new AsyncResponder(onResultPurpose,onFault));
+				
 				geoCall.execute(iQuery,new AsyncResponder(onResultgeo,onFault));
 				gearCall.execute(iQuery,new AsyncResponder(onResultgear,onFault));
 				
@@ -1171,6 +1204,71 @@
 					}
 					taxonArray.refresh();
 					taxaBob.dataProvider = taxonArray;
+				}
+				function onResultbobSize(featureSet:FeatureSet, token:Object = null):void
+				{
+					var obj:Object = new Object;
+					obj.alias = "SELECT ALL";
+					obj.selectall = true;
+					bobSizeArray = new ArrayCollection();
+					bobSizeArray.addItem(obj);
+					for (var p:int=0;p < featureSet.attributes.length; p++){
+						bobSizeArray.addItem({alias:featureSet.attributes[p].TAXON_NAME,selectall:false});
+					}
+					bobSizeArray.refresh();
+					sizeBob.dataProvider = bobSizeArray;
+				}
+				function onResultbobStage(featureSet:FeatureSet, token:Object = null):void
+				{
+					var obj:Object = new Object;
+					obj.alias = "SELECT ALL";
+					obj.selectall = true;
+					bobStageArray = new ArrayCollection();
+					bobStageArray.addItem(obj);
+					for (var p:int=0;p < featureSet.attributes.length; p++){
+						bobStageArray.addItem({alias:featureSet.attributes[p].TAXON_NAME,selectall:false});
+					}
+					bobStageArray.refresh();
+					stageBob.dataProvider = bobStageArray;
+				}
+				function onResultIchStage(featureSet:FeatureSet, token:Object = null):void
+				{
+					var obj:Object = new Object;
+					obj.alias = "SELECT ALL";
+					obj.selectall = true;
+					ichStageArray = new ArrayCollection();
+					ichStageArray.addItem(obj);
+					for (var p:int=0;p < featureSet.attributes.length; p++){
+						ichStageArray.addItem({alias:featureSet.attributes[p].TAXON_NAME,selectall:false});
+					}
+					ichStageArray.refresh();
+					stageIch.dataProvider = ichStageArray;
+				}
+				function onResultPurpose(featureSet:FeatureSet, token:Object = null):void
+				{
+					var obj:Object = new Object;
+					obj.alias = "SELECT ALL";
+					obj.selectall = true;
+					purposeArray = new ArrayCollection();
+					purposeArray.addItem(obj);
+					for (var p:int=0;p < featureSet.attributes.length; p++){
+						purposeArray.addItem({alias:featureSet.attributes[p].TAXON_NAME,selectall:false});
+					}
+					purposeArray.refresh();
+					purposeSample.dataProvider = purposeArray;
+				}
+				function onResultProject(featureSet:FeatureSet, token:Object = null):void
+				{
+					var obj:Object = new Object;
+					obj.alias = "SELECT ALL";
+					obj.selectall = true;
+					projectArray = new ArrayCollection();
+					projectArray.addItem(obj);
+					for (var p:int=0;p < featureSet.attributes.length; p++){
+						projectArray.addItem({alias:featureSet.attributes[p].TAXON_NAME,selectall:false});
+					}
+					projectArray.refresh();
+					projectSample.dataProvider = projectArray;
 				}
 				function onFault(info:Object, token:Object = null):void
 				{
@@ -5838,7 +5936,7 @@
 						</s:HGroup>
 						<s:Label width="101" paddingLeft="15" color="0xA80000" fontWeight="bold" text="Stage:"/>
 						<MultiDropDown:ComboCheck width="143" deselectAll="{stageBob.selectedAll = false}" selectAll="{stageBob.selectedAll = true}" id="stageBob" selectAllLabelField="selectall" labelField="name" 
-												  dataProvider="{new ArrayCollection([{selectall:true, name:'SELECT ALL',alias:'SELECT ALL'},{selectall:false,alias:62, name:'Calyptopis 2'},{selectall:false, name:'Calyptopis ND',alias:60},{selectall:false, name:'Calyptopis 1',alias:61},{selectall:false, alias:29, name:'Furcilia'},{selectall:false, alias:3, name:'Medusa'},{selectall:false, alias:11, name:'Egg'},{selectall:false, alias:13, name:'Nauplius'},{selectall:false, alias:999, name:'ND'},{selectall:false, alias:0, name:'Adult'},{selectall:false, alias:80, name:'Juvenile'},{selectall:false, alias:70, name:'Zoea'},{selectall:false, alias:75, name:'Megalopae'},{selectall:false, alias:51, name:'Larva'},{selectall:false, alias:63, name:'Calyptopis 3'},{selectall:false, alias:25, name:'Cypris'},{selectall:false, alias:23, name:'CIV'},{selectall:false, alias:24, name:'CV'},{selectall:false, alias:21, name:'CII'},{selectall:false, alias:20, name:'CI'},{selectall:false, alias:22, name:'CIII'},{selectall:false, alias:240, name:'CV + CVI'},{selectall:false, alias:64, name:'Adult and Juvenile'}])}"/>
+												  dataProvider="{bobStageArray}"/>
 					</s:HGroup>
 					<s:HGroup paddingBottom="-10" paddingTop="-1" width="100%" gap="4" horizontalAlign="left"  visible="{bobOptions}" includeInLayout="{bobOptions}"  verticalAlign="middle">
 						<s:Label enabled="false" toolTip="Not Defined yet" color="0xA80000" fontWeight="bold"  width="132" text="Protocol Zoop Type:"/>
@@ -5846,7 +5944,7 @@
 												  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL', name:'SELECT ALL'},{selectall:false, name:'Macrozooplankton', alias:1},{selectall:false, alias:2,name:'Predator'},{selectall:false,alias:3, name:'Pseudocalanus'},{selectall:false,alias:4, name:'Microzooplankton'},{selectall:false,alias:5, name:'Macrozooplankton and Predator'},{selectall:false,alias:6, name:'Macrozooplankton and Pseudocalanus'},{selectall:false,alias:7, name:'Macro and Microzooplankton'}])}"/>
 						<s:Label color="0xA80000" width="44" fontWeight="bold" text="Size:"/>
 						<MultiDropDown:ComboCheck width="143"  selectAllLabelField="selectall" labelField="name"  deselectAll="{sizeBob.selectedAll = false}" selectAll="{sizeBob.selectedAll = true}" id="sizeBob" enabled="true" 
-												  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL', name:'SELECT ALL'},{selectall:false, name:'&#62;= 5 mm', alias:1},{selectall:false, alias:2,name:'&#60; 5 mm'},{selectall:false,alias:3, name:'&#62;= 2 and &#60; 5 mm'},{selectall:false,alias:4, name:'&#60; 2 mm'},{selectall:false,alias:5, name:'&#62;= 5 and &#60; 20 mm'},{selectall:false,alias:6, name:'&#62;=20mm'},{selectall:false,alias:7, name:'Damaged'},{selectall:false,alias:99, name:'ND'}])}"/>
+												  dataProvider="{bobSizeArray}"/>
 					</s:HGroup>
 				</s:VGroup>
 				
@@ -5858,7 +5956,7 @@
 						</s:HGroup>
 						<s:Label width="53" color="0xA80000" fontWeight="bold" text="Stage:" visible="{!microZoopVisible}"/>
 						<MultiDropDown:ComboCheck width="143" deselectAll="{stageIch.selectedAll = false}" selectAll="{stageIch.selectedAll = true}" visible="{!microZoopVisible}" id="stageIch" selectAllLabelField="selectall" labelField="alias" 
-												  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL'},{selectall:false, alias:'Adult'},{selectall:false, alias:'Egg'},{selectall:false, alias:'Egg/Larv'},{selectall:false, alias:'Juvenile'},{selectall:false, alias:'Larvae'},{selectall:false, alias:'Larv/Juv'},{selectall:false, alias:'egg stage 1'},{selectall:false, alias:'egg stage 2'},{selectall:false, alias:'egg stage 3'},{selectall:false, alias:'egg stage 4'},{selectall:false, alias:'egg stage 5'},{selectall:false, alias:'egg stage 6'},{selectall:false, alias:'egg stage 7'},{selectall:false, alias:'egg stage 8'},{selectall:false, alias:'egg stage 9'},{selectall:false, alias:'egg stage 10'},{selectall:false, alias:'egg stage 11'},{selectall:false, alias:'egg stage 12'},{selectall:false, alias:'egg stage 13'},{selectall:false, alias:'egg stage 14'},{selectall:false, alias:'egg stage 15'},{selectall:false, alias:'egg stage 16'},{selectall:false, alias:'egg stage 17'},{selectall:false, alias:'egg stage 18'},{selectall:false, alias:'egg stage 19'},{selectall:false, alias:'egg stage 20'},{selectall:false, alias:'egg stage 21'},{selectall:false, alias:'egg stage 22'},{selectall:false, alias:'egg stage 23'},{selectall:false, alias:'egg stage 24'}])}"/>
+												  dataProvider="{ichStageArray}"/>
 					</s:HGroup>
 					<!--<s:HGroup width="100%" gap="10" horizontalAlign="left" visible="{ichOptions}" includeInLayout="{ichOptions}" verticalAlign="middle">
 						<s:HGroup width="280" verticalAlign="middle">
@@ -5934,11 +6032,11 @@
 						<s:HGroup width="280" verticalAlign="middle">
 							<s:Label width="130" color="0xA80000" fontWeight="bold" text="Project:"/>
 							<MultiDropDown:ComboCheck deselectAll="{projectSample.selectedAll = false}" selectAll="{projectSample.selectedAll = true}" id="projectSample" selectAllLabelField="selectall" labelField="alias" 
-													  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL'},{selectall:false, alias:'BEST'},{selectall:false, alias:'BEST/BSIER'},{selectall:false, alias:'BOE'},{selectall:false, alias:'CHAOZ'},{selectall:false, alias:'CREP'},{selectall:false, alias:'Eco-FOCI'},{selectall:false, alias:'FOCI'},{selectall:false, alias:'FOCI/NPCRE'},{selectall:false, alias:'GLOBEC'},{selectall:false, alias:'GOAIERP'},{selectall:false, alias:'MISC'},{selectall:false, alias:'NPCREP'},{selectall:false, alias:'NPMRP'},{selectall:false, alias:'RUSALCA'},{selectall:false, alias:'SEBSCC'},{selectall:false, alias:'SSL'}])}"/>
+													  dataProvider="{projectArray}"/>
 						</s:HGroup>
 						<s:Label width="130" color="0xA80000" fontWeight="bold" text="Purpose:"/>
 						<MultiDropDown:ComboCheck deselectAll="{purposeSample.selectedAll = false}" selectAll="{purposeSample.selectedAll = true}" id="purposeSample" selectAllLabelField="selectall" labelField="alias" 
-												  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL'},{selectall:false, alias:'ADULT'},{selectall:false, alias:'DIEL'},{selectall:false, alias:'DRIFT'},{selectall:false, alias:'DRIP'},{selectall:false, alias:'GEAR'},{selectall:false, alias:'GRID'},{selectall:false, alias:'GRIDPOST'},{selectall:false, alias:'GRIDPRE'},{selectall:false, alias:'JUVSURV'},{selectall:false, alias:'PLNKSURV'},{selectall:false, alias:'PHYS'},{selectall:false, alias:'OTHER'}])}"/>
+												  dataProvider="{projectArray}"/>
 					</s:HGroup>
 					<s:HGroup width="100%" gap="15" horizontalAlign="left" includeInLayout="{hideotherOptions}" visible="{hideotherOptions}" verticalAlign="middle">
 						<s:HGroup width="280" verticalAlign="middle">
