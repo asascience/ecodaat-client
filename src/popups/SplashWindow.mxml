@@ -22,10 +22,10 @@
 			//import mx.resources.ResourceManager;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
-			import mx.rpc.http.HTTPService;
+			//import mx.rpc.http.HTTPService;
 			//import mx.rpc.soap.WebService;
 			
-			import mx.utils.Base64Encoder;   
+			//import mx.utils.Base64Encoder;   
 			
 			private var alert:Alert;
 			
@@ -146,7 +146,7 @@
 					logMSG.text="";
 				}
 				else{
-					logMSG.text="Email tiffany.c.vance@noaa.gov to be added to the AFSC FOCI RACE Group";
+					logMSG.text="Email Kimberly.Bahl@noaa.gov to be added to the AFSC FOCI Group";
 				}
 			}
 			
@@ -158,7 +158,7 @@
 			
 			private function loginAsGuest():void
 			{
-				var webPageURL:URLRequest = new URLRequest( 'mailto:tiffany.c.vance@noaa.gov?subject=EcoDAAT Portal Access&body=I am interested in accessing EcoDAAT.    Thank you.' );
+				var webPageURL:URLRequest = new URLRequest( 'mailto:Kimberly.Bahl@noaa.gov?subject=EcoDAAT Portal Access&body=I am interested in accessing EcoDAAT.    Thank you.' );
 				
 				navigateToURL(webPageURL, '_blank');
 				

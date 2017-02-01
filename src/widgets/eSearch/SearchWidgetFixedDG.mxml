@@ -1272,8 +1272,8 @@
 			private function onItemRollOver(event:ListEvent):void
 			{
 				if(_widgetInteract){
-					highlightedGraphic = findGraphicByAttribute(event.itemRenderer.data.oid);
-					_bWidget.highlightDataGroupItem(highlightedGraphic);
+					//highlightedGraphic = findGraphicByAttribute(event.itemRenderer.data.oid);
+					//_bWidget.highlightDataGroupItem(highlightedGraphic);
 					/* if(highlightedGraphic.attributes != null){
 						var infoData:Object = highlightedGraphic.attributes;
 						if(infoData.geometry == null){	
@@ -1401,15 +1401,16 @@
 					var infoData:Object = highlightedGraphic.attributes;
 					var pt:MapPoint = infoData.point;
 					var map:Map = ViewerContainer.getInstance().mapManager.map;
-					if (infoData.geometry){
-						if (infoData.geometry.type == Geometry.MAPPOINT){
+					if (highlightedGraphic.geometry){
+						pt = highlightedGraphic.geometry as MapPoint;
+						if (highlightedGraphic.geometry.type == Geometry.MAPPOINT){
 							if(isNaN(_zoomScale)){
 								map.zoom(1 / 16, infoData.point);
-								map.centerAt(infoData.point);
+								map.centerAt(pt);
 							}else{
 								if (map.scale > _zoomScale)
 									map.scale = _zoomScale;
-								map.centerAt(infoData.point);
+								map.centerAt(pt);
 							}
 						}else{
 							if(isNaN(_zoomScale)){
@@ -1560,12 +1561,14 @@
 			<s:NavigatorContent label="Search Results" width="100%"  height="100%" backgroundColor="0x7396B8" backgroundAlpha="{getStyle('backgroundAlpha')}">
 				<s:SkinnableContainer height="100%" width="100%" backgroundAlpha="{getStyle('backgroundAlpha')}" backgroundColor="0x7396B8">
 					<s:VGroup gap="0" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle" >
+						<!--itemRollOver="onItemRollOver(event)" 
+						itemRollOut="onItemRollOut(event)"
+						rollOver="unhighLightSel(event)"
+						rollOut="highLightSel(event)"-->
 						<mx:DataGrid id="resultsGrid" height="100%" width="{appWidth}"  chromeColor="0xCFDEF3"
-									 itemRollOver="onItemRollOver(event)" editable="false"
-									 itemRollOut="onItemRollOut(event)" allowMultipleSelection="false"
-									 itemClick="clickRow(event)" itemEditEnd="editedGrid(event);"
-									 rollOut="highLightSel(event)" horizontalGridLines="true" verticalGridLines="true"
-									 rollOver="unhighLightSel(event)"
+									 editable="false"
+									  allowMultipleSelection="false" itemEditEnd="editedGrid(event);"
+									  horizontalGridLines="true" verticalGridLines="true"
 									 wordWrap="false" borderAlpha="0"
 									 horizontalScrollPolicy="auto"
 									 contentBackgroundAlpha="{getStyle('styleAlpha')}"

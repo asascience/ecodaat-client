@@ -610,21 +610,21 @@ COMMENTS_SAMPLES,ZOOP_EUPHAUSIID_EGG,ZOOP_COPEPOD_NAUPLII,BOTTLE_NUM,SIO4,PO4,NH
 		<buffercolor>Select buffer color</buffercolor>
 	</labels>
 	<dataproviders>
+		<projectArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/12</projectArray>
 		<ichSpeciesArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/14</ichSpeciesArray>
 		<trawlSpeciesArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/15</trawlSpeciesArray>
 		<cruiseArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/16</cruiseArray>
-		<taxonArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/17</taxonArray>
+		<taxonArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/31</taxonArray>
 		<geo_loc>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/18/</geo_loc>
 		<gearArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/20/</gearArray>
+		<cruiseArray_seacat>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/23</cruiseArray_seacat>
+		<cruiseArray_chlor>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</cruiseArray_chlor>
 		<cruiseArray_nutrient>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/25</cruiseArray_nutrient>
 		<cruiseArray_ctdb>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/26</cruiseArray_ctdb>
-		<cruiseArray_seacat>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/23</cruiseArray_seacat>
-		<projectArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</projectArray>
-		<purposeArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</purposeArray>
-		<ichStageArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</ichStageArray>
-		<bobSizeArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</bobSizeArray>
-		<bobStageArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</bobStageArray>
-		<cruiseArray_chlor>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/24</cruiseArray_chlor>
+		<purposeArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/27</purposeArray>
+		<ichStageArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/28</ichStageArray>
+		<bobSizeArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/29</bobSizeArray>
+		<bobStageArray>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/30</bobStageArray>
 	</dataproviders>
 	<datatools>
 		<ichlength>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ICHLengthFrequency/GPServer/ICH_Length_Frequency</ichlength>

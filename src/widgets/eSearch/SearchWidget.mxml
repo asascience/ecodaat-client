@@ -1,15 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<viewer:BaseWidget xmlns:esri			="http://www.esri.com/2008/ags"
-				   xmlns:fx				="http://ns.adobe.com/mxml/2009"
-				   xmlns:s				="library://ns.adobe.com/flex/spark"
-				   xmlns:mx				="library://ns.adobe.com/flex/mx"
-				   xmlns:mxeffects     	="com.adobe.ac.mxeffects.*"
-				   xmlns:viewer        	="com.esri.viewer.*"
-				   xmlns:Search       	="widgets.eSearch.*"
-				   xmlns:dg      	="widgets.eSearch.DataGridCheck*"
-				   xmlns:supportClasses ="com.esri.ags.tasks.supportClasses.*"
-				   currentState			="textInput"
-				   widgetConfigLoaded	="init()" xmlns:DataGridCheck="widgets.eSearch.DataGridCheck.*" xmlns:MultiDropDown="com.esri.viewer.skins.MultiDropDown.*" xmlns:acm="com.acm.*"  >
+<viewer:BaseWidget xmlns:esri="http://www.esri.com/2008/ags"
+				   xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   xmlns:mxeffects="com.adobe.ac.mxeffects.*"
+				   xmlns:viewer="com.esri.viewer.*"
+				   xmlns:Search="widgets.eSearch.*"
+				   xmlns:dg="widgets.eSearch.DataGridCheck*"
+				   xmlns:supportClasses="com.esri.ags.tasks.supportClasses.*"
+				   xmlns:DataGridCheck="widgets.eSearch.DataGridCheck.*"
+				   xmlns:MultiDropDown="com.esri.viewer.skins.MultiDropDown.*"
+				   xmlns:acm="com.acm.*"
+				   currentState="textInput" widgetConfigLoaded="init()">
 	<viewer:states>
 		<s:State name="graphicalInput"/>
 		<s:State name="textInput"/>
@@ -23,27 +25,22 @@
 		</s:Transition>
 	</viewer:transitions>	
 	<fx:Declarations>
-		<esri:SimpleMarkerSymbol id="selectedPoint" color="0x5F9E61" outline="{outlineColor}" />
-		<esri:SimpleLineSymbol color="0x9C9797" id="outlineColor"/>
-		<s:GlowFilter id="glowFilter"
-					  alpha="1"
-					  color="{getStyle('focusColor')}"
-					  inner="true"
+		<esri:SimpleMarkerSymbol id="selectedPoint" color="0x5F9E61" outline="{outlineColor}"/>
+		<esri:SimpleLineSymbol id="outlineColor" color="0x9C9797"/>
+		<s:GlowFilter id="glowFilter" alpha="1" color="{getStyle('focusColor')}" inner="true"
 					  strength="2"/>
-		<esri:GeometryService id="geometryService"
-							  fault="geometryService_faultHandler(event)"
+		<esri:GeometryService id="geometryService" fault="geometryService_faultHandler(event)"
 							  url="http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer"/>
-		<s:ColorMatrixFilter id="cOver" matrix="[0.5,0.5,0.5,0,0,0.5,0.5,0.5,0,0,0.5,0.5,0.5,0,0,0,0,0,0.6,0]"/>
+		<s:ColorMatrixFilter id="cOver"
+							 matrix="[0.5,0.5,0.5,0,0,0.5,0.5,0.5,0,0,0.5,0.5,0.5,0,0,0,0,0,0.6,0]"/>
 		<supportClasses:RelationshipQuery id="relatesQuery" outFields="[*]"/>
 		<!--<mx:DateFormatter id="iDateFormat" />-->
-		<esri:FlareSymbol id="flareSymbol" 
-						  backgroundAlphas="[0.5,1.0]"
+		<esri:FlareSymbol id="flareSymbol" backgroundAlphas="[0.5,1.0]"
 						  backgroundColors="[0x1A9850,0x66BD63,0xA6D96A,0xD9EF8B,0xFEE08B,0xFDAE61,0xF46D43,0xD73027]"
-						  flareMaxCount="40" 
-						  flareSizeIncOnRollOver="3"
-						  sizes="[15,20,25,30,35,40,45,50]"  
+						  flareMaxCount="40" flareSizeIncOnRollOver="3"
+						  sizes="[15,20,25,30,35,40,45,50]"
 						  weights="[20,200,420,720,920,1120,2200,10000]"/>
-		<esri:WeightedClusterer   id="clusterer" symbol="{flareSymbol}">
+		<esri:WeightedClusterer id="clusterer" symbol="{flareSymbol}">
 			<esri:center>
 				<esri:MapPoint x="{(-14477000-6677000)*0.5}" y="{(2273000+8399000)*0.5}"/>
 			</esri:center>
@@ -52,14 +49,14 @@
 		<mx:ArrayCollection id="fieldsArray">
 			<mx:source>
 				<fx:Array>
-					<fx:Object gridfield="true" sortnumber="-1" alias="Layer Options" />
+					<fx:Object alias="Layer Options" gridfield="true" sortnumber="-1"/>
 				</fx:Array>
 			</mx:source>
 		</mx:ArrayCollection>
 		<mx:ArrayCollection id="fieldsArray2">
 			<mx:source>
 				<fx:Array>
-					<fx:Object gridfield="true" sortnumber="0" alias="Layer Options" />
+					<fx:Object alias="Layer Options" gridfield="true" sortnumber="0"/>
 				</fx:Array>
 			</mx:source>
 		</mx:ArrayCollection>		
@@ -114,7 +111,7 @@
 			import com.esri.ags.tools.DrawTool;
 			import com.esri.ags.utils.GeometryUtil;
 			import com.esri.ags.utils.GraphicUtil;
-			import com.esri.ags.utils.WebMercatorUtil;
+			//import com.esri.ags.utils.WebMercatorUtil;
 			import com.esri.viewer.AppEvent;
 			import com.esri.viewer.components.TitlebarButton;
 			import com.esri.viewer.components.toc.utils.MapUtil;
@@ -146,7 +143,7 @@
 			
 			import widgets.Identify.PopUpRendererSkin;
 			//import widgets.eSearch.skins.PopUpRendererSkin;
-						
+			
 			//labels
 			[Bindable]
 			private var lblbufferUserGraphic:String;
@@ -1084,13 +1081,16 @@
 				cruiseCall_chlor.execute(iQuery,new AsyncResponder(onResultCruiseCH,onFault));
 				
 				ichStageCall.execute(iQuery,new AsyncResponder(onResultIchStage,onFault));
-				bobSizeCall.execute(iQuery,new AsyncResponder(onResultbobSize,onFault));
-				bobStageCall.execute(iQuery,new AsyncResponder(onResultbobStage,onFault));
 				projectCall.execute(iQuery,new AsyncResponder(onResultProject,onFault));
 				purposeCall.execute(iQuery,new AsyncResponder(onResultPurpose,onFault));
 				
 				geoCall.execute(iQuery,new AsyncResponder(onResultgeo,onFault));
 				gearCall.execute(iQuery,new AsyncResponder(onResultgear,onFault));
+				
+				iQuery.returnDistinctValues =true;
+				taxonCall.execute(iQuery,new AsyncResponder(onResulttaxon,onFault));
+				bobSizeCall.execute(iQuery,new AsyncResponder(onResultbobSize,onFault));
+				bobStageCall.execute(iQuery,new AsyncResponder(onResultbobStage,onFault));
 				
 				function onResultgeo(featureSet:FeatureSet, token:Object = null):void
 				{
@@ -1213,7 +1213,7 @@
 					bobSizeArray = new ArrayCollection();
 					bobSizeArray.addItem(obj);
 					for (var p:int=0;p < featureSet.attributes.length; p++){
-						bobSizeArray.addItem({alias:featureSet.attributes[p].TAXON_NAME,selectall:false});
+						bobSizeArray.addItem({alias:featureSet.attributes[p].SIZE_NAME,selectall:false});
 					}
 					bobSizeArray.refresh();
 					sizeBob.dataProvider = bobSizeArray;
@@ -1226,7 +1226,7 @@
 					bobStageArray = new ArrayCollection();
 					bobStageArray.addItem(obj);
 					for (var p:int=0;p < featureSet.attributes.length; p++){
-						bobStageArray.addItem({alias:featureSet.attributes[p].TAXON_NAME,selectall:false});
+						bobStageArray.addItem({alias:featureSet.attributes[p].STAGE_NAME,selectall:false});
 					}
 					bobStageArray.refresh();
 					stageBob.dataProvider = bobStageArray;
@@ -1239,7 +1239,7 @@
 					ichStageArray = new ArrayCollection();
 					ichStageArray.addItem(obj);
 					for (var p:int=0;p < featureSet.attributes.length; p++){
-						ichStageArray.addItem({alias:featureSet.attributes[p].TAXON_NAME,selectall:false});
+						ichStageArray.addItem({alias:featureSet.attributes[p].STAGE_NAME,selectall:false});
 					}
 					ichStageArray.refresh();
 					stageIch.dataProvider = ichStageArray;
@@ -1252,7 +1252,7 @@
 					purposeArray = new ArrayCollection();
 					purposeArray.addItem(obj);
 					for (var p:int=0;p < featureSet.attributes.length; p++){
-						purposeArray.addItem({alias:featureSet.attributes[p].TAXON_NAME,selectall:false});
+						purposeArray.addItem({alias:featureSet.attributes[p].PURPOSE,selectall:false});
 					}
 					purposeArray.refresh();
 					purposeSample.dataProvider = purposeArray;
@@ -1265,7 +1265,7 @@
 					projectArray = new ArrayCollection();
 					projectArray.addItem(obj);
 					for (var p:int=0;p < featureSet.attributes.length; p++){
-						projectArray.addItem({alias:featureSet.attributes[p].TAXON_NAME,selectall:false});
+						projectArray.addItem({alias:featureSet.attributes[p].PROJECT,selectall:false});
 					}
 					projectArray.refresh();
 					projectSample.dataProvider = projectArray;
@@ -1332,27 +1332,29 @@
 				
 				monthArray.refresh();
 				dgMonth.dataProvider.refresh();
-			}			
+			}
 			
-			
-			
-			private function flareClickHandler(event:MouseEvent):void
+			private function flareClickHandler(event:FlareMouseEvent):void
 			{
-				var searchResult:SearchResult = event.target.cluster.graphics[0].attributes as SearchResult;
+				var searchResult:SearchResult = event.cluster.graphics[1].attributes as SearchResult;
 				clearTimeout(hitimer);
-				hitimer = setTimeout(showHighlight, 300, [searchResult]);
+				if(searchResult != null){
+					hitimer = setTimeout(showHighlight, 300, [searchResult]);	
+				}
 			}
 			
 			private function pointClickHandler(event:MouseEvent):void
 			{
 				var searchResult:SearchResult = event.target.attributes as SearchResult;
 				clearTimeout(hitimer);
-				hitimer = setTimeout(showHighlight, 300, [searchResult]);
+				if(searchResult != null){
+					hitimer = setTimeout(showHighlight, 300, [searchResult]);	
+				}
 			}
 			
 			private function myFaultFunction(fault:Fault,ob:Object):void
 			{
-				trace(fault.faultString);
+				//trace(fault.faultString);
 			}
 			
 			private function myResultFunctionGraphical(result:Object, token:Object = null):void
@@ -2742,7 +2744,7 @@
 						expr+=" AND VOLUME_DISPLACEMENT > "+minDisp.value + " AND VOLUME_DISPLACEMENT < "+maxDisp.value;
 						} */
 						if(stageBob.selectedAll == false && stageBob.selectedViewsSQL != "noneSelected"){
-							expr+=" AND STAGEID "+stageBob.selectedViewsSQL;
+							expr+=" AND STAGE_NAME "+stageBob.selectedViewsSQL;
 						}
 						if(sizeBob.selectedAll == false && sizeBob.selectedViewsSQL != "noneSelected"){
 							expr+=" AND SPECIMEN_SIZE "+sizeBob.selectedViewsSQL;
@@ -3346,23 +3348,23 @@
 				var relateQuery:RelationshipQuery = new RelationshipQuery;
 				//specimen relate link
 				if(cboLayerText.selectedLabel.search("DIET")>-1){
-					relateQuery.relationshipId =5;
+					relateQuery.relationshipId =6;
 				}
 				else if(cboLayerText.selectedLabel.search("SUBSPECIMEN")>-1){
-					relateQuery.relationshipId =6;
+					relateQuery.relationshipId =5;
 				}
 				//sample relate link
 				else if(cboLayerText.selectedLabel.search("SPECIMEN")>-1){
 					relateQuery.relationshipId =0;
 				}
 				else if(cboLayerText.selectedLabel.search("NUTRIENT")>-1){
-					relateQuery.relationshipId =4;
-				}
-				else if(cboLayerText.selectedLabel.search("CHLOR")>-1){
 					relateQuery.relationshipId =3;
 				}
-				else if(cboLayerText.selectedLabel.search("CTDB")>-1){
+				else if(cboLayerText.selectedLabel.search("CHLOR")>-1){
 					relateQuery.relationshipId =2;
+				}
+				else if(cboLayerText.selectedLabel.search("CTDB")>-1){
+					relateQuery.relationshipId =4;
 				}
 				else if(cboLayerText.selectedLabel.search("SEACAT")>-1){
 					relateQuery.relationshipId =1;
@@ -3373,7 +3375,12 @@
 				var objIDArray:Array = new Array;
 				
 				for (var qObjectId:int =0; qObjectId<queryObj.length; qObjectId++){
-					objIDArray.push(queryObj[qObjectId].attributes.oid);
+					
+					//remove labels
+					if(queryObj[qObjectId].attributes != null){
+						objIDArray.push(queryObj[qObjectId].attributes.oid);
+					}
+					
 				}
 				if(objIDArray.length>1800){
 					querySum.text = "Query: "+ cboLayerText.selectedLabel+" related to sample or specimen search. \n\nThere is a large number of records to match.  \n\nNote: PLEASE TRY TO FILTER QUERY FURTHER.";
@@ -4628,12 +4635,13 @@
 					}else{
 						searchResult.symbol = resultSATSymbol;
 					}
-					graphic.attributes = searchResult;
+					//graphic.attributes = searchResult;
 					result.addItem(searchResult);
 				
 					if (searchResult.point && !isNaN(searchResult.point.x) && !isNaN(searchResult.point.y)){
 						
 						// make sure it is a valid point
+						graphic.attributes = searchResult;
 						graphic.addEventListener(MouseEvent.CLICK,pointClickHandler);
 //						var myTextFormat:TextFormat = new TextFormat();
 //						myTextFormat.font = "Verdana";
@@ -4641,7 +4649,7 @@
 //						myTextFormat.bold = true;
 //						myTextFormat.italic = false;
 //						myTextFormat.underline = false;
-
+						
 						if(nolabel == true){
 							var labelgraphic:Graphic = new Graphic();
 							labelgraphic.geometry =  graphic.geometry; //WebMercatorUtil.geographicToWebMercator(graphic.geometry);
@@ -4652,7 +4660,7 @@
 							textSymbol.borderColor = 0x444444;
 							textSymbol.color = 0x444444;
 							textSymbol.placement = "above";
-							textSymbol.text = graphic.attributes.title;
+							textSymbol.text = searchResult.title;
 							//textSymbol.textFormat = myTextFormat;
 							textSymbol.xoffset = 10;
 							textSymbol.yoffset = 0;
@@ -4660,14 +4668,24 @@
 							
 							graphicsLayer.add(labelgraphic);
 						}
-						
-						//graphic.geometry = WebMercatorUtil.geographicToWebMercator(graphic.geometry);
-						
+												
 						graphicsLayer.add(graphic);
+						//graphicsLayer.addEventListener(MouseEvent.CL
+						
+						var popUpInfo:PopUpInfo = new PopUpInfo();
+						// Tell the pop-up info about the field name template
+						popUpInfo.title = "fasdfasdf";
+						//popUpInfo.popUpFieldInfos = [ field1, field2 ];
+						popUpInfo.showZoomToButton = false;
+						
+						// Create the class factory
+						//var popUpRenderer:ClassFactory = new ClassFactory(PopUpRenderer);
+						// Set the "popUpInfo" key
+						//popUpRenderer.properties = { "popUpInfo": popUpInfo };
 						// infowWindowRenderer on each graphic
-						var infoWindowRenderer:ClassFactory = new ClassFactory(PopUpRenderer);
-						infoWindowRenderer.properties = {popUpInfo:configurePopUpInfo(lyrQLinks)};
-						graphic.infoWindowRenderer = infoWindowRenderer;
+						//var infoWindowRenderer:ClassFactory = new ClassFactory(PopUpRenderer)
+						//infoWindowRenderer.properties = {popUpInfo:configurePopUpInfo(lyrQLinks)};
+						//graphic.infoWindowRenderer = popUpRenderer;
 					}
 						
 				}
@@ -5743,220 +5761,249 @@
 			}
 		]]>
 	</fx:Script>
-	<viewer:WidgetTemplate id="wTemplate"
-						   closed="widgetClosedHandler(event)" 
-						   open="widgetOpenedHandler(event)"
-						   width="665" height="588"
-						   minHeight="190"
-						   minWidth="260"
-						   visible="false">
+	<viewer:WidgetTemplate id="wTemplate" visible="false" width="665" height="588" minWidth="260"
+						   minHeight="190" closed="widgetClosedHandler(event)"
+						   open="widgetOpenedHandler(event)">
 		<!-- Spatial Search-->
-		<s:Group id="graphicalInput"
-				 width="100%" height="100%"
-				 visible="false"
+		<s:Group id="graphicalInput" visible="false" width="100%" height="100%"
 				 visible.graphicalInput="true">
 			<s:layout>
 				<s:VerticalLayout gap="6" horizontalAlign="center"/>
 			</s:layout>
-			<s:Label color="0x000000" fontWeight="bold" fontSize="15" paddingTop="6" paddingBottom="6" text="Spatial Map Query Only"/>
-			<s:HGroup id="boxGraphical"
-					  width="100%"
-					  gap="15"
-					  horizontalAlign="center" verticalAlign="middle">
-				<s:Label color="0xA80000" fontWeight="bold" fontSize="13" id="lblLayerGraphical" text="1. Select Map Layer to Query"/>
+			<s:Label color="0x000000" fontSize="15" fontWeight="bold" paddingBottom="6"
+					 paddingTop="6" text="Spatial Map Query Only"/>
+			<s:HGroup id="boxGraphical" width="100%" gap="15" horizontalAlign="center"
+					  verticalAlign="middle">
+				<s:Label id="lblLayerGraphical" color="0xA80000" fontSize="13" fontWeight="bold"
+						 text="1. Select Map Layer to Query"/>
 				<mx:ComboBox id="cboLayerGraphical" change="searchLayerChangedGraphical()"/>
 			</s:HGroup>
-			<s:Label color="0xA80000" fontWeight="bold" paddingTop="8" paddingBottom="8" text="2. Select Column Fields to view in Table" fontSize="13"/>
-			<mx:DataGrid  id="dg2" horizontalGridLines="true" verticalGridLines="true" allowMultipleSelection="true" headerHeight="30"  rowCount="9" headerStyleName="accHead" width="245" dataProvider="{fieldsArray2}">
+			<s:Label color="0xA80000" fontSize="13" fontWeight="bold" paddingBottom="8"
+					 paddingTop="8" text="2. Select Column Fields to view in Table"/>
+			<mx:DataGrid id="dg2" width="245" allowMultipleSelection="true"
+						 dataProvider="{fieldsArray2}" headerHeight="30" headerStyleName="accHead"
+						 horizontalGridLines="true" rowCount="9" verticalGridLines="true">
 				<mx:columns>
-					<mx:DataGridColumn sortable="false" width="29" textAlign="center">
+					<mx:DataGridColumn width="29" sortable="false" textAlign="center">
 						<mx:headerRenderer>
 							<fx:Component>
-								<mx:CheckBox toolTip="Select all Fields" paddingLeft="7" click="outerDocument.checkAllspatial(event)"/>
+								<mx:CheckBox click="outerDocument.checkAllspatial(event)"
+											 paddingLeft="7" toolTip="Select all Fields"/>
 							</fx:Component>
 						</mx:headerRenderer>
 						<mx:itemRenderer>
 							<fx:Component>
-								<mx:CheckBox toolTip="Select This Field" paddingLeft="7" selected="{(data.gridfield == 'true')?true:false}" click="{data.gridfield = (data.gridfield != 'true') ? 'true' : 'false';}"/>
+								<mx:CheckBox click="{data.gridfield = (data.gridfield != 'true') ? 'true' : 'false';}"
+											 paddingLeft="7"
+											 selected="{(data.gridfield == 'true')?true:false}"
+											 toolTip="Select This Field"/>
 							</fx:Component>
 						</mx:itemRenderer>
 					</mx:DataGridColumn>
-					<mx:DataGridColumn dataField="alias" headerText="Attribute Fields" />
+					<mx:DataGridColumn dataField="alias" headerText="Attribute Fields"/>
 				</mx:columns>
 			</mx:DataGrid>
-			<s:Label id="txtLabelGraphical"
-					 width="100%" fontSize="13" paddingBottom="10" paddingTop="10"
-					 color="0xA80000" fontWeight="bold"
-					 textAlign="center"/>
-			<s:HGroup id="imageGroup"
-					  width="100%"
-					  gap="10"
-					  horizontalAlign="center">
-				<mx:Image id="eDrawBtn"
-						  width="0" height="40"
-						  click="getDrawGra()"
-						  source= "widgets/eSearch/assets/images/i_draw_draw.png"
-						  toolTip="{drawGraLabel}" 
-						  visible="false"
-						  includeInLayout="{eDrawEnabled}" />
-				<mx:Image id="pBufferBtn"
-						  width="0" height="40"
-						  click="getBufferGra()"
-						  source= "widgets/eSearch/assets/images/i_draw_buffer.png"
-						  toolTip="{bufferGraLabel}" 
-						  visible="false"
-						  includeInLayout="{pBufferEnabled}" />
-				<mx:Image id="iSearchPnt"
-						  name="{DrawTool.MAPPOINT}"
-						  width="40" height="40"
-						  buttonMode="true"
-						  click="{activateSearchTool(event)}"
-						  rollOut="iconRollOutHandler(event)"
-						  rollOver="iconRollOverHandler(event)"
-						  source="assets/images/i_draw_point.png"
-						  toolTip="{pointLabel}"
+			<s:Label id="txtLabelGraphical" width="100%" color="0xA80000" fontSize="13"
+					 fontWeight="bold" paddingBottom="10" paddingTop="10" textAlign="center"/>
+			<s:HGroup id="imageGroup" width="100%" gap="10" horizontalAlign="center">
+				<mx:Image id="eDrawBtn" visible="false" width="0" height="40" click="getDrawGra()"
+						  includeInLayout="{eDrawEnabled}"
+						  source="widgets/eSearch/assets/images/i_draw_draw.png"
+						  toolTip="{drawGraLabel}"/>
+				<mx:Image id="pBufferBtn" visible="false" width="0" height="40"
+						  click="getBufferGra()" includeInLayout="{pBufferEnabled}"
+						  source="widgets/eSearch/assets/images/i_draw_buffer.png"
+						  toolTip="{bufferGraLabel}"/>
+				<mx:Image id="iSearchPnt" width="40" height="40" buttonMode="true"
+						  click="{activateSearchTool(event)}" name="{DrawTool.MAPPOINT}"
+						  rollOut="iconRollOutHandler(event)" rollOver="iconRollOverHandler(event)"
+						  source="assets/images/i_draw_point.png" toolTip="{pointLabel}"
 						  useHandCursor="true"/>
-				<mx:Image id="iSearchLine"
-						  name="{DrawTool.POLYLINE}"
-						  width="40" height="40"
-						  buttonMode="true"
-						  click="{activateSearchTool(event)}"
-						  rollOut="iconRollOutHandler(event)"
-						  rollOver="iconRollOverHandler(event)"
-						  source="assets/images/i_draw_line.png"
-						  toolTip="{lineLabel}"
+				<mx:Image id="iSearchLine" width="40" height="40" buttonMode="true"
+						  click="{activateSearchTool(event)}" name="{DrawTool.POLYLINE}"
+						  rollOut="iconRollOutHandler(event)" rollOver="iconRollOverHandler(event)"
+						  source="assets/images/i_draw_line.png" toolTip="{lineLabel}"
 						  useHandCursor="true"/>
-				<mx:Image id="iSearchExt"
-						  name="{DrawTool.EXTENT}"
-						  width="40" height="40"
-						  buttonMode="true"
-						  click="{activateSearchTool(event)}"
-						  rollOut="iconRollOutHandler(event)"
-						  rollOver="iconRollOverHandler(event)"
-						  source="assets/images/i_draw_rect.png"
-						  toolTip="{rectangleLabel}"
+				<mx:Image id="iSearchExt" width="40" height="40" buttonMode="true"
+						  click="{activateSearchTool(event)}" name="{DrawTool.EXTENT}"
+						  rollOut="iconRollOutHandler(event)" rollOver="iconRollOverHandler(event)"
+						  source="assets/images/i_draw_rect.png" toolTip="{rectangleLabel}"
 						  useHandCursor="true"/>
-				<mx:Image id="iSearchPoly"
-						  name="{DrawTool.POLYGON}"
-						  width="40" height="40"
-						  buttonMode="true"
-						  click="{activateSearchTool(event)}"
-						  rollOut="iconRollOutHandler(event)"
-						  rollOver="iconRollOverHandler(event)"
-						  source="assets/images/i_draw_poly.png"
-						  toolTip="{polygonLabel}"
+				<mx:Image id="iSearchPoly" width="40" height="40" buttonMode="true"
+						  click="{activateSearchTool(event)}" name="{DrawTool.POLYGON}"
+						  rollOut="iconRollOutHandler(event)" rollOver="iconRollOverHandler(event)"
+						  source="assets/images/i_draw_poly.png" toolTip="{polygonLabel}"
 						  useHandCursor="true"/>
 				
-				<s:Button click="clear()"
-						 fontWeight="bold" fontSize="13"
-						 label="Clear Current Selection"/>
+				<s:Button label="Clear Current Selection" click="clear()" fontSize="13"
+						  fontWeight="bold"/>
 			</s:HGroup>
-			<s:HGroup width="100%"
-					  horizontalAlign="right"
-					  verticalAlign="middle"
-					  paddingRight="10"
-					  paddingTop="2" gap="10">
-				<s:CheckBox id="graMultiChk" selected="{multiPartGraphicSearch}" label="{enableMultiPartSearch}" change="graMultiChanged()"/>
-				<s:Button id="graFeatureQueryBtn" click="queryFeaturesGra()" color="red" fontWeight="bold" label="{submitLabel}"/>
-				<s:CheckBox id="addTolerance" selected="{applyTolleranceByDefault}" label="{lblTolerance}"/>
+			<s:HGroup width="100%" gap="10" horizontalAlign="right" paddingRight="10" paddingTop="2"
+					  verticalAlign="middle">
+				<s:CheckBox id="graMultiChk" label="{enableMultiPartSearch}"
+							change="graMultiChanged()" selected="{multiPartGraphicSearch}"/>
+				<s:Button id="graFeatureQueryBtn" label="{submitLabel}" click="queryFeaturesGra()"
+						  color="red" fontWeight="bold"/>
+				<s:CheckBox id="addTolerance" label="{lblTolerance}"
+							selected="{applyTolleranceByDefault}"/>
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle">
-				<s:CheckBox id="bufferUserGraphic" selected="false" fontWeight="bold" toolTip="Use especially for Line Search" label="{lblbufferUserGraphic}"/>
-				<s:TextInput id="textGraInputBuffer" text="2000" width="40" />
-				<mx:ComboBox id="cboGraBufferUnit" />
-				<s:HSlider id="hsGraBufferAlpha" width="55" value="0.5" minimum="0" maximum="1" snapInterval="0.1"
-						   toolTip="{bufferAlphaLabel}" dataTipFormatFunction="sldrDataTipFormatter"
-						   skinClass="widgets.eSearch.skins.alphaSliderSkin"/>
-				<mx:ColorPicker id="cpGraBufferColor" selectedColor="#01b9fd" visible="false" toolTip="{bufferColorLabel}" />
+				<s:CheckBox id="bufferUserGraphic" label="{lblbufferUserGraphic}" fontWeight="bold"
+							selected="false" toolTip="Use especially for Line Search"/>
+				<s:TextInput id="textGraInputBuffer" width="40" text="2000"/>
+				<mx:ComboBox id="cboGraBufferUnit"/>
+				<s:HSlider id="hsGraBufferAlpha" width="55"
+						   dataTipFormatFunction="sldrDataTipFormatter" maximum="1" minimum="0"
+						   skinClass="widgets.eSearch.skins.alphaSliderSkin" snapInterval="0.1"
+						   toolTip="{bufferAlphaLabel}" value="0.5"/>
+				<mx:ColorPicker id="cpGraBufferColor" visible="false" selectedColor="#01b9fd"
+								toolTip="{bufferColorLabel}"/>
 			</s:HGroup>
-			<s:HGroup paddingTop="10" gap="20">
-				<s:Button label="Search current Map" color="red" fontWeight="bold" toolTip="Search with just Map graphic" click="queryFeaturesGra()" enabled="{graGraphicsLayer.graphicProvider.length> 0}" />
-				<s:Button label="Refine Text Search" fontWeight="bold" toolTip="Use map and text combination for search" click="showStateTextSearch()" />
+			<s:HGroup gap="20" paddingTop="10">
+				<s:Button label="Search current Map" click="queryFeaturesGra()" color="red"
+						  enabled="{graGraphicsLayer.graphicProvider.length&gt; 0}"
+						  fontWeight="bold" toolTip="Search with just Map graphic"/>
+				<s:Button label="Refine Text Search" click="showStateTextSearch()" fontWeight="bold"
+						  toolTip="Use map and text combination for search"/>
 			</s:HGroup>
 		</s:Group>
 		
-		<s:Group id="textInput"
-				 width="100%" height="100%"
-				 visible="false"
+		<s:Group id="textInput" visible="false" width="100%" height="100%"
 				 visible.textInput="true">
 			<s:layout>
 				<s:VerticalLayout gap="5" horizontalAlign="center"/>
 			</s:layout>
-			<s:Label color="0x000000" fontWeight="bold" fontSize="15" paddingTop="2" paddingBottom="3" text="Data Query and Selection"/>
-			<s:HGroup id="boxText"
-					  width="100%" paddingTop="3"  gap="15"
-					  horizontalAlign="left" verticalAlign="middle">
-				<s:Label color="0xA80000" fontWeight="bold" id="lblLayerText" text="{layerLabel}"/>
-				<mx:ComboBox id="cboLayerText" change="searchLayerChangedText()" styleName="myCustomDropdownStyleName"/>
-				<s:CheckBox id="useSpatial" label="*Use Spatial Search" selected="{graGraphicsLayer.graphicProvider.length> 0}" toolTip="Geometry is from Spatial Query Page.  This will use combination of text and spatial search." visible="{graGraphicsLayer.graphicProvider.length> 0}"/>
+			<s:Label color="0x000000" fontSize="15" fontWeight="bold" paddingBottom="3"
+					 paddingTop="2" text="Data Query and Selection"/>
+			<s:HGroup id="boxText" width="100%" gap="15" horizontalAlign="left" paddingTop="3"
+					  verticalAlign="middle">
+				<s:Label id="lblLayerText" color="0xA80000" fontWeight="bold" text="{layerLabel}"/>
+				<mx:ComboBox id="cboLayerText" change="searchLayerChangedText()"
+							 styleName="myCustomDropdownStyleName"/>
+				<s:CheckBox id="useSpatial" visible="{graGraphicsLayer.graphicProvider.length&gt; 0}"
+							label="*Use Spatial Search"
+							selected="{graGraphicsLayer.graphicProvider.length&gt; 0}"
+							toolTip="Geometry is from Spatial Query Page.  This will use combination of text and spatial search."/>
 			</s:HGroup>
-			<s:HGroup paddingTop="13" id="boxTextexpr" includeInLayout="{optionAttribute}" visible="{optionAttribute}"
-					  width="100%" gap="15"
-					  horizontalAlign="left"  verticalAlign="middle">
-				<s:Label color="0xA80000" fontWeight="bold" id="lblExprText" text="{layerExprLabel}"/>
+			<s:HGroup id="boxTextexpr" visible="{optionAttribute}" width="100%" gap="15"
+					  horizontalAlign="left" includeInLayout="{optionAttribute}" paddingTop="13"
+					  verticalAlign="middle">
+				<s:Label id="lblExprText" color="0xA80000" fontWeight="bold" text="{layerExprLabel}"/>
 				<mx:ComboBox id="cboLayerExpr" change="searchLayerExprChangedText()"/>
 			</s:HGroup>
 			
-			<s:HGroup gap="15"  paddingTop="13" verticalAlign="middle" horizontalAlign="left" includeInLayout="{optionAttribute}" visible="{optionAttribute}"  width="100%">
-				<s:RichEditableText id="txtLabelText"
-									selectable="true"
-									editable="false"
-									text=""  color="0xA80000" fontWeight="bold"
-									textAlign="center"/>
-				<mx:ComboBox id="cbSearch" creationComplete="{fnInit();}" 
-							 visible="false" includeInLayout="false" 
-							 labelField="label"/>
-				<s:TextInput id="txtSearch" />
+			<s:HGroup visible="{optionAttribute}" width="100%" gap="15" horizontalAlign="left"
+					  includeInLayout="{optionAttribute}" paddingTop="13" verticalAlign="middle">
+				<s:RichEditableText id="txtLabelText" color="0xA80000" editable="false"
+									fontWeight="bold" selectable="true" text="" textAlign="center"/>
+				<mx:ComboBox id="cbSearch" visible="false" creationComplete="{fnInit();}"
+							 includeInLayout="false" labelField="label"/>
+				<s:TextInput id="txtSearch"/>
 			</s:HGroup>
-			<s:VGroup width="100%" visible="{multipleSearch}"  paddingTop="3"
-					  gap="8" includeInLayout="{multipleSearch}"
-					  horizontalAlign="center"  verticalAlign="middle">
-				<s:HGroup verticalAlign="middle" horizontalAlign="left" includeInLayout="{!sampleSearch}" visible="{!sampleSearch}">
-					<s:Label color="black" id="databaseTypeLabel" paddingRight="20" fontWeight="bold" fontSize="14" text="Choose Sample Type"/>
-					<mx:ComboBox id="databaseText" includeInLayout="{!microZoopVisible}" visible="{!microZoopVisible}" change="updateMultiSelect()" dataProvider="['Zooplankton','Ichthyoplankton','TRAWL']" />				
-					<s:Label color="0xA80000" includeInLayout="{hideotherOptions}" visible="{hideotherOptions}" fontWeight="bold" text="Performance"/>
-					<MultiDropDown:ComboCheck width="88" includeInLayout="{hideotherOptions}" visible="{hideotherOptions}" deselectAll="{haulPerText.selectedAll = false}" selectAll="{haulPerText.selectedAll = true}" id="haulPerText" selectAllLabelField="selectall" labelField="alias" dataProvider="{new ArrayCollection([{selectall:true, alias:'ALL'},{selectall:false, alias:'GOOD'},{selectall:false, alias:'LOST'},{selectall:false, alias:'FAIL'},{selectall:false, alias:'QUEST'}])}"/>
-					<s:Label color="0xA80000" fontWeight="bold" visible="{bobOptions}"  text="Sex"/>
-					<mx:ComboBox id="sexText" visible="{bobOptions}" width="117" dataProvider="['ALL','Male','Female','Not determined']"/>
+			<s:VGroup visible="{multipleSearch}" width="100%" gap="8" horizontalAlign="center"
+					  includeInLayout="{multipleSearch}" paddingTop="3" verticalAlign="middle">
+				<s:HGroup visible="{!sampleSearch}" horizontalAlign="left"
+						  includeInLayout="{!sampleSearch}" verticalAlign="middle">
+					<s:Label id="databaseTypeLabel" color="black" fontSize="14" fontWeight="bold"
+							 paddingRight="20" text="Choose Sample Type"/>
+					<mx:ComboBox id="databaseText" visible="{!microZoopVisible}"
+								 change="updateMultiSelect()"
+								 dataProvider="['Zooplankton','Ichthyoplankton','TRAWL']"
+								 includeInLayout="{!microZoopVisible}"/>				
+					<s:Label visible="{hideotherOptions}" color="0xA80000" fontWeight="bold"
+							 includeInLayout="{hideotherOptions}" text="Performance"/>
+					<MultiDropDown:ComboCheck id="haulPerText" visible="{hideotherOptions}"
+											  width="88"
+											  dataProvider="{new ArrayCollection([{selectall:true, alias:'ALL'},{selectall:false, alias:'GOOD'},{selectall:false, alias:'LOST'},{selectall:false, alias:'FAIL'},{selectall:false, alias:'QUEST'}])}"
+											  deselectAll="{haulPerText.selectedAll = false}"
+											  includeInLayout="{hideotherOptions}"
+											  labelField="alias"
+											  selectAll="{haulPerText.selectedAll = true}"
+											  selectAllLabelField="selectall"/>
+					<s:Label visible="{bobOptions}" color="0xA80000" fontWeight="bold" text="Sex"/>
+					<mx:ComboBox id="sexText" visible="{bobOptions}" width="117"
+								 dataProvider="['ALL','Male','Female','Not determined']"/>
 				</s:HGroup>
-				<s:VGroup includeInLayout="{bobOptions}" id="bobGroup" width="100%" gap="5" horizontalAlign="center"  verticalAlign="middle">
-					<s:HGroup width="100%" gap="10" horizontalAlign="left" visible="{bobOptions}" includeInLayout="{bobOptions}" verticalAlign="middle">
+				<s:VGroup id="bobGroup" width="100%" gap="5" horizontalAlign="center"
+						  includeInLayout="{bobOptions}" verticalAlign="middle">
+					<s:HGroup visible="{bobOptions}" width="100%" gap="10" horizontalAlign="left"
+							  includeInLayout="{bobOptions}" verticalAlign="middle">
 						<s:HGroup width="285" verticalAlign="middle">
-							<s:Label width="150" color="0xA80000" fontWeight="bold" text="Min Volume Displacement:"/>
-							<s:NumericStepper width="65" id="minDisp" maximum="5000" minimum="-1000" value="0"/>
+							<s:Label width="150" color="0xA80000" fontWeight="bold"
+									 text="Min Volume Displacement:"/>
+							<s:NumericStepper id="minDisp" width="65" maximum="5000" minimum="-1000"
+											  value="0"/>
 						</s:HGroup>
-						<s:Label width="160" color="0xA80000" fontWeight="bold" text="Max Volume Displacement:"/>
-						<s:NumericStepper id="maxDisp" width="65" value="3400" minimum="-1000" maximum="5000"/>
-						<s:CheckBox id="showallDisp"  label="All" selected="true"/>
+						<s:Label width="160" color="0xA80000" fontWeight="bold"
+								 text="Max Volume Displacement:"/>
+						<s:NumericStepper id="maxDisp" width="65" maximum="5000" minimum="-1000"
+										  value="3400"/>
+						<s:CheckBox id="showallDisp" label="All" selected="true"/>
 					</s:HGroup>
-					<s:HGroup width="100%" gap="4" horizontalAlign="left"  visible="{bobOptions}" includeInLayout="{bobOptions}"  verticalAlign="middle">
+					<s:HGroup visible="{bobOptions}" width="100%" gap="4" horizontalAlign="left"
+							  includeInLayout="{bobOptions}" verticalAlign="middle">
 						<s:HGroup width="330" verticalAlign="middle">
-							<s:Label width="130" color="0xA80000" fontWeight="bold" text="Taxon Name:"/>
-							<MultiDropDown:ComboCheck rowCount="6" width="100%" deselectAll="{taxaBob.selectedAll = false}" selectAll="{taxaBob.selectedAll = true}" id="taxaBob" selectAllLabelField="selectall" labelField="alias" dataProvider="{taxonArray}"/>
+							<s:Label width="130" color="0xA80000" fontWeight="bold"
+									 text="Taxon Name:"/>
+							<MultiDropDown:ComboCheck id="taxaBob" width="100%"
+													  dataProvider="{taxonArray}"
+													  deselectAll="{taxaBob.selectedAll = false}"
+													  labelField="alias" rowCount="6"
+													  selectAll="{taxaBob.selectedAll = true}"
+													  selectAllLabelField="selectall"/>
 						</s:HGroup>
-						<s:Label width="101" paddingLeft="15" color="0xA80000" fontWeight="bold" text="Stage:"/>
-						<MultiDropDown:ComboCheck width="143" deselectAll="{stageBob.selectedAll = false}" selectAll="{stageBob.selectedAll = true}" id="stageBob" selectAllLabelField="selectall" labelField="name" 
-												  dataProvider="{bobStageArray}"/>
+						<s:Label width="101" color="0xA80000" fontWeight="bold" paddingLeft="15"
+								 text="Stage:"/>
+						<MultiDropDown:ComboCheck id="stageBob" width="177"
+												  dataProvider="{bobStageArray}"
+												  deselectAll="{stageBob.selectedAll = false}"
+												  labelField="alias"
+												  selectAll="{stageBob.selectedAll = true}"
+												  selectAllLabelField="selectall"/>
 					</s:HGroup>
-					<s:HGroup paddingBottom="-10" paddingTop="-1" width="100%" gap="4" horizontalAlign="left"  visible="{bobOptions}" includeInLayout="{bobOptions}"  verticalAlign="middle">
-						<s:Label enabled="false" toolTip="Not Defined yet" color="0xA80000" fontWeight="bold"  width="132" text="Protocol Zoop Type:"/>
-						<MultiDropDown:ComboCheck width="252"  selectAllLabelField="selectall" labelField="name"  deselectAll="{typeBob.selectedAll = false}" selectAll="{typeBob.selectedAll = true}" id="typeBob" enabled="true" 
-												  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL', name:'SELECT ALL'},{selectall:false, name:'Macrozooplankton', alias:1},{selectall:false, alias:2,name:'Predator'},{selectall:false,alias:3, name:'Pseudocalanus'},{selectall:false,alias:4, name:'Microzooplankton'},{selectall:false,alias:5, name:'Macrozooplankton and Predator'},{selectall:false,alias:6, name:'Macrozooplankton and Pseudocalanus'},{selectall:false,alias:7, name:'Macro and Microzooplankton'}])}"/>
-						<s:Label color="0xA80000" width="44" fontWeight="bold" text="Size:"/>
-						<MultiDropDown:ComboCheck width="143"  selectAllLabelField="selectall" labelField="name"  deselectAll="{sizeBob.selectedAll = false}" selectAll="{sizeBob.selectedAll = true}" id="sizeBob" enabled="true" 
-												  dataProvider="{bobSizeArray}"/>
+					<s:HGroup visible="{bobOptions}" width="100%" gap="4" horizontalAlign="left"
+							  includeInLayout="{bobOptions}" paddingBottom="-10" paddingTop="-1"
+							  verticalAlign="middle">
+						<s:Label width="132" color="0xA80000" enabled="false" fontWeight="bold"
+								 text="Protocol Zoop Type:" toolTip="Not Defined yet"/>
+						<MultiDropDown:ComboCheck id="typeBob" width="252"
+												  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL', name:'SELECT ALL'},{selectall:false, name:'Macrozooplankton', alias:1},{selectall:false, alias:2,name:'Predator'},{selectall:false,alias:3, name:'Pseudocalanus'},{selectall:false,alias:4, name:'Microzooplankton'},{selectall:false,alias:5, name:'Macrozooplankton and Predator'},{selectall:false,alias:6, name:'Macrozooplankton and Pseudocalanus'},{selectall:false,alias:7, name:'Macro and Microzooplankton'}])}"
+												  deselectAll="{typeBob.selectedAll = false}"
+												  enabled="true" labelField="name"
+												  selectAll="{typeBob.selectedAll = true}"
+												  selectAllLabelField="selectall"/>
+						<s:Label width="44" color="0xA80000" fontWeight="bold" text="Size:"/>
+						<MultiDropDown:ComboCheck id="sizeBob" width="177"
+												  dataProvider="{bobSizeArray}"
+												  deselectAll="{sizeBob.selectedAll = false}"
+												  enabled="true" labelField="alias"
+												  selectAll="{sizeBob.selectedAll = true}"
+												  selectAllLabelField="selectall"/>
 					</s:HGroup>
 				</s:VGroup>
 				
-				<s:VGroup includeInLayout="{ichOptions}" id="ichGroup" width="100%"  gap="10" horizontalAlign="center"  verticalAlign="middle">
-					<s:HGroup width="100%" gap="4" horizontalAlign="left" visible="{ichOptions}" includeInLayout="{ichOptions}" verticalAlign="middle">
+				<s:VGroup id="ichGroup" width="100%" gap="10" horizontalAlign="center"
+						  includeInLayout="{ichOptions}" verticalAlign="middle">
+					<s:HGroup visible="{ichOptions}" width="100%" gap="4" horizontalAlign="left"
+							  includeInLayout="{ichOptions}" verticalAlign="middle">
 						<s:HGroup width="375" verticalAlign="middle">
-							<s:Label width="130" color="0xA80000" fontWeight="bold" text="Species Name:"/>
-							<MultiDropDown:ComboCheck width="230" deselectAll="{speciesIch.selectedAll = false}" selectAll="{speciesIch.selectedAll = true}" id="speciesIch" selectAllLabelField="selectall" labelField="alias" dataProvider="{speciesIchArray}"/>
+							<s:Label width="130" color="0xA80000" fontWeight="bold"
+									 text="Species Name:"/>
+							<MultiDropDown:ComboCheck id="speciesIch" width="230"
+													  dataProvider="{speciesIchArray}"
+													  deselectAll="{speciesIch.selectedAll = false}"
+													  labelField="alias"
+													  selectAll="{speciesIch.selectedAll = true}"
+													  selectAllLabelField="selectall"/>
 						</s:HGroup>
-						<s:Label width="53" color="0xA80000" fontWeight="bold" text="Stage:" visible="{!microZoopVisible}"/>
-						<MultiDropDown:ComboCheck width="143" deselectAll="{stageIch.selectedAll = false}" selectAll="{stageIch.selectedAll = true}" visible="{!microZoopVisible}" id="stageIch" selectAllLabelField="selectall" labelField="alias" 
-												  dataProvider="{ichStageArray}"/>
+						<s:Label visible="{!microZoopVisible}" width="53" color="0xA80000"
+								 fontWeight="bold" text="Stage:"/>
+						<MultiDropDown:ComboCheck id="stageIch" visible="{!microZoopVisible}"
+												  width="143" dataProvider="{ichStageArray}"
+												  deselectAll="{stageIch.selectedAll = false}"
+												  labelField="alias"
+												  selectAll="{stageIch.selectedAll = true}"
+												  selectAllLabelField="selectall"/>
 					</s:HGroup>
 					<!--<s:HGroup width="100%" gap="10" horizontalAlign="left" visible="{ichOptions}" includeInLayout="{ichOptions}" verticalAlign="middle">
 						<s:HGroup width="280" verticalAlign="middle">
@@ -5969,27 +6016,43 @@
 					</s:HGroup>-->
 				</s:VGroup>
 				
-				<s:VGroup includeInLayout="{trawlOptions}" id="trawlGroup" width="100%" gap="10"  horizontalAlign="center"  verticalAlign="middle">
-					<s:HGroup width="100%" gap="10" horizontalAlign="left" visible="{trawlOptions}" includeInLayout="{trawlOptions}" verticalAlign="middle">
+				<s:VGroup id="trawlGroup" width="100%" gap="10" horizontalAlign="center"
+						  includeInLayout="{trawlOptions}" verticalAlign="middle">
+					<s:HGroup visible="{trawlOptions}" width="100%" gap="10" horizontalAlign="left"
+							  includeInLayout="{trawlOptions}" verticalAlign="middle">
 						<s:HGroup width="280" verticalAlign="middle">
-							<s:Label width="130" color="0xA80000" fontWeight="bold" text="Min Total Length(mm):"/>
-							<s:NumericStepper width="65" id="minleng" maximum="3000" minimum="0" value="100"/>
+							<s:Label width="130" color="0xA80000" fontWeight="bold"
+									 text="Min Total Length(mm):"/>
+							<s:NumericStepper id="minleng" width="65" maximum="3000" minimum="0"
+											  value="100"/>
 						</s:HGroup>
-						<s:Label width="160" paddingLeft="4" color="0xA80000" fontWeight="bold" text="Max Total Length(mm):"/>
-						<s:NumericStepper id="maxleng" width="65" value="2000" minimum="0" maximum="3000"/>
-						<s:CheckBox id="showallLeng"  label="All Lengths" selected="true"/>
+						<s:Label width="160" color="0xA80000" fontWeight="bold" paddingLeft="4"
+								 text="Max Total Length(mm):"/>
+						<s:NumericStepper id="maxleng" width="65" maximum="3000" minimum="0"
+										  value="2000"/>
+						<s:CheckBox id="showallLeng" label="All Lengths" selected="true"/>
 					</s:HGroup>
-					<s:HGroup width="100%" gap="15" horizontalAlign="left" visible="{trawlOptions}" includeInLayout="{trawlOptions}" verticalAlign="middle">
+					<s:HGroup visible="{trawlOptions}" width="100%" gap="15" horizontalAlign="left"
+							  includeInLayout="{trawlOptions}" verticalAlign="middle">
 						<s:HGroup width="330" verticalAlign="middle">
-							<s:Label width="130" color="0xA80000" fontWeight="bold" text="Species Name:"/>
-							<MultiDropDown:ComboCheck width="255" deselectAll="{speciesTra.selectedAll = false}" selectAll="{speciesTra.selectedAll = true}" id="speciesTra" selectAllLabelField="selectall" labelField="alias" dataProvider="{speciesTrawlArray}"/>
+							<s:Label width="130" color="0xA80000" fontWeight="bold"
+									 text="Species Name:"/>
+							<MultiDropDown:ComboCheck id="speciesTra" width="255"
+													  dataProvider="{speciesTrawlArray}"
+													  deselectAll="{speciesTra.selectedAll = false}"
+													  labelField="alias"
+													  selectAll="{speciesTra.selectedAll = true}"
+													  selectAllLabelField="selectall"/>
 						</s:HGroup>
 					</s:HGroup>
 				</s:VGroup>
-				<s:VGroup width="100%" gap="10"  paddingTop="7"  horizontalAlign="left" paddingBottom="5" verticalAlign="middle">
-					<s:HGroup width="100%" gap="15" horizontalAlign="left" includeInLayout="{sampleSearch}" visible="{sampleSearch}" verticalAlign="middle">
-						<s:HGroup width="280" verticalAlign="middle" id="sampleBlock">
-							<s:Label width="155" color="black" fontSize="14" fontWeight="bold" text="Choose Sample Type:"/>
+				<s:VGroup width="100%" gap="10" horizontalAlign="left" paddingBottom="5"
+						  paddingTop="7" verticalAlign="middle">
+					<s:HGroup visible="{sampleSearch}" width="100%" gap="15" horizontalAlign="left"
+							  includeInLayout="{sampleSearch}" verticalAlign="middle">
+						<s:HGroup id="sampleBlock" width="280" verticalAlign="middle">
+							<s:Label width="155" color="black" fontSize="14" fontWeight="bold"
+									 text="Choose Sample Type:"/>
 							<!--<MultiDropDown:ComboCheck width="133"  selectAllLabelField="selectall" labelField="name" 
 													  deselectAll="{databaseTextSamp.selectedAll = false}" selectAll="{databaseTextSamp.selectedAll = true}" id="databaseTextSamp" enabled="true" 
 													  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL', name:'SELECT ALL'},
@@ -5999,7 +6062,7 @@
 													  {selectall:false,alias:'8', name:'Benthic'},{selectall:false,alias:'9', name:'Biological'},
 													  {selectall:false,alias:'10', name:'Other'},{selectall:false,alias:'11', name:'Discard'},
 													  {selectall:false,alias:'12', name:'NONE'},{selectall:false,alias:'13', name:'Not Sure'}])}"/>-->
-							<mx:ComboBox fontWeight="bold" id="databaseTextSamp">
+							<mx:ComboBox id="databaseTextSamp" fontWeight="bold">
 								<s:ArrayCollection>
 									<fx:Object label="Zooplankton" data="1,4"/>
 									<fx:Object label="Ichthyoplankton" data="2,4"/>
@@ -6016,248 +6079,362 @@
 								</s:ArrayCollection>
 							</mx:ComboBox>
 						</s:HGroup>
-						<s:Label width="130" color="0xA80000" fontWeight="bold" text="Haul Performance:"/>
-						<MultiDropDown:ComboCheck deselectAll="{haulPerTextSample.selectedAll = false}" selectAll="{haulPerTextSample.selectedAll = true}" id="haulPerTextSample" selectAllLabelField="selectall" labelField="alias" dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL'},{selectall:false, alias:'GOOD'},{selectall:false, alias:'LOST'},{selectall:false, alias:'FAIL'},{selectall:false, alias:'QUEST'}])}"/>
+						<s:Label width="130" color="0xA80000" fontWeight="bold"
+								 text="Haul Performance:"/>
+						<MultiDropDown:ComboCheck id="haulPerTextSample"
+												  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL'},{selectall:false, alias:'GOOD'},{selectall:false, alias:'LOST'},{selectall:false, alias:'FAIL'},{selectall:false, alias:'QUEST'}])}"
+												  deselectAll="{haulPerTextSample.selectedAll = false}"
+												  labelField="alias"
+												  selectAll="{haulPerTextSample.selectedAll = true}"
+												  selectAllLabelField="selectall"/>
 					</s:HGroup>
-					<s:HGroup width="100%" gap="15" horizontalAlign="left"  verticalAlign="middle">
+					<s:HGroup width="100%" gap="15" horizontalAlign="left" verticalAlign="middle">
 						<s:HGroup width="280" verticalAlign="middle">
 							<s:Label width="130" color="0xA80000" fontWeight="bold" text="Cruise:"/>
-							<MultiDropDown:ComboCheck deselectAll="{cruiseSample.selectedAll = false}" selectAll="{cruiseSample.selectedAll = true}" id="cruiseSample" selectAllLabelField="selectall" labelField="alias" dataProvider="{cruiseArray}"/>
+							<MultiDropDown:ComboCheck id="cruiseSample" dataProvider="{cruiseArray}"
+													  deselectAll="{cruiseSample.selectedAll = false}"
+													  labelField="alias"
+													  selectAll="{cruiseSample.selectedAll = true}"
+													  selectAllLabelField="selectall"/>
 						</s:HGroup>
-						<s:Label width="130" color="0xA80000" fontWeight="bold" text="Gear Abbreviation:"/>
-						<MultiDropDown:ComboCheck deselectAll="{gearSample.selectedAll = false}" selectAll="{gearSample.selectedAll = true}" id="gearSample" selectAllLabelField="selectall" labelField="alias" 
-												  dataProvider="{gearnamesArray}"/>
+						<s:Label width="130" color="0xA80000" fontWeight="bold"
+								 text="Gear Abbreviation:"/>
+						<MultiDropDown:ComboCheck id="gearSample" dataProvider="{gearnamesArray}"
+												  deselectAll="{gearSample.selectedAll = false}"
+												  labelField="alias"
+												  selectAll="{gearSample.selectedAll = true}"
+												  selectAllLabelField="selectall"/>
 					</s:HGroup>
-					<s:HGroup width="100%" gap="15" horizontalAlign="left" includeInLayout="{microZoopVisible==false &amp;&amp; hideotherOptions}" visible="{microZoopVisible==false &amp;&amp; hideotherOptions}" verticalAlign="middle">
+					<s:HGroup visible="{microZoopVisible==false &amp;&amp; hideotherOptions}"
+							  width="100%" gap="15" horizontalAlign="left"
+							  includeInLayout="{microZoopVisible==false &amp;&amp; hideotherOptions}"
+							  verticalAlign="middle">
 						<s:HGroup width="280" verticalAlign="middle">
 							<s:Label width="130" color="0xA80000" fontWeight="bold" text="Project:"/>
-							<MultiDropDown:ComboCheck deselectAll="{projectSample.selectedAll = false}" selectAll="{projectSample.selectedAll = true}" id="projectSample" selectAllLabelField="selectall" labelField="alias" 
-													  dataProvider="{projectArray}"/>
+							<MultiDropDown:ComboCheck id="projectSample"
+													  dataProvider="{projectArray}"
+													  deselectAll="{projectSample.selectedAll = false}"
+													  labelField="alias"
+													  selectAll="{projectSample.selectedAll = true}"
+													  selectAllLabelField="selectall"/>
 						</s:HGroup>
 						<s:Label width="130" color="0xA80000" fontWeight="bold" text="Purpose:"/>
-						<MultiDropDown:ComboCheck deselectAll="{purposeSample.selectedAll = false}" selectAll="{purposeSample.selectedAll = true}" id="purposeSample" selectAllLabelField="selectall" labelField="alias" 
-												  dataProvider="{projectArray}"/>
+						<MultiDropDown:ComboCheck id="purposeSample" dataProvider="{projectArray}"
+												  deselectAll="{purposeSample.selectedAll = false}"
+												  labelField="alias"
+												  selectAll="{purposeSample.selectedAll = true}"
+												  selectAllLabelField="selectall"/>
 					</s:HGroup>
-					<s:HGroup width="100%" gap="15" horizontalAlign="left" includeInLayout="{hideotherOptions}" visible="{hideotherOptions}" verticalAlign="middle">
+					<s:HGroup visible="{hideotherOptions}" width="100%" gap="15"
+							  horizontalAlign="left" includeInLayout="{hideotherOptions}"
+							  verticalAlign="middle">
 						<s:HGroup width="280" verticalAlign="middle">
 							<s:Label width="130" color="0xA80000" fontWeight="bold" text="Mesh:"/>
-							<MultiDropDown:ComboCheck deselectAll="{meshSample.selectedAll = false}" selectAll="{meshSample.selectedAll = true}" id="meshSample" selectAllLabelField="selectall" labelField="alias" 
-													  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL'},{selectall:false, alias:'0'},{selectall:false, alias:'3'},{selectall:false, alias:'32'},{selectall:false, alias:'41'},{selectall:false, alias:'53'},{selectall:false, alias:'150'},{selectall:false, alias:'153'},{selectall:false, alias:'215'},{selectall:false, alias:'253'},{selectall:false, alias:'300'},{selectall:false, alias:'333'},{selectall:false, alias:'335'},{selectall:false, alias:'500'},{selectall:false, alias:'505'},{selectall:false, alias:'1000'},{selectall:false, alias:'1153'},{selectall:false, alias:'1410'},{selectall:false, alias:'1500'},{selectall:false, alias:'3000'},{selectall:false, alias:'6000'},{selectall:false, alias:'32000'}])}"/>
+							<MultiDropDown:ComboCheck id="meshSample"
+													  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL'},{selectall:false, alias:'0'},{selectall:false, alias:'3'},{selectall:false, alias:'32'},{selectall:false, alias:'41'},{selectall:false, alias:'53'},{selectall:false, alias:'150'},{selectall:false, alias:'153'},{selectall:false, alias:'215'},{selectall:false, alias:'253'},{selectall:false, alias:'300'},{selectall:false, alias:'333'},{selectall:false, alias:'335'},{selectall:false, alias:'500'},{selectall:false, alias:'505'},{selectall:false, alias:'1000'},{selectall:false, alias:'1153'},{selectall:false, alias:'1410'},{selectall:false, alias:'1500'},{selectall:false, alias:'3000'},{selectall:false, alias:'6000'},{selectall:false, alias:'32000'}])}"
+													  deselectAll="{meshSample.selectedAll = false}"
+													  labelField="alias"
+													  selectAll="{meshSample.selectedAll = true}"
+													  selectAllLabelField="selectall"/>
 						</s:HGroup>
 						<s:Label width="130" color="0xA80000" fontWeight="bold" text="NET:"/>
-						<MultiDropDown:ComboCheck deselectAll="{netSample.selectedAll = false}" selectAll="{netSample.selectedAll = true}" id="netSample" selectAllLabelField="selectall" labelField="alias" 
-												  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL'},{selectall:false, alias:'1'},{selectall:false, alias:'2'},{selectall:false, alias:'3'},{selectall:false, alias:'4'},{selectall:false, alias:'5'},{selectall:false, alias:'6'},{selectall:false, alias:'7'},{selectall:false, alias:'8'},{selectall:false, alias:'9'}])}"/>
+						<MultiDropDown:ComboCheck id="netSample"
+												  dataProvider="{new ArrayCollection([{selectall:true, alias:'SELECT ALL'},{selectall:false, alias:'1'},{selectall:false, alias:'2'},{selectall:false, alias:'3'},{selectall:false, alias:'4'},{selectall:false, alias:'5'},{selectall:false, alias:'6'},{selectall:false, alias:'7'},{selectall:false, alias:'8'},{selectall:false, alias:'9'}])}"
+												  deselectAll="{netSample.selectedAll = false}"
+												  labelField="alias"
+												  selectAll="{netSample.selectedAll = true}"
+												  selectAllLabelField="selectall"/>
 					</s:HGroup>
-					<s:HGroup width="100%" gap="10" horizontalAlign="left" visible="{microZoopVisible==false &amp;&amp; haulSearch ==false}" includeInLayout="{microZoopVisible==false &amp;&amp; haulSearch ==false}" verticalAlign="middle">
+					<s:HGroup visible="{microZoopVisible==false &amp;&amp; haulSearch ==false}"
+							  width="100%" gap="10" horizontalAlign="left"
+							  includeInLayout="{microZoopVisible==false &amp;&amp; haulSearch ==false}"
+							  verticalAlign="middle">
 						<s:HGroup width="285" verticalAlign="middle">
-							<s:Label width="130" color="0xA80000" fontWeight="bold" text="Min Bottom Depth(m):"/>
-							<s:NumericStepper width="65" id="minDep" maximum="2000" value="0"/>
+							<s:Label width="130" color="0xA80000" fontWeight="bold"
+									 text="Min Bottom Depth(m):"/>
+							<s:NumericStepper id="minDep" width="65" maximum="2000" value="0"/>
 						</s:HGroup>
-						<s:Label width="134" color="0xA80000" fontWeight="bold" text="Max Bottom Depth(m):"/>
-						<s:NumericStepper id="maxDep" width="65" value="1400"  maximum="2000"/>
+						<s:Label width="134" color="0xA80000" fontWeight="bold"
+								 text="Max Bottom Depth(m):"/>
+						<s:NumericStepper id="maxDep" width="65" maximum="2000" value="1400"/>
 						<s:CheckBox id="showallDep" label="All Depths" selected="true"/>
 					</s:HGroup>
-					<s:HGroup width="100%" gap="10" horizontalAlign="left" visible="{haulSearch ==false}" includeInLayout="{haulSearch ==false}" verticalAlign="middle">
+					<s:HGroup visible="{haulSearch ==false}" width="100%" gap="10"
+							  horizontalAlign="left" includeInLayout="{haulSearch ==false}"
+							  verticalAlign="middle">
 						<s:HGroup width="285" verticalAlign="middle">
-							<s:Label width="130" color="0xA80000" fontWeight="bold" text="MIN (max) Gear Depth(m):"/>
-							<s:NumericStepper width="65" id="minDepGear" maximum="2000" value="0"/>
+							<s:Label width="130" color="0xA80000" fontWeight="bold"
+									 text="MIN (max) Gear Depth(m):"/>
+							<s:NumericStepper id="minDepGear" width="65" maximum="2000" value="0"/>
 						</s:HGroup>
-						<s:Label width="134" color="0xA80000" fontWeight="bold" text="MAX (max) Gear Depth(m):"/>
-						<s:NumericStepper id="maxDepGear" width="65" value="1400"  maximum="2000"/>
+						<s:Label width="134" color="0xA80000" fontWeight="bold"
+								 text="MAX (max) Gear Depth(m):"/>
+						<s:NumericStepper id="maxDepGear" width="65" maximum="2000" value="1400"/>
 						<s:CheckBox id="showallDepGear" label="All Depths" selected="true"/>
 					</s:HGroup>
-					<s:HGroup width="100%" gap="15" horizontalAlign="left"  verticalAlign="middle">
+					<s:HGroup width="100%" gap="15" horizontalAlign="left" verticalAlign="middle">
 						<s:HGroup width="280" verticalAlign="middle">
 							<s:Label width="130" color="0xA80000" fontWeight="bold" text="HAUL ID:"/>
-							<mx:TextInput id="haulSample" toolTip="Optional" width="130" />
+							<mx:TextInput id="haulSample" width="130" toolTip="Optional"/>
 						</s:HGroup>
 						<s:Label width="130" color="0xA80000" fontWeight="bold" text="Sample ID:"/>
-						<mx:TextInput id="sampleSample" toolTip="Optional"  width="135"/>
+						<mx:TextInput id="sampleSample" width="135" toolTip="Optional"/>
 					</s:HGroup>
-					<s:HGroup width="100%" gap="15" horizontalAlign="left"  verticalAlign="middle">
+					<s:HGroup width="100%" gap="15" horizontalAlign="left" verticalAlign="middle">
 						<s:HGroup width="280" verticalAlign="middle">
-							<s:Label width="130" color="0xA80000" fontWeight="bold" text="Geographic Area:"/>
-							<MultiDropDown:ComboCheck width="130" deselectAll="{geolocSample.selectedAll = false}" labelField="alias" selectAll="{geolocSample.selectedAll = true}" id="geolocSample" selectAllLabelField="selectall" />
+							<s:Label width="130" color="0xA80000" fontWeight="bold"
+									 text="Geographic Area:"/>
+							<MultiDropDown:ComboCheck id="geolocSample" width="130"
+													  deselectAll="{geolocSample.selectedAll = false}"
+													  labelField="alias"
+													  selectAll="{geolocSample.selectedAll = true}"
+													  selectAllLabelField="selectall"/>
 						</s:HGroup>
-						<s:Label width="130" includeInLayout="{microZoopVisible==false}" visible="{microZoopVisible==false}" color="0xA80000" fontWeight="bold" text="Station Name:"/>
-						<mx:TextInput id="stationN" includeInLayout="{microZoopVisible==false}" visible="{microZoopVisible==false}" toolTip="Optional"  width="135"/>
+						<s:Label visible="{microZoopVisible==false}" width="130" color="0xA80000"
+								 fontWeight="bold" includeInLayout="{microZoopVisible==false}"
+								 text="Station Name:"/>
+						<mx:TextInput id="stationN" visible="{microZoopVisible==false}" width="135"
+									  includeInLayout="{microZoopVisible==false}" toolTip="Optional"/>
 					</s:HGroup>
-					<s:HGroup width="100%" gap="15" includeInLayout="{hideotherOptions}" visible="{hideotherOptions}" horizontalAlign="left"  verticalAlign="middle">
-						<s:Label color="0xA80000" width="121" fontWeight="bold" text="Primary Net:"/>
-						<MultiDropDown:ComboCheck   deselectAll="{primaryNetCX.selectedAll = false}" selectAll="{primaryNetCX.selectedAll = true}" id="primaryNetCX" selectAllLabelField="selectall" labelField="alias" dataProvider="{new ArrayCollection([{selectall:true, alias:'ALL'},{selectall:false, alias:'TRUE'},{selectall:false, alias:'FALSE'}])}"/>
+					<s:HGroup visible="{hideotherOptions}" width="100%" gap="15"
+							  horizontalAlign="left" includeInLayout="{hideotherOptions}"
+							  verticalAlign="middle">
+						<s:Label width="121" color="0xA80000" fontWeight="bold" text="Primary Net:"/>
+						<MultiDropDown:ComboCheck id="primaryNetCX"
+												  dataProvider="{new ArrayCollection([{selectall:true, alias:'ALL'},{selectall:false, alias:'TRUE'},{selectall:false, alias:'FALSE'}])}"
+												  deselectAll="{primaryNetCX.selectedAll = false}"
+												  labelField="alias"
+												  selectAll="{primaryNetCX.selectedAll = true}"
+												  selectAllLabelField="selectall"/>
 					</s:HGroup>
 				</s:VGroup>				
 			</s:VGroup>		
 			<s:HGroup paddingTop="1">
 				<s:VGroup gap="10" paddingTop="10">
-					<s:Label paddingLeft="50" id="resultLoc" text="*Results will be shown on map and in table." fontStyle="italic" fontSize="13" color="0xFFFFFF"/>
-					<s:HGroup width="100%" horizontalAlign="center" gap="6"  verticalAlign="middle">
-						<s:Button fontWeight="bold" id="timeButton" includeInLayout="{multipleSearch}" visible="{multipleSearch}" label="Define Time Range" toolTip="Set Time Range" click="showTimeSettings()" />
-						<s:Button fontWeight="bold" id="relateButton" includeInLayout="{associationOptions}" visible="{associationOptions}" label="View associated Records*" toolTip="View Records associated with existing Query on the map.  Will search any similar haul or specimen data." click="selectRelationshipData()" />
-						<s:Button fontWeight="bold" color="red" id="searchBtn" label="{submitLabel}"/>
-						<s:Button fontWeight="bold" click="showfields()" label="Select Fields"/>
-						<s:Button fontWeight="bold" click="clear()" label="{clearLabel}"/>
+					<s:Label id="resultLoc" color="0xFFFFFF" fontSize="13" fontStyle="italic"
+							 paddingLeft="50" text="*Results will be shown on map and in table."/>
+					<s:HGroup width="100%" gap="6" horizontalAlign="center" verticalAlign="middle">
+						<s:Button id="timeButton" visible="{multipleSearch}"
+								  label="Define Time Range" click="showTimeSettings()"
+								  fontWeight="bold" includeInLayout="{multipleSearch}"
+								  toolTip="Set Time Range"/>
+						<s:Button id="relateButton" visible="{associationOptions}"
+								  label="View associated Records*" click="selectRelationshipData()"
+								  fontWeight="bold" includeInLayout="{associationOptions}"
+								  toolTip="View Records associated with existing Query on the map.  Will search any similar haul or specimen data."/>
+						<s:Button id="searchBtn" label="{submitLabel}" color="red" fontWeight="bold"/>
+						<s:Button label="Select Fields" click="showfields()" fontWeight="bold"/>
+						<s:Button label="{clearLabel}" click="clear()" fontWeight="bold"/>
 						<!--<s:CheckBox fontWeight="bold" id="catchzero" label="Catch w/ Zeros" toolTip="Table will be downloaded.  Only one Species name can be used" visible="{cboLayerText.selectedIndex == 1}" includeInLayout="{cboLayerText.selectedIndex == 1}"/>-->
 					</s:HGroup>
-					<s:HGroup width="100%" horizontalAlign="center" gap="6"  verticalAlign="middle">
-						<s:Button fontWeight="bold" click="generateCatch()" id="catchzero" label="Catch w/ Zeros" toolTip="Table will be downloaded.  Only one Stage can be used." visible="{cboLayerText.selectedIndex == 1}" includeInLayout="{cboLayerText.selectedIndex == 1}"/>
-						<s:Button fontWeight="bold" click="generateTrawlLength()" id="trawl_length_but" label="Trawl Length" toolTip="Table will be downloaded.  " visible="{cboLayerText.selectedIndex == 1}" includeInLayout="{cboLayerText.selectedIndex == 1}"/>
-						<s:Button fontWeight="bold" click="generateIchLength()" id="ich_length_but" label="Ich Length" toolTip="Table will be downloaded.  " visible="{cboLayerText.selectedIndex == 3}" includeInLayout="{cboLayerText.selectedIndex == 3}"/>
-						<s:Button fontWeight="bold" click="generateIchAbundance()" id="ich_abundance_but" label="Ich Abundance" toolTip="Table will be downloaded." visible="{cboLayerText.selectedIndex == 3}" includeInLayout="{cboLayerText.selectedIndex == 3}"/>
+					<s:HGroup width="100%" gap="6" horizontalAlign="center" verticalAlign="middle">
+						<s:Button id="catchzero" visible="{cboLayerText.selectedIndex == 1}"
+								  label="Catch w/ Zeros" click="generateCatch()" fontWeight="bold"
+								  includeInLayout="{cboLayerText.selectedIndex == 1}"
+								  toolTip="Table will be downloaded.  Only one Stage can be used."/>
+						<s:Button id="trawl_length_but" visible="{cboLayerText.selectedIndex == 1}"
+								  label="Trawl Length" click="generateTrawlLength()"
+								  fontWeight="bold"
+								  includeInLayout="{cboLayerText.selectedIndex == 1}"
+								  toolTip="Table will be downloaded.  "/>
+						<s:Button id="ich_length_but" visible="{cboLayerText.selectedIndex == 3}"
+								  label="Ich Length Frequency" click="generateIchLength()" fontWeight="bold"
+								  includeInLayout="{cboLayerText.selectedIndex == 3}"
+								  toolTip="Table will be downloaded.  "/>
+						<s:Button id="ich_abundance_but" visible="{cboLayerText.selectedIndex == 3}"
+								  label="Ich Abundance/Occurrence" click="generateIchAbundance()"
+								  fontWeight="bold"
+								  includeInLayout="{cboLayerText.selectedIndex == 3}"
+								  toolTip="Table will be downloaded."/>
 					</s:HGroup>
-					<s:Label id="dataproc_status" paddingLeft="100" includeInLayout="false" text="Your Processing Tool is running..." fontSize="11" color="0xFF0000"/>
-					<s:Label includeInLayout="{associationOptions}" visible="{associationOptions}" text="*This will return all associated records with subsample search." fontStyle="italic" fontSize="13" color="0xFFFFFF"/>
+					<s:Label id="dataproc_status" color="0xFF0000" fontSize="11"
+							 includeInLayout="false" paddingLeft="100"
+							 text="Your Processing Tool is running..."/>
+					<s:Label visible="{associationOptions}" color="0xFFFFFF" fontSize="13"
+							 fontStyle="italic" includeInLayout="{associationOptions}"
+							 text="*This will return all associated records with subsample search."/>
 				</s:VGroup>
 			</s:HGroup>
 		</s:Group>
 		
 		<!-- Field Settings-->
-		<s:Group id="fieldInput"
-				 width="100%" height="100%"
-				 visible="false"
+		<s:Group id="fieldInput" visible="false" width="100%" height="100%"
 				 visible.fieldInput="true">
 			<s:layout>
-				<s:HorizontalLayout gap="15" paddingTop="12" horizontalAlign="center"/>
+				<s:HorizontalLayout gap="15" horizontalAlign="center" paddingTop="12"/>
 			</s:layout>
-			<s:VGroup gap="19" paddingTop="50" horizontalAlign="center">
-				<s:Label color="0xA80000" fontWeight="bold" text="Select Column Fields to view in Table" fontSize="14"/>
+			<s:VGroup gap="19" horizontalAlign="center" paddingTop="50">
+				<s:Label color="0xA80000" fontSize="14" fontWeight="bold"
+						 text="Select Column Fields to view in Table"/>
 				<s:HGroup verticalAlign="middle">
-					<s:Label text="Preset Field List:" fontWeight="bold" paddingRight="4"/>
-					<mx:ComboBox id="sampleTypeList" dataProvider="{['NONE','ICH','ZOOP','TRAWL']}" change="sampleTypeList_changeHandler(event)" />
+					<s:Label fontWeight="bold" paddingRight="4" text="Preset Field List:"/>
+					<mx:ComboBox id="sampleTypeList" change="sampleTypeList_changeHandler(event)"
+								 dataProvider="{['NONE','ICH','ZOOP','TRAWL']}"/>
 				</s:HGroup>
-				<s:Button fontWeight="bold" includeInLayout="{multipleSearch}" visible="{multipleSearch}" label="Define Time Range" toolTip="Set Time Range" click="showTimeSettings()" />
-				<s:Button fontWeight="bold" label="Back to Text Search" toolTip="Go back to make other changes" click="showStateTextSearch()" />
-				<s:Button fontWeight="bold" color="red" label="Process Search" toolTip="Process Search" click="queryFeaturesText2()" />
+				<s:Button visible="{multipleSearch}" label="Define Time Range"
+						  click="showTimeSettings()" fontWeight="bold"
+						  includeInLayout="{multipleSearch}" toolTip="Set Time Range"/>
+				<s:Button label="Back to Text Search" click="showStateTextSearch()" fontWeight="bold"
+						  toolTip="Go back to make other changes"/>
+				<s:Button label="Process Search" click="queryFeaturesText2()" color="red"
+						  fontWeight="bold" toolTip="Process Search"/>
 			</s:VGroup>
-			<mx:DataGrid id="dg" horizontalGridLines="true" verticalGridLines="true" allowMultipleSelection="true" headerHeight="25"  rowCount="19" headerStyleName="accHead" width="245">
+			<mx:DataGrid id="dg" width="245" allowMultipleSelection="true" headerHeight="25"
+						 headerStyleName="accHead" horizontalGridLines="true" rowCount="19"
+						 verticalGridLines="true">
 				<mx:columns>
-					<mx:DataGridColumn sortable="false" width="29" textAlign="center">
+					<mx:DataGridColumn width="29" sortable="false" textAlign="center">
 						<mx:headerRenderer>
 							<fx:Component>
-								<mx:CheckBox toolTip="Select All Fields" paddingLeft="7" click="outerDocument.checkAll(event)"/>
+								<mx:CheckBox click="outerDocument.checkAll(event)" paddingLeft="7"
+											 toolTip="Select All Fields"/>
 							</fx:Component>
 						</mx:headerRenderer>
 						<mx:itemRenderer>
 							<fx:Component>
-								<mx:CheckBox toolTip="Select This Field" paddingLeft="7" selected="{(data.gridfield == 'true')?true:false}" click="{data.gridfield = (data.gridfield != 'true') ? 'true' : 'false';}"/>
+								<mx:CheckBox click="{data.gridfield = (data.gridfield != 'true') ? 'true' : 'false';}"
+											 paddingLeft="7"
+											 selected="{(data.gridfield == 'true')?true:false}"
+											 toolTip="Select This Field"/>
 							</fx:Component>
 						</mx:itemRenderer>
 					</mx:DataGridColumn>
-					<mx:DataGridColumn dataField="alias" headerText="Attribute Fields" />
+					<mx:DataGridColumn dataField="alias" headerText="Attribute Fields"/>
 				</mx:columns>
 			</mx:DataGrid>
 		</s:Group>
 		
 		<!-- TimeSettings-->
-		<s:Group id="timeInput"
-				 width="100%" height="100%"
-				 visible="false"
+		<s:Group id="timeInput" visible="false" width="100%" height="100%"
 				 visible.timeInput="true">
 			<s:layout>
 				<s:VerticalLayout gap="1"/>
 			</s:layout>
-			<s:Label text="Time Settings" color="0xA80000" fontWeight="bold" fontSize="16" paddingLeft="1" paddingTop="14" paddingBottom="10" />
-			<s:Label text="Select Year(s), Month(s) and Day Range(s) Criteria for Search" color="0xA80000" fontSize="14" paddingLeft="15" paddingTop="14" paddingBottom="15" />
-			<s:HGroup verticalAlign="middle" paddingTop="15" paddingLeft="15" gap="25" horizontalAlign="center">
+			<s:Label color="0xA80000" fontSize="16" fontWeight="bold" paddingBottom="10"
+					 paddingLeft="1" paddingTop="14" text="Time Settings"/>
+			<s:Label color="0xA80000" fontSize="14" paddingBottom="15" paddingLeft="15"
+					 paddingTop="14"
+					 text="Select Year(s), Month(s) and Day Range(s) Criteria for Search"/>
+			<s:HGroup gap="25" horizontalAlign="center" paddingLeft="15" paddingTop="15"
+					  verticalAlign="middle">
 				<s:VGroup>
-					<s:Label text="Select Years" color="0xA80000"  fontSize="14" paddingLeft="5" paddingTop="15" />
-					<mx:DataGrid  id="dgYear" horizontalGridLines="true" verticalGridLines="true" allowMultipleSelection="true" headerHeight="30"  rowCount="10" headerStyleName="accHead" width="165" dataProvider="{yearArray}">
+					<s:Label color="0xA80000" fontSize="14" paddingLeft="5" paddingTop="15"
+							 text="Select Years"/>
+					<mx:DataGrid id="dgYear" width="165" allowMultipleSelection="true"
+								 dataProvider="{yearArray}" headerHeight="30"
+								 headerStyleName="accHead" horizontalGridLines="true" rowCount="10"
+								 verticalGridLines="true">
 						<mx:columns>
-							<mx:DataGridColumn sortable="false" width="29" textAlign="center">
+							<mx:DataGridColumn width="29" sortable="false" textAlign="center">
 								<mx:headerRenderer>
 									<fx:Component>
-										<mx:CheckBox toolTip="Select all Years" paddingLeft="7" click="outerDocument.checkAllyear(event)"/>
+										<mx:CheckBox click="outerDocument.checkAllyear(event)"
+													 paddingLeft="7" toolTip="Select all Years"/>
 									</fx:Component>
 								</mx:headerRenderer>
 								<mx:itemRenderer>
 									<fx:Component>
-										<mx:CheckBox toolTip="Select This Year" paddingLeft="7" selected="{(data.gridfield == 'true')?true:false}" click="{data.gridfield = (data.gridfield != 'true') ? 'true' : 'false';}"/>
+										<mx:CheckBox click="{data.gridfield = (data.gridfield != 'true') ? 'true' : 'false';}"
+													 paddingLeft="7"
+													 selected="{(data.gridfield == 'true')?true:false}"
+													 toolTip="Select This Year"/>
 									</fx:Component>
 								</mx:itemRenderer>
 							</mx:DataGridColumn>
-							<mx:DataGridColumn dataField="alias" headerText="Year" />
+							<mx:DataGridColumn dataField="alias" headerText="Year"/>
 						</mx:columns>
 					</mx:DataGrid>
 				</s:VGroup>
 				<s:VGroup>
-					<s:Label text="Select Months" color="0xA80000" fontSize="14" paddingLeft="5" paddingTop="15" />	
-					<mx:DataGrid  id="dgMonth" horizontalGridLines="true" dataProvider="{monthArray}" verticalGridLines="true" allowMultipleSelection="true" headerHeight="30"  rowCount="10" headerStyleName="accHead" width="165">
+					<s:Label color="0xA80000" fontSize="14" paddingLeft="5" paddingTop="15"
+							 text="Select Months"/>	
+					<mx:DataGrid id="dgMonth" width="165" allowMultipleSelection="true"
+								 dataProvider="{monthArray}" headerHeight="30"
+								 headerStyleName="accHead" horizontalGridLines="true" rowCount="10"
+								 verticalGridLines="true">
 						<mx:columns>
-							<mx:DataGridColumn sortable="false" width="29" textAlign="center">
+							<mx:DataGridColumn width="29" sortable="false" textAlign="center">
 								<mx:headerRenderer>
 									<fx:Component>
-										<mx:CheckBox selected="true" toolTip="Select all Months" paddingLeft="7" click="outerDocument.checkAllmonth(event)"/>
+										<mx:CheckBox click="outerDocument.checkAllmonth(event)"
+													 paddingLeft="7" selected="true"
+													 toolTip="Select all Months"/>
 									</fx:Component>
 								</mx:headerRenderer>
 								<mx:itemRenderer>
 									<fx:Component>
-										<mx:CheckBox toolTip="Select This Months" paddingLeft="7" selected="{(data.gridfield == 'true')?true:false}" click="{data.gridfield = (data.gridfield != 'true') ? 'true' : 'false';}"/>
+										<mx:CheckBox click="{data.gridfield = (data.gridfield != 'true') ? 'true' : 'false';}"
+													 paddingLeft="7"
+													 selected="{(data.gridfield == 'true')?true:false}"
+													 toolTip="Select This Months"/>
 									</fx:Component>
 								</mx:itemRenderer>
 							</mx:DataGridColumn>
-							<mx:DataGridColumn dataField="alias" headerText="Months" />
+							<mx:DataGridColumn dataField="alias" headerText="Months"/>
 						</mx:columns>
 					</mx:DataGrid>
 				</s:VGroup>
 				<s:VGroup>
-					<s:Label text="Select Days" color="0xA80000" fontSize="14" paddingLeft="5" paddingTop="15" />
-					<mx:DataGrid  id="dgDay" horizontalGridLines="true" dataProvider="{dayArray}" verticalGridLines="true" allowMultipleSelection="true" headerHeight="30"  rowCount="10" headerStyleName="accHead" width="165" >
+					<s:Label color="0xA80000" fontSize="14" paddingLeft="5" paddingTop="15"
+							 text="Select Days"/>
+					<mx:DataGrid id="dgDay" width="165" allowMultipleSelection="true"
+								 dataProvider="{dayArray}" headerHeight="30"
+								 headerStyleName="accHead" horizontalGridLines="true" rowCount="10"
+								 verticalGridLines="true">
 						<mx:columns>
-							<mx:DataGridColumn sortable="false" width="29" textAlign="center">
+							<mx:DataGridColumn width="29" sortable="false" textAlign="center">
 								<mx:itemRenderer>
 									<fx:Component>
-										<mx:CheckBox toolTip="Select This Day" paddingLeft="7" selected="{(data.gridfield == 'true')?true:false}" click="{data.gridfield = (data.gridfield != 'true') ? 'true' : 'false';}"/>
+										<mx:CheckBox click="{data.gridfield = (data.gridfield != 'true') ? 'true' : 'false';}"
+													 paddingLeft="7"
+													 selected="{(data.gridfield == 'true')?true:false}"
+													 toolTip="Select This Day"/>
 									</fx:Component>
 								</mx:itemRenderer>
 							</mx:DataGridColumn>
-							<mx:DataGridColumn dataField="alias" headerText="Days" />
+							<mx:DataGridColumn dataField="alias" headerText="Days"/>
 						</mx:columns>
 					</mx:DataGrid>
 				</s:VGroup>
 			</s:HGroup>
-			<s:VGroup paddingTop="60" horizontalAlign="center" width="100%">
-				<s:HGroup paddingTop="10" horizontalAlign="center" gap="20">
-					<s:Button fontWeight="bold" label="Back to Text Search" toolTip="Go back to make other changes" click="showStateTextSearch()" />
-					<s:Button fontWeight="bold" label="Process Search" color="red" toolTip="Process Search" click="queryFeaturesText2()" />
-					<s:Button fontWeight="bold" click="showfields()" label="Select Fields"/>
+			<s:VGroup width="100%" horizontalAlign="center" paddingTop="60">
+				<s:HGroup gap="20" horizontalAlign="center" paddingTop="10">
+					<s:Button label="Back to Text Search" click="showStateTextSearch()"
+							  fontWeight="bold" toolTip="Go back to make other changes"/>
+					<s:Button label="Process Search" click="queryFeaturesText2()" color="red"
+							  fontWeight="bold" toolTip="Process Search"/>
+					<s:Button label="Select Fields" click="showfields()" fontWeight="bold"/>
 				</s:HGroup>
 			</s:VGroup>
 		</s:Group>
 		
 		<!-- result-->
-		<s:Group id="resultsList"
-				 width="100%" height="100%"
-				 visible="false"
+		<s:Group id="resultsList" visible="false" width="100%" height="100%"
 				 visible.resultsList="true">
 			<s:layout>
 				<s:VerticalLayout gap="1"/>
 			</s:layout>
-			<s:Label text="Results and Statistics" color="0xA80000" fontWeight="bold" fontSize="16" paddingLeft="5" paddingTop="10" />
-			<s:HGroup id="boxMessage"
-					  width="100%" paddingTop="20"
-					  includeInLayout="{msgVisible}"
-					  visible="{msgVisible}" verticalAlign="middle" horizontalAlign="center">
-				<mx:Image id="swfMessage"
-						  source="assets/images/loader.swf"
-						  visible="false"/>
-				<s:Label id="txtMessage"
-						 width="90%"
-						 text=""/>
-				<s:Button click="showStateTextSearch2()"
-						 fontWeight="bold" fontSize="14"
-						 label="Back to Search"
-						 toolTip="Search Again"
-						 visible="true"/>
-				<s:Button click="clear()"
-						 fontWeight="bold"
-						 includeInLayout="{searchResultAC.length &gt; 0}"
-						 label="{clearLabel}" fontSize="13"
-						 visible="{searchResultAC.length &gt; 0}"/>
+			<s:Label color="0xA80000" fontSize="16" fontWeight="bold" paddingLeft="5" paddingTop="10"
+					 text="Results and Statistics"/>
+			<s:HGroup id="boxMessage" visible="{msgVisible}" width="100%" horizontalAlign="center"
+					  includeInLayout="{msgVisible}" paddingTop="20" verticalAlign="middle">
+				<mx:Image id="swfMessage" visible="false" source="assets/images/loader.swf"/>
+				<s:Label id="txtMessage" width="90%" text=""/>
+				<s:Button visible="true" label="Back to Search" click="showStateTextSearch2()"
+						  fontSize="14" fontWeight="bold" toolTip="Search Again"/>
+				<s:Button visible="{searchResultAC.length &gt; 0}" label="{clearLabel}"
+						  click="clear()" fontSize="13" fontWeight="bold"
+						  includeInLayout="{searchResultAC.length &gt; 0}"/>
 			</s:HGroup>
-			<s:VGroup paddingTop="40" width="100%">
-				<s:Label text="Query Summary" fontSize="13" paddingLeft="5" color="0xA80000" fontWeight="bold" paddingTop="5"/>
-				<s:Label id="querySum" text="There is no current search." fontSize="12" paddingLeft="25" width="100%" paddingTop="5"/>
-				<mx:CheckBox paddingLeft="25" paddingTop="0" enabled="false" disabledColor="0xE5ECFF" fontWeight="bold" label="View Individual Result Points" selected="false" id="unclusterCheck" click="unclusterPoints()" toolTip="Uncluster Results to view Individual Points. Individual points can slow down application.  Only available if total number of features is less than 3200."/>
+			<s:VGroup width="100%" paddingTop="40">
+				<s:Label color="0xA80000" fontSize="13" fontWeight="bold" paddingLeft="5"
+						 paddingTop="5" text="Query Summary"/>
+				<s:Label id="querySum" width="100%" fontSize="12" paddingLeft="25" paddingTop="5"
+						 text="There is no current search."/>
+				<mx:CheckBox id="unclusterCheck" label="View Individual Result Points"
+							 click="unclusterPoints()" disabledColor="0xE5ECFF" enabled="false"
+							 fontWeight="bold" paddingLeft="25" paddingTop="0" selected="false"
+							 toolTip="Uncluster Results to view Individual Points. Individual points can slow down application.  Only available if total number of features is less than 3200."/>
 			</s:VGroup>
 		</s:Group>
 	</viewer:WidgetTemplate>
