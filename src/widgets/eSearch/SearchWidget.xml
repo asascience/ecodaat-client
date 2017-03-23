@@ -464,6 +464,8 @@ COMMENTS_SAMPLES,ZOOP_EUPHAUSIID_EGG,ZOOP_COPEPOD_NAUPLII,BOTTLE_NUM,SIO4,PO4,NH
 			<name>DIET RECORDS</name>
 			<url>http://akc0ss-p001-111:6080/arcgis/rest/services/ecodaat/ecodaat_production/MapServer/7</url>
 			<expressions>
+				<expression alias="CRUISE_NAME" textsearchlabel="Search by cruise"
+					field="CRUISE_NAME" usedomain="true">CRUISE_NAME LIKE '%[value]%'</expression>
 				<expression alias="PREY_QUALITY" userlist="0,1,2,3,4" textsearchlabel="Search by PREY QUALITY"
 					field="PREY_QUALITY" usedomain="false">PREY_QUALITY LIKE '%[value]%'</expression>
 				<expression alias="PREY_COUNT" textsearchlabel="Search by PREY COUNT MAXIMUM VALUE"

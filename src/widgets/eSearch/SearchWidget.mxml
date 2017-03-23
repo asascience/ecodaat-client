@@ -1202,6 +1202,16 @@
 					for (var p:int=0;p < featureSet.attributes.length; p++){
 						taxonArray.addItem({alias:featureSet.attributes[p].TAXON_NAME,selectall:false});
 					}
+					var dataSortField:SortField = new SortField();
+					dataSortField.name = "alias";
+					dataSortField.numeric = false;
+					
+					/* Create the Sort object and add the SortField object created earlier to the array of fields to sort on. */
+					var numericDataSort:Sort = new Sort();
+					numericDataSort.fields = [dataSortField];
+					
+					/* Set the ArrayCollection object's sort property to our custom sort, and refresh the ArrayCollection. */
+					taxonArray.sort = numericDataSort;
 					taxonArray.refresh();
 					taxaBob.dataProvider = taxonArray;
 				}
@@ -3484,19 +3494,25 @@
 				
 				cboLayerText.selectedIndex = 2;
 				inputData['InputQueryHaul'] = constructQuery(false);
+				//var queryexpres = constructQuery(false);
 				cboLayerText.selectedIndex = 1;
 				
 				if(databaseText.selectedLabel == 'Zooplankton'){
 					
 					gptoolurl =catchzerotoolGPbob;
 					
-					if(stageBob.selectedItems.length>0){
-						inputData['stage'] = stageBob.selectedItems[0].name;
+					if(stageBob.selectedAll == false && stageBob.selectedViewsSQL != "noneSelected"){
+						inputData['InputSpeciesQuery'] +=" AND STAGE_NAME "+stageBob.selectedViewsSQL;
 					}
-					else{
-						Alert.show("Please Select one stage for query.", "Query Problem");
-						go =false;
-					}
+					//if(stageBob.selectedItems.length>0){
+					inputData['stage'] = 'nostagen';
+					
+					//queryexpres+="ZOOP_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
+					//}
+					//else{
+						//Alert.show("Please Select one stage for query.", "Query Problem");
+						//go =false;
+					//}
 					if(taxaBob.selectedItems.length>0){
 						
 						for (var s2:int =0; s2<taxaBob.selectedItems.length; s2++)
@@ -3505,6 +3521,7 @@
 						}
 						inputData['Taxa_List'] = speciesList;
 						inputData['InputSpeciesQuery'] = constructQuery(false,true)+ " and taxon_name = '%taxa%'";
+						inputData['InputQueryHaul']+=" and ZOOP_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
 					}
 					else if(taxaBob.dataProvider[0].selected == true){
 						for (var s2:int =1; s2<taxaBob.dataProvider.length; s2++)
@@ -3513,6 +3530,7 @@
 						}
 						inputData['Taxa_List'] = speciesList;
 						inputData['InputSpeciesQuery'] = constructQuery(false,true)+ " and taxon_name = '%taxa%'";
+						inputData['InputQueryHaul']+=" and ZOOP_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
 					}
 					else{
 						Alert.show("Please Select Species for query.", "Query Problem");
@@ -3521,13 +3539,19 @@
 				}
 				else if(databaseText.selectedLabel == 'Ichthyoplankton'){
 					gptoolurl =catchzerotoolGP;
-					if(stageIch.selectedItems.length>0){
-						inputData['stage'] = stageIch.selectedItems[0].alias;
+					
+					inputData['stage'] = 'nostagen';
+					//if(stageIch.selectedItems.length>0){
+					if(stageIch.selectedAll == false && stageIch.selectedViewsSQL != "noneSelected"){
+						inputData['InputSpeciesQuery'] +=" AND STAGE_NAME "+stageIch.selectedViewsSQL;
 					}
-					else{
-						Alert.show("Please Select one stage for query.", "Query Problem");
-						go =false;
-					}
+					
+					//queryexpres+="and ICH_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
+					//}
+					//else{
+						//Alert.show("Please Select one stage for query.", "Query Problem");
+						//go =false;
+					//}
 					if(speciesIch.selectedItems.length>0){
 						for (var s2:int =0; s2<speciesIch.selectedItems.length; s2++)
 						{
@@ -3535,6 +3559,7 @@
 						}
 						inputData['Species_List'] = speciesList;
 						inputData['InputSpeciesQuery'] = constructQuery(false,true)+ " and species_name = '%specie%'";
+						inputData['InputQueryHaul']+= " and ICH_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
 					}
 					else if(speciesIch.dataProvider[0].selected == true){
 						for (var s2:int =1; s2<speciesIch.dataProvider.length; s2++)
@@ -3543,6 +3568,7 @@
 						}
 						inputData['Species_List'] = speciesList;
 						inputData['InputSpeciesQuery'] = constructQuery(false,true)+ " and species_name = '%specie%'";
+						inputData['InputQueryHaul']+= " and ICH_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
 					}
 					else{
 						Alert.show("Please Select Species for query.", "Query Problem");
@@ -3553,6 +3579,8 @@
 					gptoolurl =catchzerotoolGP;
 					//no trawl stage
 					inputData['stage'] = 'TRAWL';
+					
+					//queryexpres+="ORIG_DB ='TRAWL'";
 					
 					if(speciesTra.selectedItems.length>0){
 						for (var s2:int =0; s2<speciesTra.selectedItems.length; s2++)
@@ -3575,6 +3603,8 @@
 						go =false;
 					}
 				}			
+				
+				//inputData['InputSpeciesQuery'] = queryexpres;
 				
 				if(go == true){
 								
@@ -3652,13 +3682,15 @@
 						else{
 							gps.addEventListener(GeoprocessorEvent.GET_RESULT_DATA_COMPLETE, onGetResult);
 							
-							gps.getResultData(event.jobInfo.jobId, 'totallength_freq_trawl_xls');
+							gps.getResultData(event.jobInfo.jobId, 'lengthsea_freq_trawl_xls');
 							
+							
+							/* removed per Lauren's request
 							var timer1:Timer = new Timer(400,0);
 							timer1.addEventListener(TimerEvent.TIMER, onTimer);
 							function onTimer(e:TimerEvent):void {
-								gps.getResultData(event.jobInfo.jobId, 'lengthsea_freq_trawl_xls');
-								timer1.stop();
+							gps.getResultData(event.jobInfo.jobId, 'totallength_freq_trawl_xls');
+							timer1.stop();
 							}
 							timer1.start();
 							
@@ -3676,7 +3708,7 @@
 								gps.getResultData(event.jobInfo.jobId, 'standardlength_freq_trawl_xls');
 								timer3.stop();
 							}
-							timer3.start();
+							timer3.start();*/
 							
 							
 							function onGetResult(event : GeoprocessorEvent):void
@@ -6177,7 +6209,8 @@
 							<s:Label width="130" color="0xA80000" fontWeight="bold" text="HAUL ID:"/>
 							<mx:TextInput id="haulSample" width="130" toolTip="Optional"/>
 						</s:HGroup>
-						<s:Label width="130" color="0xA80000" fontWeight="bold" text="Sample ID:"/>
+						<s:Label width="130" color="0xA80000" fontWeight="bold"
+								 text="FOCI Sample ID:"/>
 						<mx:TextInput id="sampleSample" width="135" toolTip="Optional"/>
 					</s:HGroup>
 					<s:HGroup width="100%" gap="15" horizontalAlign="left" verticalAlign="middle">
@@ -6238,13 +6271,14 @@
 								  includeInLayout="{cboLayerText.selectedIndex == 1}"
 								  toolTip="Table will be downloaded.  "/>
 						<s:Button id="ich_length_but" visible="{cboLayerText.selectedIndex == 3}"
-								  label="Ich Length Frequency" click="generateIchLength()" fontWeight="bold"
-								  includeInLayout="{cboLayerText.selectedIndex == 3}"
-								  toolTip="Table will be downloaded.  "/>
-						<s:Button id="ich_abundance_but" visible="{cboLayerText.selectedIndex == 3}"
-								  label="Ich Abundance/Occurrence" click="generateIchAbundance()"
+								  label="Ich Length Frequency" click="generateIchLength()"
 								  fontWeight="bold"
 								  includeInLayout="{cboLayerText.selectedIndex == 3}"
+								  toolTip="Table will be downloaded.  "/>
+						<s:Button id="ich_abundance_but" visible="{cboLayerText.selectedIndex == 1}"
+								  label="Ich Abundance/Occurrence" click="generateIchAbundance()"
+								  fontWeight="bold"
+								  includeInLayout="{cboLayerText.selectedIndex == 1}"
 								  toolTip="Table will be downloaded."/>
 					</s:HGroup>
 					<s:Label id="dataproc_status" color="0xFF0000" fontSize="11"
