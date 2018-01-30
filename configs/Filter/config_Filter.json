@@ -1,0 +1,308 @@
+{
+  "filters": [
+    {
+      "layerId": "EcoDAAT Layers_0",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/0",
+      "name": "Haul Records",
+      "filter": {
+        "logicalOperator": "AND",
+        "parts": [
+          {
+            "fieldObj": {
+              "name": "CRUISE",
+              "label": "CRUISE",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "CRUISE is",
+              "hint": "",
+              "cascade": "all"
+            },
+            "caseSensitive": false
+          }
+        ],
+        "expr": ""
+      },
+      "icon": "",
+      "enableMapFilter": true
+    },
+    {
+      "layerId": "EcoDAAT Layers_1",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/1",
+      "name": "Sample Records",
+      "filter": {
+        "logicalOperator": "AND",
+        "parts": [
+          {
+            "fieldObj": {
+              "name": "CRUISE_NAME",
+              "label": "CRUISE_NAME",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "CRUISE_NAME is",
+              "hint": "",
+              "cascade": "all"
+            },
+            "caseSensitive": false
+          },
+          {
+            "fieldObj": {
+              "name": "GEAR_CODE",
+              "label": "GEAR_CODE",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "GEAR_CODE is",
+              "hint": "",
+              "cascade": "all"
+            },
+            "caseSensitive": false
+          },
+          {
+            "fieldObj": {
+              "name": "HAUL_PERFORMANCE",
+              "label": "HAUL_PERFORMANCE",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "HAUL_PERFORMANCE is",
+              "hint": "",
+              "cascade": "all"
+            },
+            "caseSensitive": false
+          }
+        ],
+        "expr": ""
+      },
+      "icon": "",
+      "enableMapFilter": true
+    },
+    {
+      "layerId": "EcoDAAT Layers_2",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/2",
+      "name": "Specimen Records",
+      "filter": {
+        "logicalOperator": "AND",
+        "parts": [
+          {
+            "fieldObj": {
+              "name": "SPECIES_NAME",
+              "label": "SPECIES_NAME",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "SPECIES_NAME is",
+              "hint": "",
+              "cascade": "all"
+            },
+            "caseSensitive": false
+          }
+        ],
+        "expr": ""
+      },
+      "icon": "",
+      "enableMapFilter": true
+    },
+    {
+      "layerId": "EcoDAAT Layers_4",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/4",
+      "name": "Seacat Data",
+      "filter": {
+        "logicalOperator": "AND",
+        "parts": [
+          {
+            "fieldObj": {
+              "name": "CRUISE",
+              "label": "CRUISE",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "CRUISE is",
+              "hint": "",
+              "cascade": "all"
+            },
+            "caseSensitive": false
+          }
+        ],
+        "expr": ""
+      },
+      "icon": "",
+      "enableMapFilter": true
+    },
+    {
+      "layerId": "EcoDAAT Layers_7",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/7",
+      "name": "Diet Information",
+      "filter": {
+        "logicalOperator": "AND",
+        "parts": [
+          {
+            "fieldObj": {
+              "name": "CRUISE_NAME",
+              "label": "CRUISE_NAME",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "CRUISE_NAME is",
+              "hint": "",
+              "cascade": "all"
+            },
+            "caseSensitive": false
+          }
+        ],
+        "expr": ""
+      },
+      "icon": "",
+      "enableMapFilter": true
+    },
+    {
+      "layerId": "EcoDAAT Layers_5",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/5",
+      "name": "Chlorophyll Data",
+      "filter": {
+        "logicalOperator": "AND",
+        "parts": [
+          {
+            "fieldObj": {
+              "name": "GEOGRAPHIC_AREA",
+              "label": "GEOGRAPHIC_AREA",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "GEOGRAPHIC_AREA is",
+              "hint": "",
+              "cascade": "all"
+            },
+            "caseSensitive": false
+          }
+        ],
+        "expr": ""
+      },
+      "icon": "",
+      "enableMapFilter": true
+    },
+    {
+      "layerId": "EcoDAAT Layers_6",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/6",
+      "name": "Nutrient Data",
+      "filter": {
+        "logicalOperator": "AND",
+        "parts": [
+          {
+            "fieldObj": {
+              "name": "GEAR_NAME",
+              "label": "GEAR_NAME",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "GEAR_NAME is",
+              "hint": "",
+              "cascade": "all"
+            },
+            "caseSensitive": false
+          }
+        ],
+        "expr": ""
+      },
+      "icon": "",
+      "enableMapFilter": true
+    },
+    {
+      "layerId": "EcoDAAT Layers_8",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/8",
+      "name": "CTDB Data",
+      "filter": {
+        "logicalOperator": "AND",
+        "parts": [
+          {
+            "fieldObj": {
+              "name": "GEOGRAPHIC_AREA",
+              "label": "GEOGRAPHIC_AREA",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "GEOGRAPHIC_AREA is",
+              "hint": "",
+              "cascade": "all"
+            },
+            "caseSensitive": false
+          }
+        ],
+        "expr": ""
+      },
+      "icon": "",
+      "enableMapFilter": true
+    }
+  ]
+}

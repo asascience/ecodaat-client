@@ -1,0 +1,37 @@
+{
+  "profileTaskUrl": "http://elevation.arcgis.com/arcgis/rest/services/Tools/ElevationSync/GPServer",
+  "scalebarUnits": "feet",
+  "chartRenderingOptions": {
+    "chartTitleFontSize": 13,
+    "axisTitleFontSize": 11,
+    "axisLabelFontSize": 9,
+    "indicatorFontColor": "#eeeeee",
+    "indicatorFillColor": "#777777",
+    "titleFontColor": "#777777",
+    "axisFontColor": "#777777",
+    "axisMajorTickColor": "#777777",
+    "skyTopColor": "#b0e0e6",
+    "skyBottomColor": "#4682b4",
+    "waterLineColor": "#eeeeee",
+    "waterTopColor": "#add8e6",
+    "waterBottomColor": "#0000ff",
+    "elevationLineColor": "#d2b48c",
+    "elevationTopColor": "#8b4513",
+    "elevationBottomColor": "#cd853f",
+    "constrain": false
+  },
+  "symbols": {
+    "simplelinesymbol": {
+      "color": [
+        68,
+        140,
+        203,
+        153
+      ],
+      "width": 2.25,
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "marker": null
+    }
+  }
+}

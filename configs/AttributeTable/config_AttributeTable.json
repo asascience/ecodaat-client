@@ -1,0 +1,303 @@
+{
+  "layerInfos": [
+    {
+      "name": "Haul Records",
+      "id": "EcoDAAT Layers_0",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/0"
+      },
+      "show": true,
+      "showAttachments": false
+    },
+    {
+      "name": "Sample Records",
+      "id": "EcoDAAT Layers_1",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/1"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "Specimen Records",
+      "id": "EcoDAAT Layers_2",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/2"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "Subspecimen Records (ICH)",
+      "id": "EcoDAAT Layers_3",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/3"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "Seacat Data",
+      "id": "EcoDAAT Layers_4",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/4"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "Chlorophyll Data",
+      "id": "EcoDAAT Layers_5",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/5"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "Nutrient Data",
+      "id": "EcoDAAT Layers_6",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/6"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "Diet Information",
+      "id": "EcoDAAT Layers_7",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/7"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "CTDB Data",
+      "id": "EcoDAAT Layers_8",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/8"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - DISCARDS",
+      "id": "EcoDAAT Layers_9",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/9"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - FLOWMETER",
+      "id": "EcoDAAT Layers_10",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/10"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - PRESERVATIVE",
+      "id": "EcoDAAT Layers_11",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/11"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - PROJECTS DICTIONARY",
+      "id": "EcoDAAT Layers_12",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/12"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - STAGE",
+      "id": "EcoDAAT Layers_13",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/13"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - ICH_SPECIES",
+      "id": "EcoDAAT Layers_14",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/14"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - TRAWL_SPECIES",
+      "id": "EcoDAAT Layers_15",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/15"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - CRUISEQuery",
+      "id": "EcoDAAT Layers_16",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/16"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - TAXON_CODEQuery",
+      "id": "EcoDAAT Layers_17",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/17"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - GEO_LOC",
+      "id": "EcoDAAT Layers_18",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/18"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - CRUISE",
+      "id": "EcoDAAT Layers_19",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/19"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - GEAR",
+      "id": "EcoDAAT Layers_20",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/20"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - TAXON CODE",
+      "id": "EcoDAAT Layers_21",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/21"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - SPECIES CODE",
+      "id": "EcoDAAT Layers_22",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/22"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - cruise_seacat",
+      "id": "EcoDAAT Layers_23",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/23"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - cruise_chlor",
+      "id": "EcoDAAT Layers_24",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/24"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - cruise_nutrient",
+      "id": "EcoDAAT Layers_25",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/25"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - cruise_ctdb",
+      "id": "EcoDAAT Layers_26",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/26"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - purpose",
+      "id": "EcoDAAT Layers_27",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/27"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - ichstage",
+      "id": "EcoDAAT Layers_28",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/28"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - bobsize",
+      "id": "EcoDAAT Layers_29",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/29"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - bobstage",
+      "id": "EcoDAAT Layers_30",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/30"
+      },
+      "show": false,
+      "showAttachments": false
+    },
+    {
+      "name": "ecodaat_development - taxon_bob",
+      "id": "EcoDAAT Layers_31",
+      "layer": {
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/31"
+      },
+      "show": false,
+      "showAttachments": false
+    }
+  ],
+  "table": {
+    "pageSizeOptions": [
+      25,
+      50,
+      100,
+      1000
+    ]
+  },
+  "hideExportButton": true,
+  "initiallyExpand": false,
+  "filterByMapExtent": true
+}

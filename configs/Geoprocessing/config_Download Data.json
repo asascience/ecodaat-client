@@ -1,0 +1,165 @@
+{
+  "name": "ExtractDataTask",
+  "displayName": "Extract Data Task",
+  "description": "",
+  "category": "",
+  "helpUrl": "https://webmap.afsc.noaa.gov/maps/rest/directories/arcgisoutput/ecodaat/ECODAAT_DOWNLOAD_DATA_GPServer/ecodaat_ECODAAT_DOWNLOAD_DATA/ExtractDataTask.htm",
+  "_ssl": false,
+  "serverInfo": {
+    "currentVersion": 10.41,
+    "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ECODAAT_DOWNLOAD_DATA/GPServer/",
+    "hasResultMapServer": false,
+    "resultMapServerName": "",
+    "supportsUpload": false
+  },
+  "useResultMapServer": false,
+  "taskUrl": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ECODAAT_DOWNLOAD_DATA/GPServer/Extract Data Task",
+  "isSynchronous": false,
+  "inputParams": [
+    {
+      "name": "Layers_to_Clip",
+      "dataType": "GPMultiValue:GPString",
+      "description": "The layers to be clipped. Layers must be  feature or raster layers in the map's table of contents.  Layer files do not work for this parameter.",
+      "defaultValue": [
+        "HAUL Data",
+        "Sample Data",
+        "SPECIMEN Data",
+        "CHLOROPHYLL Data",
+        "CTDB Data",
+        "TRAWL DIET Data",
+        "SEACAT CTD",
+        "NUTRIENT Data"
+      ],
+      "category": "",
+      "choiceList": [
+        "HAUL Data",
+        "Sample Data",
+        "SPECIMEN Data",
+        "CHLOROPHYLL Data",
+        "CTDB Data",
+        "TRAWL DIET Data",
+        "SEACAT CTD",
+        "NUTRIENT Data"
+      ],
+      "label": "Layers to Clip",
+      "visible": true,
+      "required": true,
+      "tooltip": "Layers to Clip"
+    },
+    {
+      "name": "Area_of_Interest",
+      "dataType": "GPFeatureRecordSetLayer",
+      "description": "One or more polygons by which the layers will be clipped.",
+      "defaultValue": {
+        "displayFieldName": "",
+        "geometryType": "esriGeometryPolygon",
+        "spatialReference": {
+          "wkid": null
+        },
+        "fields": [
+          {
+            "name": "FID",
+            "type": "esriFieldTypeOID",
+            "alias": "FID"
+          },
+          {
+            "name": "Id",
+            "type": "esriFieldTypeInteger",
+            "alias": "Id"
+          },
+          {
+            "name": "Shape_Length",
+            "type": "esriFieldTypeDouble",
+            "alias": "Shape_Length"
+          },
+          {
+            "name": "Shape_Area",
+            "type": "esriFieldTypeDouble",
+            "alias": "Shape_Area"
+          }
+        ],
+        "features": [],
+        "exceededTransferLimit": false
+      },
+      "category": "",
+      "label": "Area of Interest",
+      "visible": true,
+      "required": true,
+      "featureSetMode": "draw",
+      "tooltip": "Area of Interest",
+      "symbol": {
+        "color": [
+          155,
+          187,
+          89,
+          128
+        ],
+        "outline": {
+          "color": [
+            115,
+            140,
+            61,
+            255
+          ],
+          "width": 1.5,
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "marker": null
+        },
+        "type": "esriSFS",
+        "style": "esriSFSSolid"
+      }
+    },
+    {
+      "name": "Feature_Format",
+      "dataType": "GPString",
+      "description": "The format in which the output features will be delivered. The string provided should be formatted as follows:  Name or format - Short Name - extension (if any) The hyphen between the components is required, as well as the spaces around the hyphen.For example: File Geodatabase - GDB - .gdb Shapefile - SHP - .shp Autodesk AutoCAD - DXF_R2007 - .dxf Autodesk AutoCAD - DWG_R2007 - .dwg Bentley Microstation Design (V8) - DGN_V8 - .dgn  Internally, this tool uses the Export to CAD tool to convert data to the .dgn, .dwg, and .dxf  CAD formats. The list of short names supported includes DGN_V8, DWG_R14, DWG_R2000, DWG_R2004, DWG_R2005, DWG_R2007, DWG_R2010, DXF_R14, DXF_R2000, DXF_R2004, DXF_R2005, DXF_R2007, and DXF_R2010.",
+      "defaultValue": "Shapefile - SHP - .shp",
+      "category": "",
+      "choiceList": [
+        "File Geodatabase - GDB - .gdb",
+        "Shapefile - SHP - .shp"
+      ],
+      "label": "Feature Format",
+      "visible": true,
+      "required": true,
+      "tooltip": "Feature Format"
+    },
+    {
+      "name": "Raster_Format",
+      "dataType": "GPString",
+      "description": "The format in which the output raster datasets will be delivered. The string provided should be formatted as follows: Name of format - Short Name - extension (if any) Any of the following strings will work: Esri GRID - GRID File Geodatabase - GDB - .gdb ERDAS IMAGINE - IMG - .img Tagged Image File Format - TIFF - .tif Portable Network Graphics - PNG - .png Graphic Interchange Format - GIF - .gif Joint Photographics Experts Group - JPEG - .jpg Joint Photographics Experts Group - JPEG - .jp2 Bitmap - BMP - .bmp Some of the above raster formats have limitations and not all data can be converted to the format. For a list of formats and their limitations, see the help topic \"Supported raster dataset file formats\".",
+      "defaultValue": "ESRI GRID - GRID",
+      "category": "",
+      "choiceList": [
+        "ESRI GRID - GRID",
+        "File Geodatabase - GDB - .gdb",
+        "ERDAS IMAGINE - IMG - .img",
+        "Joint Photographics Experts Group - JPEG 2000 - .jp2"
+      ],
+      "label": "Raster Format",
+      "visible": false,
+      "required": true,
+      "tooltip": "Raster Format"
+    }
+  ],
+  "outputParams": [
+    {
+      "name": "Output_Zip_File",
+      "dataType": "GPDataFile",
+      "description": "The zip file that will contain the extracted data.",
+      "defaultValue": null,
+      "category": "",
+      "label": "Output Zip File",
+      "visible": true,
+      "required": true,
+      "tooltip": "Output Zip File"
+    }
+  ],
+  "shareResults": false,
+  "layerOrder": [
+    "Area_of_Interest"
+  ],
+  "showExportButton": true,
+  "useDynamicSchema": false
+}

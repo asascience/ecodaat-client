@@ -1,0 +1,8 @@
+{
+  "serviceURL": "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task",
+  "defaultTitle": "EcoDAAT Viewer",
+  "defaultAuthor": "EcoFOCI Data Portal",
+  "defaultCopyright": "",
+  "defaultFormat": "PDF",
+  "defaultLayout": "MAP_ONLY"
+}

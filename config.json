@@ -1,0 +1,885 @@
+{
+  "theme": {
+    "name": "FoldableTheme",
+    "styles": [
+      "yellow",
+      "blue",
+      "default",
+      "black",
+      "cyan",
+      "green",
+      "purple",
+      "red"
+    ],
+    "version": "2.5",
+    "sharedTheme": {
+      "isPortalSupport": true,
+      "useHeader": false,
+      "useLogo": false
+    },
+    "customStyles": {
+      "mainBackgroundColor": "#689cc5"
+    }
+  },
+  "portalUrl": "http://noaa.maps.arcgis.com",
+  "appId": "",
+  "authorizedCrossOriginDomains": [],
+  "title": "ECODAAT",
+  "subtitle": "<div class=\"attribute-custom-style\">EcoFOCI Data Portal</div>",
+  "keepAppState": false,
+  "logo": "https://noaa.maps.arcgis.com/sharing/rest/content/items/36d695d869a94664a74d919cfbe8813f/data",
+  "geometryService": "https://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer",
+  "links": [
+    {
+      "label": "AFSC",
+      "url": "https://www.afsc.noaa.gov/"
+    }
+  ],
+  "widgetOnScreen": {
+    "widgets": [
+      {
+        "uri": "themes/FoldableTheme/widgets/HeaderController/Widget",
+        "position": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "height": 40,
+          "paddingRight": 275,
+          "relativeTo": "browser"
+        },
+        "version": "2.5",
+        "id": "themes_FoldableTheme_widgets_HeaderController_Widget_1",
+        "name": "HeaderController",
+        "config": "configs/HeaderController/config_HeaderController.json",
+        "controlledWidgets": [
+          "widgets_Filter_Widget_28",
+          "widgets_TimeSlider_Widget_20",
+          "widgets_LocalLayer_Widget_30",
+          "widgets_LayerList_Widget_31",
+          "widgets_Geoprocessing_Widget_32",
+          "widgets_BasemapGallery_Widget_22",
+          "widgets_About_Widget_21"
+        ],
+        "controlledGroups": [
+          "_29"
+        ]
+      },
+      {
+        "uri": "widgets/Scalebar/Widget",
+        "position": {
+          "left": 7,
+          "bottom": 25,
+          "relativeTo": "map"
+        },
+        "version": "2.5",
+        "id": "widgets_Scalebar_Widget_2",
+        "name": "Scalebar",
+        "config": "configs/Scalebar/config_Scalebar.json"
+      },
+      {
+        "uri": "widgets/Search/Widget",
+        "position": {
+          "right": 2,
+          "top": 2,
+          "relativeTo": "browser",
+          "zIndex": 6
+        },
+        "version": "2.5",
+        "id": "widgets_Search_Widget_3",
+        "name": "Search",
+        "config": "configs/Search/config_Search.json",
+        "visible": false
+      },
+      {
+        "uri": "widgets/Coordinate/Widget",
+        "position": {
+          "left": 7,
+          "bottom": 5,
+          "relativeTo": "map"
+        },
+        "version": "2.5",
+        "id": "widgets_Coordinate_Widget_4",
+        "name": "Coordinate"
+      },
+      {
+        "position": {
+          "left": 7,
+          "bottom": 70,
+          "relativeTo": "map"
+        },
+        "placeholderIndex": 1,
+        "id": "_5"
+      },
+      {
+        "position": {
+          "left": 57,
+          "bottom": 70,
+          "relativeTo": "map"
+        },
+        "placeholderIndex": 2,
+        "id": "_6"
+      },
+      {
+        "position": {
+          "left": 107,
+          "bottom": 70,
+          "relativeTo": "map"
+        },
+        "placeholderIndex": 3,
+        "id": "_7"
+      },
+      {
+        "position": {
+          "left": 157,
+          "bottom": 70,
+          "relativeTo": "map"
+        },
+        "placeholderIndex": 4,
+        "id": "_8"
+      },
+      {
+        "position": {
+          "left": 207,
+          "bottom": 70,
+          "relativeTo": "map"
+        },
+        "placeholderIndex": 5,
+        "id": "_9"
+      },
+      {
+        "uri": "widgets/OverviewMap/Widget",
+        "position": {
+          "right": 0,
+          "bottom": 0,
+          "zIndex": 1,
+          "relativeTo": "map"
+        },
+        "version": "2.5",
+        "id": "widgets_OverviewMap_Widget_10",
+        "name": "OverviewMap"
+      },
+      {
+        "uri": "widgets/HomeButton/Widget",
+        "position": {
+          "left": 7,
+          "top": 75,
+          "relativeTo": "map"
+        },
+        "version": "2.5",
+        "id": "widgets_HomeButton_Widget_11",
+        "name": "HomeButton"
+      },
+      {
+        "uri": "widgets/MyLocation/Widget",
+        "position": {
+          "left": 7,
+          "top": 110,
+          "relativeTo": "map"
+        },
+        "version": "2.5",
+        "id": "widgets_MyLocation_Widget_12",
+        "name": "MyLocation",
+        "config": "configs/MyLocation/config_MyLocation.json",
+        "visible": false
+      },
+      {
+        "uri": "widgets/AttributeTable/Widget",
+        "position": {
+          "relativeTo": "browser"
+        },
+        "version": "2.5",
+        "id": "widgets_AttributeTable_Widget_13",
+        "name": "AttributeTable",
+        "config": "configs/AttributeTable/config_AttributeTable.json"
+      },
+      {
+        "uri": "widgets/Splash/Widget",
+        "position": {
+          "relativeTo": "browser"
+        },
+        "version": "2.5",
+        "id": "widgets_Splash_Widget_14",
+        "name": "Splash",
+        "config": "configs/Splash/config_Splash.json"
+      },
+      {
+        "uri": "widgets/ZoomSlider/Widget",
+        "position": {
+          "top": 5,
+          "left": 7,
+          "relativeTo": "map"
+        },
+        "version": "2.5",
+        "id": "widgets_ZoomSlider_Widget_15",
+        "name": "ZoomSlider"
+      },
+      {
+        "uri": "widgets/ExtentNavigate/Widget",
+        "visible": false,
+        "position": {
+          "top": 150,
+          "left": 7,
+          "relativeTo": "map"
+        },
+        "id": "widgets_ExtentNavigate_Widget_16",
+        "name": "ExtentNavigate",
+        "version": "2.5"
+      },
+      {
+        "uri": "widgets/FullScreen/Widget",
+        "visible": false,
+        "position": {
+          "right": 8,
+          "top": 8,
+          "relativeTo": "map"
+        },
+        "version": "2.5",
+        "id": "widgets_FullScreen_Widget_17",
+        "name": "FullScreen"
+      }
+    ],
+    "panel": {
+      "uri": "jimu/OnScreenWidgetPanel",
+      "position": {
+        "relativeTo": "map"
+      }
+    }
+  },
+  "map": {
+    "3D": false,
+    "2D": true,
+    "position": {
+      "left": 0,
+      "top": 40,
+      "right": 0,
+      "bottom": 0
+    },
+    "itemId": "48b8cec7ebf04b5fbdcaf70d09daff21",
+    "mapOptions": {
+      "extent": {
+        "xmin": -18238974.939970292,
+        "ymin": 5654261.356969848,
+        "xmax": -12808888.450592816,
+        "ymax": 9210723.409021582,
+        "spatialReference": {
+          "wkid": 102100
+        }
+      },
+      "lods": [
+        {
+          "level": 0,
+          "scale": 36978595.474472,
+          "resolution": 9783.93962049996
+        },
+        {
+          "level": 1,
+          "scale": 18489297.737236,
+          "resolution": 4891.96981024998
+        },
+        {
+          "level": 2,
+          "scale": 9244648.868618,
+          "resolution": 2445.98490512499
+        },
+        {
+          "level": 3,
+          "scale": 4622324.434309,
+          "resolution": 1222.992452562495
+        },
+        {
+          "level": 4,
+          "scale": 2311162.217155,
+          "resolution": 611.4962262813797
+        },
+        {
+          "level": 5,
+          "scale": 1155581.108577,
+          "resolution": 305.74811314055756
+        },
+        {
+          "level": 6,
+          "scale": 577790.554289,
+          "resolution": 152.87405657041106
+        },
+        {
+          "level": 7,
+          "scale": 288895.277144,
+          "resolution": 76.43702828507324
+        },
+        {
+          "level": 8,
+          "scale": 144447.638572,
+          "resolution": 38.21851414253662
+        },
+        {
+          "level": 9,
+          "scale": 72223.819286,
+          "resolution": 19.10925707126831
+        },
+        {
+          "level": 10,
+          "scale": 36111.909643,
+          "resolution": 9.554628535634155
+        },
+        {
+          "level": 11,
+          "scale": 18055.954822,
+          "resolution": 4.77731426794937
+        }
+      ]
+    },
+    "id": "map",
+    "portalUrl": "http://www.arcgis.com"
+  },
+  "widgetPool": {
+    "panel": {
+      "uri": "themes/FoldableTheme/panels/FoldablePanel/Panel",
+      "position": {
+        "top": 5,
+        "right": 5,
+        "bottom": 5,
+        "zIndex": 5,
+        "relativeTo": "map"
+      }
+    },
+    "widgets": [
+      {
+        "name": "Filter",
+        "version": "2.5",
+        "icon": "configs\\Filter\\icon_Filter.png",
+        "uri": "widgets/Filter/Widget",
+        "index": 2,
+        "id": "widgets_Filter_Widget_28",
+        "config": "configs/Filter/config_Filter.json"
+      },
+      {
+        "name": "TimeSlider",
+        "version": "2.5",
+        "uri": "widgets/TimeSlider/Widget",
+        "index": 3,
+        "id": "widgets_TimeSlider_Widget_20",
+        "position": {
+          "relativeTo": "map"
+        }
+      },
+      {
+        "name": "LayerList",
+        "version": "2.5",
+        "uri": "widgets/LayerList/Widget",
+        "config": "configs/LayerList/config_LayerList.json",
+        "index": 5,
+        "id": "widgets_LayerList_Widget_31"
+      },
+      {
+        "name": "BasemapGallery",
+        "version": "2.5",
+        "uri": "widgets/BasemapGallery/Widget",
+        "config": "configs/BasemapGallery/config_BasemapGallery.json",
+        "index": 6,
+        "id": "widgets_BasemapGallery_Widget_22"
+      },
+      {
+        "name": "About",
+        "version": "2.5",
+        "uri": "widgets/About/Widget",
+        "config": "configs/About/config_About.json",
+        "index": 7,
+        "id": "widgets_About_Widget_21"
+      },
+      {
+        "name": "LocalLayer",
+        "version": "2.5",
+        "uri": "widgets/LocalLayer/Widget",
+        "config": "configs/LocalLayer/config_LocalLayer.json",
+        "index": 8,
+        "id": "widgets_LocalLayer_Widget_30",
+        "position": {
+          "relativeTo": "map"
+        },
+        "openAtStart": true
+      }
+    ],
+    "groups": [
+      {
+        "label": "Tools",
+        "widgets": [
+          {
+            "name": "Measurement",
+            "version": "2.5",
+            "uri": "widgets/Measurement/Widget",
+            "config": "configs/Measurement/config_Measurement.json",
+            "index": 8,
+            "id": "widgets_Measurement_Widget_24"
+          },
+          {
+            "name": "AddData",
+            "version": "2.5",
+            "uri": "widgets/AddData/Widget",
+            "index": 7,
+            "id": "widgets_AddData_Widget_23"
+          },
+          {
+            "name": "Print",
+            "version": "2.5",
+            "uri": "widgets/Print/Widget",
+            "config": "configs/Print/config_Print.json",
+            "index": 8,
+            "id": "widgets_Print_Widget_25"
+          },
+          {
+            "name": "Draw",
+            "version": "2.5",
+            "uri": "widgets/Draw/Widget",
+            "config": "configs/Draw/config_Draw.json",
+            "index": 9,
+            "id": "widgets_Draw_Widget_27"
+          },
+          {
+            "name": "Select",
+            "version": "2.5",
+            "uri": "widgets/Select/Widget",
+            "config": "configs/Select/config_Select.json",
+            "index": 8,
+            "id": "widgets_Select_Widget_26"
+          },
+          {
+            "name": "ElevationProfile",
+            "version": "2.5",
+            "IsController": false,
+            "uri": "widgets/ElevationProfile/Widget",
+            "config": "configs/ElevationProfile/config_ElevationProfile.json",
+            "index": 11,
+            "id": "widgets_ElevationProfile_Widget_33"
+          },
+          {
+            "name": "Geoprocessing",
+            "label": "Download Data",
+            "version": "2.5",
+            "uri": "widgets/Geoprocessing/Widget",
+            "config": "configs/Geoprocessing/config_Download Data.json",
+            "index": 7,
+            "id": "widgets_Geoprocessing_Widget_32"
+          }
+        ],
+        "index": 4,
+        "id": "_29",
+        "visible": true,
+        "panel": {
+          "uri": "themes/FoldableTheme/panels/FoldablePanel/Panel",
+          "position": {
+            "top": 5,
+            "right": 5,
+            "bottom": 5,
+            "zIndex": 5,
+            "relativeTo": "map"
+          }
+        }
+      }
+    ]
+  },
+  "mobileLayout": {
+    "widgetOnScreen": {
+      "widgets": [
+        {
+          "uri": "themes/FoldableTheme/widgets/HeaderController/Widget",
+          "position": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "height": 40,
+            "paddingRight": 0,
+            "relativeTo": "browser"
+          },
+          "version": "2.5"
+        },
+        {
+          "uri": "widgets/Scalebar/Widget",
+          "position": {
+            "left": 7,
+            "bottom": 40,
+            "relativeTo": "map"
+          },
+          "version": "2.5"
+        },
+        {
+          "uri": "widgets/Search/Widget",
+          "position": {
+            "right": 2,
+            "top": 50,
+            "relativeTo": "browser",
+            "zIndex": 4
+          },
+          "version": "2.5"
+        },
+        {
+          "uri": "widgets/Coordinate/Widget",
+          "position": {
+            "left": 7,
+            "bottom": 20,
+            "relativeTo": "map"
+          },
+          "version": "2.5"
+        },
+        {
+          "position": {
+            "left": 7,
+            "bottom": 70,
+            "relativeTo": "map"
+          }
+        },
+        {
+          "position": {
+            "left": 57,
+            "bottom": 70,
+            "relativeTo": "map"
+          }
+        },
+        {
+          "position": {
+            "left": 107,
+            "bottom": 70,
+            "relativeTo": "map"
+          }
+        },
+        {
+          "position": {
+            "left": 157,
+            "bottom": 70,
+            "relativeTo": "map"
+          }
+        },
+        {
+          "position": {
+            "left": 207,
+            "bottom": 70,
+            "relativeTo": "map"
+          }
+        },
+        {
+          "uri": "widgets/OverviewMap/Widget",
+          "position": {
+            "right": 0,
+            "bottom": 0,
+            "zIndex": 1
+          },
+          "version": "2.5"
+        },
+        {
+          "uri": "widgets/HomeButton/Widget",
+          "inPanel": false,
+          "position": {
+            "left": 7,
+            "top": 75
+          },
+          "version": "2.5"
+        },
+        {
+          "uri": "widgets/MyLocation/Widget",
+          "inPanel": false,
+          "position": {
+            "left": 7,
+            "top": 110
+          },
+          "version": "2.5"
+        },
+        {
+          "uri": "widgets/AttributeTable/Widget",
+          "version": "2.5",
+          "position": {
+            "relativeTo": "browser"
+          }
+        },
+        {
+          "uri": "widgets/Splash/Widget",
+          "visible": false,
+          "position": {
+            "relativeTo": "browser"
+          },
+          "version": "2.5"
+        },
+        {
+          "uri": "widgets/ZoomSlider/Widget",
+          "visible": true,
+          "position": {
+            "top": 5,
+            "left": 7
+          },
+          "version": "2.5"
+        },
+        {
+          "uri": "widgets/ExtentNavigate/Widget",
+          "visible": false,
+          "position": {
+            "top": 150,
+            "left": 7
+          },
+          "version": "2.5"
+        },
+        {
+          "uri": "widgets/FullScreen/Widget",
+          "visible": false,
+          "position": {
+            "right": 8,
+            "top": 8
+          },
+          "version": "2.5"
+        }
+      ]
+    },
+    "map": {
+      "position": {
+        "left": 0,
+        "top": 40,
+        "right": 0,
+        "bottom": 0
+      }
+    },
+    "widgetPool": {
+      "panel": {
+        "uri": "themes/FoldableTheme/panels/FoldablePanel/Panel",
+        "position": {
+          "top": 5,
+          "right": 5,
+          "bottom": 5,
+          "zIndex": 5
+        }
+      }
+    }
+  },
+  "loadingPage": {
+    "backgroundColor": "#689cc5",
+    "backgroundImage": {
+      "visible": true,
+      "uri": "configs/loading/images/background.jpeg",
+      "width": 280,
+      "height": 300
+    },
+    "loadingGif": {
+      "visible": true,
+      "uri": "/webappbuilder/apps/2/configs/loading/images/predefined_loading_2.gif",
+      "width": 58,
+      "height": 10
+    }
+  },
+  "wabVersion": "2.5",
+  "isTemplateApp": true,
+  "isWebTier": false,
+  "httpProxy": {
+    "useProxy": true,
+    "url": "/proxy.js"
+  },
+  "dataSource": {
+    "dataSources": {
+      "external~11489118362658823": {
+        "type": "Features",
+        "isDynamic": false,
+        "label": "ne_10m_graticules_1",
+        "url": "http://akc0ss-p093.nmfs.local:6080/arcgis/rest/services/ecodaat/Graticules/MapServer/2",
+        "filterByExtent": false,
+        "resultRecordType": "serviceLimitation",
+        "dataSchema": {
+          "objectIdFieldName": "FID",
+          "geometryType": "esriGeometryPolyline",
+          "displayFieldName": "direction",
+          "typeIdField": "",
+          "fields": [
+            {
+              "name": "FID",
+              "type": "esriFieldTypeOID",
+              "alias": "FID",
+              "domain": null,
+              "checked": true,
+              "disabled": true
+            },
+            {
+              "name": "degrees",
+              "type": "esriFieldTypeInteger",
+              "alias": "degrees",
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "direction",
+              "type": "esriFieldTypeString",
+              "alias": "direction",
+              "length": 1,
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "display",
+              "type": "esriFieldTypeString",
+              "alias": "display",
+              "length": 6,
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "dd",
+              "type": "esriFieldTypeDouble",
+              "alias": "dd",
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "ScaleRank",
+              "type": "esriFieldTypeInteger",
+              "alias": "ScaleRank",
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            }
+          ]
+        },
+        "id": "external~11489118362658823"
+      },
+      "external~9470523239477573": {
+        "type": "Features",
+        "isDynamic": false,
+        "label": "ne_10m_graticules_5",
+        "url": "http://akc0ss-p093.nmfs.local:6080/arcgis/rest/services/ecodaat/Graticules/MapServer/1",
+        "filterByExtent": false,
+        "resultRecordType": "serviceLimitation",
+        "dataSchema": {
+          "objectIdFieldName": "FID",
+          "geometryType": "esriGeometryPolyline",
+          "displayFieldName": "direction",
+          "typeIdField": "",
+          "fields": [
+            {
+              "name": "FID",
+              "type": "esriFieldTypeOID",
+              "alias": "FID",
+              "domain": null,
+              "checked": true,
+              "disabled": true
+            },
+            {
+              "name": "RecNum",
+              "type": "esriFieldTypeInteger",
+              "alias": "RecNum",
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "degrees",
+              "type": "esriFieldTypeInteger",
+              "alias": "degrees",
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "direction",
+              "type": "esriFieldTypeString",
+              "alias": "direction",
+              "length": 1,
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "display",
+              "type": "esriFieldTypeString",
+              "alias": "display",
+              "length": 6,
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "dd",
+              "type": "esriFieldTypeDouble",
+              "alias": "dd",
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "ScaleRank",
+              "type": "esriFieldTypeInteger",
+              "alias": "ScaleRank",
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            }
+          ]
+        },
+        "id": "external~9470523239477573"
+      },
+      "external~28541016012229115": {
+        "type": "Features",
+        "isDynamic": false,
+        "label": "ne_10m_graticules_10",
+        "url": "http://akc0ss-p093.nmfs.local:6080/arcgis/rest/services/ecodaat/Graticules/MapServer/0",
+        "filterByExtent": false,
+        "resultRecordType": "serviceLimitation",
+        "dataSchema": {
+          "objectIdFieldName": "FID",
+          "geometryType": "esriGeometryPolyline",
+          "displayFieldName": "direction",
+          "typeIdField": "",
+          "fields": [
+            {
+              "name": "FID",
+              "type": "esriFieldTypeOID",
+              "alias": "FID",
+              "domain": null,
+              "checked": true,
+              "disabled": true
+            },
+            {
+              "name": "degrees",
+              "type": "esriFieldTypeInteger",
+              "alias": "degrees",
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "direction",
+              "type": "esriFieldTypeString",
+              "alias": "direction",
+              "length": 1,
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "display",
+              "type": "esriFieldTypeString",
+              "alias": "display",
+              "length": 6,
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "dd",
+              "type": "esriFieldTypeDouble",
+              "alias": "dd",
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            },
+            {
+              "name": "ScaleRank",
+              "type": "esriFieldTypeInteger",
+              "alias": "ScaleRank",
+              "domain": null,
+              "checked": true,
+              "disabled": false
+            }
+          ]
+        },
+        "id": "external~28541016012229115"
+      }
+    },
+    "settings": {}
+  }
+}

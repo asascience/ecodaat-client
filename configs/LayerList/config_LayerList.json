@@ -1,0 +1,112 @@
+{
+  "showLegend": true,
+  "contextMenu": {
+    "ZoomTo": true,
+    "Transparency": true,
+    "EnableOrDisablePopup": true,
+    "MoveupOrMovedown": true,
+    "OpenAttributeTable": true,
+    "DescriptionOrShowItemDetailsOrDownload": true
+  },
+  "layerOptions": {
+    "EcoDAAT Layers": {
+      "display": true
+    },
+    "EcoDAAT Layers_0": {
+      "display": true
+    },
+    "EcoDAAT Layers_1": {
+      "display": true
+    },
+    "EcoDAAT Layers_2": {
+      "display": true
+    },
+    "EcoDAAT Layers_3": {
+      "display": true
+    },
+    "EcoDAAT Layers_4": {
+      "display": true
+    },
+    "EcoDAAT Layers_5": {
+      "display": true
+    },
+    "EcoDAAT Layers_6": {
+      "display": true
+    },
+    "EcoDAAT Layers_7": {
+      "display": true
+    },
+    "EcoDAAT Layers_8": {
+      "display": true
+    },
+    "EcoDAAT Layers_9": {
+      "display": false
+    },
+    "EcoDAAT Layers_10": {
+      "display": false
+    },
+    "EcoDAAT Layers_11": {
+      "display": false
+    },
+    "EcoDAAT Layers_12": {
+      "display": false
+    },
+    "EcoDAAT Layers_13": {
+      "display": false
+    },
+    "EcoDAAT Layers_14": {
+      "display": false
+    },
+    "EcoDAAT Layers_15": {
+      "display": false
+    },
+    "EcoDAAT Layers_16": {
+      "display": false
+    },
+    "EcoDAAT Layers_17": {
+      "display": false
+    },
+    "EcoDAAT Layers_18": {
+      "display": false
+    },
+    "EcoDAAT Layers_19": {
+      "display": false
+    },
+    "EcoDAAT Layers_20": {
+      "display": false
+    },
+    "EcoDAAT Layers_21": {
+      "display": false
+    },
+    "EcoDAAT Layers_22": {
+      "display": false
+    },
+    "EcoDAAT Layers_23": {
+      "display": false
+    },
+    "EcoDAAT Layers_24": {
+      "display": false
+    },
+    "EcoDAAT Layers_25": {
+      "display": false
+    },
+    "EcoDAAT Layers_26": {
+      "display": false
+    },
+    "EcoDAAT Layers_27": {
+      "display": false
+    },
+    "EcoDAAT Layers_28": {
+      "display": false
+    },
+    "EcoDAAT Layers_29": {
+      "display": false
+    },
+    "EcoDAAT Layers_30": {
+      "display": false
+    },
+    "EcoDAAT Layers_31": {
+      "display": false
+    }
+  }
+}

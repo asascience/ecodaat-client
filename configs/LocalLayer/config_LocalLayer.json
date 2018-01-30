@@ -1,0 +1,2210 @@
+{
+  "layers": {
+    "layer": [
+      {
+        "type": "Dynamic",
+        "name": "EcoDAAT Layers",
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer",
+        "opacity": 0.6,
+        "visible": true,
+        "hideInLegends": "{\"0\":false,\"1\":false,\"2\":false,\"3\":false,\"4\":false,\"5\":false,\"6\":false,\"7\":false,\"8\":false}",
+        "imageformat": "png8",
+        "autorefresh": 0,
+        "popup": {
+          "infoTemplates": [
+            {
+              "layerId": 0,
+              "title": "{HAUL_ID}",
+              "fieldInfos": [
+                {
+                  "fieldName": "CRUISE",
+                  "label": "CRUISE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_ID",
+                  "label": "HAUL_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STATION_NAME",
+                  "label": "STATION_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_NAME",
+                  "label": "HAUL_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_ID",
+                  "label": "GEAR_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_NAME",
+                  "label": "GEAR_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET",
+                  "label": "NET",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FOCI_GRID",
+                  "label": "FOCI_GRID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "ALT_STATION_NAME",
+                  "label": "ALT_STATION_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "BOTTOM_DEPTH",
+                  "label": "BOTTOM_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_PERFORMANCE",
+                  "label": "HAUL_PERFORMANCE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MESH",
+                  "label": "MESH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PURPOSE",
+                  "label": "PURPOSE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PRIMARY_NET",
+                  "label": "PRIMARY_NET",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FLOWMETER",
+                  "label": "FLOWMETER",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FLOWMETER_REVS",
+                  "label": "FLOWMETER_REVS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEOGRAPHIC_AREA",
+                  "label": "GEOGRAPHIC_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LAT",
+                  "label": "LAT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LON",
+                  "label": "LON",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MIN_GEAR_DEPTH",
+                  "label": "MIN_GEAR_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MAX_GEAR_DEPTH",
+                  "label": "MAX_GEAR_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MIN_WIRE_OUT",
+                  "label": "MIN_WIRE_OUT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MAX_WIRE_OUT",
+                  "label": "MAX_WIRE_OUT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TOW_MINUTES",
+                  "label": "TOW_MINUTES",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TOW_SECONDS",
+                  "label": "TOW_SECONDS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "VOLUME_FILTERED",
+                  "label": "VOLUME_FILTERED",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STANDARD_HAUL_FACTOR_A",
+                  "label": "STANDARD_HAUL_FACTOR_A",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STANDARD_HAUL_FACTOR_B",
+                  "label": "STANDARD_HAUL_FACTOR_B",
+                  "visible": true
+                },
+                {
+                  "fieldName": "POLYGONAL_AREA",
+                  "label": "POLYGONAL_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "WIRE_ANGLE",
+                  "label": "WIRE_ANGLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "ORIG_DB",
+                  "label": "ORIG_DB",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DOOR",
+                  "label": "DOOR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DOOR_HEIGHT",
+                  "label": "DOOR_HEIGHT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DOOR_WIDTH",
+                  "label": "DOOR_WIDTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DIEL",
+                  "label": "DIEL",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET_PATH",
+                  "label": "NET_PATH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STATION_ID",
+                  "label": "STATION_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GMT_DATE_TIME",
+                  "label": "GMT_DATE_TIME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "YEAR",
+                  "label": "YEAR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MONTH",
+                  "label": "MONTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DAY",
+                  "label": "DAY",
+                  "visible": true
+                }
+              ],
+              "showAttachments": false
+            },
+            {
+              "layerId": 1,
+              "title": "[SAMPLE_ID]",
+              "fieldInfos": [
+                {
+                  "fieldName": "COMMON_NAME",
+                  "label": "COMMON_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CRUISE",
+                  "label": "CRUISE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CRUISE_NAME",
+                  "label": "CRUISE_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DAY",
+                  "label": "DAY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_ABBREV",
+                  "label": "GEAR_ABBREV",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_CODE",
+                  "label": "GEAR_CODE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_NAME",
+                  "label": "GEAR_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEOGRAPHIC_AREA",
+                  "label": "GEOGRAPHIC_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GMT_DATE_TIME",
+                  "label": "GMT_DATE_TIME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_ID",
+                  "label": "HAUL_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_NAME",
+                  "label": "HAUL_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_PERFORMANCE",
+                  "label": "HAUL_PERFORMANCE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "ICH_PROC",
+                  "label": "ICH_PROC",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LAT",
+                  "label": "LAT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LON",
+                  "label": "LON",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MAX_GEAR_DEPTH",
+                  "label": "MAX_GEAR_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MAX_WIRE_OUT",
+                  "label": "MAX_WIRE_OUT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MESH",
+                  "label": "MESH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MONTH",
+                  "label": "MONTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MOUTH_AREA",
+                  "label": "MOUTH_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET",
+                  "label": "NET",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET_PATH",
+                  "label": "NET_PATH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_OF_BAGS",
+                  "label": "NUMBER_OF_BAGS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_OF_JARS",
+                  "label": "NUMBER_OF_JARS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_SAMPLED",
+                  "label": "NUMBER_SAMPLED",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PRIMARY_NET",
+                  "label": "PRIMARY_NET",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PROJECT",
+                  "label": "PROJECT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PURPOSE",
+                  "label": "PURPOSE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_DESC",
+                  "label": "SAMPLE_DESC",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_ID",
+                  "label": "SAMPLE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "WIRE_ANGLE",
+                  "label": "WIRE_ANGLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "YEAR",
+                  "label": "YEAR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "ZOOP_PROC",
+                  "label": "ZOOP_PROC",
+                  "visible": true
+                }
+              ],
+              "showAttachments": false
+            },
+            {
+              "layerId": 8,
+              "title": "[HAUL_ID]",
+              "fieldInfos": [
+                {
+                  "fieldName": "BOTTOM_DEPTH",
+                  "label": "BOTTOM_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CHLOROPHYLL_VOL",
+                  "label": "CHLOROPHYLL_VOL",
+                  "visible": true
+                },
+                {
+                  "fieldName": "COMMENTS_CTDB",
+                  "label": "COMMENTS_CTDB",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CRUISE",
+                  "label": "CRUISE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CTD_ID",
+                  "label": "CTD_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CTDB_ID",
+                  "label": "CTDB_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CTDB_ROW",
+                  "label": "CTDB_ROW",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DAY",
+                  "label": "DAY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DEPTH",
+                  "label": "DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DISSOLVED_OXY_SAMPLE",
+                  "label": "DISSOLVED_OXY_SAMPLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FOCI_CTB_ID",
+                  "label": "FOCI_CTB_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_NAME",
+                  "label": "GEAR_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEOGRAPHIC_AREA",
+                  "label": "GEOGRAPHIC_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GMT_DATE_TIME",
+                  "label": "GMT_DATE_TIME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "H_ID",
+                  "label": "H_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_ID",
+                  "label": "HAUL_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_NAME",
+                  "label": "HAUL_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LAT",
+                  "label": "LAT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LON",
+                  "label": "LON",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LUGOLS_SAMPLE",
+                  "label": "LUGOLS_SAMPLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MONTH",
+                  "label": "MONTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MZ_SAMPLE",
+                  "label": "MZ_SAMPLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET",
+                  "label": "NET",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUT_BOTTLE",
+                  "label": "NUT_BOTTLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "OXYGEN",
+                  "label": "OXYGEN",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PHYTO_SAMPLE",
+                  "label": "PHYTO_SAMPLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PURPOSE",
+                  "label": "PURPOSE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SALINITY_BOTTLE",
+                  "label": "SALINITY_BOTTLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STATION_ID",
+                  "label": "STATION_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STATION_NAME",
+                  "label": "STATION_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "YEAR",
+                  "label": "YEAR",
+                  "visible": true
+                }
+              ],
+              "showAttachments": false
+            },
+            {
+              "layerId": 7,
+              "title": "[FOCI_SAMPLE_ID]",
+              "fieldInfos": [
+                {
+                  "fieldName": "CRUISE",
+                  "label": "CRUISE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CRUISE_NAME",
+                  "label": "CRUISE_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DESCRIPTION",
+                  "label": "DESCRIPTION",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DIEL",
+                  "label": "DIEL",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DIET_SPECIES_NAME",
+                  "label": "DIET_SPECIES_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DIGESTION",
+                  "label": "DIGESTION",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DOOR",
+                  "label": "DOOR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DOOR_DIMENSIONS",
+                  "label": "DOOR_DIMENSIONS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DOOR_HEIGHT",
+                  "label": "DOOR_HEIGHT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DOOR_WIDTH",
+                  "label": "DOOR_WIDTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "EXAMINER",
+                  "label": "EXAMINER",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FLOWMETER",
+                  "label": "FLOWMETER",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FLOWMETER_REVS",
+                  "label": "FLOWMETER_REVS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FOCI_GRID",
+                  "label": "FOCI_GRID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FOCI_ID",
+                  "label": "FOCI_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FOCI_SAMPLE_ID",
+                  "label": "FOCI_SAMPLE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FREQUENCY",
+                  "label": "FREQUENCY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FULLNESS",
+                  "label": "FULLNESS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_ABBREV",
+                  "label": "GEAR_ABBREV",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_CODE",
+                  "label": "GEAR_CODE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_NAME",
+                  "label": "GEAR_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GENETIC_SAMPLE",
+                  "label": "GENETIC_SAMPLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEOGRAPHIC_AREA",
+                  "label": "GEOGRAPHIC_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GMT_DATE_TIME",
+                  "label": "GMT_DATE_TIME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_ID",
+                  "label": "HAUL_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_NAME",
+                  "label": "HAUL_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_PERFORMANCE",
+                  "label": "HAUL_PERFORMANCE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LAT",
+                  "label": "LAT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LENGTH_AT_SEA",
+                  "label": "LENGTH_AT_SEA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LENGTH_FORK",
+                  "label": "LENGTH_FORK",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LENGTH_STANDARD",
+                  "label": "LENGTH_STANDARD",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LENGTH_TOTAL",
+                  "label": "LENGTH_TOTAL",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LENGTH_TRAWL_TYPE",
+                  "label": "LENGTH_TRAWL_TYPE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LENGTH_UNITS",
+                  "label": "LENGTH_UNITS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LENGTH_WEIGHT_COMMENTS",
+                  "label": "LENGTH_WEIGHT_COMMENTS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LON",
+                  "label": "LON",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MAX_GEAR_DEPTH",
+                  "label": "MAX_GEAR_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MAX_WIRE_OUT",
+                  "label": "MAX_WIRE_OUT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MESH",
+                  "label": "MESH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MIN_GEAR_DEPTH",
+                  "label": "MIN_GEAR_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MIN_WIRE_OUT",
+                  "label": "MIN_WIRE_OUT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MOUTH_AREA",
+                  "label": "MOUTH_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET",
+                  "label": "NET",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET_INFO",
+                  "label": "NET_INFO",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET_PATH",
+                  "label": "NET_PATH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NETMOUTH_HEIGHT_M",
+                  "label": "NETMOUTH_HEIGHT_M",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NON_SUBSAMPLE_WEIGHT",
+                  "label": "NON_SUBSAMPLE_WEIGHT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_MEASURED_COUNTED",
+                  "label": "NUMBER_MEASURED_COUNTED",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_OF_BAGS",
+                  "label": "NUMBER_OF_BAGS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_OF_JARS",
+                  "label": "NUMBER_OF_JARS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_SAMPLED",
+                  "label": "NUMBER_SAMPLED",
+                  "visible": true
+                },
+                {
+                  "fieldName": "ORGANISM_TYPE",
+                  "label": "ORGANISM_TYPE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "POLYGONAL_AREA",
+                  "label": "POLYGONAL_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PRESERVE_ID",
+                  "label": "PRESERVE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PREY_CODE_TRAWL",
+                  "label": "PREY_CODE_TRAWL",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PREY_COMMENTS",
+                  "label": "PREY_COMMENTS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PREY_COUNT",
+                  "label": "PREY_COUNT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PREY_QUALITY",
+                  "label": "PREY_QUALITY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PREY_WEIGHT",
+                  "label": "PREY_WEIGHT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PRIMARY_NET",
+                  "label": "PRIMARY_NET",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PROCESS_DATE",
+                  "label": "PROCESS_DATE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_ABBREV",
+                  "label": "SAMPLE_ABBREV",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_DESC",
+                  "label": "SAMPLE_DESC",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_TYPE",
+                  "label": "SAMPLE_TYPE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SEA_SURFACE_TEMP_C",
+                  "label": "SEA_SURFACE_TEMP_C",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SEX",
+                  "label": "SEX",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SEX_NAME",
+                  "label": "SEX_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SHIP_NAME",
+                  "label": "SHIP_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SIZE_NAME",
+                  "label": "SIZE_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SORTER_CODE",
+                  "label": "SORTER_CODE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SORTER_NAME",
+                  "label": "SORTER_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SPECIES_NAME",
+                  "label": "SPECIES_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SPECIMEN_FORM",
+                  "label": "SPECIMEN_FORM",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SPECIMEN_SIZE",
+                  "label": "SPECIMEN_SIZE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STATION_NAME",
+                  "label": "STATION_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STOMACH_CONTENT_WT_G",
+                  "label": "STOMACH_CONTENT_WT_G",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STOMACH_DIGESTION_CODE",
+                  "label": "STOMACH_DIGESTION_CODE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STOMACH_FULLNESS_CODE",
+                  "label": "STOMACH_FULLNESS_CODE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STOMACH_INTACT_WT_G",
+                  "label": "STOMACH_INTACT_WT_G",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STOMACH_LINING_WT_G",
+                  "label": "STOMACH_LINING_WT_G",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STOMACH_PROCESS_DATE",
+                  "label": "STOMACH_PROCESS_DATE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STOMACH_SAMPLE",
+                  "label": "STOMACH_SAMPLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STOMACHEXAMINER",
+                  "label": "STOMACHEXAMINER",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SUBSAMPLE_FACTOR",
+                  "label": "SUBSAMPLE_FACTOR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SUBSAMPLE_NUMBER",
+                  "label": "SUBSAMPLE_NUMBER",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SUBSAMPLE_WEIGHT",
+                  "label": "SUBSAMPLE_WEIGHT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TOTAL_NUMBER",
+                  "label": "TOTAL_NUMBER",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TOW_MINUTES",
+                  "label": "TOW_MINUTES",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TOW_SECONDS",
+                  "label": "TOW_SECONDS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TRAWL_DEPLOYED_GMT",
+                  "label": "TRAWL_DEPLOYED_GMT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TRAWL_DEPLOYED_LAT",
+                  "label": "TRAWL_DEPLOYED_LAT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TRAWL_DEPLOYED_LON",
+                  "label": "TRAWL_DEPLOYED_LON",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TRAWL_HAULBACK_START_GMT",
+                  "label": "TRAWL_HAULBACK_START_GMT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "VIAL_NUMBER",
+                  "label": "VIAL_NUMBER",
+                  "visible": true
+                },
+                {
+                  "fieldName": "WATER_TEMP_AT_GEAR_DEPTH",
+                  "label": "WATER_TEMP_AT_GEAR_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "WEIGHT_UNITS",
+                  "label": "WEIGHT_UNITS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "WHOLE_WET_BODY_WEIGHT",
+                  "label": "WHOLE_WET_BODY_WEIGHT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "WIRE_ANGLE",
+                  "label": "WIRE_ANGLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "COMMENTS_SPECIMEN",
+                  "label": "COMMENTS_SPECIMEN",
+                  "visible": true
+                },
+                {
+                  "fieldName": "COMMENTS_SPECIES_CODE",
+                  "label": "COMMENTS_SPECIES_CODE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LON_END",
+                  "label": "LON_END",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LAT_END",
+                  "label": "LAT_END",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TRAWL_HAULBACK_START_LAT",
+                  "label": "TRAWL_HAULBACK_START_LAT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TRAWL_HAULBACK_START_LON",
+                  "label": "TRAWL_HAULBACK_START_LON",
+                  "visible": true
+                },
+                {
+                  "fieldName": "COMMENTS_SAMPLES",
+                  "label": "COMMENTS_SAMPLES",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LARVACATCHPER10M2",
+                  "label": "LARVACATCHPER10M2",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LARVALCATCHPER1000M3",
+                  "label": "LARVALCATCHPER1000M3",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CPUE",
+                  "label": "CPUE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TRAWL_CATCH",
+                  "label": "TRAWL_CATCH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "VOLUME_FISHED",
+                  "label": "VOLUME_FISHED",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DISTANCE_FISHED_0",
+                  "label": "DISTANCE_FISHED_0",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DISTANCE_FISHED_1",
+                  "label": "DISTANCE_FISHED_1",
+                  "visible": true
+                },
+                {
+                  "fieldName": "EQUILIBRIUM",
+                  "label": "EQUILIBRIUM",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DOE",
+                  "label": "DOE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DOC",
+                  "label": "DOC",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SPECIMEN_ID",
+                  "label": "SPECIMEN_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MONTH",
+                  "label": "MONTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "YEAR",
+                  "label": "YEAR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DAY",
+                  "label": "DAY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DIET_ID",
+                  "label": "DIET_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "ZOOP_COPEPOD_NAUPLIUS",
+                  "label": "ZOOP_COPEPOD_NAUPLIUS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "ZOOP_EUPHAUSIID_EGG",
+                  "label": "ZOOP_EUPHAUSIID_EGG",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_MEASURED_COUNTED_COPY",
+                  "label": "NUMBER_MEASURED_COUNTED_COPY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "ZOOP_COPEPOD_NAUPLII",
+                  "label": "ZOOP_COPEPOD_NAUPLII",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LARVALCATCHPER10M2",
+                  "label": "LARVALCATCHPER10M2",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GMT_DATE_TIME_END",
+                  "label": "GMT_DATE_TIME_END",
+                  "visible": true
+                },
+                {
+                  "fieldName": "COMMENTS_HAUL",
+                  "label": "COMMENTS_HAUL",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SHIP_CRUISE_NAME",
+                  "label": "SHIP_CRUISE_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PHYTO_ASSESS_ID",
+                  "label": "PHYTO_ASSESS_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PHYTO_ASSESS",
+                  "label": "PHYTO_ASSESS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STAGE",
+                  "label": "STAGE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STAGE_NAME",
+                  "label": "STAGE_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STAGE_GROUP",
+                  "label": "STAGE_GROUP",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STAGE_COMMENTS",
+                  "label": "STAGE_COMMENTS",
+                  "visible": true
+                }
+              ],
+              "showAttachments": false
+            },
+            {
+              "layerId": 6,
+              "title": "[FOCI_SAMPLE_ID]",
+              "fieldInfos": [
+                {
+                  "fieldName": "HAUL_ID",
+                  "label": "HAUL_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PO4",
+                  "label": "PO4",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SIO4",
+                  "label": "SIO4",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NO2",
+                  "label": "NO2",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NH4",
+                  "label": "NH4",
+                  "visible": true
+                },
+                {
+                  "fieldName": "QUALITY",
+                  "label": "QUALITY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DILUTION_FACTOR",
+                  "label": "DILUTION_FACTOR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_DEPTH",
+                  "label": "SAMPLE_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "BOTTLE_NUM",
+                  "label": "BOTTLE_NUM",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NO3",
+                  "label": "NO3",
+                  "visible": true
+                },
+                {
+                  "fieldName": "COMMENTS_NUTRIENT",
+                  "label": "COMMENTS_NUTRIENT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_ID",
+                  "label": "SAMPLE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FOCI_SAMPLE_ID",
+                  "label": "FOCI_SAMPLE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CRUISE",
+                  "label": "CRUISE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_NAME",
+                  "label": "HAUL_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_NAME",
+                  "label": "GEAR_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "BOTTOM_DEPTH",
+                  "label": "BOTTOM_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PURPOSE",
+                  "label": "PURPOSE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEOGRAPHIC_AREA",
+                  "label": "GEOGRAPHIC_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LAT",
+                  "label": "LAT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LON",
+                  "label": "LON",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GMT_DATE_TIME",
+                  "label": "GMT_DATE_TIME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUTRIENT_ID",
+                  "label": "NUTRIENT_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_ID_ZOO",
+                  "label": "HAUL_ID_ZOO",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MONTH",
+                  "label": "MONTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "YEAR",
+                  "label": "YEAR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DAY",
+                  "label": "DAY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STATION_NAME",
+                  "label": "STATION_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET",
+                  "label": "NET",
+                  "visible": true
+                }
+              ],
+              "showAttachments": false
+            },
+            {
+              "layerId": 5,
+              "title": "[FOCI_SAMPLE_ID]",
+              "fieldInfos": [
+                {
+                  "fieldName": "ACETONE_VOL",
+                  "label": "ACETONE_VOL",
+                  "visible": true
+                },
+                {
+                  "fieldName": "BOTTOM_DEPTH",
+                  "label": "BOTTOM_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CHLOR_DOOR",
+                  "label": "CHLOR_DOOR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CHLOROCONC_L",
+                  "label": "CHLOROCONC_L",
+                  "visible": true
+                },
+                {
+                  "fieldName": "COMMENTS_CHLOROPHYLL",
+                  "label": "COMMENTS_CHLOROPHYLL",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CRUISE",
+                  "label": "CRUISE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DAY",
+                  "label": "DAY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DILUTION_FACTOR",
+                  "label": "DILUTION_FACTOR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DOOR_FACTOR",
+                  "label": "DOOR_FACTOR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "F_A",
+                  "label": "F_A",
+                  "visible": true
+                },
+                {
+                  "fieldName": "F_B",
+                  "label": "F_B",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FLUROCALIBID",
+                  "label": "FLUROCALIBID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FOCI_SAMPLE_ID",
+                  "label": "FOCI_SAMPLE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_NAME",
+                  "label": "GEAR_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEOGRAPHIC_AREA",
+                  "label": "GEOGRAPHIC_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GMT_DATE_TIME",
+                  "label": "GMT_DATE_TIME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_ID",
+                  "label": "HAUL_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_ID_ZOO",
+                  "label": "HAUL_ID_ZOO",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_NAME",
+                  "label": "HAUL_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LAT",
+                  "label": "LAT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LON",
+                  "label": "LON",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MONTH",
+                  "label": "MONTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PHAECONC_L",
+                  "label": "PHAECONC_L",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PURPOSE",
+                  "label": "PURPOSE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "QUALITY",
+                  "label": "QUALITY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_DEPTH",
+                  "label": "SAMPLE_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_ID",
+                  "label": "SAMPLE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_ORDER",
+                  "label": "SAMPLE_ORDER",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SCALING_FACTOR",
+                  "label": "SCALING_FACTOR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SLOPE",
+                  "label": "SLOPE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TAU",
+                  "label": "TAU",
+                  "visible": true
+                },
+                {
+                  "fieldName": "VOLUME_FILTERED_CHLOR",
+                  "label": "VOLUME_FILTERED_CHLOR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "YEAR",
+                  "label": "YEAR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "INTCHL",
+                  "label": "INTCHL",
+                  "visible": true
+                },
+                {
+                  "fieldName": "INTPHAEO",
+                  "label": "INTPHAEO",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STATION_NAME",
+                  "label": "STATION_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET",
+                  "label": "NET",
+                  "visible": true
+                }
+              ],
+              "showAttachments": false
+            },
+            {
+              "layerId": 4,
+              "title": "[HAUL_ID]",
+              "fieldInfos": [
+                {
+                  "fieldName": "BOTTOM_DEPTH",
+                  "label": "BOTTOM_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "COMMENTS_SEACAT_CTD",
+                  "label": "COMMENTS_SEACAT_CTD",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CONDUCTIVITY1",
+                  "label": "CONDUCTIVITY1",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CONDUCTIVITY2",
+                  "label": "CONDUCTIVITY2",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CRUISE",
+                  "label": "CRUISE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CTD_ID",
+                  "label": "CTD_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DAY",
+                  "label": "DAY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DEPTH",
+                  "label": "DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FLUOROMETER",
+                  "label": "FLUOROMETER",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_NAME",
+                  "label": "GEAR_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEOGRAPHIC_AREA",
+                  "label": "GEOGRAPHIC_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GMT_DATE_TIME",
+                  "label": "GMT_DATE_TIME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_ID",
+                  "label": "HAUL_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LAT",
+                  "label": "LAT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LON",
+                  "label": "LON",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MONTH",
+                  "label": "MONTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "OXYGEN1",
+                  "label": "OXYGEN1",
+                  "visible": true
+                },
+                {
+                  "fieldName": "OXYGEN2",
+                  "label": "OXYGEN2",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PAR",
+                  "label": "PAR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PH",
+                  "label": "PH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "POTENTIAL_DENSITY",
+                  "label": "POTENTIAL_DENSITY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PURPOSE",
+                  "label": "PURPOSE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SALINITY1",
+                  "label": "SALINITY1",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SALINITY2",
+                  "label": "SALINITY2",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SEACAT_ID",
+                  "label": "SEACAT_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SIGMA_T",
+                  "label": "SIGMA_T",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TEMPERATURE1",
+                  "label": "TEMPERATURE1",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TEMPERATURE2",
+                  "label": "TEMPERATURE2",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TRANS",
+                  "label": "TRANS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "YEAR",
+                  "label": "YEAR",
+                  "visible": true
+                }
+              ],
+              "showAttachments": false
+            },
+            {
+              "layerId": 3,
+              "title": "[HAUL_ID]",
+              "fieldInfos": [
+                {
+                  "fieldName": "COMMENTS_SPECIMEN_SUBSAMPLE",
+                  "label": "COMMENTS_SPECIMEN_SUBSAMPLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CORRECTED_LENGTH",
+                  "label": "CORRECTED_LENGTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CRUISE",
+                  "label": "CRUISE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DAY",
+                  "label": "DAY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "EGG_DIAMETER",
+                  "label": "EGG_DIAMETER",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_ABBREV",
+                  "label": "GEAR_ABBREV",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_NAME",
+                  "label": "GEAR_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEOGRAPHIC_AREA",
+                  "label": "GEOGRAPHIC_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GMT_DATE_TIME",
+                  "label": "GMT_DATE_TIME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_ID",
+                  "label": "HAUL_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_NAME",
+                  "label": "HAUL_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_PERFORMANCE",
+                  "label": "HAUL_PERFORMANCE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LARVALCATCHPER1000M3",
+                  "label": "LARVALCATCHPER1000M3",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LARVALCATCHPER10M2",
+                  "label": "LARVALCATCHPER10M2",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LAT",
+                  "label": "LAT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LON",
+                  "label": "LON",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MAX_GEAR_DEPTH",
+                  "label": "MAX_GEAR_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MESH",
+                  "label": "MESH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MIN_GEAR_DEPTH",
+                  "label": "MIN_GEAR_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MONTH",
+                  "label": "MONTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET",
+                  "label": "NET",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_CAUGHT",
+                  "label": "NUMBER_CAUGHT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_MEASURED_COUNTED",
+                  "label": "NUMBER_MEASURED_COUNTED",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PRESERVE_ID",
+                  "label": "PRESERVE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PRIMARY_NET",
+                  "label": "PRIMARY_NET",
+                  "visible": true
+                },
+                {
+                  "fieldName": "RAW_VALUE",
+                  "label": "RAW_VALUE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SPECIES_CODE_ID",
+                  "label": "SPECIES_CODE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SPECIMEN_ID",
+                  "label": "SPECIMEN_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STAGE_ID",
+                  "label": "STAGE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STAGE_NAME",
+                  "label": "STAGE_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STATION_NAME",
+                  "label": "STATION_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SUBSAMPLE_ID",
+                  "label": "SUBSAMPLE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "VOLUME_FILTERED",
+                  "label": "VOLUME_FILTERED",
+                  "visible": true
+                },
+                {
+                  "fieldName": "YEAR",
+                  "label": "YEAR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SPECIES_NAME",
+                  "label": "SPECIES_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SPECIES_CODE_ICHBASE",
+                  "label": "SPECIES_CODE_ICHBASE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "BOTTOM_DEPTH",
+                  "label": "BOTTOM_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "COMMENTS_HAUL",
+                  "label": "COMMENTS_HAUL",
+                  "visible": true
+                }
+              ],
+              "showAttachments": false
+            },
+            {
+              "layerId": 2,
+              "title": "[SPECIMEN_ID]",
+              "fieldInfos": [
+                {
+                  "fieldName": "ALT_SPECIMEN_NAME",
+                  "label": "ALT_SPECIMEN_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "BOTTOM_DEPTH",
+                  "label": "BOTTOM_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "COMMENTS_HAUL",
+                  "label": "COMMENTS_HAUL",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CPUE",
+                  "label": "CPUE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CRUISE",
+                  "label": "CRUISE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "CRUISE_NAME",
+                  "label": "CRUISE_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DAY",
+                  "label": "DAY",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DESCRIPTION",
+                  "label": "DESCRIPTION",
+                  "visible": true
+                },
+                {
+                  "fieldName": "DIGESTION",
+                  "label": "DIGESTION",
+                  "visible": true
+                },
+                {
+                  "fieldName": "EST_NUM_PERM2",
+                  "label": "EST_NUM_PERM2",
+                  "visible": true
+                },
+                {
+                  "fieldName": "EST_NUM_PERM3",
+                  "label": "EST_NUM_PERM3",
+                  "visible": true
+                },
+                {
+                  "fieldName": "EST_NUM_PERSAMPLE",
+                  "label": "EST_NUM_PERSAMPLE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "FOCI_SAMPLE_ID",
+                  "label": "FOCI_SAMPLE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_CODE",
+                  "label": "GEAR_CODE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GEAR_NAME",
+                  "label": "GEAR_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "GMT_DATE_TIME",
+                  "label": "GMT_DATE_TIME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_NAME",
+                  "label": "HAUL_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "HAUL_PERFORMANCE",
+                  "label": "HAUL_PERFORMANCE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "ICH_SPECIES_ICHBASE",
+                  "label": "ICH_SPECIES_ICHBASE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LARVALCATCHPER1000M3",
+                  "label": "LARVALCATCHPER1000M3",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LARVALCATCHPER10M2",
+                  "label": "LARVALCATCHPER10M2",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LAT",
+                  "label": "LAT",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LENGTH_AT_SEA",
+                  "label": "LENGTH_AT_SEA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LENGTH_FORK",
+                  "label": "LENGTH_FORK",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LENGTH_STANDARD",
+                  "label": "LENGTH_STANDARD",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LENGTH_TOTAL",
+                  "label": "LENGTH_TOTAL",
+                  "visible": true
+                },
+                {
+                  "fieldName": "LON",
+                  "label": "LON",
+                  "visible": true
+                },
+                {
+                  "fieldName": "MESH",
+                  "label": "MESH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NET",
+                  "label": "NET",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_EGGS",
+                  "label": "NUMBER_EGGS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_OF_BAGS",
+                  "label": "NUMBER_OF_BAGS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_OF_JARS",
+                  "label": "NUMBER_OF_JARS",
+                  "visible": true
+                },
+                {
+                  "fieldName": "NUMBER_SAMPLED",
+                  "label": "NUMBER_SAMPLED",
+                  "visible": true
+                },
+                {
+                  "fieldName": "POLYGONAL_AREA",
+                  "label": "POLYGONAL_AREA",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PRESERVATIVE",
+                  "label": "PRESERVATIVE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "PURPOSE",
+                  "label": "PURPOSE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_DEPTH",
+                  "label": "SAMPLE_DEPTH",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_DESC",
+                  "label": "SAMPLE_DESC",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_ID",
+                  "label": "SAMPLE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SAMPLE_TYPE",
+                  "label": "SAMPLE_TYPE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SEX",
+                  "label": "SEX",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SHIP_CRUISE_NAME",
+                  "label": "SHIP_CRUISE_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SHIP_NAME",
+                  "label": "SHIP_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "SPECIES_CODE_ID",
+                  "label": "SPECIES_CODE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STAGE",
+                  "label": "STAGE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STAGE_ID",
+                  "label": "STAGE_ID",
+                  "visible": true
+                },
+                {
+                  "fieldName": "STAGE_NAME",
+                  "label": "STAGE_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TAXON_NAME",
+                  "label": "TAXON_NAME",
+                  "visible": true
+                },
+                {
+                  "fieldName": "TAXON_SIZE",
+                  "label": "TAXON_SIZE",
+                  "visible": true
+                },
+                {
+                  "fieldName": "YEAR",
+                  "label": "YEAR",
+                  "visible": true
+                },
+                {
+                  "fieldName": "ZOOP_PROTOCOL",
+                  "label": "ZOOP_PROTOCOL",
+                  "visible": true
+                }
+              ],
+              "showAttachments": false
+            }
+          ]
+        },
+        "imagedpi": 96,
+        "disableclientcaching": false,
+        "minScale": "",
+        "maxScale": "",
+        "hidelayers": "1,2,3,4,5,6,7,8",
+        "definitionQueries": "{}"
+      }
+    ]
+  },
+  "review": false
+}
