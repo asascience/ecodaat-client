@@ -18,6 +18,7 @@ define([
         'esri/tasks/PrintTask',
         'esri/arcgis/utils',
         'esri/layers/ArcGISDynamicMapServiceLayer',
+        'esri/IdentityManager',
         'esri/layers/ArcGISTiledMapServiceLayer',
         'esri/layers/ArcGISImageServiceLayer',
         'esri/layers/WMSLayer',
@@ -60,6 +61,7 @@ define([
         PrintTask,
         arcgisUtils,
         ArcGISDynamicMapServiceLayer,
+        IdentityManager,
         ArcGISTiledMapServiceLayer,
         ArcGISImageServiceLayer,
         WMSLayer,
@@ -378,7 +380,12 @@ define([
                             }
                             lOptions.imageParameters = ip;
                         }
+                        //lOptions['token'] = '7TPm3tF3sohQkUjlMmaOgmmZdAE4qiBJ8_doZxfmuH_5QC43X4-OXlvy83ORIzMI-L4RXaJgJmr5H3rDkzianA..'
+                        //lLayer = new ArcGISDynamicMapServiceLayer(layer.url+"?token="+layer.token, lOptions);
+                        //var idmanager = new IdentityManager();
+                        IdentityManager.registerToken({token:layer.token, server:"https://webmap.afsc.noaa.gov", ssl:true,userId:'stephen.sontag' });
                         lLayer = new ArcGISDynamicMapServiceLayer(layer.url, lOptions);
+                        //lLayer.token = layer.token;
                         if (layer.hasOwnProperty('definitionQueries')) {
                             var definitionQueries = JSON.parse(layer.definitionQueries)
                             var layerDefinitions = []
