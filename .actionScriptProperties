@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="index.mxml" projectUUID="034d1e94-f1a9-4d3b-a1f5-4df718f153ab" version="11">
+  <compiler additionalCompilerArguments="-locale=en_US -source-path=../locale/{locale} -keep-all-type-selectors=true" autoRSLOrdering="true" copyDependentFiles="true" flex3CompatMode="false" flexSDK="Flex 4.6.0" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="false" useFlashSDK="false" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/core.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+      <libraryPathEntry kind="1" linkType="1" path="${DCD_LIB_LOCATION}"/>
+      <libraryPathEntry kind="1" linkType="1" path="${DCD_LOCALE_LOCATION}"/>
+      <libraryPathEntry kind="3" linkType="1" path="${DCD_FIBER_LOCATION}/fiber.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="${DCD_FIBER_LOCALE_LOCATION}/fiber_rb.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="${DCD_FIBER_LOCATION}/playerfds.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="1" linkType="1" path="${DCD_FIBER_LOCALE_LOCATION}"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="index.mxml"/>
+    <application path="FlexUnitCompilerApplication.mxml"/>
+    <application path="indexNoState.mxml"/>
+  </applications>
+  <modules>
+    <module application="src/index.mxml" destPath="widgets/Bookmark/BookmarkWidget.swf" optimize="true" sourcePath="src/widgets/Bookmark/BookmarkWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/Coordinate/CoordinateWidget.swf" optimize="true" sourcePath="src/widgets/Coordinate/CoordinateWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/Identify/IdentifyWidget.swf" optimize="true" sourcePath="src/widgets/Identify/IdentifyWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/eSearch/SearchWidget.swf" optimize="true" sourcePath="src/widgets/eSearch/SearchWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/eSearch/SearchWidgetFixedDG.swf" optimize="true" sourcePath="src/widgets/eSearch/SearchWidgetFixedDG.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/DataExtract/DataExtractWidget.swf" optimize="true" sourcePath="src/widgets/DataExtract/DataExtractWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/Draw/DrawWidget.swf" optimize="true" sourcePath="src/widgets/Draw/DrawWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/Elevation/ElevationProfileWidget.swf" optimize="true" sourcePath="src/widgets/Elevation/ElevationProfileWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/Navigation/NavigationWidget.swf" optimize="true" sourcePath="src/widgets/Navigation/NavigationWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/StaticImage/StaticImageWidget.swf" optimize="true" sourcePath="src/widgets/StaticImage/StaticImageWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/InfoTemplates/InfoPopupWidget.swf" optimize="true" sourcePath="src/widgets/InfoTemplates/InfoPopupWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/WidgetContainer/WidgetContainerWidget.swf" optimize="true" sourcePath="src/widgets/WidgetContainer/WidgetContainerWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/Time/TimeWidget.swf" optimize="true" sourcePath="src/widgets/Time/TimeWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/OverviewMap/OverviewMapWidget.swf" optimize="true" sourcePath="src/widgets/OverviewMap/OverviewMapWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/HeaderController/HeaderControllerWidget.swf" optimize="true" sourcePath="src/widgets/HeaderController/HeaderControllerWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/MapSwitcher/MapSwitcherWidget.swf" optimize="true" sourcePath="src/widgets/MapSwitcher/MapSwitcherWidget.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/Print/PrintWidget.swf" optimize="true" sourcePath="src/widgets/Print/PrintWidget.mxml"/>
+    <module application="src/index.mxml" destPath="com/esri/viewer/ViewerContainer.swf" optimize="true" sourcePath="src/com/esri/viewer/ViewerContainer.mxml"/>
+    <module application="src/index.mxml" destPath="com/esri/viewer/managers/MapManager.swf" optimize="true" sourcePath="src/com/esri/viewer/managers/MapManager.mxml"/>
+    <module application="src/index.mxml" destPath="com/esri/viewer/managers/WidgetManager.swf" optimize="true" sourcePath="src/com/esri/viewer/managers/WidgetManager.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/ElevationProfile/components/ChartWindow.swf" optimize="true" sourcePath="src/widgets/ElevationProfile/components/ChartWindow.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/WidgetContainer/WidgetContainer.swf" optimize="true" sourcePath="src/widgets/WidgetContainer/WidgetContainer.mxml"/>
+    <module application="src/index.mxml" destPath="widgets/HeaderController/MapProgressBarWidget.swf" optimize="true" sourcePath="src/widgets/HeaderController/MapProgressBarWidget.mxml"/>
+    <module application="src/index.mxml" destPath="popups/SplashWindow.swf" optimize="true" sourcePath="src/popups/SplashWindow.mxml"/>
+  </modules>
+  <workers/>
+  <buildCSSFiles/>
+  <flashCatalyst validateFlashCatalystCompatibility="false"/>
+</actionScriptProperties>
