@@ -8,7 +8,7 @@
       "transparency": 0
     },
     "showOption": true,
-    "confirmEverytime": true,
+    "confirmEverytime": false,
     "contentVertical": "top",
     "size": {
       "mode": "wh",

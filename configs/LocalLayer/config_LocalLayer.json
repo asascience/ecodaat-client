@@ -4,7 +4,7 @@
       {
         "type": "Dynamic",
         "name": "EcoDAAT Layers",
-        "url": "http://akc0ss-p093.nmfs.local:6080/arcgis/rest/services/ecodaat/Graticules/MapServer",
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer",
         "opacity": 0.6,
         "visible": true,
         "token": "7TPm3tF3sohQkUjlMmaOgvCtgFMuZieSBpBbiSF4402a4R0t8n_dppuUDuJuUhG0EuhkgvKZrlvmJklE8d8akQ..",

@@ -69,7 +69,6 @@ define(
         this.maxBufferValue.set('value',this._bufferDefaults.maxBufferValue || '');
         this.defaultBufferWKID.set('value',this._bufferDefaults.bufferWKID || 102003);
         this.addToLegendCbx.setValue(this._bufferDefaults.addtolegend || false);
-        this.autoZoomCbx.setValue(this._bufferDefaults.autoZoom || false);
         if(this._bufferDefaults.simplefillsymbol){
           this.layerSymbolPicker.showBySymbol(jsonUtils.fromJson(this._bufferDefaults.simplefillsymbol));
         }else{
@@ -87,7 +86,6 @@ define(
         this._bufferDefaults.bufferDefaultValue = parseFloat(this.defaultBufferValue.get('value'));
         this._bufferDefaults.bufferWKID = parseInt(this.defaultBufferWKID.get('value'));
         this._bufferDefaults.addtolegend = this.addToLegendCbx.getValue();
-        this._bufferDefaults.autoZoom = this.autoZoomCbx.getValue();
         this._bufferDefaults.bufferUnits.bufferUnit = this._getAllBufferUnits();
         var config = {
           bufferDefaults:this._bufferDefaults

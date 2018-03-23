@@ -50,7 +50,6 @@ define([
       pagingWasCanceled: false,
       selectFilterType: null,
       numberwithin: false,
-      datedisplayformat: null,
 
       postCreate:function(){
         this.inherited(arguments);
@@ -951,9 +950,6 @@ define([
         html.setStyle(this.stringTextBoxContainer, 'display', 'none');
         html.setStyle(this.numberTextBoxContainer, 'display', 'none');
         html.setStyle(this.dateTextBoxContainer, 'display', 'block');
-        this.dateTextBox.attr('constraints').datePattern = this.datedisplayformat;
-        this.dateTextBox1.attr('constraints').datePattern = this.datedisplayformat;
-        this.dateTextBox2.attr('constraints').datePattern = this.datedisplayformat;
 
         var fieldObj = value.fieldObj;//name,shortType
         var valueObj = value.valueObj;//value,value1,value2
@@ -969,13 +965,8 @@ define([
             var today = new Date();
             var priorDate = new Date(today.getTime() - (this.dayInMS * minusDays));
             this.dateTextBox1.set('value', priorDate);
-            this.dateTextBox2.set('value', new Date());
           }
-          if(valueObj.value1 !== '[value]' && valueObj.value2 !== '[value]' && value.hasOwnProperty("date1minus")){
-            this.dateTextBox1.set('disabled', true);
-            this.dateTextBox2.set('disabled', true);
-          }
-          if(valueObj.value1 !== '[value]' && valueObj.value2 !== '[value]' && !value.hasOwnProperty("date1minus")){
+          if(valueObj.value1 !== '[value]' && valueObj.value2 !== '[value]'){
             //console.info(valueObj.value1);
             this.dateTextBox1.set('value', new Date(valueObj.value1));
             this.dateTextBox2.set('value', new Date(valueObj.value2));

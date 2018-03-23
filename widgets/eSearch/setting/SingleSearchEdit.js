@@ -515,7 +515,7 @@ define([
 
       _createSingleRelate: function (args) {
         var rowData = {
-          label: (args.config && args.config.label) || ''
+          alias: (args.config && args.config.label) || ''
         };
         var result = this.relatesTable.addRow(rowData);
         if (!result.success) {
@@ -1071,7 +1071,7 @@ define([
       _onSingleRelatesEditOk: function () {
         var edits = {};
         var relateConfig = this.singleRelateedit.getConfig();
-        edits.label = relateConfig.label;
+        edits.alias = relateConfig.alias;
         this.singleRelateedit.tr.singleRelate = relateConfig;
         this.relatesTable.editRow(this.singleRelateedit.tr, edits);
         this.popupState = '';

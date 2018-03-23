@@ -267,13 +267,5 @@ define({
   statistics: "Exclure des statistiques",
   defaultactivetool: "Outil graphique activé par défaut",
   globalOverrides: "Remplacement des paramètres globaux",
-  hidenulldata: "Ide Données nulles dans les résultats des widgets et les fenêtres pop-up",
-  autoZoomBuffer: "Zoom automatique pour tamponner les résultats",
-  editGeneral: "Modifier les paramètres généraux",
-  editGeneraloptions: "Options générales du widget",
-  zoomFactor: "Facteur de zoom",
-  zoomFactorNote: "Par exemple, une valeur de 1,5 sera 50% plus grande",
-  datedisplayformat: "Format d'affichage de la date",
-  ontainsWord: "String search that use contains will search for each word seperately in query.",
-  containsWordExample: "Example: \"John Doe\" will have a SQL expression of Upper(Name) LIKE \'\%John\%\' AND Upper(Name) LIKE \'\%Doe\%\' as opposed to the default of Upper(Name) LIKE \'\%John Doe\%\'"
+  hidenulldata: "Ide Données nulles dans les résultats des widgets et les fenêtres pop-up"
 });

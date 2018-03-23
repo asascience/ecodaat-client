@@ -6,7 +6,7 @@
       "layer": {
         "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/0"
       },
-      "show": true,
+      "show": false,
       "showAttachments": false
     },
     {
@@ -297,7 +297,7 @@
       1000
     ]
   },
-  "hideExportButton": true,
-  "initiallyExpand": false,
+  "hideExportButton": false,
+  "initiallyExpand": true,
   "filterByMapExtent": true
 }

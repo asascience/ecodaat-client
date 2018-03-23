@@ -177,12 +177,12 @@ define(['dojo/_base/declare',
           }
         }
         var linksDiv;
-        if(item.links && item.links.length > 0 ){//|| item.showRelate
+        if(item.links && item.links.length > 0 || item.showRelate){
           linksDiv = domConstruct.create("div");
           domConstruct.place(linksDiv, div);
           domClass.add(linksDiv, 'linksdiv');
         }
-        // console.info(item.links);
+        //console.info(item.links);
         array.forEach(item.links, function(link){
           if(link.popuptype === "text"){
             var linkText = domConstruct.toDom("<p><a href='" + link.link + "' target='_blank' title='" + link.alias + "'>" + link.alias + "</a></p>");

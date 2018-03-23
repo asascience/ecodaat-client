@@ -114,7 +114,6 @@ define({
     noRelatedRecords: "No related feature found for:",
     clearRelates: "Clear Relates",
     _featureAction_eShowStatistics: "Statistics...",
-    _featureAction_eZoomTo: "Zoom to",
     _featureAction_eExportToCSV: "Export to CSV file",
     _featureAction_eShowRelate: "Show Relates"
   }),

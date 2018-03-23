@@ -1,0 +1,4723 @@
+{
+  "layers": [
+    {
+      "name": "SAMPLE RECORDS",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/1",
+      "definitionexpression": "",
+      "spatialsearchlayer": true,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": true,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "Cruise Name",
+            "textsearchlabel": "Cruise Name",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "CRUISE_NAME",
+                    "label": "CRUISE_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": "allu"
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "CRUISE_NAME = 'allu'",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "CRUISE_NAME"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "Haul Name",
+            "textsearchlabel": "Haul Keyword",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "HAUL_ID",
+                    "label": "HAUL_ID",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": ""
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "Upper(HAUL_ID) LIKE Upper('%%')",
+                  "operation": "stringOperatorContains"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "Project Code",
+            "textsearchlabel": "Project Code",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "PROJECT_CODE",
+                    "label": "PROJECT_CODE",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": ""
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "PROJECT_CODE = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "PROJECT_CODE"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "GEOGRAPHIC AREA",
+            "textsearchlabel": "GEOGRAPHIC AREA",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "GEOGRAPHIC_AREA",
+                    "label": "GEOGRAPHIC_AREA",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": ""
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "GEOGRAPHIC_AREA = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "GEOGRAPHIC_AREA"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "COMMON NAME",
+            "textsearchlabel": "COMMON NAME",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "COMMON_NAME",
+                    "label": "COMMON_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "COMMON_NAME = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "COMMON_NAME"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "Gear Name",
+            "textsearchlabel": "Gear Name",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "GEAR_NAME",
+                    "label": "GEAR_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "GEAR_NAME = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "GEAR_NAME"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": "HAUL_ID",
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "ALT_STATION_NAME",
+            "alias": "ALT_STATION_NAME"
+          },
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_HAUL",
+            "alias": "COMMENTS_HAUL"
+          },
+          {
+            "name": "COMMENTS_SAMPLES",
+            "alias": "COMMENTS_SAMPLES"
+          },
+          {
+            "name": "COMMON_NAME",
+            "alias": "COMMON_NAME"
+          },
+          {
+            "name": "CPUE",
+            "alias": "CPUE",
+            "isnumber": true
+          },
+          {
+            "name": "CRATE_NUMBER",
+            "alias": "CRATE_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "CRUISE_NAME",
+            "alias": "CRUISE_NAME"
+          },
+          {
+            "name": "CTD_ID",
+            "alias": "CTD_ID",
+            "isnumber": true
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
+            "name": "DESCRIPTION",
+            "alias": "DESCRIPTION"
+          },
+          {
+            "name": "DIEL",
+            "alias": "DIEL"
+          },
+          {
+            "name": "DISTANCE_FISHED_0",
+            "alias": "DISTANCE_FISHED_0",
+            "isnumber": true
+          },
+          {
+            "name": "DISTANCE_FISHED_1",
+            "alias": "DISTANCE_FISHED_1",
+            "isnumber": true
+          },
+          {
+            "name": "DOOR",
+            "alias": "DOOR"
+          },
+          {
+            "name": "DOOR_DIMENSIONS",
+            "alias": "DOOR_DIMENSIONS"
+          },
+          {
+            "name": "DOOR_HEIGHT",
+            "alias": "DOOR_HEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "DOOR_WIDTH",
+            "alias": "DOOR_WIDTH",
+            "isnumber": true
+          },
+          {
+            "name": "EQUILIBRIUM",
+            "alias": "EQUILIBRIUM",
+            "isnumber": true
+          },
+          {
+            "name": "FLOWMETER",
+            "alias": "FLOWMETER",
+            "isnumber": true
+          },
+          {
+            "name": "FLOWMETER_REVS",
+            "alias": "FLOWMETER_REVS",
+            "isnumber": true
+          },
+          {
+            "name": "FOCI_GEAR_ID",
+            "alias": "FOCI_GEAR_ID"
+          },
+          {
+            "name": "FOCI_GRID",
+            "alias": "FOCI_GRID"
+          },
+          {
+            "name": "FOCI_SAMPLE_ID",
+            "alias": "FOCI_SAMPLE_ID"
+          },
+          {
+            "name": "GEAR_ABBREV",
+            "alias": "GEAR_ABBREV"
+          },
+          {
+            "name": "GEAR_CODE",
+            "alias": "GEAR_CODE"
+          },
+          {
+            "name": "GEAR_ID",
+            "alias": "GEAR_ID",
+            "isnumber": true
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "GMT_DATE_TIME_END",
+            "alias": "GMT_DATE_TIME_END",
+            "isdate": true
+          },
+          {
+            "name": "H_ID",
+            "alias": "H_ID",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "HAUL_NAME",
+            "alias": "HAUL_NAME",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_PERFORMANCE",
+            "alias": "HAUL_PERFORMANCE"
+          },
+          {
+            "name": "ICH_PROC",
+            "alias": "ICH_PROC"
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LAT_END",
+            "alias": "LAT_END",
+            "isnumber": true
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "LON_END",
+            "alias": "LON_END",
+            "isnumber": true
+          },
+          {
+            "name": "MAX_GEAR_DEPTH",
+            "alias": "MAX_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "MAX_WIRE_OUT",
+            "alias": "MAX_WIRE_OUT",
+            "isnumber": true
+          },
+          {
+            "name": "MESH",
+            "alias": "MESH",
+            "isnumber": true
+          },
+          {
+            "name": "MIN_GEAR_DEPTH",
+            "alias": "MIN_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "MIN_WIRE_OUT",
+            "alias": "MIN_WIRE_OUT",
+            "isnumber": true
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "MOUTH_AREA",
+            "alias": "MOUTH_AREA",
+            "isnumber": true
+          },
+          {
+            "name": "MOUTH_AREA_TRAWL",
+            "alias": "MOUTH_AREA_TRAWL",
+            "isnumber": true
+          },
+          {
+            "name": "MULTIPLE_REQ",
+            "alias": "MULTIPLE_REQ"
+          },
+          {
+            "name": "NET",
+            "alias": "NET",
+            "isnumber": true
+          },
+          {
+            "name": "NET_INFO",
+            "alias": "NET_INFO"
+          },
+          {
+            "name": "NET_PATH",
+            "alias": "NET_PATH",
+            "isnumber": true
+          },
+          {
+            "name": "NETMOUTH_HEIGHT_M",
+            "alias": "NETMOUTH_HEIGHT_M",
+            "isnumber": true
+          },
+          {
+            "name": "NON_SUBSAMPLE_WEIGHT",
+            "alias": "NON_SUBSAMPLE_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_OF_BAGS",
+            "alias": "NUMBER_OF_BAGS",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_OF_JARS",
+            "alias": "NUMBER_OF_JARS",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_SAMPLED",
+            "alias": "NUMBER_SAMPLED",
+            "isnumber": true
+          },
+          {
+            "name": "ORIG_DB",
+            "alias": "ORIG_DB"
+          },
+          {
+            "name": "PHYTO_ASSESS",
+            "alias": "PHYTO_ASSESS"
+          },
+          {
+            "name": "PHYTO_ASSESS_ID",
+            "alias": "PHYTO_ASSESS_ID",
+            "isnumber": true
+          },
+          {
+            "name": "PI_COMPONENT",
+            "alias": "PI_COMPONENT"
+          },
+          {
+            "name": "POLAND_NOTES",
+            "alias": "POLAND_NOTES"
+          },
+          {
+            "name": "POLYGONAL_AREA",
+            "alias": "POLYGONAL_AREA",
+            "isnumber": true
+          },
+          {
+            "name": "PRIMARY_NET",
+            "alias": "PRIMARY_NET"
+          },
+          {
+            "name": "PROJECT",
+            "alias": "PROJECT"
+          },
+          {
+            "name": "PROJECT_CODE",
+            "alias": "PROJECT_CODE"
+          },
+          {
+            "name": "PURPOSE",
+            "alias": "PURPOSE"
+          },
+          {
+            "name": "SAMPLE_ABBREV",
+            "alias": "SAMPLE_ABBREV"
+          },
+          {
+            "name": "SAMPLE_DESC",
+            "alias": "SAMPLE_DESC"
+          },
+          {
+            "name": "SAMPLE_DICT_ID",
+            "alias": "SAMPLE_DICT_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_ORIG_DB",
+            "alias": "SAMPLE_ORIG_DB"
+          },
+          {
+            "name": "SAMPLE_TYPE",
+            "alias": "SAMPLE_TYPE"
+          },
+          {
+            "name": "SEA_SURFACE_TEMP_C",
+            "alias": "SEA_SURFACE_TEMP_C",
+            "isnumber": true
+          },
+          {
+            "name": "SHIP_CRUISE_NAME",
+            "alias": "SHIP_CRUISE_NAME"
+          },
+          {
+            "name": "SHIP_NAME",
+            "alias": "SHIP_NAME"
+          },
+          {
+            "name": "SHIPMENT",
+            "alias": "SHIPMENT"
+          },
+          {
+            "name": "SPECIES_CODE_ID",
+            "alias": "SPECIES_CODE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "STATION_NAME",
+            "alias": "STATION_NAME"
+          },
+          {
+            "name": "SUBSAMPLE_NUMBER",
+            "alias": "SUBSAMPLE_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "SUBSAMPLE_WEIGHT",
+            "alias": "SUBSAMPLE_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "TOTAL_NUMBER",
+            "alias": "TOTAL_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "TOW_MINUTES",
+            "alias": "TOW_MINUTES",
+            "isnumber": true
+          },
+          {
+            "name": "TOW_SECONDS",
+            "alias": "TOW_SECONDS",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_CATCH",
+            "alias": "TRAWL_CATCH",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_DEPLOYED_GMT",
+            "alias": "TRAWL_DEPLOYED_GMT",
+            "isdate": true
+          },
+          {
+            "name": "TRAWL_DEPLOYED_LAT",
+            "alias": "TRAWL_DEPLOYED_LAT",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_DEPLOYED_LON",
+            "alias": "TRAWL_DEPLOYED_LON",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_GMT",
+            "alias": "TRAWL_HAULBACK_START_GMT",
+            "isdate": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_LAT",
+            "alias": "TRAWL_HAULBACK_START_LAT",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_LON",
+            "alias": "TRAWL_HAULBACK_START_LON",
+            "isnumber": true
+          },
+          {
+            "name": "VIAL_NUMBER",
+            "alias": "VIAL_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "VOLUME_DISPLACEMENT",
+            "alias": "VOLUME_DISPLACEMENT"
+          },
+          {
+            "name": "VOLUME_FILTERED",
+            "alias": "VOLUME_FILTERED",
+            "isnumber": true
+          },
+          {
+            "name": "VOLUME_FISHED",
+            "alias": "VOLUME_FISHED",
+            "isnumber": true
+          },
+          {
+            "name": "WATER_TEMP_AT_GEAR_DEPTH",
+            "alias": "WATER_TEMP_AT_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "WEIGHT_UNITS",
+            "alias": "WEIGHT_UNITS"
+          },
+          {
+            "name": "WIRE_ANGLE",
+            "alias": "WIRE_ANGLE",
+            "isnumber": true
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          },
+          {
+            "name": "ZOOP_PROC",
+            "alias": "ZOOP_PROC"
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": [
+          false
+        ]
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "HAUL RECORDS",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/0",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "Cruise Name",
+            "textsearchlabel": "Cruise Name",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "CRUISE",
+                    "label": "CRUISE",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": "allu"
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "CRUISE = 'allu'",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "CRUISE"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "Net",
+            "textsearchlabel": "Net",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "NET",
+                    "label": "NET",
+                    "shortType": "number",
+                    "type": "esriFieldTypeDouble"
+                  },
+                  "valueObj": {
+                    "value": null
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "NET =",
+                  "operation": "numberOperatorIs",
+                  "uniquevalsfromfield": "NET"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "Primary Net",
+            "textsearchlabel": "Primary Net",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "PRIMARY_NET",
+                    "label": "PRIMARY_NET",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": "allu"
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "PRIMARY_NET = 'allu'",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "PRIMARY_NET"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "Geographic Area",
+            "textsearchlabel": "Geographic Area",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "GEOGRAPHIC_AREA",
+                    "label": "GEOGRAPHIC_AREA",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": "allu"
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "GEOGRAPHIC_AREA = 'allu'",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "GEOGRAPHIC_AREA"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "Haul ID",
+            "textsearchlabel": "Haul ID",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "HAUL_ID",
+                    "label": "HAUL_ID",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": ""
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "Upper(HAUL_ID) LIKE Upper('%%')",
+                  "operation": "stringOperatorContains"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "Purpose",
+            "textsearchlabel": "Purpose",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "PURPOSE",
+                    "label": "PURPOSE",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "PURPOSE = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "PURPOSE"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "CRUISE_ID",
+            "alias": "CRUISE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "STATION_NAME",
+            "alias": "STATION_NAME"
+          },
+          {
+            "name": "HAUL_NAME",
+            "alias": "HAUL_NAME",
+            "isnumber": true
+          },
+          {
+            "name": "GEAR_ID",
+            "alias": "GEAR_ID",
+            "isnumber": true
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "NET",
+            "alias": "NET",
+            "isnumber": true
+          },
+          {
+            "name": "FOCI_GRID",
+            "alias": "FOCI_GRID"
+          },
+          {
+            "name": "ALT_STATION_NAME",
+            "alias": "ALT_STATION_NAME"
+          },
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "CTD_ID",
+            "alias": "CTD_ID",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_PERFORMANCE",
+            "alias": "HAUL_PERFORMANCE"
+          },
+          {
+            "name": "MESH",
+            "alias": "MESH",
+            "isnumber": true
+          },
+          {
+            "name": "PURPOSE",
+            "alias": "PURPOSE"
+          },
+          {
+            "name": "PURPOSE_ID",
+            "alias": "PURPOSE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "PRIMARY_NET",
+            "alias": "PRIMARY_NET"
+          },
+          {
+            "name": "FLOWMETER_ID",
+            "alias": "FLOWMETER_ID",
+            "isnumber": true
+          },
+          {
+            "name": "FLOWMETER",
+            "alias": "FLOWMETER",
+            "isnumber": true
+          },
+          {
+            "name": "FLOWMETER_REVS",
+            "alias": "FLOWMETER_REVS",
+            "isnumber": true
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "MIN_GEAR_DEPTH",
+            "alias": "MIN_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "MAX_GEAR_DEPTH",
+            "alias": "MAX_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "MIN_WIRE_OUT",
+            "alias": "MIN_WIRE_OUT",
+            "isnumber": true
+          },
+          {
+            "name": "MAX_WIRE_OUT",
+            "alias": "MAX_WIRE_OUT",
+            "isnumber": true
+          },
+          {
+            "name": "TOW_MINUTES",
+            "alias": "TOW_MINUTES",
+            "isnumber": true
+          },
+          {
+            "name": "TOW_SECONDS",
+            "alias": "TOW_SECONDS",
+            "isnumber": true
+          },
+          {
+            "name": "VOLUME_FILTERED",
+            "alias": "VOLUME_FILTERED",
+            "isnumber": true
+          },
+          {
+            "name": "STANDARD_HAUL_FACTOR_A",
+            "alias": "STANDARD_HAUL_FACTOR_A",
+            "isnumber": true
+          },
+          {
+            "name": "STANDARD_HAUL_FACTOR_B",
+            "alias": "STANDARD_HAUL_FACTOR_B",
+            "isnumber": true
+          },
+          {
+            "name": "POLYGONAL_AREA",
+            "alias": "POLYGONAL_AREA",
+            "isnumber": true
+          },
+          {
+            "name": "WIRE_ANGLE",
+            "alias": "WIRE_ANGLE",
+            "isnumber": true
+          },
+          {
+            "name": "ORIG_DB",
+            "alias": "ORIG_DB"
+          },
+          {
+            "name": "LAT_END",
+            "alias": "LAT_END",
+            "isnumber": true
+          },
+          {
+            "name": "LON_END",
+            "alias": "LON_END",
+            "isnumber": true
+          },
+          {
+            "name": "DOOR",
+            "alias": "DOOR"
+          },
+          {
+            "name": "DOOR_HEIGHT",
+            "alias": "DOOR_HEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "DOOR_WIDTH",
+            "alias": "DOOR_WIDTH",
+            "isnumber": true
+          },
+          {
+            "name": "DIEL",
+            "alias": "DIEL"
+          },
+          {
+            "name": "NETMOUTH_HEIGHT_M",
+            "alias": "NETMOUTH_HEIGHT_M",
+            "isnumber": true
+          },
+          {
+            "name": "NET_PATH",
+            "alias": "NET_PATH",
+            "isnumber": true
+          },
+          {
+            "name": "SEA_SURFACE_TEMP_C",
+            "alias": "SEA_SURFACE_TEMP_C",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_DEPLOYED_LAT",
+            "alias": "TRAWL_DEPLOYED_LAT",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_DEPLOYED_LON",
+            "alias": "TRAWL_DEPLOYED_LON",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_LAT",
+            "alias": "TRAWL_HAULBACK_START_LAT",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_LON",
+            "alias": "TRAWL_HAULBACK_START_LON",
+            "isnumber": true
+          },
+          {
+            "name": "WATER_TEMP_AT_GEAR_DEPTH",
+            "alias": "WATER_TEMP_AT_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "STATION_ID",
+            "alias": "STATION_ID",
+            "isnumber": true
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "GMT_DATE_TIME_END",
+            "alias": "GMT_DATE_TIME_END",
+            "isdate": true
+          },
+          {
+            "name": "CALIBRATION_FACTOR",
+            "alias": "CALIBRATION_FACTOR",
+            "isnumber": true
+          },
+          {
+            "name": "REC_HIST_HAUL",
+            "alias": "REC_HIST_HAUL"
+          },
+          {
+            "name": "COMMENTS_HAUL",
+            "alias": "COMMENTS_HAUL"
+          },
+          {
+            "name": "TRAWL_DEPLOYED_GMT",
+            "alias": "TRAWL_DEPLOYED_GMT",
+            "isdate": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_GMT",
+            "alias": "TRAWL_HAULBACK_START_GMT",
+            "isdate": true
+          },
+          {
+            "name": "PRIMARY_NET_OLD",
+            "alias": "PRIMARY_NET_OLD"
+          },
+          {
+            "name": "GMT_DATE_TIME_TEXT",
+            "alias": "GMT_DATE_TIME_TEXT"
+          },
+          {
+            "name": "DOE",
+            "alias": "DOE",
+            "isdate": true
+          },
+          {
+            "name": "DOC",
+            "alias": "DOC",
+            "isdate": true
+          },
+          {
+            "name": "MONTH_NAME",
+            "alias": "MONTH_NAME"
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "SPECIMEN RECORDS",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/2",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": false,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "Species Name",
+            "textsearchlabel": "Species Name",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "SPECIES_NAME",
+                    "label": "SPECIES_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "SPECIES_NAME = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "SPECIES_NAME"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "ABBR_NAME",
+            "alias": "ABBR_NAME"
+          },
+          {
+            "name": "AGE_GROWTH_SAMPLE",
+            "alias": "AGE_GROWTH_SAMPLE"
+          },
+          {
+            "name": "ALT_COMMON_NAME_TRAWL",
+            "alias": "ALT_COMMON_NAME_TRAWL"
+          },
+          {
+            "name": "ALT_GENUS",
+            "alias": "ALT_GENUS"
+          },
+          {
+            "name": "ALT_SPECIMEN_NAME",
+            "alias": "ALT_SPECIMEN_NAME"
+          },
+          {
+            "name": "ALT_SPECIMEN_NUMBER",
+            "alias": "ALT_SPECIMEN_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "ALT_STATION_NAME",
+            "alias": "ALT_STATION_NAME"
+          },
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "CARBON_DRY_WEIGHT",
+            "alias": "CARBON_DRY_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_HAUL",
+            "alias": "COMMENTS_HAUL"
+          },
+          {
+            "name": "COMMENTS_ICHBASE",
+            "alias": "COMMENTS_ICHBASE"
+          },
+          {
+            "name": "COMMENTS_SAMPLES",
+            "alias": "COMMENTS_SAMPLES"
+          },
+          {
+            "name": "COMMENTS_SPECIES_CODE",
+            "alias": "COMMENTS_SPECIES_CODE"
+          },
+          {
+            "name": "COMMENTS_SPECIMEN",
+            "alias": "COMMENTS_SPECIMEN"
+          },
+          {
+            "name": "COMMON_NAME",
+            "alias": "COMMON_NAME"
+          },
+          {
+            "name": "COMMON_NAME_ICHBASE",
+            "alias": "COMMON_NAME_ICHBASE"
+          },
+          {
+            "name": "COMMON_NAME_IIS",
+            "alias": "COMMON_NAME_IIS"
+          },
+          {
+            "name": "COMMON_NAME_RACEBASE",
+            "alias": "COMMON_NAME_RACEBASE"
+          },
+          {
+            "name": "CPUE",
+            "alias": "CPUE",
+            "isnumber": true
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "CRUISE_NAME",
+            "alias": "CRUISE_NAME"
+          },
+          {
+            "name": "CTD_ID",
+            "alias": "CTD_ID",
+            "isnumber": true
+          },
+          {
+            "name": "DATABASE_BOB",
+            "alias": "DATABASE_BOB"
+          },
+          {
+            "name": "DATABASE_ICHBASE",
+            "alias": "DATABASE_ICHBASE"
+          },
+          {
+            "name": "DATABASE_IIS",
+            "alias": "DATABASE_IIS"
+          },
+          {
+            "name": "DATABASE_RACEBASE",
+            "alias": "DATABASE_RACEBASE"
+          },
+          {
+            "name": "DATABASE_TRAWL",
+            "alias": "DATABASE_TRAWL"
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
+            "name": "DESCRIPTION",
+            "alias": "DESCRIPTION"
+          },
+          {
+            "name": "DIEL",
+            "alias": "DIEL"
+          },
+          {
+            "name": "DIGESTION",
+            "alias": "DIGESTION"
+          },
+          {
+            "name": "DIS_PERVOLM2",
+            "alias": "DIS_PERVOLM2",
+            "isnumber": true
+          },
+          {
+            "name": "DIS_PERVOLM3",
+            "alias": "DIS_PERVOLM3",
+            "isnumber": true
+          },
+          {
+            "name": "DISTANCE_FISHED_0",
+            "alias": "DISTANCE_FISHED_0",
+            "isnumber": true
+          },
+          {
+            "name": "DISTANCE_FISHED_1",
+            "alias": "DISTANCE_FISHED_1",
+            "isnumber": true
+          },
+          {
+            "name": "DOC",
+            "alias": "DOC",
+            "isdate": true
+          },
+          {
+            "name": "DOE",
+            "alias": "DOE",
+            "isdate": true
+          },
+          {
+            "name": "DOOR",
+            "alias": "DOOR"
+          },
+          {
+            "name": "DOOR_DIMENSIONS",
+            "alias": "DOOR_DIMENSIONS"
+          },
+          {
+            "name": "DOOR_HEIGHT",
+            "alias": "DOOR_HEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "DOOR_WIDTH",
+            "alias": "DOOR_WIDTH",
+            "isnumber": true
+          },
+          {
+            "name": "EQUILIBRIUM",
+            "alias": "EQUILIBRIUM",
+            "isnumber": true
+          },
+          {
+            "name": "EST_NUM_PERM2",
+            "alias": "EST_NUM_PERM2",
+            "isnumber": true
+          },
+          {
+            "name": "EST_NUM_PERM3",
+            "alias": "EST_NUM_PERM3",
+            "isnumber": true
+          },
+          {
+            "name": "EST_NUM_PERSAMPLE",
+            "alias": "EST_NUM_PERSAMPLE",
+            "isnumber": true
+          },
+          {
+            "name": "EXAMINER",
+            "alias": "EXAMINER"
+          },
+          {
+            "name": "FAMILY",
+            "alias": "FAMILY"
+          },
+          {
+            "name": "FAMILY_CODE_IIS",
+            "alias": "FAMILY_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "FAMILY_COM_IIS",
+            "alias": "FAMILY_COM_IIS"
+          },
+          {
+            "name": "FAMILY_COMMON_NAME",
+            "alias": "FAMILY_COMMON_NAME"
+          },
+          {
+            "name": "FAMILY_IIS",
+            "alias": "FAMILY_IIS"
+          },
+          {
+            "name": "FLOWMETER",
+            "alias": "FLOWMETER",
+            "isnumber": true
+          },
+          {
+            "name": "FLOWMETER_REVS",
+            "alias": "FLOWMETER_REVS",
+            "isnumber": true
+          },
+          {
+            "name": "FOCI_GEAR_ID",
+            "alias": "FOCI_GEAR_ID"
+          },
+          {
+            "name": "FOCI_GRID",
+            "alias": "FOCI_GRID"
+          },
+          {
+            "name": "FOCI_ID",
+            "alias": "FOCI_ID"
+          },
+          {
+            "name": "FOCI_PRESERVE_ID",
+            "alias": "FOCI_PRESERVE_ID"
+          },
+          {
+            "name": "FOCI_SAMPLE_ID",
+            "alias": "FOCI_SAMPLE_ID"
+          },
+          {
+            "name": "FREQUENCY",
+            "alias": "FREQUENCY",
+            "isnumber": true
+          },
+          {
+            "name": "FULLNESS",
+            "alias": "FULLNESS"
+          },
+          {
+            "name": "GEAR_ABBREV",
+            "alias": "GEAR_ABBREV"
+          },
+          {
+            "name": "GEAR_CODE",
+            "alias": "GEAR_CODE"
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "GENETIC_SAMPLE",
+            "alias": "GENETIC_SAMPLE"
+          },
+          {
+            "name": "GENUS",
+            "alias": "GENUS"
+          },
+          {
+            "name": "GENUS_CODE_IIS",
+            "alias": "GENUS_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "GENUS_COM_IIS",
+            "alias": "GENUS_COM_IIS"
+          },
+          {
+            "name": "GENUS_COMMON_NAME",
+            "alias": "GENUS_COMMON_NAME"
+          },
+          {
+            "name": "GENUS_ICHBASE",
+            "alias": "GENUS_ICHBASE"
+          },
+          {
+            "name": "GENUS_IIS",
+            "alias": "GENUS_IIS"
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "GMT_DATE_TIME_END",
+            "alias": "GMT_DATE_TIME_END",
+            "isdate": true
+          },
+          {
+            "name": "GROUP_TRAWL",
+            "alias": "GROUP_TRAWL"
+          },
+          {
+            "name": "GSID_IIS",
+            "alias": "GSID_IIS"
+          },
+          {
+            "name": "H_ID",
+            "alias": "H_ID",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "HAUL_NAME",
+            "alias": "HAUL_NAME",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_PERFORMANCE",
+            "alias": "HAUL_PERFORMANCE"
+          },
+          {
+            "name": "ICH_FAMILY_ICHBASE",
+            "alias": "ICH_FAMILY_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "ICH_GENUS_ICHBASE",
+            "alias": "ICH_GENUS_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "ICH_ORDER_ICHBASE",
+            "alias": "ICH_ORDER_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "ICH_SPECIES_ICHBASE",
+            "alias": "ICH_SPECIES_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "ITIS_CODE",
+            "alias": "ITIS_CODE"
+          },
+          {
+            "name": "LARVALCATCHPER1000M3",
+            "alias": "LARVALCATCHPER1000M3",
+            "isnumber": true
+          },
+          {
+            "name": "LARVALCATCHPER10M2",
+            "alias": "LARVALCATCHPER10M2",
+            "isnumber": true
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LAT_END",
+            "alias": "LAT_END",
+            "isnumber": true
+          },
+          {
+            "name": "LENGTH_AT_SEA",
+            "alias": "LENGTH_AT_SEA",
+            "isnumber": true
+          },
+          {
+            "name": "LENGTH_FORK",
+            "alias": "LENGTH_FORK",
+            "isnumber": true
+          },
+          {
+            "name": "LENGTH_STANDARD",
+            "alias": "LENGTH_STANDARD",
+            "isnumber": true
+          },
+          {
+            "name": "LENGTH_TOTAL",
+            "alias": "LENGTH_TOTAL",
+            "isnumber": true
+          },
+          {
+            "name": "LENGTH_TRAWL_TYPE",
+            "alias": "LENGTH_TRAWL_TYPE"
+          },
+          {
+            "name": "LENGTH_UNITS",
+            "alias": "LENGTH_UNITS"
+          },
+          {
+            "name": "LENGTH_WEIGHT_COMMENTS",
+            "alias": "LENGTH_WEIGHT_COMMENTS"
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "LON_END",
+            "alias": "LON_END",
+            "isnumber": true
+          },
+          {
+            "name": "MAX_GEAR_DEPTH",
+            "alias": "MAX_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "MAX_WIRE_OUT",
+            "alias": "MAX_WIRE_OUT",
+            "isnumber": true
+          },
+          {
+            "name": "MESH",
+            "alias": "MESH",
+            "isnumber": true
+          },
+          {
+            "name": "MIN_GEAR_DEPTH",
+            "alias": "MIN_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "MIN_WIRE_OUT",
+            "alias": "MIN_WIRE_OUT",
+            "isnumber": true
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "MOUTH_AREA",
+            "alias": "MOUTH_AREA",
+            "isnumber": true
+          },
+          {
+            "name": "MULTIPLE_REQ",
+            "alias": "MULTIPLE_REQ"
+          },
+          {
+            "name": "NET",
+            "alias": "NET",
+            "isnumber": true
+          },
+          {
+            "name": "NET_INFO",
+            "alias": "NET_INFO"
+          },
+          {
+            "name": "NET_PATH",
+            "alias": "NET_PATH",
+            "isnumber": true
+          },
+          {
+            "name": "NETMOUTH_HEIGHT_M",
+            "alias": "NETMOUTH_HEIGHT_M",
+            "isnumber": true
+          },
+          {
+            "name": "NODC_CODE",
+            "alias": "NODC_CODE"
+          },
+          {
+            "name": "NON_SUBSAMPLE_WEIGHT",
+            "alias": "NON_SUBSAMPLE_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_CAUGHT",
+            "alias": "NUMBER_CAUGHT",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_EGGS",
+            "alias": "NUMBER_EGGS",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_MEASURED_COUNTED",
+            "alias": "NUMBER_MEASURED_COUNTED",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_MEASURED_COUNTED_COPY",
+            "alias": "NUMBER_MEASURED_COUNTED_COPY",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_OF_BAGS",
+            "alias": "NUMBER_OF_BAGS",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_OF_JARS",
+            "alias": "NUMBER_OF_JARS",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_SAMPLED",
+            "alias": "NUMBER_SAMPLED",
+            "isnumber": true
+          },
+          {
+            "name": "OLD_PREY_CODE_TRAWL",
+            "alias": "OLD_PREY_CODE_TRAWL",
+            "isnumber": true
+          },
+          {
+            "name": "ORDER_CODE_IIS",
+            "alias": "ORDER_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "ORDER_COM_IIS",
+            "alias": "ORDER_COM_IIS"
+          },
+          {
+            "name": "ORDER_IIS",
+            "alias": "ORDER_IIS"
+          },
+          {
+            "name": "ORGANISM_TYPE",
+            "alias": "ORGANISM_TYPE"
+          },
+          {
+            "name": "ORIG_DB",
+            "alias": "ORIG_DB"
+          },
+          {
+            "name": "PHYLOGENY_CODE_IIS",
+            "alias": "PHYLOGENY_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "PHYLOGENY_CODE_OLD_IIS",
+            "alias": "PHYLOGENY_CODE_OLD_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "PHYTO_ASSESS",
+            "alias": "PHYTO_ASSESS"
+          },
+          {
+            "name": "PHYTO_ASSESS_ID",
+            "alias": "PHYTO_ASSESS_ID",
+            "isnumber": true
+          },
+          {
+            "name": "PI_COMPONENT",
+            "alias": "PI_COMPONENT"
+          },
+          {
+            "name": "POLYGONAL_AREA",
+            "alias": "POLYGONAL_AREA",
+            "isnumber": true
+          },
+          {
+            "name": "PRESERVATIVE",
+            "alias": "PRESERVATIVE"
+          },
+          {
+            "name": "PRESERVE_COMMENTS",
+            "alias": "PRESERVE_COMMENTS"
+          },
+          {
+            "name": "PRESERVE_ID",
+            "alias": "PRESERVE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "PREY_CODE_TRAWL",
+            "alias": "PREY_CODE_TRAWL"
+          },
+          {
+            "name": "PREY_GROUP_CODE_TRAWL",
+            "alias": "PREY_GROUP_CODE_TRAWL"
+          },
+          {
+            "name": "PRIMARY_NET",
+            "alias": "PRIMARY_NET"
+          },
+          {
+            "name": "PROCESS_DATE",
+            "alias": "PROCESS_DATE",
+            "isdate": true
+          },
+          {
+            "name": "PROJECT",
+            "alias": "PROJECT"
+          },
+          {
+            "name": "PROJECT_CODE",
+            "alias": "PROJECT_CODE"
+          },
+          {
+            "name": "PROVIDER_OWNER",
+            "alias": "PROVIDER_OWNER"
+          },
+          {
+            "name": "PURPOSE",
+            "alias": "PURPOSE"
+          },
+          {
+            "name": "REC_HIST_SPECIES_IIS",
+            "alias": "REC_HIST_SPECIES_IIS"
+          },
+          {
+            "name": "SAMPLE_ABBREV",
+            "alias": "SAMPLE_ABBREV"
+          },
+          {
+            "name": "SAMPLE_DEPTH",
+            "alias": "SAMPLE_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_DESC",
+            "alias": "SAMPLE_DESC"
+          },
+          {
+            "name": "SAMPLE_ID",
+            "alias": "SAMPLE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_ORIG_DB",
+            "alias": "SAMPLE_ORIG_DB"
+          },
+          {
+            "name": "SAMPLE_TYPE",
+            "alias": "SAMPLE_TYPE"
+          },
+          {
+            "name": "SAMPLE_VOLUME",
+            "alias": "SAMPLE_VOLUME",
+            "isnumber": true
+          },
+          {
+            "name": "SE_ANNO_CAD_DATA",
+            "alias": "SE_ANNO_CAD_DATA"
+          },
+          {
+            "name": "SEA_SURFACE_TEMP_C",
+            "alias": "SEA_SURFACE_TEMP_C",
+            "isnumber": true
+          },
+          {
+            "name": "SEX",
+            "alias": "SEX",
+            "isnumber": true
+          },
+          {
+            "name": "SEX_NAME",
+            "alias": "SEX_NAME"
+          },
+          {
+            "name": "SHIP_CRUISE_NAME",
+            "alias": "SHIP_CRUISE_NAME"
+          },
+          {
+            "name": "SHIP_NAME",
+            "alias": "SHIP_NAME"
+          },
+          {
+            "name": "SHRINKAGE_SPECIMEN_NUMBER",
+            "alias": "SHRINKAGE_SPECIMEN_NUMBER"
+          },
+          {
+            "name": "SIZE_NAME",
+            "alias": "SIZE_NAME"
+          },
+          {
+            "name": "SORTER_CODE",
+            "alias": "SORTER_CODE"
+          },
+          {
+            "name": "SORTER_GROUP",
+            "alias": "SORTER_GROUP"
+          },
+          {
+            "name": "SORTER_ID",
+            "alias": "SORTER_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SORTER_NAME",
+            "alias": "SORTER_NAME"
+          },
+          {
+            "name": "SPECIES",
+            "alias": "SPECIES"
+          },
+          {
+            "name": "SPECIES_CODE_ICHBASE",
+            "alias": "SPECIES_CODE_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "SPECIES_CODE_ID",
+            "alias": "SPECIES_CODE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SPECIES_CODE_IIS",
+            "alias": "SPECIES_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "SPECIES_CODE_RACEBASE",
+            "alias": "SPECIES_CODE_RACEBASE"
+          },
+          {
+            "name": "SPECIES_CODE_TRAWL",
+            "alias": "SPECIES_CODE_TRAWL"
+          },
+          {
+            "name": "SPECIES_ICHBASE",
+            "alias": "SPECIES_ICHBASE"
+          },
+          {
+            "name": "SPECIES_IIS",
+            "alias": "SPECIES_IIS"
+          },
+          {
+            "name": "SPECIES_NAME",
+            "alias": "SPECIES_NAME"
+          },
+          {
+            "name": "SPECIES_NAME_BOB",
+            "alias": "SPECIES_NAME_BOB"
+          },
+          {
+            "name": "SPECIES_NAME_ICHBASE",
+            "alias": "SPECIES_NAME_ICHBASE"
+          },
+          {
+            "name": "SPECIES_NAME_RACEBASE",
+            "alias": "SPECIES_NAME_RACEBASE"
+          },
+          {
+            "name": "SPECIES_ORDER",
+            "alias": "SPECIES_ORDER"
+          },
+          {
+            "name": "SPECIMEN_FORM",
+            "alias": "SPECIMEN_FORM"
+          },
+          {
+            "name": "SPECIMEN_NUMBER",
+            "alias": "SPECIMEN_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "SPECIMEN_SIZE",
+            "alias": "SPECIMEN_SIZE",
+            "isnumber": true
+          },
+          {
+            "name": "STAGE",
+            "alias": "STAGE",
+            "isnumber": true
+          },
+          {
+            "name": "STAGE_COMMENTS",
+            "alias": "STAGE_COMMENTS"
+          },
+          {
+            "name": "STAGE_GROUP",
+            "alias": "STAGE_GROUP"
+          },
+          {
+            "name": "STAGE_ID",
+            "alias": "STAGE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "STAGE_NAME",
+            "alias": "STAGE_NAME"
+          },
+          {
+            "name": "STATION_NAME",
+            "alias": "STATION_NAME"
+          },
+          {
+            "name": "STOMACH_CONTENT_WT_G",
+            "alias": "STOMACH_CONTENT_WT_G",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACH_DIGESTION_CODE",
+            "alias": "STOMACH_DIGESTION_CODE",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACH_FULLNESS_CODE",
+            "alias": "STOMACH_FULLNESS_CODE",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACH_INTACT_WT_G",
+            "alias": "STOMACH_INTACT_WT_G",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACH_LINING_WT_G",
+            "alias": "STOMACH_LINING_WT_G",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACH_PROCESS_DATE",
+            "alias": "STOMACH_PROCESS_DATE",
+            "isdate": true
+          },
+          {
+            "name": "STOMACH_SAMPLE",
+            "alias": "STOMACH_SAMPLE",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACHEXAMINER",
+            "alias": "STOMACHEXAMINER"
+          },
+          {
+            "name": "SUBFAM_CODE_IIS",
+            "alias": "SUBFAM_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "SUBFAM_COM_IIS",
+            "alias": "SUBFAM_COM_IIS"
+          },
+          {
+            "name": "SUBFAM_IIS",
+            "alias": "SUBFAM_IIS"
+          },
+          {
+            "name": "SUBSAMPLE_FACTOR",
+            "alias": "SUBSAMPLE_FACTOR",
+            "isnumber": true
+          },
+          {
+            "name": "SUBSAMPLE_NUMBER",
+            "alias": "SUBSAMPLE_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "SUBSAMPLE_WEIGHT",
+            "alias": "SUBSAMPLE_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "TAXON_CODE_BOB",
+            "alias": "TAXON_CODE_BOB",
+            "isnumber": true
+          },
+          {
+            "name": "TAXON_CODE_ID",
+            "alias": "TAXON_CODE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "TAXON_NAME",
+            "alias": "TAXON_NAME"
+          },
+          {
+            "name": "TAXON_ORIG_DB",
+            "alias": "TAXON_ORIG_DB"
+          },
+          {
+            "name": "TAXON_SIZE",
+            "alias": "TAXON_SIZE"
+          },
+          {
+            "name": "TC_ID",
+            "alias": "TC_ID",
+            "isnumber": true
+          },
+          {
+            "name": "TOTAL_NUMBER",
+            "alias": "TOTAL_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "TOW_MINUTES",
+            "alias": "TOW_MINUTES",
+            "isnumber": true
+          },
+          {
+            "name": "TOW_SECONDS",
+            "alias": "TOW_SECONDS",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_CATCH",
+            "alias": "TRAWL_CATCH",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_DEPLOYED_GMT",
+            "alias": "TRAWL_DEPLOYED_GMT",
+            "isdate": true
+          },
+          {
+            "name": "TRAWL_DEPLOYED_LAT",
+            "alias": "TRAWL_DEPLOYED_LAT",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_DEPLOYED_LON",
+            "alias": "TRAWL_DEPLOYED_LON",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_GMT",
+            "alias": "TRAWL_HAULBACK_START_GMT",
+            "isdate": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_LAT",
+            "alias": "TRAWL_HAULBACK_START_LAT",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_LON",
+            "alias": "TRAWL_HAULBACK_START_LON",
+            "isnumber": true
+          },
+          {
+            "name": "VIAL_NUMBER",
+            "alias": "VIAL_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "VOLUME_DISPLACEMENT",
+            "alias": "VOLUME_DISPLACEMENT"
+          },
+          {
+            "name": "VOLUME_FILTERED",
+            "alias": "VOLUME_FILTERED",
+            "isnumber": true
+          },
+          {
+            "name": "VOLUME_FISHED",
+            "alias": "VOLUME_FISHED",
+            "isnumber": true
+          },
+          {
+            "name": "WATER_TEMP_AT_GEAR_DEPTH",
+            "alias": "WATER_TEMP_AT_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "WEIGHT_UNITS",
+            "alias": "WEIGHT_UNITS"
+          },
+          {
+            "name": "WHOLE_WET_BODY_WEIGHT",
+            "alias": "WHOLE_WET_BODY_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "WIRE_ANGLE",
+            "alias": "WIRE_ANGLE",
+            "isnumber": true
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          },
+          {
+            "name": "ZOOP_COPEPOD_NAUPLII",
+            "alias": "ZOOP_COPEPOD_NAUPLII"
+          },
+          {
+            "name": "ZOOP_EUPHAUSIID_EGG",
+            "alias": "ZOOP_EUPHAUSIID_EGG"
+          },
+          {
+            "name": "ZOOP_INDIVIDUAL_NUMBER",
+            "alias": "ZOOP_INDIVIDUAL_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "ZOOP_PROTOCOL",
+            "alias": "ZOOP_PROTOCOL"
+          },
+          {
+            "name": "ZOOP_VIAL_NUMBER",
+            "alias": "ZOOP_VIAL_NUMBER"
+          },
+          {
+            "name": "ZOOP_WET_WEIGHT",
+            "alias": "ZOOP_WET_WEIGHT",
+            "isnumber": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "SEACAT RECORDS",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/4",
+      "definitionexpression": "",
+      "spatialsearchlayer": true,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "Cruise",
+            "textsearchlabel": "Cruise",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "CRUISE",
+                    "label": "CRUISE",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "CRUISE = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "CRUISE"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_SEACAT_CTD",
+            "alias": "COMMENTS_SEACAT_CTD"
+          },
+          {
+            "name": "CONDUCTIVITY1",
+            "alias": "CONDUCTIVITY1",
+            "isnumber": true
+          },
+          {
+            "name": "CONDUCTIVITY2",
+            "alias": "CONDUCTIVITY2",
+            "isnumber": true
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "CTD_ID",
+            "alias": "CTD_ID",
+            "isnumber": true
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
+            "name": "DEPTH",
+            "alias": "DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "FLUOROMETER",
+            "alias": "FLUOROMETER",
+            "isnumber": true
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "H_ID",
+            "alias": "H_ID",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "OXYGEN1",
+            "alias": "OXYGEN1",
+            "isnumber": true
+          },
+          {
+            "name": "OXYGEN2",
+            "alias": "OXYGEN2",
+            "isnumber": true
+          },
+          {
+            "name": "PAR",
+            "alias": "PAR",
+            "isnumber": true
+          },
+          {
+            "name": "PH",
+            "alias": "PH",
+            "isnumber": true
+          },
+          {
+            "name": "POTENTIAL_DENSITY",
+            "alias": "POTENTIAL_DENSITY",
+            "isnumber": true
+          },
+          {
+            "name": "PURPOSE",
+            "alias": "PURPOSE"
+          },
+          {
+            "name": "SALINITY1",
+            "alias": "SALINITY1",
+            "isnumber": true
+          },
+          {
+            "name": "SALINITY2",
+            "alias": "SALINITY2",
+            "isnumber": true
+          },
+          {
+            "name": "SIGMA_T",
+            "alias": "SIGMA_T",
+            "isnumber": true
+          },
+          {
+            "name": "TEMPERATURE1",
+            "alias": "TEMPERATURE1",
+            "isnumber": true
+          },
+          {
+            "name": "TEMPERATURE2",
+            "alias": "TEMPERATURE2",
+            "isnumber": true
+          },
+          {
+            "name": "TRANS",
+            "alias": "TRANS",
+            "isnumber": true
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": [
+          {}
+        ]
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "CHLOROPHYLL RECORDS",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/5",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": false,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "HAUL ID",
+            "textsearchlabel": "HAUL ID",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "HAUL_ID",
+                    "label": "HAUL_ID",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": ""
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "HAUL_ID = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "HAUL_ID"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "ACETONE_VOL",
+            "alias": "ACETONE_VOL",
+            "isnumber": true
+          },
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "CALIBRATION_ID",
+            "alias": "CALIBRATION_ID"
+          },
+          {
+            "name": "CHLOR_DOOR",
+            "alias": "CHLOR_DOOR"
+          },
+          {
+            "name": "CHLOROCONC_L",
+            "alias": "CHLOROCONC_L",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_CHLOROPHYLL",
+            "alias": "COMMENTS_CHLOROPHYLL"
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "CTD_ID",
+            "alias": "CTD_ID",
+            "isnumber": true
+          },
+          {
+            "name": "CTDB_ID",
+            "alias": "CTDB_ID",
+            "isnumber": true
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
+            "name": "DILUTION_FACTOR",
+            "alias": "DILUTION_FACTOR",
+            "isnumber": true
+          },
+          {
+            "name": "DOOR_FACTOR",
+            "alias": "DOOR_FACTOR",
+            "isnumber": true
+          },
+          {
+            "name": "F_A",
+            "alias": "F_A",
+            "isnumber": true
+          },
+          {
+            "name": "F_B",
+            "alias": "F_B",
+            "isnumber": true
+          },
+          {
+            "name": "FLUROCALIBID",
+            "alias": "FLUROCALIBID",
+            "isnumber": true
+          },
+          {
+            "name": "FOCI_SAMPLE_ID",
+            "alias": "FOCI_SAMPLE_ID"
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "H_ID",
+            "alias": "H_ID",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "HAUL_ID_ZOO",
+            "alias": "HAUL_ID_ZOO"
+          },
+          {
+            "name": "HAUL_NAME",
+            "alias": "HAUL_NAME",
+            "isnumber": true
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "PHAECONC_L",
+            "alias": "PHAECONC_L",
+            "isnumber": true
+          },
+          {
+            "name": "PURPOSE",
+            "alias": "PURPOSE"
+          },
+          {
+            "name": "QUALITY",
+            "alias": "QUALITY"
+          },
+          {
+            "name": "SAMPLE_DEPTH",
+            "alias": "SAMPLE_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_ID",
+            "alias": "SAMPLE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_ORDER",
+            "alias": "SAMPLE_ORDER"
+          },
+          {
+            "name": "SCALING_FACTOR",
+            "alias": "SCALING_FACTOR",
+            "isnumber": true
+          },
+          {
+            "name": "SLOPE",
+            "alias": "SLOPE",
+            "isnumber": true
+          },
+          {
+            "name": "TAU",
+            "alias": "TAU",
+            "isnumber": true
+          },
+          {
+            "name": "VOLUME_FILTERED_CHLOR",
+            "alias": "VOLUME_FILTERED_CHLOR",
+            "isnumber": true
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          },
+          {
+            "name": "INTCHL",
+            "alias": "INTCHL",
+            "isnumber": true
+          },
+          {
+            "name": "INTPHAEO",
+            "alias": "INTPHAEO",
+            "isnumber": true
+          },
+          {
+            "name": "STATION_NAME",
+            "alias": "STATION_NAME"
+          },
+          {
+            "name": "NET",
+            "alias": "NET",
+            "isnumber": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "NUTRIENT RECORDS",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/6",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "HAUL ID",
+            "textsearchlabel": "HAUL ID",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "HAUL_ID",
+                    "label": "HAUL_ID",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": ""
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "Upper(HAUL_ID) LIKE Upper('%%')",
+                  "operation": "stringOperatorContains"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "H_ID",
+            "alias": "H_ID",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "CTD_ID",
+            "alias": "CTD_ID",
+            "isnumber": true
+          },
+          {
+            "name": "PO4",
+            "alias": "PO4",
+            "isnumber": true
+          },
+          {
+            "name": "SIO4",
+            "alias": "SIO4",
+            "isnumber": true
+          },
+          {
+            "name": "NO2",
+            "alias": "NO2",
+            "isnumber": true
+          },
+          {
+            "name": "NH4",
+            "alias": "NH4",
+            "isnumber": true
+          },
+          {
+            "name": "QUALITY",
+            "alias": "QUALITY"
+          },
+          {
+            "name": "DILUTION_FACTOR",
+            "alias": "DILUTION_FACTOR",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_DEPTH",
+            "alias": "SAMPLE_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "BOTTLE_NUM",
+            "alias": "BOTTLE_NUM",
+            "isnumber": true
+          },
+          {
+            "name": "NUT_ID",
+            "alias": "NUT_ID"
+          },
+          {
+            "name": "NO3",
+            "alias": "NO3",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_NUTRIENT",
+            "alias": "COMMENTS_NUTRIENT"
+          },
+          {
+            "name": "CTDB_ID",
+            "alias": "CTDB_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_ID",
+            "alias": "SAMPLE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "FOCI_SAMPLE_ID",
+            "alias": "FOCI_SAMPLE_ID"
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "HAUL_NAME",
+            "alias": "HAUL_NAME",
+            "isnumber": true
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "PURPOSE",
+            "alias": "PURPOSE"
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "HAUL_ID_ZOO",
+            "alias": "HAUL_ID_ZOO"
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
+            "name": "STATION_NAME",
+            "alias": "STATION_NAME"
+          },
+          {
+            "name": "NET",
+            "alias": "NET",
+            "isnumber": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "Subspecimen Records (ICH)",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/3",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": false,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "SAMPLE ID",
+            "textsearchlabel": "SAMPLE ID",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "HAUL_ID",
+                    "label": "HAUL_ID",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": ""
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "Upper(HAUL_ID) LIKE Upper('%%')",
+                  "operation": "stringOperatorContains"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "SPECIES NAME",
+            "textsearchlabel": "SPECIES NAME",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "SPECIES_NAME",
+                    "label": "SPECIES_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "SPECIES_NAME = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "SPECIES_NAME"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "COMMENTS_SPECIMEN_SUBSAMPLE",
+            "alias": "COMMENTS_SPECIMEN_SUBSAMPLE"
+          },
+          {
+            "name": "CORRECTED_LENGTH",
+            "alias": "CORRECTED_LENGTH",
+            "isnumber": true
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
+            "name": "EGG_DIAMETER",
+            "alias": "EGG_DIAMETER",
+            "isnumber": true
+          },
+          {
+            "name": "GEAR_ABBREV",
+            "alias": "GEAR_ABBREV"
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "HAUL_NAME",
+            "alias": "HAUL_NAME",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_PERFORMANCE",
+            "alias": "HAUL_PERFORMANCE"
+          },
+          {
+            "name": "LARVALCATCHPER1000M3",
+            "alias": "LARVALCATCHPER1000M3",
+            "isnumber": true
+          },
+          {
+            "name": "LARVALCATCHPER10M2",
+            "alias": "LARVALCATCHPER10M2",
+            "isnumber": true
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "MAX_GEAR_DEPTH",
+            "alias": "MAX_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "MESH",
+            "alias": "MESH",
+            "isnumber": true
+          },
+          {
+            "name": "MIN_GEAR_DEPTH",
+            "alias": "MIN_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "NET",
+            "alias": "NET",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_CAUGHT",
+            "alias": "NUMBER_CAUGHT",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_MEASURED_COUNTED",
+            "alias": "NUMBER_MEASURED_COUNTED",
+            "isnumber": true
+          },
+          {
+            "name": "PRESERVE_ID",
+            "alias": "PRESERVE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "PRIMARY_NET",
+            "alias": "PRIMARY_NET"
+          },
+          {
+            "name": "RAW_VALUE",
+            "alias": "RAW_VALUE",
+            "isnumber": true
+          },
+          {
+            "name": "SPECIES_CODE_ID",
+            "alias": "SPECIES_CODE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SPECIMEN_ID",
+            "alias": "SPECIMEN_ID",
+            "isnumber": true
+          },
+          {
+            "name": "STAGE_ID",
+            "alias": "STAGE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "STAGE_NAME",
+            "alias": "STAGE_NAME"
+          },
+          {
+            "name": "STATION_NAME",
+            "alias": "STATION_NAME"
+          },
+          {
+            "name": "VOLUME_FILTERED",
+            "alias": "VOLUME_FILTERED",
+            "isnumber": true
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          },
+          {
+            "name": "SPECIES_NAME",
+            "alias": "SPECIES_NAME"
+          },
+          {
+            "name": "SPECIES_CODE_ICHBASE",
+            "alias": "SPECIES_CODE_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_HAUL",
+            "alias": "COMMENTS_HAUL"
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": null,
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "CTDB RECORDS",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/8",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "CRUISE NAME",
+            "textsearchlabel": "CRUISE NAME",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "CRUISE",
+                    "label": "CRUISE",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "CRUISE = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "CRUISE"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "CHLOROPHYLL_VOL",
+            "alias": "CHLOROPHYLL_VOL",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_CTDB",
+            "alias": "COMMENTS_CTDB"
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "CTD_ID",
+            "alias": "CTD_ID",
+            "isnumber": true
+          },
+          {
+            "name": "CTDB_ROW",
+            "alias": "CTDB_ROW",
+            "isnumber": true
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
+            "name": "DEPTH",
+            "alias": "DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "DISSOLVED_OXY_SAMPLE",
+            "alias": "DISSOLVED_OXY_SAMPLE"
+          },
+          {
+            "name": "FOCI_CTB_ID",
+            "alias": "FOCI_CTB_ID"
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "H_ID",
+            "alias": "H_ID",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "HAUL_NAME",
+            "alias": "HAUL_NAME",
+            "isnumber": true
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "LUGOLS_SAMPLE",
+            "alias": "LUGOLS_SAMPLE"
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "MZ_SAMPLE",
+            "alias": "MZ_SAMPLE"
+          },
+          {
+            "name": "NET",
+            "alias": "NET",
+            "isnumber": true
+          },
+          {
+            "name": "NUT_BOTTLE",
+            "alias": "NUT_BOTTLE"
+          },
+          {
+            "name": "OXYGEN",
+            "alias": "OXYGEN",
+            "isnumber": true
+          },
+          {
+            "name": "PHYTO_SAMPLE",
+            "alias": "PHYTO_SAMPLE"
+          },
+          {
+            "name": "PURPOSE",
+            "alias": "PURPOSE"
+          },
+          {
+            "name": "SALINITY_BOTTLE",
+            "alias": "SALINITY_BOTTLE",
+            "isnumber": true
+          },
+          {
+            "name": "STATION_ID",
+            "alias": "STATION_ID",
+            "isnumber": true
+          },
+          {
+            "name": "STATION_NAME",
+            "alias": "STATION_NAME"
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "DIET RECORDS",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/7",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "FOCI SAMPLE ID",
+            "textsearchlabel": "FOCI SAMPLE ID",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "FOCI_SAMPLE_ID",
+                    "label": "FOCI_SAMPLE_ID",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "FOCI_SAMPLE_ID = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "FOCI_SAMPLE_ID"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "AGE_GROWTH_SAMPLE",
+            "alias": "AGE_GROWTH_SAMPLE"
+          },
+          {
+            "name": "ALT_STATION_NAME",
+            "alias": "ALT_STATION_NAME"
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "CRUISE_NAME",
+            "alias": "CRUISE_NAME"
+          },
+          {
+            "name": "DESCRIPTION",
+            "alias": "DESCRIPTION"
+          },
+          {
+            "name": "DIEL",
+            "alias": "DIEL"
+          },
+          {
+            "name": "DIET_SPECIES_NAME",
+            "alias": "DIET_SPECIES_NAME"
+          },
+          {
+            "name": "DIGESTION",
+            "alias": "DIGESTION"
+          },
+          {
+            "name": "DOOR",
+            "alias": "DOOR"
+          },
+          {
+            "name": "DOOR_DIMENSIONS",
+            "alias": "DOOR_DIMENSIONS"
+          },
+          {
+            "name": "DOOR_HEIGHT",
+            "alias": "DOOR_HEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "DOOR_WIDTH",
+            "alias": "DOOR_WIDTH",
+            "isnumber": true
+          },
+          {
+            "name": "EXAMINER",
+            "alias": "EXAMINER"
+          },
+          {
+            "name": "FLOWMETER",
+            "alias": "FLOWMETER",
+            "isnumber": true
+          },
+          {
+            "name": "FLOWMETER_REVS",
+            "alias": "FLOWMETER_REVS",
+            "isnumber": true
+          },
+          {
+            "name": "FOCI_GRID",
+            "alias": "FOCI_GRID"
+          },
+          {
+            "name": "FOCI_ID",
+            "alias": "FOCI_ID"
+          },
+          {
+            "name": "FOCI_SAMPLE_ID",
+            "alias": "FOCI_SAMPLE_ID"
+          },
+          {
+            "name": "FREQUENCY",
+            "alias": "FREQUENCY",
+            "isnumber": true
+          },
+          {
+            "name": "FULLNESS",
+            "alias": "FULLNESS"
+          },
+          {
+            "name": "GEAR_ABBREV",
+            "alias": "GEAR_ABBREV"
+          },
+          {
+            "name": "GEAR_CODE",
+            "alias": "GEAR_CODE"
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "GENETIC_SAMPLE",
+            "alias": "GENETIC_SAMPLE"
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "H_ID",
+            "alias": "H_ID",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "HAUL_NAME",
+            "alias": "HAUL_NAME",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_PERFORMANCE",
+            "alias": "HAUL_PERFORMANCE"
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LENGTH_AT_SEA",
+            "alias": "LENGTH_AT_SEA",
+            "isnumber": true
+          },
+          {
+            "name": "LENGTH_FORK",
+            "alias": "LENGTH_FORK",
+            "isnumber": true
+          },
+          {
+            "name": "LENGTH_STANDARD",
+            "alias": "LENGTH_STANDARD",
+            "isnumber": true
+          },
+          {
+            "name": "LENGTH_TOTAL",
+            "alias": "LENGTH_TOTAL",
+            "isnumber": true
+          },
+          {
+            "name": "LENGTH_TRAWL_TYPE",
+            "alias": "LENGTH_TRAWL_TYPE"
+          },
+          {
+            "name": "LENGTH_UNITS",
+            "alias": "LENGTH_UNITS"
+          },
+          {
+            "name": "LENGTH_WEIGHT_COMMENTS",
+            "alias": "LENGTH_WEIGHT_COMMENTS"
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "MAX_GEAR_DEPTH",
+            "alias": "MAX_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "MAX_WIRE_OUT",
+            "alias": "MAX_WIRE_OUT",
+            "isnumber": true
+          },
+          {
+            "name": "MESH",
+            "alias": "MESH",
+            "isnumber": true
+          },
+          {
+            "name": "MIN_GEAR_DEPTH",
+            "alias": "MIN_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "MIN_WIRE_OUT",
+            "alias": "MIN_WIRE_OUT",
+            "isnumber": true
+          },
+          {
+            "name": "MOUTH_AREA",
+            "alias": "MOUTH_AREA",
+            "isnumber": true
+          },
+          {
+            "name": "NET",
+            "alias": "NET",
+            "isnumber": true
+          },
+          {
+            "name": "NET_INFO",
+            "alias": "NET_INFO"
+          },
+          {
+            "name": "NET_PATH",
+            "alias": "NET_PATH",
+            "isnumber": true
+          },
+          {
+            "name": "NETMOUTH_HEIGHT_M",
+            "alias": "NETMOUTH_HEIGHT_M",
+            "isnumber": true
+          },
+          {
+            "name": "NON_SUBSAMPLE_WEIGHT",
+            "alias": "NON_SUBSAMPLE_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_MEASURED_COUNTED",
+            "alias": "NUMBER_MEASURED_COUNTED",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_OF_BAGS",
+            "alias": "NUMBER_OF_BAGS",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_OF_JARS",
+            "alias": "NUMBER_OF_JARS",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_SAMPLED",
+            "alias": "NUMBER_SAMPLED",
+            "isnumber": true
+          },
+          {
+            "name": "ORGANISM_TYPE",
+            "alias": "ORGANISM_TYPE"
+          },
+          {
+            "name": "POLYGONAL_AREA",
+            "alias": "POLYGONAL_AREA",
+            "isnumber": true
+          },
+          {
+            "name": "PRESERVE_ID",
+            "alias": "PRESERVE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "PREY_CODE_TRAWL",
+            "alias": "PREY_CODE_TRAWL"
+          },
+          {
+            "name": "PREY_COMMENTS",
+            "alias": "PREY_COMMENTS"
+          },
+          {
+            "name": "PREY_COUNT",
+            "alias": "PREY_COUNT",
+            "isnumber": true
+          },
+          {
+            "name": "PREY_QUALITY",
+            "alias": "PREY_QUALITY",
+            "isnumber": true
+          },
+          {
+            "name": "PREY_WEIGHT",
+            "alias": "PREY_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "PRIMARY_NET",
+            "alias": "PRIMARY_NET"
+          },
+          {
+            "name": "PROCESS_DATE",
+            "alias": "PROCESS_DATE",
+            "isdate": true
+          },
+          {
+            "name": "SAMPLE_ABBREV",
+            "alias": "SAMPLE_ABBREV"
+          },
+          {
+            "name": "SAMPLE_DESC",
+            "alias": "SAMPLE_DESC"
+          },
+          {
+            "name": "SAMPLE_TYPE",
+            "alias": "SAMPLE_TYPE"
+          },
+          {
+            "name": "SEA_SURFACE_TEMP_C",
+            "alias": "SEA_SURFACE_TEMP_C",
+            "isnumber": true
+          },
+          {
+            "name": "SEX",
+            "alias": "SEX",
+            "isnumber": true
+          },
+          {
+            "name": "SEX_NAME",
+            "alias": "SEX_NAME"
+          },
+          {
+            "name": "SHIP_NAME",
+            "alias": "SHIP_NAME"
+          },
+          {
+            "name": "SIZE_NAME",
+            "alias": "SIZE_NAME"
+          },
+          {
+            "name": "SORTER_CODE",
+            "alias": "SORTER_CODE"
+          },
+          {
+            "name": "SORTER_NAME",
+            "alias": "SORTER_NAME"
+          },
+          {
+            "name": "SPECIES_NAME",
+            "alias": "SPECIES_NAME"
+          },
+          {
+            "name": "SPECIMEN_FORM",
+            "alias": "SPECIMEN_FORM"
+          },
+          {
+            "name": "SPECIMEN_SIZE",
+            "alias": "SPECIMEN_SIZE",
+            "isnumber": true
+          },
+          {
+            "name": "STATION_NAME",
+            "alias": "STATION_NAME"
+          },
+          {
+            "name": "STOMACH_CONTENT_WT_G",
+            "alias": "STOMACH_CONTENT_WT_G",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACH_DIGESTION_CODE",
+            "alias": "STOMACH_DIGESTION_CODE",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACH_FULLNESS_CODE",
+            "alias": "STOMACH_FULLNESS_CODE",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACH_INTACT_WT_G",
+            "alias": "STOMACH_INTACT_WT_G",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACH_LINING_WT_G",
+            "alias": "STOMACH_LINING_WT_G",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACH_PROCESS_DATE",
+            "alias": "STOMACH_PROCESS_DATE",
+            "isdate": true
+          },
+          {
+            "name": "STOMACH_SAMPLE",
+            "alias": "STOMACH_SAMPLE",
+            "isnumber": true
+          },
+          {
+            "name": "STOMACHEXAMINER",
+            "alias": "STOMACHEXAMINER"
+          },
+          {
+            "name": "SUBSAMPLE_FACTOR",
+            "alias": "SUBSAMPLE_FACTOR",
+            "isnumber": true
+          },
+          {
+            "name": "SUBSAMPLE_NUMBER",
+            "alias": "SUBSAMPLE_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "SUBSAMPLE_WEIGHT",
+            "alias": "SUBSAMPLE_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "TOTAL_NUMBER",
+            "alias": "TOTAL_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "TOW_MINUTES",
+            "alias": "TOW_MINUTES",
+            "isnumber": true
+          },
+          {
+            "name": "TOW_SECONDS",
+            "alias": "TOW_SECONDS",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_DEPLOYED_GMT",
+            "alias": "TRAWL_DEPLOYED_GMT",
+            "isdate": true
+          },
+          {
+            "name": "TRAWL_DEPLOYED_LAT",
+            "alias": "TRAWL_DEPLOYED_LAT",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_DEPLOYED_LON",
+            "alias": "TRAWL_DEPLOYED_LON",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_GMT",
+            "alias": "TRAWL_HAULBACK_START_GMT",
+            "isdate": true
+          },
+          {
+            "name": "VIAL_NUMBER",
+            "alias": "VIAL_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "WATER_TEMP_AT_GEAR_DEPTH",
+            "alias": "WATER_TEMP_AT_GEAR_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "WEIGHT_UNITS",
+            "alias": "WEIGHT_UNITS"
+          },
+          {
+            "name": "WHOLE_WET_BODY_WEIGHT",
+            "alias": "WHOLE_WET_BODY_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "WIRE_ANGLE",
+            "alias": "WIRE_ANGLE",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_SPECIMEN",
+            "alias": "COMMENTS_SPECIMEN"
+          },
+          {
+            "name": "COMMENTS_SPECIES_CODE",
+            "alias": "COMMENTS_SPECIES_CODE"
+          },
+          {
+            "name": "LON_END",
+            "alias": "LON_END",
+            "isnumber": true
+          },
+          {
+            "name": "LAT_END",
+            "alias": "LAT_END",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_LAT",
+            "alias": "TRAWL_HAULBACK_START_LAT",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_LON",
+            "alias": "TRAWL_HAULBACK_START_LON",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_SAMPLES",
+            "alias": "COMMENTS_SAMPLES"
+          },
+          {
+            "name": "LARVACATCHPER10M2",
+            "alias": "LARVACATCHPER10M2",
+            "isnumber": true
+          },
+          {
+            "name": "LARVALCATCHPER1000M3",
+            "alias": "LARVALCATCHPER1000M3",
+            "isnumber": true
+          },
+          {
+            "name": "CPUE",
+            "alias": "CPUE",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_CATCH",
+            "alias": "TRAWL_CATCH",
+            "isnumber": true
+          },
+          {
+            "name": "VOLUME_FISHED",
+            "alias": "VOLUME_FISHED",
+            "isnumber": true
+          },
+          {
+            "name": "DISTANCE_FISHED_0",
+            "alias": "DISTANCE_FISHED_0",
+            "isnumber": true
+          },
+          {
+            "name": "DISTANCE_FISHED_1",
+            "alias": "DISTANCE_FISHED_1",
+            "isnumber": true
+          },
+          {
+            "name": "EQUILIBRIUM",
+            "alias": "EQUILIBRIUM",
+            "isnumber": true
+          },
+          {
+            "name": "DOE",
+            "alias": "DOE",
+            "isdate": true
+          },
+          {
+            "name": "DOC",
+            "alias": "DOC",
+            "isdate": true
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
+            "name": "DIET_ID",
+            "alias": "DIET_ID",
+            "isnumber": true
+          },
+          {
+            "name": "ZOOP_COPEPOD_NAUPLIUS",
+            "alias": "ZOOP_COPEPOD_NAUPLIUS"
+          },
+          {
+            "name": "ZOOP_EUPHAUSIID_EGG",
+            "alias": "ZOOP_EUPHAUSIID_EGG"
+          },
+          {
+            "name": "NUMBER_MEASURED_COUNTED_COPY",
+            "alias": "NUMBER_MEASURED_COUNTED_COPY",
+            "isnumber": true
+          },
+          {
+            "name": "ZOOP_COPEPOD_NAUPLII",
+            "alias": "ZOOP_COPEPOD_NAUPLII"
+          },
+          {
+            "name": "LARVALCATCHPER10M2",
+            "alias": "LARVALCATCHPER10M2",
+            "isnumber": true
+          },
+          {
+            "name": "GMT_DATE_TIME_END",
+            "alias": "GMT_DATE_TIME_END",
+            "isdate": true
+          },
+          {
+            "name": "COMMENTS_HAUL",
+            "alias": "COMMENTS_HAUL"
+          },
+          {
+            "name": "SHIP_CRUISE_NAME",
+            "alias": "SHIP_CRUISE_NAME"
+          },
+          {
+            "name": "PHYTO_ASSESS_ID",
+            "alias": "PHYTO_ASSESS_ID",
+            "isnumber": true
+          },
+          {
+            "name": "PHYTO_ASSESS",
+            "alias": "PHYTO_ASSESS"
+          },
+          {
+            "name": "STAGE",
+            "alias": "STAGE",
+            "isnumber": true
+          },
+          {
+            "name": "STAGE_NAME",
+            "alias": "STAGE_NAME"
+          },
+          {
+            "name": "STAGE_GROUP",
+            "alias": "STAGE_GROUP"
+          },
+          {
+            "name": "STAGE_COMMENTS",
+            "alias": "STAGE_COMMENTS"
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "STAGE TABLE",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/13",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": false,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "STAGE NAME",
+            "textsearchlabel": "STAGE NAME",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "STAGE_NAME",
+                    "label": "STAGE_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "STAGE_NAME = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "STAGE_NAME"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "STAGE_NAME",
+            "alias": "STAGE_NAME"
+          },
+          {
+            "name": "STAGE_GROUP",
+            "alias": "STAGE_GROUP"
+          },
+          {
+            "name": "STAGE_COMMENTS",
+            "alias": "STAGE_COMMENTS"
+          },
+          {
+            "name": "ORIG_DB",
+            "alias": "ORIG_DB"
+          },
+          {
+            "name": "EGG_STAGE",
+            "alias": "EGG_STAGE",
+            "isnumber": true
+          },
+          {
+            "name": "DOE",
+            "alias": "DOE",
+            "isdate": true
+          },
+          {
+            "name": "DOC",
+            "alias": "DOC",
+            "isdate": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "GEAR TABLE",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/20",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": false,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "GEAR NAME",
+            "textsearchlabel": "GEAR NAME",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "GEAR_NAME",
+                    "label": "GEAR_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": "allu"
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "GEAR_NAME = 'allu'",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "GEAR_NAME"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "FOCI_GEAR_ID",
+            "alias": "FOCI_GEAR_ID"
+          },
+          {
+            "name": "GEAR_CODE",
+            "alias": "GEAR_CODE"
+          },
+          {
+            "name": "DESCRIPTION",
+            "alias": "DESCRIPTION"
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "MOUTH_AREA",
+            "alias": "MOUTH_AREA",
+            "isnumber": true
+          },
+          {
+            "name": "GEAR_ABBREV",
+            "alias": "GEAR_ABBREV"
+          },
+          {
+            "name": "GEAR_ORDER",
+            "alias": "GEAR_ORDER",
+            "isnumber": true
+          },
+          {
+            "name": "NET_INFO",
+            "alias": "NET_INFO"
+          },
+          {
+            "name": "DOOR_DIMENSIONS",
+            "alias": "DOOR_DIMENSIONS"
+          },
+          {
+            "name": "COMMENTS_GEAR",
+            "alias": "COMMENTS_GEAR"
+          },
+          {
+            "name": "PURPOSE_ID",
+            "alias": "PURPOSE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SD_CHECK",
+            "alias": "SD_CHECK",
+            "isnumber": true
+          },
+          {
+            "name": "WIRE_ANGLE_CHECK",
+            "alias": "WIRE_ANGLE_CHECK",
+            "isnumber": true
+          },
+          {
+            "name": "GEAR_TYPE",
+            "alias": "GEAR_TYPE"
+          },
+          {
+            "name": "DOE",
+            "alias": "DOE",
+            "isdate": true
+          },
+          {
+            "name": "DOC",
+            "alias": "DOC",
+            "isdate": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": null,
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "TAXON CODE TABLE",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/21",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": false,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "TAXON CODE NAME",
+            "textsearchlabel": "TAXON CODE NAME",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "TAXON_NAME",
+                    "label": "TAXON_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "TAXON_NAME = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "TAXON_NAME"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "COMMENTS_TAXON_CODE",
+            "alias": "COMMENTS_TAXON_CODE"
+          },
+          {
+            "name": "TAXON_NAME",
+            "alias": "TAXON_NAME"
+          },
+          {
+            "name": "ZOOP_VIAL_NUMBER",
+            "alias": "ZOOP_VIAL_NUMBER"
+          },
+          {
+            "name": "CARBON_DRY_WEIGHT",
+            "alias": "CARBON_DRY_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "ORIG_DB",
+            "alias": "ORIG_DB"
+          },
+          {
+            "name": "FORM_TYPE",
+            "alias": "FORM_TYPE"
+          },
+          {
+            "name": "TAXON_SIZE",
+            "alias": "TAXON_SIZE"
+          },
+          {
+            "name": "SEX",
+            "alias": "SEX",
+            "isnumber": true
+          },
+          {
+            "name": "ORGANISM_TYPE",
+            "alias": "ORGANISM_TYPE"
+          },
+          {
+            "name": "STAGE_NAME",
+            "alias": "STAGE_NAME"
+          },
+          {
+            "name": "SIZE_NAME",
+            "alias": "SIZE_NAME"
+          },
+          {
+            "name": "SEX_NAME",
+            "alias": "SEX_NAME"
+          },
+          {
+            "name": "TAXON_CODE_ID",
+            "alias": "TAXON_CODE_ID"
+          },
+          {
+            "name": "STAGE",
+            "alias": "STAGE",
+            "isnumber": true
+          },
+          {
+            "name": "PROTOCOL",
+            "alias": "PROTOCOL",
+            "isnumber": true
+          },
+          {
+            "name": "LAB_LOCATION",
+            "alias": "LAB_LOCATION"
+          },
+          {
+            "name": "GEOAREA_DISTRIBUTION",
+            "alias": "GEOAREA_DISTRIBUTION"
+          },
+          {
+            "name": "DOE",
+            "alias": "DOE",
+            "isdate": true
+          },
+          {
+            "name": "DOC",
+            "alias": "DOC",
+            "isdate": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": null,
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "SPECIES CODE TABLE",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/22",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": true,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": false,
+      "addToAttrib": false,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "Species Name",
+            "textsearchlabel": "Species Name",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "SPECIES_NAME",
+                    "label": "SPECIES_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "SPECIES_NAME = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "SPECIES_NAME"
+                }
+              ]
+            }
+          },
+          {
+            "alias": "Common Name",
+            "textsearchlabel": "Common Name",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "COMMON_NAME",
+                    "label": "COMMON_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": ""
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "COMMON_NAME = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "COMMON_NAME"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "SPECIES_CODE_ID",
+            "alias": "SPECIES_CODE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "GENUS",
+            "alias": "GENUS"
+          },
+          {
+            "name": "SPECIES",
+            "alias": "SPECIES"
+          },
+          {
+            "name": "SPECIES_NAME",
+            "alias": "SPECIES_NAME"
+          },
+          {
+            "name": "COMMON_NAME",
+            "alias": "COMMON_NAME"
+          },
+          {
+            "name": "SPECIES_CODE_ICHBASE",
+            "alias": "SPECIES_CODE_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "SPECIES_NAME_ICHBASE",
+            "alias": "SPECIES_NAME_ICHBASE"
+          },
+          {
+            "name": "COMMON_NAME_ICHBASE",
+            "alias": "COMMON_NAME_ICHBASE"
+          },
+          {
+            "name": "ICH_ORDER_ICHBASE",
+            "alias": "ICH_ORDER_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "ICH_FAMILY_ICHBASE",
+            "alias": "ICH_FAMILY_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "ICH_GENUS_ICHBASE",
+            "alias": "ICH_GENUS_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "ICH_SPECIES_ICHBASE",
+            "alias": "ICH_SPECIES_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "GENUS_ICHBASE",
+            "alias": "GENUS_ICHBASE"
+          },
+          {
+            "name": "SPECIES_ICHBASE",
+            "alias": "SPECIES_ICHBASE"
+          },
+          {
+            "name": "COMMENTS_ICHBASE",
+            "alias": "COMMENTS_ICHBASE"
+          },
+          {
+            "name": "DATABASE_ICHBASE",
+            "alias": "DATABASE_ICHBASE"
+          },
+          {
+            "name": "OLD_PREY_CODE_TRAWL",
+            "alias": "OLD_PREY_CODE_TRAWL",
+            "isnumber": true
+          },
+          {
+            "name": "PREY_CODE_TRAWL",
+            "alias": "PREY_CODE_TRAWL"
+          },
+          {
+            "name": "SPECIES_CODE_TRAWL",
+            "alias": "SPECIES_CODE_TRAWL"
+          },
+          {
+            "name": "PREY_GROUP_CODE_TRAWL",
+            "alias": "PREY_GROUP_CODE_TRAWL"
+          },
+          {
+            "name": "ALT_COMMON_NAME_TRAWL",
+            "alias": "ALT_COMMON_NAME_TRAWL"
+          },
+          {
+            "name": "GROUP_TRAWL",
+            "alias": "GROUP_TRAWL"
+          },
+          {
+            "name": "DATABASE_TRAWL",
+            "alias": "DATABASE_TRAWL"
+          },
+          {
+            "name": "COMMON_NAME_RACEBASE",
+            "alias": "COMMON_NAME_RACEBASE"
+          },
+          {
+            "name": "SPECIES_NAME_RACEBASE",
+            "alias": "SPECIES_NAME_RACEBASE"
+          },
+          {
+            "name": "SPECIES_CODE_RACEBASE",
+            "alias": "SPECIES_CODE_RACEBASE"
+          },
+          {
+            "name": "DATABASE_RACEBASE",
+            "alias": "DATABASE_RACEBASE"
+          },
+          {
+            "name": "ITIS_CODE",
+            "alias": "ITIS_CODE"
+          },
+          {
+            "name": "NODC_CODE",
+            "alias": "NODC_CODE"
+          },
+          {
+            "name": "SPECIES_ORDER",
+            "alias": "SPECIES_ORDER"
+          },
+          {
+            "name": "GENUS_COMMON_NAME",
+            "alias": "GENUS_COMMON_NAME"
+          },
+          {
+            "name": "FAMILY",
+            "alias": "FAMILY"
+          },
+          {
+            "name": "FAMILY_COMMON_NAME",
+            "alias": "FAMILY_COMMON_NAME"
+          },
+          {
+            "name": "ABBR_NAME",
+            "alias": "ABBR_NAME"
+          },
+          {
+            "name": "ALT_GENUS",
+            "alias": "ALT_GENUS"
+          },
+          {
+            "name": "COMMENTS_SPECIES_CODE",
+            "alias": "COMMENTS_SPECIES_CODE"
+          },
+          {
+            "name": "DOE",
+            "alias": "DOE",
+            "isdate": true
+          },
+          {
+            "name": "DOC",
+            "alias": "DOC",
+            "isdate": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": null,
+      "showattachments": false,
+      "hidenullvalue": false,
+      "layersymbolfrom": "server"
+    }
+  ],
+  "initialView": "text",
+  "selectfilter": "contains",
+  "disabledtabs": [
+    "spatial"
+  ],
+  "enablePopupsOnResultClick": true,
+  "disablePopups": false,
+  "disableuvcache": false,
+  "exportsearchurlchecked": false,
+  "limitsearch2mapextentchecked": false,
+  "autozoomtoresults": true,
+  "mouseovergraphics": false,
+  "bufferDefaults": {
+    "addtolegend": false,
+    "bufferUnits": {
+      "bufferUnit": [
+        {
+          "name": "UNIT_FOOT",
+          "label": "Feet"
+        },
+        {
+          "name": "UNIT_STATUTE_MILE",
+          "label": "Miles"
+        },
+        {
+          "name": "UNIT_METER",
+          "label": "Meter"
+        }
+      ]
+    },
+    "bufferDefaultValue": 5,
+    "bufferWKID": 102003,
+    "simplefillsymbol": {
+      "color": [
+        1,
+        185,
+        253,
+        128
+      ],
+      "outline": {
+        "color": [
+          1,
+          185,
+          253,
+          204
+        ],
+        "width": 0.75,
+        "type": "esriSLS",
+        "style": "esriSLSSolid",
+        "marker": null
+      },
+      "type": "esriSFS",
+      "style": "esriSFSSolid"
+    }
+  },
+  "spatialrelationships": {
+    "spatialrelationship": [
+      {
+        "label": "entirely contained in",
+        "name": "esriSpatialRelContains"
+      },
+      {
+        "label": "intersected by",
+        "name": "esriSpatialRelIntersects"
+      },
+      {
+        "label": "intersected by envelope of",
+        "name": "esriSpatialRelEnvelopeIntersects"
+      }
+    ]
+  },
+  "graphicalsearchoptions": {
+    "enablepointselect": true,
+    "enableextentselect": true,
+    "enablecircleselect": true,
+    "enablepolyselect": true,
+    "showmultigraphicsgraphicaloption": false,
+    "showaddtolerancegraphicaloption": true,
+    "showaddsqltextgraphicaloption": true,
+    "showbuffergraphicaloption": true,
+    "buffercheckedbydefaultgraphicaloption": false,
+    "multipartgraphicsearchchecked": false,
+    "addpointtolerancechecked": false,
+    "toleranceforpointgraphicalselection": 6,
+    "keepgraphicalsearchenabled": true
+  },
+  "symbols": {
+    "simplemarkersymbol": null,
+    "picturemarkersymbol": {
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0,
+      "type": "esriPMS",
+      "url": "http://localhost:3345/webappbuilder/apps/4/widgets/eSearch/http://localhost:3345/webappbuilder/apps/4/widgets/eSearch/images/i_search.png",
+      "width": 20.00025,
+      "height": 20.00025
+    },
+    "simplelinesymbol": {
+      "color": [
+        255,
+        0,
+        0,
+        204
+      ],
+      "width": 2.25,
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "marker": null
+    },
+    "simplefillsymbol": {
+      "color": [
+        255,
+        0,
+        0,
+        128
+      ],
+      "outline": {
+        "color": [
+          255,
+          0,
+          0,
+          204
+        ],
+        "width": 1.5,
+        "type": "esriSLS",
+        "style": "esriSLSSolid",
+        "marker": null
+      },
+      "type": "esriSFS",
+      "style": "esriSFSSolid"
+    }
+  },
+  "resultFormat": {
+    "attTitlesymbol": {
+      "bold": false,
+      "italic": true,
+      "underline": false,
+      "color": [
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    "attValuesymbol": {
+      "bold": false,
+      "italic": false,
+      "underline": false,
+      "color": [
+        0,
+        0,
+        0,
+        255
+      ]
+    }
+  }
+}

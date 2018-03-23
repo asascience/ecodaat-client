@@ -234,11 +234,11 @@
   font-weight: bolder;
 }
 
-.relate-list-item ._title {
+.relate-list-item ._title {}
   cursor:pointer;
 }
 
-.search-list-item .labellink{
+.search-list-item .labellink {
   padding-left: 40px;
   padding-right: 10px;
   padding-bottom: 3px;

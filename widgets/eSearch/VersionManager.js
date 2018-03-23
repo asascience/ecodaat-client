@@ -163,35 +163,6 @@ function(
       upgrader: function(oldConfig){
         return oldConfig;
       }
-    },{
-      version: '2.5.0.1',
-      upgrader: function(oldConfig){
-        return oldConfig;
-      }
-    },{
-      version: '2.6',
-      upgrader: function(oldConfig){
-        return oldConfig;
-      }
-    },{
-      version: '2.6.0.1',
-      upgrader: function(oldConfig){
-        var newConfig = oldConfig;
-        newConfig.bufferDefaults.autoZoom = true;
-        return newConfig;
-      }
-    },{
-      version: '2.6.1',
-      upgrader: function(oldConfig){
-        var newConfig = oldConfig;
-        newConfig.containsword = false;
-        return newConfig;
-      }
-    },{
-      version: '2.6.1.1',
-      upgrader: function(oldConfig){
-        return oldConfig;
-      }
     }];
   }
 

@@ -52,7 +52,7 @@
         "name": "HeaderController",
         "config": "configs/HeaderController/config_HeaderController.json",
         "controlledWidgets": [
-          "widgets_Filter_Widget_28",
+          "widgets_eSearch_Widget_28",
           "widgets_TimeSlider_Widget_20",
           "widgets_LocalLayer_Widget_30",
           "widgets_LayerList_Widget_31",
@@ -75,20 +75,6 @@
         "id": "widgets_Scalebar_Widget_2",
         "name": "Scalebar",
         "config": "configs/Scalebar/config_Scalebar.json"
-      },
-      {
-        "uri": "widgets/Search/Widget",
-        "position": {
-          "right": 2,
-          "top": 2,
-          "relativeTo": "browser",
-          "zIndex": 6
-        },
-        "version": "2.5",
-        "id": "widgets_Search_Widget_3",
-        "name": "Search",
-        "config": "configs/Search/config_Search.json",
-        "visible": false
       },
       {
         "uri": "widgets/Coordinate/Widget",
@@ -344,13 +330,13 @@
     },
     "widgets": [
       {
-        "name": "Filter",
+        "name": "Search",
         "version": "2.5",
-        "icon": "configs\\Filter\\icon_Filter.png",
-        "uri": "widgets/Filter/Widget",
+        "icon": "configs\\eSearch\\icon_eSearch.png",
+        "uri": "widgets/eSearch/Widget",
         "index": 2,
-        "id": "widgets_Filter_Widget_28",
-        "config": "configs/Filter/config_Filter.json"
+        "id": "widgets_eSearch_Widget_28",
+        "config": "configs/eSearch/config_eSearch.json"
       },
       {
         "name": "TimeSlider",
@@ -435,14 +421,6 @@
             "id": "widgets_Draw_Widget_27"
           },
           {
-            "name": "Select",
-            "version": "2.5",
-            "uri": "widgets/Select/Widget",
-            "config": "configs/Select/config_Select.json",
-            "index": 8,
-            "id": "widgets_Select_Widget_26"
-          },
-          {
             "name": "ElevationProfile",
             "version": "2.5",
             "IsController": false,
@@ -498,16 +476,6 @@
             "left": 7,
             "bottom": 40,
             "relativeTo": "map"
-          },
-          "version": "2.5"
-        },
-        {
-          "uri": "widgets/Search/Widget",
-          "position": {
-            "right": 2,
-            "top": 50,
-            "relativeTo": "browser",
-            "zIndex": 4
           },
           "version": "2.5"
         },
@@ -672,9 +640,9 @@
     "dataSources": {
       "external~11489118362658823": {
         "type": "Features",
-        "isDynamic": false,
+        "isDynamic": true,
         "label": "ne_10m_graticules_1",
-        "url": "http://akc0ss-p093.nmfs.local:6080/arcgis/rest/services/ecodaat/Graticules/MapServer/2",
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/Graticules/MapServer/2",
         "filterByExtent": false,
         "resultRecordType": "serviceLimitation",
         "dataSchema": {
@@ -739,9 +707,9 @@
       },
       "external~9470523239477573": {
         "type": "Features",
-        "isDynamic": false,
+        "isDynamic": true,
         "label": "ne_10m_graticules_5",
-        "url": "http://akc0ss-p093.nmfs.local:6080/arcgis/rest/services/ecodaat/Graticules/MapServer/1",
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/Graticules/MapServer/1",
         "filterByExtent": false,
         "resultRecordType": "serviceLimitation",
         "dataSchema": {
@@ -814,9 +782,9 @@
       },
       "external~28541016012229115": {
         "type": "Features",
-        "isDynamic": false,
+        "isDynamic": true,
         "label": "ne_10m_graticules_10",
-        "url": "http://akc0ss-p093.nmfs.local:6080/arcgis/rest/services/ecodaat/Graticules/MapServer/0",
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/Graticules/MapServer/0",
         "filterByExtent": false,
         "resultRecordType": "serviceLimitation",
         "dataSchema": {

@@ -240,19 +240,21 @@ define(['dojo/_base/declare',
               (this.timeProcesser.needUpdateFullTime() || true === tsProps._needToFindDefaultInterval)) {
               this.timeProcesser._getUpdatedFullTime().then(lang.hitch(this, function (fullTimeExtent) {
                 var start = fullTimeExtent.startTime.getTime();
-                var end = fullTimeExtent.endTime.getTime();
+                var end = new Date().getTime();//fullTimeExtent.endTime.getTime();
+                tsProps.startTime = start;
+                tsProps.endTime = end;
 
-                if (tsProps.startTime > end || tsProps.endTime < start) {
-                  tsProps.startTime = start;
-                  tsProps.endTime = end;
-                } else {
-                  if (tsProps.startTime < start) {
-                    tsProps.startTime = start;
-                  }
-                  if (tsProps.endTime > end) {
-                    tsProps.endTime = end;
-                  }
-                }
+                // if (tsProps.startTime > end || tsProps.endTime < start) {
+                //   tsProps.startTime = start;
+                //   tsProps.endTime = end;
+                // } else {
+                //   if (tsProps.startTime < start) {
+                //     tsProps.startTime = start;
+                //   }
+                //   if (tsProps.endTime > end) {
+                //     tsProps.endTime = end;
+                //   }
+                // }
 
                 if (true === tsProps._needToFindDefaultInterval) {
                   tsProps.timeStopInterval = this.timeProcesser.findDefaultInterval(fullTimeExtent);

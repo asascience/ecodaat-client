@@ -85,8 +85,7 @@ define([
     esriConfig, Graphic, graphicsUtils, Point, SimpleMarkerSymbol, PictureMarkerSymbol, Polyline, SimpleLineSymbol, Polygon, Multipoint, Extent,
     SimpleFillSymbol, symUtils, SimpleRenderer, jsonUtil, Draw, PopupTemplate, esriRequest, Color, Deferred, ProgressBar, lang, on, html, array,
     all, date, locale, Select, TextBox, NumberTextBox, DrawBox, LoadingShelter, ioquery, dojoQuery, SpatialReference, WidgetManager,
-    PanelManager, aspect, domUtils, LayerInfos, CSVUtils, BaseFeatureAction, FeatureActionManager, PopupMenu, FeatureSet, domConstruct, domClass,
-    topic
+    PanelManager, aspect, domUtils, LayerInfos, CSVUtils, BaseFeatureAction, FeatureActionManager, PopupMenu, FeatureSet, domConstruct, domClass, topic
   ) { /*jshint unused: true*/
     return declare([BaseWidget, _WidgetsInTemplateMixin], {
       name: 'eSearch',
@@ -146,8 +145,6 @@ define([
       currentCSVResults: null,
       popupMenu: null,
       autoactivatedtool: null,
-      zoomFactor: 1.2,
-      token: null,
 
       postCreate: function () {
         this.inherited(arguments);
@@ -159,11 +156,6 @@ define([
         this.featureActionManager = FeatureActionManager.getInstance();
         if(this.config.graphicalsearchoptions.autoactivatedtool){
           this.autoactivatedtool = this.config.graphicalsearchoptions.autoactivatedtool;
-        }
-        if(this.config.zoomFactor){
-          this.zoomFactor = parseFloat(this.config.zoomFactor);
-        }else{
-          this.zoomFactor = 0.9;
         }
         if (this.map.itemId) {
           LayerInfos.getInstance(this.map, this.map.itemInfo)
@@ -180,7 +172,6 @@ define([
         html.empty(this.divResultMessage);
         this.resultLayers = [];
         this.layerUniqueCache = {};
-        this._addCustomStyle(this.appConfig.theme);
         this._initResultFormatString();
         this._initDrawBox();
         this._initTabContainer();
@@ -207,14 +198,12 @@ define([
             });
           }
         })));
-        this.own(topic.subscribe("appConfigChanged", lang.hitch(this, this._onAppConfigChanged)));
       },
 
       startup: function(){
         this.inherited(arguments);
         this.fetchData();
         this.list.parentWidget = this;
-        this.attWidget = this._getATWidget();
       },
 
       _obtainMapLayers: function() {
@@ -369,11 +358,6 @@ define([
 
       _onBtnMenuClicked: function(evt){
         var position = html.position(evt.target || evt.srcElement);
-        this._setPopupMenuItems().then(this.popupMenu.show(position));
-      },
-
-      _setPopupMenuItems: function() {
-        var def = new Deferred();
         var featureSet = this._getFeatureSet();
 
         var layer = this.currentSearchLayer;
@@ -411,9 +395,6 @@ define([
                 featureSet.fields = gFlds;
               }
               action.data = featureSet;
-            }else if(action.name === "eZoomTo"){
-              action.zoomFactor = this.zoomFactor;
-              action.data = featureSet;
             }else{
               action.data = featureSet;
             }
@@ -448,8 +429,7 @@ define([
           }
 
           actions = array.filter(actions, lang.hitch(this, function(action){
-            return action.name !== 'CreateLayer' && action.name !== 'ShowStatistics' && action.name !== 'ExportToCSV' &&
-            action.name !== 'ZoomTo';
+            return action.name !== 'CreateLayer' && action.name !== 'ShowStatistics' && action.name !== 'ExportToCSV';
           }));
 
           if(layerConfig.export2Csv){
@@ -522,16 +502,9 @@ define([
             actions.push(removeAction2);
           }
 
-          array.some(actions, lang.hitch(this, function(action, index){
-            if(action.name === "eZoomTo"){
-              actions.splice(0,0, actions.splice(index, 1)[0]);
-              return true;
-            }
-          }));
           this.popupMenu.setActions(actions);
-          def.resolve();
+          this.popupMenu.show(position);
         }));
-        return def;
       },
 
       resetFeatureActions: function(featureSet, layer) {
@@ -743,11 +716,6 @@ define([
             if (layer) {
               this.map.removeLayer(layer);
             }
-            if(this.attWidget){
-              if (this.attWidget.getExistLayerTabPage(layer.id)) {
-                this.attWidget.layerTabPageClose(layer.id, true);
-              }
-            }
             layers[0] = null;
             layers.splice(0, 1);
           }
@@ -772,7 +740,7 @@ define([
       _resetAndAddTempResultLayer: function (layerIndex) {
         this._removeTempResultLayer();
         this.tempResultLayer = new GraphicsLayer();
-        this.tempResultLayer.name = this.nls.search + ' ' + this.nls.results;
+        this.tempResultLayer.name = "Search Results";
         var layerConfig = this.config.layers[layerIndex];
         var lyrDisablePopupsAndTrue = (layerConfig.hasOwnProperty("disablePopups") && layerConfig.disablePopups)?true:false;
         if(!this.config.disablePopups && !lyrDisablePopupsAndTrue){
@@ -1175,8 +1143,7 @@ define([
             nls: this.nls,
             layerUniqueCache: this.layerUniqueCache,
             disableuvcache: this.config.disableuvcache,
-            selectFilterType: this.config.selectfilter,
-            datedisplayformat: this.config.datedisplayformat
+            selectFilterType: this.config.selectfilter
           });
           this.paramsDijit.placeAt(this.parametersDiv);
           this.paramsDijit.startup();
@@ -1207,14 +1174,6 @@ define([
                   if (oidFieldInfos.length > 0) {
                     var oidFieldInfo = oidFieldInfos[0];
                     layerConfig.objectIdField = oidFieldInfo.name;
-                  }else{
-                    var oidFieldInfos = array.filter(fields, lang.hitch(this, function (fieldInfo) {
-                      return fieldInfo.type === 'esriFieldTypeInteger' && fieldInfo.name.toUpperCase() === 'OBJECTID';
-                    }));
-                    if (oidFieldInfos.length > 0) {
-                      var oidFieldInfo = oidFieldInfos[0];
-                      layerConfig.objectIdField = oidFieldInfo.name;
-                    }
                   }
                 }
                 layerConfig.existObjectId = array.some(layerConfig.fields.field, lang.hitch(this, function (element) {
@@ -1420,29 +1379,34 @@ define([
           this.relArray.push(relRslt);
         }
 
-        if(this.attWidget){
-          this.attTableOpenedbySearch = !this.attWidget.showing;
-          this.wManager.openWidget(this.attWidget);
-          if(this.relArray.length === 1){
-            this._createLayerAndExecuteQuery(0);
-          }else{
-            var rc = new RelateChooser({
-              relatesArr: this.relArray,
-              autoHeight: true,
-              width: 400,
-              titleLabel: this.nls.chooserelate,
-              folderurl: this.folderUrl
-            });
-            on(rc, "click", lang.hitch(this, function(evt){
-              this._createLayerAndExecuteQuery(evt);
-            }));
+        if (this.wManager) {
+          var widgetCfg = this._getWidgetConfig('AttributeTable');
+          if(widgetCfg){
+            var attWidget = this.wManager.getWidgetByLabel(widgetCfg.label);
+            if(attWidget){
+              this.attTableOpenedbySearch = !attWidget.showing;
+              this.wManager.openWidget(attWidget);
+              if(this.relArray.length === 1){
+                this._createLayerAndExecuteQuery(0);
+              }else{
+                var rc = new RelateChooser({
+                  relatesArr: this.relArray,
+                  autoHeight: true,
+                  width: 400,
+                  titleLabel: this.nls.chooserelate,
+                  folderurl: this.folderUrl
+                });
+                on(rc, "click", lang.hitch(this, function(evt){
+                  this._createLayerAndExecuteQuery(evt);
+                }));
+              }
+            }
           }
         }
       },
 
       _createLayerAndExecuteQuery: function(relateId) {
         var layerConfig = this.config.layers[this.currentLayerIndex];
-        var relateTableId = layerConfig.relates.relate[relateId].id;
         this._createRelateResultLayer(relateId).then(lang.hitch(this, function(result){
           var relateFL = result.value;
           this._addRelateLayer(relateFL);
@@ -1456,7 +1420,7 @@ define([
             }));
             relQuery.outFields = outFields;
           }
-          relQuery.relationshipId = parseInt(relateTableId);
+          relQuery.relationshipId = parseInt(relateId);
           relQuery.objectIds = [this.relArray[relateId].oid];
           relQuery.returnGeometry = true;
           var queryTask = new QueryTask(layerConfig.url);
@@ -1468,11 +1432,6 @@ define([
         var layerConfig = this.config.layers[this.currentLayerIndex];
         // console.info(oid, relateId, result);
         if(!result[oid]){
-          if(this.attWidget){
-            if (this.attWidget.getExistLayerTabPage(this._relateLyr.id)) {
-              this.attWidget.layerTabPageClose(this._relateLyr.id, true);
-            }
-          }
           this.map.removeLayer(this._relateLyr);
           this.relateLayers.splice(this.relateLayers.length - 1, 1);
           new Message({
@@ -1481,16 +1440,8 @@ define([
           });
           return;
         }
-        result[oid].features.forEach(lang.hitch(this, function(feat){
-          this._relateLyr.add(feat);
-        }));
-        //this._relateLyr.add(result[oid].features[0]);
+        this._relateLyr.applyEdits(result[oid].features);
         var layerInfo = this.operLayerInfos.getLayerInfoById(this._relateLyr.id);
-        layerInfo.getLayerObject = lang.hitch(this, function(){
-          var def = new Deferred();
-          def.resolve(this._relateLyr);
-          return def;
-        });
         //Adjust field info based on config
         if(!layerConfig.relates.relate[relateId].fields.all){
           var adjRelFldInfos = [];
@@ -1509,13 +1460,11 @@ define([
             fieldInfos: adjRelFldInfos
           }
         }
+
         this.publishData({
           'target': 'AttributeTable',
           'layer': layerInfo
         });
-        if(this.attWidget){
-          this.attWidget._activeTable.refresh();
-        }
       },
 
       _createRelateResultLayer: function (relateId) {
@@ -1535,9 +1484,7 @@ define([
         }
         if(!relLyrExists){
           var serviceUrl = this._getServiceUrlByLayerUrl(layerConfig.url);
-          var relateTableId = layerConfig.relates.relate[relateId].id;
-          var relMsId = this.resultLayers[this.currentLayerIndex].relationships[relateTableId].relatedTableId;
-          relateLyrUrl = serviceUrl + '/' + relMsId;
+          relateLyrUrl = serviceUrl + '/' + relateId
           this._getLayerInfoWithRelationships(relateLyrUrl).then(lang.hitch(this, function(result){
             var layerInfo = result.value;
             layerInfo.name = this.nls.relate + ': ' + layerConfig.relates.relate[relateId].label;
@@ -1638,10 +1585,16 @@ define([
         this.list.remove(index);
         this._hideInfoWindow();
         if (layerConfig.shareResult && layerConfig.addToAttrib) {
-          if(this.attWidget){
-            this.attTableOpenedbySearch = !this.attWidget.showing;
-            this.wManager.openWidget(this.attWidget);
-            this.attWidget._activeTable.refresh();
+          if (this.wManager) {
+            var widgetCfg = this._getWidgetConfig('AttributeTable');
+            if(widgetCfg){
+              var attWidget = this.wManager.getWidgetByLabel(widgetCfg.label);
+              if(attWidget){
+                this.attTableOpenedbySearch = !attWidget.showing;
+                this.wManager.openWidget(attWidget);
+                attWidget._activeTable.refresh();
+              }
+            }
           }
         }
       },
@@ -1919,12 +1872,6 @@ define([
 
             this.graphicsLayerBuffer.clear();
             this.graphicsLayerBuffer.add(graphic);
-            if(this.config.bufferDefaults.autoZoom){
-              var gExt = graphicsUtils.graphicsExtent(this.graphicsLayerBuffer.graphics);
-              if (gExt) {
-                this.map.setExtent(gExt.expand(this.zoomFactor), true);
-              }
-            }
             html.setStyle(this.btnClearBuffer2, 'display', 'block');
             html.setStyle(this.btnClearBuffer3, 'display', 'block');
             if (isGraphicalBufferOp) {
@@ -2620,9 +2567,15 @@ define([
         this.lastDrawCommonType = null;
         this.lastDrawTool = null;
         if (closeAtt) {
-          if(this.attWidget && this.attTableOpenedbySearch){
-            attWidget._closeTable();
-            this.attTableOpenedbySearch = false;
+          if (this.wManager && this.attTableOpenedbySearch) {
+            var widgetCfg = this._getWidgetConfig('AttributeTable');
+            if(widgetCfg){
+              var attWidget = this.wManager.getWidgetByLabel(widgetCfg.label);
+              if (attWidget) {
+                attWidget._closeTable();
+              }
+              this.attTableOpenedbySearch = false;
+            }
           }
         }
         return false;
@@ -2673,22 +2626,13 @@ define([
           }
 
           if (tOperation === 'stringOperatorContains') {
-            if(content[s].value.toString() === ""){
-              continue;
+            var sa = content[s].value.toString().split(" "), word;
+            for(w=0; w < sa.length; w++){
+              word = sa[w];
+              criteriaFromValue = queryExpr.replace(myPattern, word);
+              expr = this.AppendTo(expr, criteriaFromValue, "AND");
             }
-            if(this.config.containsword){
-              var sa = content[s].value.toString().split(" "), word;
-              for(w=0; w < sa.length; w++){
-                word = sa[w];
-                criteriaFromValue = queryExpr.replace(myPattern, word);
-                expr = this.AppendTo(expr, criteriaFromValue, tOperator);
-              }
-              continue;
-            }else{
-              criteriaFromValue = queryExpr.replace(myPattern, content[s].value.toString());
-              expr = this.AppendTo(expr, criteriaFromValue, tOperator);
-              continue;
-            }
+            continue;
           }
 
           if (tOperation === 'dateOperatorIsOn' || tOperation === 'dateOperatorIsNotOn') {
@@ -2795,7 +2739,7 @@ define([
 
       zoomall: function () {
         var layerConfig = this.config.layers[this.currentLayerIndex];
-        var zoomScale = layerConfig && layerConfig.zoomScale || 10000;
+        var zoomScale = layerConfig.zoomScale || 10000;
         if (!this.currentLayerAdded) {
           return false;
         }
@@ -2820,7 +2764,7 @@ define([
           }
           var gExt = graphicsUtils.graphicsExtent(this.currentLayerAdded.graphics);
           if (gExt) {
-            this.map.setExtent(gExt.expand(this.zoomFactor), true);
+            this.map.setExtent(gExt.expand(.9), true);
           } else {
             var mp2 = this.currentLayerAdded.graphics[0].geometry;
             this.map.setScale(zoomScale);
@@ -3605,10 +3549,29 @@ define([
         }
         this.zoomAttempt = 0;
         if (layerConfig.shareResult && layerConfig.addToAttrib) {
-          if(this.attWidget){
-            this.attTableOpenedbySearch = !this.attWidget.showing;
-            this.wManager.openWidget(this.attWidget);
-            this.attWidget._openTable().then(lang.hitch(this, this._openResultInAttributeTable, currentLayer));
+          if (this.wManager) {
+            var widgetCfg = this._getWidgetConfig('AttributeTable');
+            if(widgetCfg){
+              var attWidget = this.wManager.getWidgetByLabel(widgetCfg.label);
+              if(attWidget){
+                this.attTableOpenedbySearch = !attWidget.showing;
+                this.wManager.openWidget(attWidget);
+                attWidget._openTable().then(lang.hitch(this, this._openResultInAttributeTable, currentLayer));
+              }else{
+                /*Attribute Table Widget is not loaded*/
+                this.wManager.loadWidget(widgetCfg).then(lang.hitch(this, function(widget){
+                  if(widget){
+                    this.attTableOpenedbySearch = true;
+                    widget.setPosition(this.getOffPanelWidgetPosition(widget));
+                    this.wManager.openWidget(widget);
+                    widget._openTable().then(lang.hitch(this, this._openResultInAttributeTable, currentLayer));
+                  }
+                }));
+              }
+            }else{
+              console.warn('The Attribute Table Widget is not configured in this app.');
+              this._zoomAndClose(closeOnComplete);
+            }
           }
           if (closeOnComplete) {
             setTimeout(lang.hitch(this, function () {
@@ -3621,13 +3584,6 @@ define([
 
         if (this.mouseovergraphics) {
           on(currentLayer, 'mouse-over', lang.hitch(this, this.onMouseOverGraphic));
-        }
-        try{
-          this.updateDataSourceData(layerIndex, {
-            features: currentLayer.graphics
-          });
-        }catch(e){
-          console.error(e);
         }
         this.currentLayerAdded = currentLayer;
       },
@@ -3800,7 +3756,6 @@ define([
                 if(layerConfig.showattachments){
                   this._addAttachment(item.OID);
                 }
-                this._setPopupMenuItems();
                 this.map.infoWindow.show(point);
               }
             }))));
@@ -3814,7 +3769,6 @@ define([
                 if(layerConfig.showattachments){
                   this._addAttachment(item.OID);
                 }
-                this._setPopupMenuItems();
                 this.map.infoWindow.show(point);
               }
             }));
@@ -3822,7 +3776,7 @@ define([
         } else {
           var gExt = graphicsUtils.graphicsExtent([item.graphic]);
           if (gExt && !layerConfig.forceZoomScale) {
-            this.map.setExtent(gExt.expand(this.zoomFactor), true).then(lang.hitch(this, function () {
+            this.map.setExtent(gExt.expand(.9), true).then(lang.hitch(this, function () {
               if ((this.map.infoWindow && this.config.enablePopupsOnResultClick) && !lyrHasPopupDisabled) {
                 this.map.infoWindow.setFeatures([item.graphic]);
                 if (this.map.infoWindow.reposition) {
@@ -3831,7 +3785,6 @@ define([
                 if(layerConfig.showattachments){
                   this._addAttachment(item.OID);
                 }
-                this._setPopupMenuItems();
                 this.map.infoWindow.show(point);
               }
             }));
@@ -3846,7 +3799,6 @@ define([
                   if(layerConfig.showattachments){
                     this._addAttachment(item.OID);
                   }
-                  this._setPopupMenuItems();
                   this.map.infoWindow.show(point);
                 }
               }))));
@@ -3860,7 +3812,6 @@ define([
                   if(layerConfig.showattachments){
                     this._addAttachment(item.OID);
                   }
-                  this._setPopupMenuItems();
                   this.map.infoWindow.show(point);
                 }
               }));
@@ -3876,9 +3827,6 @@ define([
             var domAttSec = dojoQuery(".attachmentsSection", this.map.infoWindow.domNode)[0];
             var aWidget = dijit.getEnclosingWidget(domAttSec);
             array.map(info, lang.hitch(this, function(att){
-              if(this.token && att.url.indexOf("?token=") < 0){
-                att.url + "?token=" + this.token;
-              }
               var attLi = domConstruct.toDom('<li><a href="' + att.url + '" target="_blank">' + att.name +'</a></li>');
               domConstruct.place(attLi, aWidget._attachmentsList);
             }));
@@ -3892,70 +3840,6 @@ define([
       _hideInfoWindow: function () {
         if (this.map && this.map.infoWindow) {
           this.map.infoWindow.hide();
-        }
-      },
-
-      _onAppConfigChanged: function(appConfig, reason, changeData){
-        appConfig = lang.clone(appConfig);
-        //deal with this reason only
-        switch(reason){
-          case 'styleChange':
-            this._addCustomStyle(appConfig.theme);
-            break;
-        }
-      },
-
-      _addCustomStyle: function(theme) {
-        var customStyles = lang.getObject('customStyles', false, theme);
-        if(!customStyles || customStyles.mainBackgroundColor === ""){
-          return;
-        }
-        var rgbArray = Color.fromHex(customStyles.mainBackgroundColor).toRgb();
-        var cssText = ".FoldableTheme.yellow .jimu-draw-box .draw-item.jimu-state-active,";
-        cssText += ".TabTheme.yellow .jimu-draw-box .draw-item.jimu-state-active,";
-        cssText += ".FoldableTheme.yellow .search-btn,";
-        cssText += ".TabTheme.yellow .search-btn,";
-        cssText += ".JewelryBoxTheme.yellow .search-btn,";
-        cssText += ".LaunchpadTheme.style3 .search-btn,";
-        cssText += ".JewelryBoxTheme.yellow .jimu-draw-box .draw-item.jimu-state-active {";
-        cssText += "background-color: rgb(" + rgbArray.join(",") + ");";
-        cssText += "background-color: rgba(" + rgbArray.join(",") + ", 1);";
-        cssText += "}";
-        cssText += ".FoldableTheme.yellow .search-btn:hover,";
-        cssText += ".TabTheme.yellow .search-btn:hover,";
-        cssText += ".JewelryBoxTheme.yellow .search-btn:hover,";
-        cssText += ".LaunchpadTheme.style3 .search-btn:hover,";
-        cssText += ".FoldableTheme.yellow .jimu-draw-box .draw-item:hover,";
-        cssText += ".TabTheme.yellow .jimu-draw-box .draw-item:hover,";
-        cssText += ".JewelryBoxTheme.yellow .jimu-draw-box .draw-item:hover {";
-        cssText += "background-color: rgb(" + rgbArray.join(",") + ");";
-        cssText += "-ms-filter: 'Alpha(opacity=70)';"
-        cssText += "background-color: rgba(" + rgbArray.join(",") + ", 0.7);";
-        cssText += "}";
-
-        var style = html.create('style', {
-          type: 'text/css'
-        });
-        try {
-          style.appendChild(document.createTextNode(cssText));
-        } catch(err) {
-          style.styleSheet.cssText = cssText;
-        }
-        style.setAttribute('source', 'custom');
-
-        document.head.appendChild(style);
-      },
-
-      _getATWidget: function(){
-        if (this.wManager) {
-          var widgetCfg = this._getWidgetConfig('AttributeTable');
-          if(widgetCfg){
-            var attWidget = this.wManager.getWidgetByLabel(widgetCfg.label);
-            return attWidget;
-          }else{
-            console.warn('The Attribute Table Widget is not configured in this app.');
-            return null;
-          }
         }
       }
 

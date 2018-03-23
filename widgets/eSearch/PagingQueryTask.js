@@ -73,7 +73,7 @@ define(['dojo/_base/declare',
           this.emit('pagingFault');
           return;
         }
-        // console.info(this.uri);
+        console.info(this.uri);
         this.queryTask = new QueryTask(this.uri);
         if (this.version >= 10.1) {
           //need to check if the feature count is over maxRecordCount

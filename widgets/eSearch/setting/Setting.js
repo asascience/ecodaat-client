@@ -20,7 +20,6 @@ define([
   './GraphicalEdit',
   './DisableTabEdit',
   './ResultFormatEdit',
-  './GeneralEdit',
   'jimu/dijit/Message',
   'jimu/dijit/Popup',
   'dojo/keys',
@@ -28,15 +27,12 @@ define([
   'dijit/form/TextBox',
   'dijit/form/Select',
   'esri/request',
-  'dojo/dom-attr',
-  'jimu/ServiceDefinitionManager',
-  'jimu/utils',
-  'dojo/promise/all'
+  'dojo/dom-attr'
 ],
 function(declare, lang, array, html, query, on,json, _WidgetsInTemplateMixin, BaseWidgetSetting,
           SimpleTable, SingleSearchEdit, DefaultSearchSymEdit, DefaultBufferEdit, SpatialRelationshipsEdit,
-          GraphicalEdit, DisableTabEdit, ResultFormatEdit, GeneralEdit, Message, Popup, keys, NumberTextBox, TextBox,
-          Select, esriRequest, domAttr, ServiceDefinitionManager, jimuUtils, all) {/*jshint unused: false*/
+          GraphicalEdit, DisableTabEdit, ResultFormatEdit, Message, Popup, keys, NumberTextBox, TextBox,
+          Select, esriRequest, domAttr) {/*jshint unused: false*/
   return declare([BaseWidgetSetting,_WidgetsInTemplateMixin], {
     baseClass: 'widget-esearch-setting',
     ds: null,
@@ -46,7 +42,6 @@ function(declare, lang, array, html, query, on,json, _WidgetsInTemplateMixin, Ba
     spatialrelationships:null,
     graphicalsearchoptions:null,
     disabledTabs: null,
-    generalOps: null,
     popup: null,
     popup2: null,
     popup3: null,
@@ -55,8 +50,6 @@ function(declare, lang, array, html, query, on,json, _WidgetsInTemplateMixin, Ba
     popup6: null,
     popup7: null,
     popup8: null,
-    popup9: null,
-    popupgeneraledit: null,
     popupSRedit: null,
     popupGOedit: null,
     popupDisableTabedit: null,
@@ -67,7 +60,6 @@ function(declare, lang, array, html, query, on,json, _WidgetsInTemplateMixin, Ba
 
     postCreate:function(){
       this.inherited(arguments);
-      this.sdm = ServiceDefinitionManager.getInstance();
       this.layerUniqueCache = {};
       this.layerInfoCache = {};
       this._bindEvents();
@@ -78,7 +70,7 @@ function(declare, lang, array, html, query, on,json, _WidgetsInTemplateMixin, Ba
       //hack the 'Learn more about this widget link'
       setTimeout(function(){
         var helpLink = dojo.query('.help-link');
-        helpLink[0].href = 'http://gis.calhouncounty.org/WAB/V2.6/widgets/eSearch/help/eSearch_Help.htm';
+        helpLink[0].href = 'http://gis.calhouncounty.org/WAB/V2.5/widgets/eSearch/help/eSearch_Help.htm';
         html.setStyle(helpLink[0],'display','block');
       },600);
 
@@ -89,32 +81,44 @@ function(declare, lang, array, html, query, on,json, _WidgetsInTemplateMixin, Ba
       }
       this.graphicalsearchoptions = this.config.graphicalsearchoptions;
       this._initSearchesTable();
+      this.enablePopupsCbx.setValue(this.config.enablePopupsOnResultClick);
+      this.disablePopupsCbx.setValue(this.config.disablePopups);
+      this.disableUVCacheCbx.setValue(this.config.disableuvcache);
+      this.limit2MapExtCbx.setValue(this.config.limitsearch2mapextentchecked);
+      this.exportSearchURLCbx.setValue(this.config.exportsearchurlchecked);
+      var isAutoZoom = (this.config.hasOwnProperty('autozoomtoresults') && !this.config.autozoomtoresults)? false : true;
+      this.autoZoomCbx.setValue(isAutoZoom);
+      this.mouseOverGraphicsCbx.setValue(this.config.mouseovergraphics || false);
       if(this.config.hasOwnProperty('disabledtabs')){
         this.disabledTabs = this.config.disabledtabs;
       }
+      if(this.config.initialView){
+        this.selectInitialView.set('value', this.config.initialView);
+      }
+      if(this.config.selectfilter){
+        this.selectFilter.set('value', this.config.selectfilter);
+      }else{
+        this.selectFilter.set('value', 'contains');
+      }
       this.bufferDefaults = this.config.bufferDefaults;
       this.spatialrelationships = this.config.spatialrelationships;
-      this.generalOps = {};
-      this.generalOps.initialView = this.config.initialView;
-      this.generalOps.selectfilter = this.config.selectfilter;
-      this.generalOps.enablePopupsOnResultClick = this.config.enablePopupsOnResultClick;
-      this.generalOps.disablePopups = this.config.disablePopups;
-      this.generalOps.disableuvcache = this.config.disableuvcache;
-      this.generalOps.exportsearchurlchecked = this.config.exportsearchurlchecked;
-      this.generalOps.limitsearch2mapextentchecked = this.config.limitsearch2mapextentchecked;
-      this.generalOps.autozoomtoresults = this.config.autozoomtoresults;
-      this.generalOps.mouseovergraphics = this.config.mouseovergraphics;
-      this.generalOps.datedisplayformat = this.config.datedisplayformat;
-      this.generalOps.zoomFactor = this.config.zoomFactor;
-      this.generalOps.containsword = this.config.containsword;
     },
 
     getConfig:function(){
       var config = {};
       config.layers = this._getAllLayers();
+      config.initialView = this.selectInitialView.get('value');
+      config.selectfilter = this.selectFilter.get('value');
       if(this.disabledTabs && this.disabledTabs.length > 0){
         config.disabledtabs = this.disabledTabs;
       }
+      config.enablePopupsOnResultClick = this.enablePopupsCbx.getValue();
+      config.disablePopups = this.disablePopupsCbx.getValue();
+      config.disableuvcache = this.disableUVCacheCbx.getValue();
+      config.exportsearchurlchecked = this.exportSearchURLCbx.getValue();
+      config.limitsearch2mapextentchecked = this.limit2MapExtCbx.getValue();
+      config.autozoomtoresults = this.autoZoomCbx.getValue();
+      config.mouseovergraphics = this.mouseOverGraphicsCbx.getValue();
       config.bufferDefaults = this.bufferDefaults;
       config.spatialrelationships = this.spatialrelationships;
       config.graphicalsearchoptions = this.graphicalsearchoptions;
@@ -123,48 +127,8 @@ function(declare, lang, array, html, query, on,json, _WidgetsInTemplateMixin, Ba
         config.symbols = lang.mixin({},this.config.symbols);
       }
       config.resultFormat = this.config.resultFormat;
-
-      config.initialView = this.generalOps.initialView;
-      config.selectfilter = this.generalOps.selectfilter;
-      config.enablePopupsOnResultClick = this.generalOps.enablePopupsOnResultClick;
-      config.disablePopups = this.generalOps.disablePopups;
-      config.disableuvcache = this.generalOps.disableuvcache;
-      config.exportsearchurlchecked = this.generalOps.exportsearchurlchecked;
-      config.limitsearch2mapextentchecked = this.generalOps.limitsearch2mapextentchecked;
-      config.autozoomtoresults = this.generalOps.autozoomtoresults;
-      config.mouseovergraphics = this.generalOps.mouseovergraphics;
-      config.datedisplayformat = this.generalOps.datedisplayformat;
-      config.zoomFactor = this.generalOps.zoomFactor;
-      config.containsword = this.generalOps.containsword;
-
       this.config = lang.mixin({},config);
       return config;
-    },
-
-    getDataSources: function(){
-      var config = this.getConfig();
-      if(!config || config.layers.length === 0){
-        var def = new Deferred();
-        def.resolve([]);
-        return def;
-      }else{
-        //this._setUrlForConfig(config);
-        var defs = array.map(config.layers, lang.hitch(this, function(singleConfig, i){
-          return this._getSingleDataSource(singleConfig, i);
-        }));
-        return all(defs);
-      }
-    },
-
-    _getSingleDataSource: function(singleConfig, index){
-      return this.sdm.getServiceDefinition(singleConfig.url).then(lang.hitch(this, function(definition){
-        return {
-          id: index,
-          type: 'Features',
-          label: singleConfig.name,
-          dataSchema: jimuUtils.getDataSchemaFromLayerDefinition(definition)
-        };
-      }));
     },
 
     _getAllLayers: function () {
@@ -173,44 +137,6 @@ function(declare, lang, array, html, query, on,json, _WidgetsInTemplateMixin, Ba
         return item.singleSearch;
       }));
       return allLayers;
-    },
-
-    _onGeneralEditOk: function() {
-      this.generalOps = this.popupgeneraledit.getConfig();
-
-      this.popup9.close();
-      this.popupState = '';
-    },
-
-    _onGeneralEditClose: function() {
-      this.popupgeneraledit = null;
-      this.popup9 = null;
-    },
-
-    _openGeneralEdit: function(title) {
-      this.popupgeneraledit = new GeneralEdit({
-        nls: this.nls,
-        config: this.config || {}
-      });
-
-      this.popup9 = new Popup({
-        titleLabel: title,
-        autoHeight: true,
-        content: this.popupgeneraledit,
-        container: 'main-page',
-        width: 960,
-        buttons: [{
-          label: this.nls.ok,
-          key: keys.ENTER,
-          onClick: lang.hitch(this, '_onGeneralEditOk')
-        }, {
-          label: this.nls.cancel,
-          key: keys.ESCAPE
-        }],
-        onClose: lang.hitch(this, '_onGeneralEditClose')
-      });
-      html.addClass(this.popup9.domNode, 'widget-setting-format');
-      this.popupgeneraledit.startup();
     },
 
     _onFormatEditOk: function() {
@@ -553,7 +479,7 @@ function(declare, lang, array, html, query, on,json, _WidgetsInTemplateMixin, Ba
     },
 
     _bindEvents:function(){
-      // this.disablePopupsCbx.onChange = lang.hitch(this, this._need2ChkPopups);
+      this.disablePopupsCbx.onChange = lang.hitch(this, this._need2ChkPopups);
       this.own(on(this.btnAddSearch,'click',lang.hitch(this,function(){
         var args = {
           config:null
@@ -588,9 +514,6 @@ function(declare, lang, array, html, query, on,json, _WidgetsInTemplateMixin, Ba
       })));
       this.own(on(this.btnFormatResults,'click',lang.hitch(this,function(){
         this._openFormatEdit(this.nls.editResultFormat);
-      })));
-      this.own(on(this.btnGeneral,'click',lang.hitch(this,function(){
-        this._openGeneralEdit(this.nls.editGeneraloptions);
       })));
     },
 

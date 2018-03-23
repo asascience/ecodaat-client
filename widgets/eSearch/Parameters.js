@@ -119,8 +119,7 @@ define([
             layerUniqueCache: this.layerUniqueCache,
             isValueRequired: singleValue.required || false,
             disableuvcache: this.disableuvcache,
-            selectFilterType: this.selectFilterType || 'contains',
-            datedisplayformat: this.datedisplayformat || 'yyyy-MM-dd'
+            selectFilterType: this.selectFilterType || 'contains'
           };
           var sp = new SingleParameter(args);
           sp.on('sp-ready', lang.hitch(this, function(){

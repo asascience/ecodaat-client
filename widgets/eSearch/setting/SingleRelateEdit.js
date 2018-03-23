@@ -100,8 +100,7 @@ function(declare,lang,array,html,query,on,Deferred,json,_WidgetBase,_TemplatedMi
         array.map(this.layerInfoCache[this.layerURL].relationships, lang.hitch(this,function(relate){
           rowData = {
             name: (relate && relate.name) || '',
-            id: (relate.id).toString(),
-            rTableId: (relate.relatedTableId).toString()
+            id: (relate.id).toString()
           };
           this.relateChoiceTable.addRow(rowData);
         }));
@@ -114,7 +113,7 @@ function(declare,lang,array,html,query,on,Deferred,json,_WidgetBase,_TemplatedMi
         return false;
       }
       var config = {
-        label: lang.trim(this.relateAlias.get('value')),
+        label:lang.trim(this.relateAlias.get('value')),
         id: parseInt(this.selectedId),
         fields: {
           all: false,
@@ -187,7 +186,7 @@ function(declare,lang,array,html,query,on,Deferred,json,_WidgetBase,_TemplatedMi
         this.selectedId = rowData.id;
         this.relateAlias.set('value', lang.trim(rowData.name || ""));
         this.displayFieldsTable.clear();
-        this.allFieldsTable.refresh(this._getServiceUrlByLayerUrl(this.layerURL) + "/" + rowData.rTableId);
+        this.allFieldsTable.refresh(this._getServiceUrlByLayerUrl(this.layerURL) + "/" + rowData.id);
         this.includeAllButton.enable();
       })));
     },
