@@ -88,8 +88,8 @@ define([
     PanelManager, aspect, domUtils, LayerInfos, CSVUtils, BaseFeatureAction, FeatureActionManager, PopupMenu, FeatureSet, domConstruct, domClass, topic
   ) { /*jshint unused: true*/
     return declare([BaseWidget, _WidgetsInTemplateMixin], {
-      name: 'eSearch',
-      label:'Enhanced Search',
+      name: 'Search',
+      label:'Advanced Search',
       baseClass: 'widget-esearch',
       resultLayers: [],
       operationalLayers: [],

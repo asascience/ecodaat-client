@@ -2,7 +2,7 @@
   "layers": [
     {
       "name": "SAMPLE RECORDS",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/1",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/1",
       "definitionexpression": "",
       "spatialsearchlayer": true,
       "export2Csv": true,
@@ -635,7 +635,7 @@
     },
     {
       "name": "HAUL RECORDS",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/0",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/0",
       "definitionexpression": "",
       "spatialsearchlayer": false,
       "export2Csv": true,
@@ -1116,7 +1116,7 @@
     },
     {
       "name": "SPECIMEN RECORDS",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/2",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/2",
       "definitionexpression": "",
       "spatialsearchlayer": false,
       "export2Csv": true,
@@ -2196,7 +2196,7 @@
     },
     {
       "name": "SEACAT RECORDS",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/4",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/4",
       "definitionexpression": "",
       "spatialsearchlayer": true,
       "export2Csv": true,
@@ -2397,7 +2397,7 @@
     },
     {
       "name": "CHLOROPHYLL RECORDS",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/5",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/5",
       "definitionexpression": "",
       "spatialsearchlayer": false,
       "export2Csv": true,
@@ -2646,7 +2646,7 @@
     },
     {
       "name": "NUTRIENT RECORDS",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/6",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/6",
       "definitionexpression": "",
       "spatialsearchlayer": false,
       "export2Csv": true,
@@ -2851,7 +2851,7 @@
     },
     {
       "name": "Subspecimen Records (ICH)",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/3",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/3",
       "definitionexpression": "",
       "spatialsearchlayer": false,
       "export2Csv": true,
@@ -3102,7 +3102,7 @@
     },
     {
       "name": "CTDB RECORDS",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/8",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/8",
       "definitionexpression": "",
       "spatialsearchlayer": false,
       "export2Csv": true,
@@ -3294,7 +3294,7 @@
     },
     {
       "name": "DIET RECORDS",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/7",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/7",
       "definitionexpression": "",
       "spatialsearchlayer": false,
       "export2Csv": true,
@@ -3974,7 +3974,7 @@
     },
     {
       "name": "STAGE TABLE",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/13",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/13",
       "definitionexpression": "",
       "spatialsearchlayer": false,
       "export2Csv": true,
@@ -4060,7 +4060,7 @@
     },
     {
       "name": "GEAR TABLE",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/20",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/20",
       "definitionexpression": "",
       "spatialsearchlayer": false,
       "export2Csv": true,
@@ -4188,7 +4188,7 @@
     },
     {
       "name": "TAXON CODE TABLE",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/21",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/21",
       "definitionexpression": "",
       "spatialsearchlayer": false,
       "export2Csv": true,
@@ -4325,7 +4325,7 @@
     },
     {
       "name": "SPECIES CODE TABLE",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer/22",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/22",
       "definitionexpression": "",
       "spatialsearchlayer": false,
       "export2Csv": true,
@@ -4636,7 +4636,7 @@
     ]
   },
   "graphicalsearchoptions": {
-    "enablepointselect": true,
+    "enablepointselect": false,
     "enableextentselect": true,
     "enablecircleselect": true,
     "enablepolyselect": true,
@@ -4668,7 +4668,7 @@
         0,
         204
       ],
-      "width": 2.25,
+      "width": 3.25,
       "type": "esriSLS",
       "style": "esriSLSSolid",
       "marker": null
@@ -4687,7 +4687,7 @@
           0,
           204
         ],
-        "width": 1.5,
+        "width": 3.5,
         "type": "esriSLS",
         "style": "esriSLSSolid",
         "marker": null

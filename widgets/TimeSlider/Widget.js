@@ -240,25 +240,32 @@ define(['dojo/_base/declare',
               (this.timeProcesser.needUpdateFullTime() || true === tsProps._needToFindDefaultInterval)) {
               this.timeProcesser._getUpdatedFullTime().then(lang.hitch(this, function (fullTimeExtent) {
                 var start = fullTimeExtent.startTime.getTime();
-                var end = new Date().getTime();//fullTimeExtent.endTime.getTime();
-                tsProps.startTime = start;
-                tsProps.endTime = end;
+                //var end = fullTimeExtent.endTime.getTime();
+                var end = new Date().getTime();
 
-                // if (tsProps.startTime > end || tsProps.endTime < start) {
-                //   tsProps.startTime = start;
-                //   tsProps.endTime = end;
-                // } else {
-                //   if (tsProps.startTime < start) {
-                //     tsProps.startTime = start;
-                //   }
-                //   if (tsProps.endTime > end) {
-                //     tsProps.endTime = end;
-                //   }
-                // }
-
-                if (true === tsProps._needToFindDefaultInterval) {
-                  tsProps.timeStopInterval = this.timeProcesser.findDefaultInterval(fullTimeExtent);
+                if (tsProps.startTime > end || tsProps.endTime < start) {
+                  tsProps.startTime = start;
+                  tsProps.endTime = end;
+                } else {
+                  if (tsProps.startTime < start) {
+                    tsProps.startTime = start;
+                  }
+                  if (tsProps.endTime > end) {
+                    tsProps.endTime = end;
+                  }
                 }
+                tsProps.endTime = end;
+                if (true === tsProps._needToFindDefaultInterval) {
+                  //tsProps.timeStopInterval = this.timeProcesser.findDefaultInterval(fullTimeExtent);
+                  tsProps.timeStopInterval = {'units': "esriTimeUnitsMonths", 'interval': 2};
+                }
+
+                /*defaultTimeInterval
+                2
+                defaultTimeIntervalUnits
+                "esriTimeUnitsMonths"
+                defaultTimeWindow
+                0*/
 
                 this._timeSliderPropsDef.resolve(tsProps);
               }));
@@ -401,10 +408,18 @@ define(['dojo/_base/declare',
       },
 
       updateTimeExtentLabel: function(timeExtent) {
-        var label = this.timeProcesser._getTimeFormatLabel(timeExtent);
-        //console.log("===>"+label);
-        this.timeExtentLabelNode.innerHTML = label;
-        html.setAttr(this.timeExtentLabelNode, 'title', label);
+        if(timeExtent){
+          var label = this.timeProcesser._getTimeFormatLabel(timeExtent);
+          //console.log("===>"+label);
+          this.timeExtentLabelNode.innerHTML = label;
+          html.setAttr(this.timeExtentLabelNode, 'title', label);
+        }
+        else{
+          var label = this.timeProcesser._getTimeFormatLabel(this.map.timeExtent);
+          //var label = "Showing All Data";
+          this.timeExtentLabelNode.innerHTML = label;
+          html.setAttr(this.timeExtentLabelNode, 'title', label);
+        }
       },
 
       _adaptResponsive: function (optison) {

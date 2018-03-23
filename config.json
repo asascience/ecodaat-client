@@ -21,7 +21,7 @@
       "mainBackgroundColor": "#689cc5"
     }
   },
-  "portalUrl": "http://noaa.maps.arcgis.com",
+  "portalUrl": "http://www.arcgis.com",
   "appId": "",
   "authorizedCrossOriginDomains": [],
   "title": "ECODAAT",
@@ -75,6 +75,23 @@
         "id": "widgets_Scalebar_Widget_2",
         "name": "Scalebar",
         "config": "configs/Scalebar/config_Scalebar.json"
+      },
+      {
+        "name": "Search",
+        "version": "2.5",
+        "icon": "configs\\eSearch\\icon_eSearch.png",
+        "uri": "widgets/eSearch/Widget",
+        "index": 2,
+        "id": "widgets_eSearch_Widget_28",
+        "config": "configs/eSearch/config_eSearch.json",
+        "position": {
+          "relativeTo": "browser",
+          "top": 0,
+          "right": 500,
+          "height": 500,
+          "width": 500,
+          "zIndex": 1000000
+        }
       },
       {
         "uri": "widgets/Coordinate/Widget",
@@ -329,15 +346,7 @@
       }
     },
     "widgets": [
-      {
-        "name": "Search",
-        "version": "2.5",
-        "icon": "configs\\eSearch\\icon_eSearch.png",
-        "uri": "widgets/eSearch/Widget",
-        "index": 2,
-        "id": "widgets_eSearch_Widget_28",
-        "config": "configs/eSearch/config_eSearch.json"
-      },
+      
       {
         "name": "TimeSlider",
         "version": "2.5",
@@ -635,219 +644,5 @@
   "httpProxy": {
     "useProxy": true,
     "url": "/proxy.js"
-  },
-  "dataSource": {
-    "dataSources": {
-      "external~11489118362658823": {
-        "type": "Features",
-        "isDynamic": true,
-        "label": "ne_10m_graticules_1",
-        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/Graticules/MapServer/2",
-        "filterByExtent": false,
-        "resultRecordType": "serviceLimitation",
-        "dataSchema": {
-          "objectIdFieldName": "FID",
-          "geometryType": "esriGeometryPolyline",
-          "displayFieldName": "direction",
-          "typeIdField": "",
-          "fields": [
-            {
-              "name": "FID",
-              "type": "esriFieldTypeOID",
-              "alias": "FID",
-              "domain": null,
-              "checked": true,
-              "disabled": true
-            },
-            {
-              "name": "degrees",
-              "type": "esriFieldTypeInteger",
-              "alias": "degrees",
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "direction",
-              "type": "esriFieldTypeString",
-              "alias": "direction",
-              "length": 1,
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "display",
-              "type": "esriFieldTypeString",
-              "alias": "display",
-              "length": 6,
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "dd",
-              "type": "esriFieldTypeDouble",
-              "alias": "dd",
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "ScaleRank",
-              "type": "esriFieldTypeInteger",
-              "alias": "ScaleRank",
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            }
-          ]
-        },
-        "id": "external~11489118362658823"
-      },
-      "external~9470523239477573": {
-        "type": "Features",
-        "isDynamic": true,
-        "label": "ne_10m_graticules_5",
-        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/Graticules/MapServer/1",
-        "filterByExtent": false,
-        "resultRecordType": "serviceLimitation",
-        "dataSchema": {
-          "objectIdFieldName": "FID",
-          "geometryType": "esriGeometryPolyline",
-          "displayFieldName": "direction",
-          "typeIdField": "",
-          "fields": [
-            {
-              "name": "FID",
-              "type": "esriFieldTypeOID",
-              "alias": "FID",
-              "domain": null,
-              "checked": true,
-              "disabled": true
-            },
-            {
-              "name": "RecNum",
-              "type": "esriFieldTypeInteger",
-              "alias": "RecNum",
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "degrees",
-              "type": "esriFieldTypeInteger",
-              "alias": "degrees",
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "direction",
-              "type": "esriFieldTypeString",
-              "alias": "direction",
-              "length": 1,
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "display",
-              "type": "esriFieldTypeString",
-              "alias": "display",
-              "length": 6,
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "dd",
-              "type": "esriFieldTypeDouble",
-              "alias": "dd",
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "ScaleRank",
-              "type": "esriFieldTypeInteger",
-              "alias": "ScaleRank",
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            }
-          ]
-        },
-        "id": "external~9470523239477573"
-      },
-      "external~28541016012229115": {
-        "type": "Features",
-        "isDynamic": true,
-        "label": "ne_10m_graticules_10",
-        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/Graticules/MapServer/0",
-        "filterByExtent": false,
-        "resultRecordType": "serviceLimitation",
-        "dataSchema": {
-          "objectIdFieldName": "FID",
-          "geometryType": "esriGeometryPolyline",
-          "displayFieldName": "direction",
-          "typeIdField": "",
-          "fields": [
-            {
-              "name": "FID",
-              "type": "esriFieldTypeOID",
-              "alias": "FID",
-              "domain": null,
-              "checked": true,
-              "disabled": true
-            },
-            {
-              "name": "degrees",
-              "type": "esriFieldTypeInteger",
-              "alias": "degrees",
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "direction",
-              "type": "esriFieldTypeString",
-              "alias": "direction",
-              "length": 1,
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "display",
-              "type": "esriFieldTypeString",
-              "alias": "display",
-              "length": 6,
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "dd",
-              "type": "esriFieldTypeDouble",
-              "alias": "dd",
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            },
-            {
-              "name": "ScaleRank",
-              "type": "esriFieldTypeInteger",
-              "alias": "ScaleRank",
-              "domain": null,
-              "checked": true,
-              "disabled": false
-            }
-          ]
-        },
-        "id": "external~28541016012229115"
-      }
-    },
-    "settings": {}
   }
 }

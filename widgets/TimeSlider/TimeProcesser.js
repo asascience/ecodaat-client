@@ -87,6 +87,8 @@ define(['dojo/_base/declare',
           }
         }));
 
+        fullTimeExtent.endTime = new Date();
+
         return fullTimeExtent;
       },
 

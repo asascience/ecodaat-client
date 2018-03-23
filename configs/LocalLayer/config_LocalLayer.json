@@ -1,10 +1,38 @@
 {
   "layers": {
     "layer": [
+        {
+          "type": "Dynamic",
+          "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/Graticules/MapServer",
+          "name": "Graticule Layers",
+          "opacity": 0.1,
+          "visible": true,
+          "imageformat": "png8",
+          "popup": {
+            "infoTemplates": [
+              {
+                "layerId": 0,
+                "title": "{degrees}",
+                "fieldInfos": [
+                {
+                  "fieldName": "degrees",
+                  "label": "degrees",
+                  "visible": true
+                },
+                {
+                  "fieldName": "direction",
+                  "label": "direction",
+                  "visible": true
+                }
+              ]
+            }
+          ]
+        }
+      },
       {
         "type": "Dynamic",
         "name": "EcoDAAT Layers",
-        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_development/MapServer",
+        "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer",
         "opacity": 0.6,
         "visible": true,
         "token": "7TPm3tF3sohQkUjlMmaOgvCtgFMuZieSBpBbiSF4402a4R0t8n_dppuUDuJuUhG0EuhkgvKZrlvmJklE8d8akQ..",
