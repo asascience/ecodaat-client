@@ -2505,7 +2505,6 @@ define([
             if (this.lastWhere) {
               queryParams.where += ' AND ' + this.lastWhere;
             }
-            console.info('SQL Where with layers definition expression: ', queryParams.where);
           }
         } else {
           this.initiator = 'attribute';
@@ -2517,7 +2516,6 @@ define([
           if (layerConfig.definitionexpression && this.lastWhere.indexOf(layerConfig.definitionexpression) === -1) {
             queryParams.where = layerConfig.definitionexpression + ' AND ' + this.lastWhere;
           }
-          console.info('SQL Where with layers definition expression: ', queryParams.where);
         }
 
         if(queryParams.where == ""){
@@ -2567,11 +2565,6 @@ define([
         }
         else{
           queryParams.returnGeometry = true;
-          //add dynmiac Time
-
-          var queryDateString = '';
-
-          //to_char(GMT_DATE_TIME,'YYYY') in ("+yearStringArray.slice( 0, -1 )+")
         }
 
         queryParams.outSpatialReference = this.map.spatialReference;
@@ -2872,6 +2865,57 @@ define([
             }
           }
         }
+
+        /*if(expr == '1=1'){
+          expr = '';
+        }*/
+        //add dynmiac Time
+        if(layerIndex<9){
+          //day
+          var dayselected = this.dayselect.getOptions();
+          if(dayselected[0].selected && dayselected[1].selected){
+          }
+          else if(dayselected[0].selected){
+            expr += ' AND EXTRACT(DAY FROM "GMT_DATE_TIME") > 14';  
+          }
+          else{
+            expr += ' AND EXTRACT(DAY FROM "GMT_DATE_TIME") < 15';   
+          }
+          
+          //month
+          var monthselected = this.monthselect.getOptions();
+          var allmonths = true;
+          var monthlist = '';
+          for (var m = 0, len = monthselected.length; m < len; m++) {
+            
+            if(monthselected[m].selected){
+              monthlist = monthlist + monthselected[m].value  + "," ;
+            }
+            else {
+              allmonths = false;
+            }
+          }
+          if(!allmonths){
+            expr += ' AND EXTRACT(MONTH FROM "GMT_DATE_TIME") in ('+ monthlist.slice( 0, -1 )+')';
+          }
+
+          //year 
+          var yearselected = this.yearselect.getOptions();
+          var allyears = true;
+          var yearlist = '';
+          for (var y = 0, len = yearselected.length; y < len; y++) {
+            if(yearselected[y].selected){
+              yearlist = yearlist + yearselected[y].value  + "," ;
+            }
+            else {
+              allyears = false;
+            }
+          }
+          if(!allyears){
+            expr += ' AND EXTRACT(YEAR FROM "GMT_DATE_TIME") in ('+yearlist.slice( 0, -1 )+')';
+          }
+        }
+
         return expr;
       },
 
@@ -2939,6 +2983,7 @@ define([
 
       _onSearchError: function (error) {
         this.clear();
+        this.drawBox.clear(); 
         html.setStyle(this.progressBar.domNode, 'display', 'none');
         //html.setStyle(this.divOptions, 'display', 'block');
         new Message({
