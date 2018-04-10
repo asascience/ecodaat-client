@@ -105,17 +105,17 @@ input[type="text"]::-ms-clear{
 }
 .jimu-rtl .map-loading {
   right: auto;
-  left: 10px;
+  left: 20px;
 }
 
 .map-loading,
 .map-loading:after {
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 44px;
+  height: 44px;
 }
 .map-loading {
-  font-size: 10px;
+  font-size: 30px;
   text-indent: -9999em;
   border-top: 3px solid rgba(0, 0, 0, 0.2);
   border-right: 3px solid rgba(0, 0, 0, 0.2);

@@ -87,9 +87,9 @@
         "position": {
           "relativeTo": "browser",
           "top": 0,
-          "right": 500,
+          "right": 950,
           "height": 500,
-          "width": 500,
+          "width": 600,
           "zIndex": 1000000
         }
       },

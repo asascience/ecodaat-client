@@ -17,6 +17,18 @@
   color: red;
 }
 
+#widgets_eSearch_Widget_28_panel{
+  top: 5px !important;
+}
+
+#jimu_dijit_TabContainer_0{
+  font-size: 13px !important;
+}
+.dojoxCheckedMultiSelectWrapper{
+  height: 250px !important;
+  overflow-y: auto !important;
+  min-width: 120px !important;
+}
 .jimu-widget-frame>.widget-esearch>.jimu-tab>.control {
   margin: -14px -14px 0 -14px;
 }
@@ -322,7 +334,7 @@
   height: auto;
   left: 0;
   right: 0;
-  top: 25px;
+  top: 35px;
   bottom: 10px;
   overflow-x: auto;
   overflow-y: auto;
@@ -441,6 +453,17 @@
   height: 20px;
 }
 
+
+.jimu-r-row {
+  padding-left: 9% !important;
+}
+#widget_fieldselect .dojoxCheckedMultiSelectWrapper{
+  width: 250px !important;
+}
+
+#dijit__WidgetBase_0{
+  position: fixed !important;
+}
 .widget-esearch-single-parameter .dijit-form-ValidationTextBox>div.dijitInputField>input.dijitInputInner {
   margin: 0;
   padding: 0;
@@ -535,10 +558,10 @@
 
 .search-btn {
   cursor: pointer;
-  min-width: 70px;
+  min-width: 50px;
   display: inline-block;
-  padding: 12px;
-  font-size: 15px;
+  padding: 8px;
+  font-size: 13px;
   text-align: center;
   /*background: none repeat scroll 0% 0% #528CC9;*/
   vertical-align: middle;

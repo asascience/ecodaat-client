@@ -496,6 +496,10 @@ return declare("dgrid.Selection", null, {
 			// default to true
 			value = true;
 		}
+
+		if(!row){
+			return;
+		}
 		if(!row.element){
 			row = this.row(row);
 		}

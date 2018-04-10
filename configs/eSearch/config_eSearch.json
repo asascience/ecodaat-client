@@ -1,11 +1,41 @@
 {
+  "ichfieldselected":["COMMENTS_HAUL","LARVALCATCHPER1000M3","LARVALCATCHPER10M2","NUMBER_EGGS","RAW_VALUE","CORRECTED_LENGTH","NUMBER_MEASURED_COUNTED","NUMBER_CAUGHT","STAGE_NAME","STAGE_ID","SPECIES_CODE_ICHBASE","SPECIES_NAME","YEAR","DAY","MONTH","FOCI_ID","HAUL_ID","NET","GEAR_NAME","GEAR_ABBREV","HAUL_NAME","STATION_NAME","CRUISE"],
+  "ichfields":["POLYGONAL_AREA","STANDARD_HAUL_FACTOR_B","STANDARD_HAUL_FACTOR_A","VOLUME_FILTERED","CALIBRATION_FACTOR","FLOWMETER_REVS","FLOWMETER_NUMBER","TOW_SECONDS","TOW_MINUTES","MAX_WIRE_OUT","MIN_WIRE_OUT","MAX_GEAR_DEPTH","MIN_GEAR_DEPTH","BOTTOM_DEPTH","GEOGRAPHIC_AREA","LON","LAT","MESH","PURPOSE","HAUL_PERFORMANCE","GMT_DATE_TIME","COMMON_NAME","DISPLACEMENT_VOLUME","PRESERVATIVE","ICH_PROC","COMMENTS_HAUL","LARVALCATCHPER1000M3","LARVALCATCHPER10M2","NUMBER_EGGS","RAW_VALUE","CORRECTED_LENGTH","NUMBER_MEASURED_COUNTED","NUMBER_CAUGHT","STAGE_NAME","STAGE_ID","SPECIES_CODE_ICHBASE","SPECIES_NAME","YEAR","DAY","MONTH","FOCI_ID","HAUL_ID","NET","GEAR_NAME","GEAR_ABBREV","HAUL_NAME","STATION_NAME","CRUISE"],
+  "zoopfieldselected":["BOTTLE_NUM","SIO4","PO4","NH4","NO2","NO3","COMMENTS_CHLOROPHYLL","QUALITY","SAMPLE_DEPTH","PHAECONC_L","CHLOROCONC_L","EST_NUM_PERM3","SPECIMEN_FORM","SEX","SEX_NAME","SIZE_NAME","TAXON_SIZE","STAGE_NAME","STAGE","TAXON_NAME","ZOOP_PROC","COMMENTS_HAUL","HAUL_PERFORMANCE","MAX_GEAR_DEPTH","MIN_GEAR_DEPTH","LON","LAT","MESH","NET","GEAR_NAME","HAUL_NAME","STATION_NAME","CRUISE","HAUL_ID","FOCI_ID","FOCI_SAMPLE_ID"],
+  "zoopfields":["COMMENTS_SAMPLES","ZOOP_EUPHAUSIID_EGG","ZOOP_COPEPOD_NAUPLII","BOTTLE_NUM","SIO4","PO4","NH4","NO2","NO3","SAMPLE_ORDER","COMMENTS_CHLOROPHYLL","QUALITY","CALIBRATION_ID","ACETONE_VOL","VOLUME_FILTERED_CHLOR","DILUTION_FACTOR","CHLOR_DOOR","F_A","F_B","SAMPLE_DEPTH","INTPHAEO","PHAECONC_L","INTCHL","CHLOROCONC_L","SAMPLE_VOLUME","DIS_PERVOLM2","DIS_PERVOLM3","VOLUME_DISPLACEMENT","BIO_MASS_PERM2","BIO_MASS_PERM3","BIO_MASS_PERSAMPLE","EST_NUM_PERM2","EST_NUM_PERM3","EST_NUM_PERSAMPLE","ZOOP_WET_WEIGHT","SORTER_NAME","NUMBER_MEASURED_COUNTED","SUBSAMPLE_FACTOR","SPECIMEN_FORM","SEX","SEX_NAME","SIZE_NAME","TAXON_SIZE","STAGE_NAME","STAGE","TAXON_NAME","TAXON_CODE_ID","ZOOP_PROC","WIRE_ANGLE","POLYGONAL_AREA","VOLUME_FILTERED","TOW_SECONDS","TOW_MINUTES","FLOWMETER_REVS","FLOWMETER","REC_HIST_HAUL","COMMENTS_HAUL","HAUL_PERFORMANCE","MAX_WIRE_OUT","MIN_WIRE_OUT","MAX_GEAR_DEPTH","MIN_GEAR_DEPTH","GEOGRAPHIC_AREA","LON","LAT","BOTTOM_DEPTH","YEAR","DAY","MONTH","GMT_DATE_TIME","MESH","FOCI_GRID","ALT_STATION_NAME","PROJECT","PURPOSE","CTD_ID","SHIP_CRUISE_NAME","NET","GEAR_NAME","HAUL_NAME","STATION_NAME","CRUISE","HAUL_ID","FOCI_ID","FOCI_SAMPLE_ID"],
+  "trawlfieldselected":["NET_PATH","LAT","LON","BOTTOM_DEPTH","GEAR_NAME","STANDARD_LENGTH","FORK_LENGTH","ALT_COMMON_NAME_TRAWL","TOTAL_LENGTH","WHOLE_WET_BODY_WEIGHT","STOMACH_ID","AGE_GROWTH_SAMPLE","GENETIC_SAMPLE","STOMACH_CONTENT_WT_G","DOCUMENTS","NOTES","PUBLICATIONS","GMT_DATE_TIME","PURPOSE","HAUL_PERFORMANCE","FOCI_ID","HAUL_ID","SHIP_CRUISE_NAME","CRUISE"],
+  "trawlfields":["COMMENTS_LENGTH_WEIGHT","COMMENTS_STOMACH_CONTENT","COMMENTS_PREY","PREY_QUALITY","PREY_WEIGHT","PREY_COUNT","PREY_CODE_TRAWL","PROCESS_DATE","EXAMINER","STOMACH_FULLNESS_CODE","FULLNESS_DESC","STOMACH_INTACT_WT_G","STOMACH_LINING_WT_G","STOMACH_DIGESTION_CODE","DIGESTION_DESC","ALT_SPECIMEN_NUMBER","ALT_COMMON_NAME_TRAWL","PREY_GROUP_CODE_TRAWL","PREY_QUALITY","PREY_WEIGHT","PREY_COUNT","FREQUENCY","WEIGHT_UNITS","TOTAL_WEIGHT","TOTAL_LENGTH","SUBSAMPLE_WEIGHT","SUBSAMPLE_NUMBER","COMMENTS_SPECIMEN","COMMENTS_SAMPLES","COMMENTS_HAUL","MESH","DIEL","DOOR_HEIGHT","DOOR_WIDTH","DOOR","MAX_GEAR_DEPTH","MIN_GEAR_DEPTH","MAX_WIRE_OUT","MIN_WIRE_OUT","NETMOUTH_HEIGHT_M","SEA_SURFACE_TEMP_C","WATER_TEMP_AT_GEAR_DEPTH","TRAWL_HAULBACK_START_GMT","TRAWL_HAULBACK_START_LAT","TRAWL_HAULBACK_START_LON","GMT_DATE_TIME_END","LAT_END","LON_END","FOCI_GRID","TRAWL_DEPLOYED_GMT","TRAWL_DEPLOYED_LAT","TRAWL_DEPLOYED_LON","NET_PATH","GMT_DATE_TIME","LAT","LON","BOTTOM_DEPTH","STANDARD_LENGTH","FORK_LENGTH","TOTAL_LENGTH","WHOLE_WET_BODY_WEIGHT","STOMACH_ID","AGE_GROWTH_SAMPLE","GENETIC_SAMPLE","STOMACH_CONTENT_WT_G","DOCUMENTS","NOTES","PUBLICATIONS","PURPOSE","HAUL_PERFORMANCE","FOCI_ID","HAUL_ID","NET","GEAR_NAME","HAUL_NAME","STATION_NAME","SHIP_CRUISE_NAME","CRUISE"],  
+  "dataproviders":{
+    "projectArray":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/12",
+    "ichSpeciesArray":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/14",
+    "trawlSpeciesArray":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/15",
+    "cruiseArray":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/16",
+    "taxonArray":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/31",
+    "geo_loc":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/18",
+    "gearArray":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/20",
+    "cruiseArray_seacat":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/23",
+    "cruiseArray_chlor":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/24",
+    "cruiseArray_nutrient":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/25",
+    "cruiseArray_ctdb":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/26",
+    "purposeArray":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/27",
+    "ichStageArray":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/28",
+    "bobSizeArray":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/29",
+    "bobStageArray":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/30"
+  },
+  "gp_data_tools":{
+    "ichlength":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ICHLengthFrequency/GPServer/ICH_Length_Frequency",
+    "trawllength":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/TRAWLLengthFrequency/GPServer/TRAWL_Length_Frequency",
+    "catchzero":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/MultiSpeciesCatchZero/GPServer/Multi_Species_Catch_Zero",
+    "catchzeroBob":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/MultiSpeciesCatchZeroBOB/GPServer/Multi_Species_Catch_ZeroBOB",
+    "ichabundance":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ICH_Abundance_Occurance/GPServer/ICH_Abundance_Occurance"
+  },
   "layers": [
     {
       "name": "SAMPLE RECORDS",
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/1",
       "definitionexpression": "",
       "spatialsearchlayer": true,
-      "export2Csv": true,
+      "export2Csv": false,
       "export2Geo": false,
       "export2FC": false,
       "zoomScale": 10000,
@@ -630,21 +660,21 @@
       },
       "orderByFields": [],
       "showattachments": false,
-      "hidenullvalue": false,
+      "hidenullvalue": true,
       "layersymbolfrom": "server"
     },
     {
       "name": "HAUL RECORDS",
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/0",
       "definitionexpression": "",
-      "spatialsearchlayer": false,
-      "export2Csv": true,
+      "spatialsearchlayer": true,
+      "export2Csv": false,
       "export2Geo": false,
       "export2FC": false,
       "zoomScale": 10000,
       "forceZoomScale": false,
       "shareResult": true,
-      "addToAttrib": false,
+      "addToAttrib": true,
       "expressions": {
         "expression": [
           {
@@ -1111,21 +1141,21 @@
       },
       "orderByFields": [],
       "showattachments": false,
-      "hidenullvalue": false,
+      "hidenullvalue": true,
       "layersymbolfrom": "server"
     },
     {
       "name": "SPECIMEN RECORDS",
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/2",
       "definitionexpression": "",
-      "spatialsearchlayer": false,
-      "export2Csv": true,
+      "spatialsearchlayer": true,
+      "export2Csv": false,
       "export2Geo": false,
       "export2FC": false,
       "zoomScale": 10000,
       "forceZoomScale": false,
-      "shareResult": false,
-      "addToAttrib": false,
+      "shareResult": true,
+      "addToAttrib": true,
       "expressions": {
         "expression": [
           {
@@ -2191,676 +2221,21 @@
       },
       "orderByFields": [],
       "showattachments": false,
-      "hidenullvalue": false,
-      "layersymbolfrom": "server"
-    },
-    {
-      "name": "SEACAT RECORDS",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/4",
-      "definitionexpression": "",
-      "spatialsearchlayer": true,
-      "export2Csv": true,
-      "export2Geo": false,
-      "export2FC": false,
-      "zoomScale": 10000,
-      "forceZoomScale": false,
-      "shareResult": true,
-      "addToAttrib": false,
-      "expressions": {
-        "expression": [
-          {
-            "alias": "Cruise",
-            "textsearchlabel": "Cruise",
-            "values": {
-              "value": [
-                {
-                  "fieldObj": {
-                    "name": "CRUISE",
-                    "label": "CRUISE",
-                    "shortType": "string",
-                    "type": "esriFieldTypeString"
-                  },
-                  "valueObj": {},
-                  "prompt": "",
-                  "textsearchhint": "",
-                  "sqltext": "CRUISE = ''",
-                  "operation": "stringOperatorIs",
-                  "uniquevalsfromfield": "CRUISE"
-                }
-              ]
-            }
-          }
-        ]
-      },
-      "titlefield": null,
-      "fields": {
-        "all": false,
-        "field": [
-          {
-            "name": "BOTTOM_DEPTH",
-            "alias": "BOTTOM_DEPTH",
-            "isnumber": true
-          },
-          {
-            "name": "COMMENTS_SEACAT_CTD",
-            "alias": "COMMENTS_SEACAT_CTD"
-          },
-          {
-            "name": "CONDUCTIVITY1",
-            "alias": "CONDUCTIVITY1",
-            "isnumber": true
-          },
-          {
-            "name": "CONDUCTIVITY2",
-            "alias": "CONDUCTIVITY2",
-            "isnumber": true
-          },
-          {
-            "name": "CRUISE",
-            "alias": "CRUISE"
-          },
-          {
-            "name": "CTD_ID",
-            "alias": "CTD_ID",
-            "isnumber": true
-          },
-          {
-            "name": "DAY",
-            "alias": "DAY",
-            "isnumber": true
-          },
-          {
-            "name": "DEPTH",
-            "alias": "DEPTH",
-            "isnumber": true
-          },
-          {
-            "name": "FLUOROMETER",
-            "alias": "FLUOROMETER",
-            "isnumber": true
-          },
-          {
-            "name": "GEAR_NAME",
-            "alias": "GEAR_NAME"
-          },
-          {
-            "name": "GEOGRAPHIC_AREA",
-            "alias": "GEOGRAPHIC_AREA"
-          },
-          {
-            "name": "GMT_DATE_TIME",
-            "alias": "GMT_DATE_TIME",
-            "isdate": true
-          },
-          {
-            "name": "H_ID",
-            "alias": "H_ID",
-            "isnumber": true
-          },
-          {
-            "name": "HAUL_ID",
-            "alias": "HAUL_ID"
-          },
-          {
-            "name": "LAT",
-            "alias": "LAT",
-            "isnumber": true
-          },
-          {
-            "name": "LON",
-            "alias": "LON",
-            "isnumber": true
-          },
-          {
-            "name": "MONTH",
-            "alias": "MONTH",
-            "isnumber": true
-          },
-          {
-            "name": "OXYGEN1",
-            "alias": "OXYGEN1",
-            "isnumber": true
-          },
-          {
-            "name": "OXYGEN2",
-            "alias": "OXYGEN2",
-            "isnumber": true
-          },
-          {
-            "name": "PAR",
-            "alias": "PAR",
-            "isnumber": true
-          },
-          {
-            "name": "PH",
-            "alias": "PH",
-            "isnumber": true
-          },
-          {
-            "name": "POTENTIAL_DENSITY",
-            "alias": "POTENTIAL_DENSITY",
-            "isnumber": true
-          },
-          {
-            "name": "PURPOSE",
-            "alias": "PURPOSE"
-          },
-          {
-            "name": "SALINITY1",
-            "alias": "SALINITY1",
-            "isnumber": true
-          },
-          {
-            "name": "SALINITY2",
-            "alias": "SALINITY2",
-            "isnumber": true
-          },
-          {
-            "name": "SIGMA_T",
-            "alias": "SIGMA_T",
-            "isnumber": true
-          },
-          {
-            "name": "TEMPERATURE1",
-            "alias": "TEMPERATURE1",
-            "isnumber": true
-          },
-          {
-            "name": "TEMPERATURE2",
-            "alias": "TEMPERATURE2",
-            "isnumber": true
-          },
-          {
-            "name": "TRANS",
-            "alias": "TRANS",
-            "isnumber": true
-          },
-          {
-            "name": "YEAR",
-            "alias": "YEAR",
-            "isnumber": true
-          }
-        ]
-      },
-      "links": {
-        "link": []
-      },
-      "relates": {
-        "relate": [
-          {}
-        ]
-      },
-      "orderByFields": [],
-      "showattachments": false,
-      "hidenullvalue": false,
-      "layersymbolfrom": "server"
-    },
-    {
-      "name": "CHLOROPHYLL RECORDS",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/5",
-      "definitionexpression": "",
-      "spatialsearchlayer": false,
-      "export2Csv": true,
-      "export2Geo": false,
-      "export2FC": false,
-      "zoomScale": 10000,
-      "forceZoomScale": false,
-      "shareResult": false,
-      "addToAttrib": false,
-      "expressions": {
-        "expression": [
-          {
-            "alias": "HAUL ID",
-            "textsearchlabel": "HAUL ID",
-            "values": {
-              "value": [
-                {
-                  "fieldObj": {
-                    "name": "HAUL_ID",
-                    "label": "HAUL_ID",
-                    "shortType": "string",
-                    "type": "esriFieldTypeString"
-                  },
-                  "valueObj": {
-                    "value": ""
-                  },
-                  "prompt": "",
-                  "textsearchhint": "",
-                  "sqltext": "HAUL_ID = ''",
-                  "operation": "stringOperatorIs",
-                  "uniquevalsfromfield": "HAUL_ID"
-                }
-              ]
-            }
-          }
-        ]
-      },
-      "titlefield": null,
-      "fields": {
-        "all": false,
-        "field": [
-          {
-            "name": "ACETONE_VOL",
-            "alias": "ACETONE_VOL",
-            "isnumber": true
-          },
-          {
-            "name": "BOTTOM_DEPTH",
-            "alias": "BOTTOM_DEPTH",
-            "isnumber": true
-          },
-          {
-            "name": "CALIBRATION_ID",
-            "alias": "CALIBRATION_ID"
-          },
-          {
-            "name": "CHLOR_DOOR",
-            "alias": "CHLOR_DOOR"
-          },
-          {
-            "name": "CHLOROCONC_L",
-            "alias": "CHLOROCONC_L",
-            "isnumber": true
-          },
-          {
-            "name": "COMMENTS_CHLOROPHYLL",
-            "alias": "COMMENTS_CHLOROPHYLL"
-          },
-          {
-            "name": "CRUISE",
-            "alias": "CRUISE"
-          },
-          {
-            "name": "CTD_ID",
-            "alias": "CTD_ID",
-            "isnumber": true
-          },
-          {
-            "name": "CTDB_ID",
-            "alias": "CTDB_ID",
-            "isnumber": true
-          },
-          {
-            "name": "DAY",
-            "alias": "DAY",
-            "isnumber": true
-          },
-          {
-            "name": "DILUTION_FACTOR",
-            "alias": "DILUTION_FACTOR",
-            "isnumber": true
-          },
-          {
-            "name": "DOOR_FACTOR",
-            "alias": "DOOR_FACTOR",
-            "isnumber": true
-          },
-          {
-            "name": "F_A",
-            "alias": "F_A",
-            "isnumber": true
-          },
-          {
-            "name": "F_B",
-            "alias": "F_B",
-            "isnumber": true
-          },
-          {
-            "name": "FLUROCALIBID",
-            "alias": "FLUROCALIBID",
-            "isnumber": true
-          },
-          {
-            "name": "FOCI_SAMPLE_ID",
-            "alias": "FOCI_SAMPLE_ID"
-          },
-          {
-            "name": "GEAR_NAME",
-            "alias": "GEAR_NAME"
-          },
-          {
-            "name": "GEOGRAPHIC_AREA",
-            "alias": "GEOGRAPHIC_AREA"
-          },
-          {
-            "name": "GMT_DATE_TIME",
-            "alias": "GMT_DATE_TIME",
-            "isdate": true
-          },
-          {
-            "name": "H_ID",
-            "alias": "H_ID",
-            "isnumber": true
-          },
-          {
-            "name": "HAUL_ID",
-            "alias": "HAUL_ID"
-          },
-          {
-            "name": "HAUL_ID_ZOO",
-            "alias": "HAUL_ID_ZOO"
-          },
-          {
-            "name": "HAUL_NAME",
-            "alias": "HAUL_NAME",
-            "isnumber": true
-          },
-          {
-            "name": "LAT",
-            "alias": "LAT",
-            "isnumber": true
-          },
-          {
-            "name": "LON",
-            "alias": "LON",
-            "isnumber": true
-          },
-          {
-            "name": "MONTH",
-            "alias": "MONTH",
-            "isnumber": true
-          },
-          {
-            "name": "PHAECONC_L",
-            "alias": "PHAECONC_L",
-            "isnumber": true
-          },
-          {
-            "name": "PURPOSE",
-            "alias": "PURPOSE"
-          },
-          {
-            "name": "QUALITY",
-            "alias": "QUALITY"
-          },
-          {
-            "name": "SAMPLE_DEPTH",
-            "alias": "SAMPLE_DEPTH",
-            "isnumber": true
-          },
-          {
-            "name": "SAMPLE_ID",
-            "alias": "SAMPLE_ID",
-            "isnumber": true
-          },
-          {
-            "name": "SAMPLE_ORDER",
-            "alias": "SAMPLE_ORDER"
-          },
-          {
-            "name": "SCALING_FACTOR",
-            "alias": "SCALING_FACTOR",
-            "isnumber": true
-          },
-          {
-            "name": "SLOPE",
-            "alias": "SLOPE",
-            "isnumber": true
-          },
-          {
-            "name": "TAU",
-            "alias": "TAU",
-            "isnumber": true
-          },
-          {
-            "name": "VOLUME_FILTERED_CHLOR",
-            "alias": "VOLUME_FILTERED_CHLOR",
-            "isnumber": true
-          },
-          {
-            "name": "YEAR",
-            "alias": "YEAR",
-            "isnumber": true
-          },
-          {
-            "name": "INTCHL",
-            "alias": "INTCHL",
-            "isnumber": true
-          },
-          {
-            "name": "INTPHAEO",
-            "alias": "INTPHAEO",
-            "isnumber": true
-          },
-          {
-            "name": "STATION_NAME",
-            "alias": "STATION_NAME"
-          },
-          {
-            "name": "NET",
-            "alias": "NET",
-            "isnumber": true
-          }
-        ]
-      },
-      "links": {
-        "link": []
-      },
-      "relates": {
-        "relate": []
-      },
-      "orderByFields": [],
-      "showattachments": false,
-      "hidenullvalue": false,
-      "layersymbolfrom": "server"
-    },
-    {
-      "name": "NUTRIENT RECORDS",
-      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/6",
-      "definitionexpression": "",
-      "spatialsearchlayer": false,
-      "export2Csv": true,
-      "export2Geo": false,
-      "export2FC": false,
-      "zoomScale": 10000,
-      "forceZoomScale": false,
-      "shareResult": true,
-      "addToAttrib": false,
-      "expressions": {
-        "expression": [
-          {
-            "alias": "HAUL ID",
-            "textsearchlabel": "HAUL ID",
-            "values": {
-              "value": [
-                {
-                  "fieldObj": {
-                    "name": "HAUL_ID",
-                    "label": "HAUL_ID",
-                    "shortType": "string",
-                    "type": "esriFieldTypeString"
-                  },
-                  "valueObj": {
-                    "value": ""
-                  },
-                  "prompt": "",
-                  "textsearchhint": "",
-                  "sqltext": "Upper(HAUL_ID) LIKE Upper('%%')",
-                  "operation": "stringOperatorContains"
-                }
-              ]
-            }
-          }
-        ]
-      },
-      "titlefield": null,
-      "fields": {
-        "all": false,
-        "field": [
-          {
-            "name": "H_ID",
-            "alias": "H_ID",
-            "isnumber": true
-          },
-          {
-            "name": "HAUL_ID",
-            "alias": "HAUL_ID"
-          },
-          {
-            "name": "CTD_ID",
-            "alias": "CTD_ID",
-            "isnumber": true
-          },
-          {
-            "name": "PO4",
-            "alias": "PO4",
-            "isnumber": true
-          },
-          {
-            "name": "SIO4",
-            "alias": "SIO4",
-            "isnumber": true
-          },
-          {
-            "name": "NO2",
-            "alias": "NO2",
-            "isnumber": true
-          },
-          {
-            "name": "NH4",
-            "alias": "NH4",
-            "isnumber": true
-          },
-          {
-            "name": "QUALITY",
-            "alias": "QUALITY"
-          },
-          {
-            "name": "DILUTION_FACTOR",
-            "alias": "DILUTION_FACTOR",
-            "isnumber": true
-          },
-          {
-            "name": "SAMPLE_DEPTH",
-            "alias": "SAMPLE_DEPTH",
-            "isnumber": true
-          },
-          {
-            "name": "BOTTLE_NUM",
-            "alias": "BOTTLE_NUM",
-            "isnumber": true
-          },
-          {
-            "name": "NUT_ID",
-            "alias": "NUT_ID"
-          },
-          {
-            "name": "NO3",
-            "alias": "NO3",
-            "isnumber": true
-          },
-          {
-            "name": "COMMENTS_NUTRIENT",
-            "alias": "COMMENTS_NUTRIENT"
-          },
-          {
-            "name": "CTDB_ID",
-            "alias": "CTDB_ID",
-            "isnumber": true
-          },
-          {
-            "name": "SAMPLE_ID",
-            "alias": "SAMPLE_ID",
-            "isnumber": true
-          },
-          {
-            "name": "FOCI_SAMPLE_ID",
-            "alias": "FOCI_SAMPLE_ID"
-          },
-          {
-            "name": "CRUISE",
-            "alias": "CRUISE"
-          },
-          {
-            "name": "HAUL_NAME",
-            "alias": "HAUL_NAME",
-            "isnumber": true
-          },
-          {
-            "name": "GEAR_NAME",
-            "alias": "GEAR_NAME"
-          },
-          {
-            "name": "BOTTOM_DEPTH",
-            "alias": "BOTTOM_DEPTH",
-            "isnumber": true
-          },
-          {
-            "name": "PURPOSE",
-            "alias": "PURPOSE"
-          },
-          {
-            "name": "GEOGRAPHIC_AREA",
-            "alias": "GEOGRAPHIC_AREA"
-          },
-          {
-            "name": "LAT",
-            "alias": "LAT",
-            "isnumber": true
-          },
-          {
-            "name": "LON",
-            "alias": "LON",
-            "isnumber": true
-          },
-          {
-            "name": "GMT_DATE_TIME",
-            "alias": "GMT_DATE_TIME",
-            "isdate": true
-          },
-          {
-            "name": "HAUL_ID_ZOO",
-            "alias": "HAUL_ID_ZOO"
-          },
-          {
-            "name": "MONTH",
-            "alias": "MONTH",
-            "isnumber": true
-          },
-          {
-            "name": "YEAR",
-            "alias": "YEAR",
-            "isnumber": true
-          },
-          {
-            "name": "DAY",
-            "alias": "DAY",
-            "isnumber": true
-          },
-          {
-            "name": "STATION_NAME",
-            "alias": "STATION_NAME"
-          },
-          {
-            "name": "NET",
-            "alias": "NET",
-            "isnumber": true
-          }
-        ]
-      },
-      "links": {
-        "link": []
-      },
-      "relates": {
-        "relate": []
-      },
-      "orderByFields": [],
-      "showattachments": false,
-      "hidenullvalue": false,
+      "hidenullvalue": true,
       "layersymbolfrom": "server"
     },
     {
       "name": "Subspecimen Records (ICH)",
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/3",
       "definitionexpression": "",
-      "spatialsearchlayer": false,
-      "export2Csv": true,
+      "spatialsearchlayer": true,
+      "export2Csv": false,
       "export2Geo": false,
       "export2FC": false,
       "zoomScale": 10000,
       "forceZoomScale": false,
-      "shareResult": false,
-      "addToAttrib": false,
+      "shareResult": true,
+      "addToAttrib": true,
       "expressions": {
         "expression": [
           {
@@ -3097,21 +2472,676 @@
       },
       "orderByFields": null,
       "showattachments": false,
-      "hidenullvalue": false,
+      "hidenullvalue": true,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "SEACAT RECORDS",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/4",
+      "definitionexpression": "",
+      "spatialsearchlayer": true,
+      "export2Csv": false,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": true,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "Cruise",
+            "textsearchlabel": "Cruise",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "CRUISE",
+                    "label": "CRUISE",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {},
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "CRUISE = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "CRUISE"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_SEACAT_CTD",
+            "alias": "COMMENTS_SEACAT_CTD"
+          },
+          {
+            "name": "CONDUCTIVITY1",
+            "alias": "CONDUCTIVITY1",
+            "isnumber": true
+          },
+          {
+            "name": "CONDUCTIVITY2",
+            "alias": "CONDUCTIVITY2",
+            "isnumber": true
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "CTD_ID",
+            "alias": "CTD_ID",
+            "isnumber": true
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
+            "name": "DEPTH",
+            "alias": "DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "FLUOROMETER",
+            "alias": "FLUOROMETER",
+            "isnumber": true
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "H_ID",
+            "alias": "H_ID",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "OXYGEN1",
+            "alias": "OXYGEN1",
+            "isnumber": true
+          },
+          {
+            "name": "OXYGEN2",
+            "alias": "OXYGEN2",
+            "isnumber": true
+          },
+          {
+            "name": "PAR",
+            "alias": "PAR",
+            "isnumber": true
+          },
+          {
+            "name": "PH",
+            "alias": "PH",
+            "isnumber": true
+          },
+          {
+            "name": "POTENTIAL_DENSITY",
+            "alias": "POTENTIAL_DENSITY",
+            "isnumber": true
+          },
+          {
+            "name": "PURPOSE",
+            "alias": "PURPOSE"
+          },
+          {
+            "name": "SALINITY1",
+            "alias": "SALINITY1",
+            "isnumber": true
+          },
+          {
+            "name": "SALINITY2",
+            "alias": "SALINITY2",
+            "isnumber": true
+          },
+          {
+            "name": "SIGMA_T",
+            "alias": "SIGMA_T",
+            "isnumber": true
+          },
+          {
+            "name": "TEMPERATURE1",
+            "alias": "TEMPERATURE1",
+            "isnumber": true
+          },
+          {
+            "name": "TEMPERATURE2",
+            "alias": "TEMPERATURE2",
+            "isnumber": true
+          },
+          {
+            "name": "TRANS",
+            "alias": "TRANS",
+            "isnumber": true
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": [
+          {}
+        ]
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": true,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "CHLOROPHYLL RECORDS",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/5",
+      "definitionexpression": "",
+      "spatialsearchlayer": true,
+      "export2Csv": false,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": true,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "HAUL ID",
+            "textsearchlabel": "HAUL ID",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "HAUL_ID",
+                    "label": "HAUL_ID",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": ""
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "HAUL_ID = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "HAUL_ID"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "ACETONE_VOL",
+            "alias": "ACETONE_VOL",
+            "isnumber": true
+          },
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "CALIBRATION_ID",
+            "alias": "CALIBRATION_ID"
+          },
+          {
+            "name": "CHLOR_DOOR",
+            "alias": "CHLOR_DOOR"
+          },
+          {
+            "name": "CHLOROCONC_L",
+            "alias": "CHLOROCONC_L",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_CHLOROPHYLL",
+            "alias": "COMMENTS_CHLOROPHYLL"
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "CTD_ID",
+            "alias": "CTD_ID",
+            "isnumber": true
+          },
+          {
+            "name": "CTDB_ID",
+            "alias": "CTDB_ID",
+            "isnumber": true
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
+            "name": "DILUTION_FACTOR",
+            "alias": "DILUTION_FACTOR",
+            "isnumber": true
+          },
+          {
+            "name": "DOOR_FACTOR",
+            "alias": "DOOR_FACTOR",
+            "isnumber": true
+          },
+          {
+            "name": "F_A",
+            "alias": "F_A",
+            "isnumber": true
+          },
+          {
+            "name": "F_B",
+            "alias": "F_B",
+            "isnumber": true
+          },
+          {
+            "name": "FLUROCALIBID",
+            "alias": "FLUROCALIBID",
+            "isnumber": true
+          },
+          {
+            "name": "FOCI_SAMPLE_ID",
+            "alias": "FOCI_SAMPLE_ID"
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "H_ID",
+            "alias": "H_ID",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "HAUL_ID_ZOO",
+            "alias": "HAUL_ID_ZOO"
+          },
+          {
+            "name": "HAUL_NAME",
+            "alias": "HAUL_NAME",
+            "isnumber": true
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "PHAECONC_L",
+            "alias": "PHAECONC_L",
+            "isnumber": true
+          },
+          {
+            "name": "PURPOSE",
+            "alias": "PURPOSE"
+          },
+          {
+            "name": "QUALITY",
+            "alias": "QUALITY"
+          },
+          {
+            "name": "SAMPLE_DEPTH",
+            "alias": "SAMPLE_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_ID",
+            "alias": "SAMPLE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_ORDER",
+            "alias": "SAMPLE_ORDER"
+          },
+          {
+            "name": "SCALING_FACTOR",
+            "alias": "SCALING_FACTOR",
+            "isnumber": true
+          },
+          {
+            "name": "SLOPE",
+            "alias": "SLOPE",
+            "isnumber": true
+          },
+          {
+            "name": "TAU",
+            "alias": "TAU",
+            "isnumber": true
+          },
+          {
+            "name": "VOLUME_FILTERED_CHLOR",
+            "alias": "VOLUME_FILTERED_CHLOR",
+            "isnumber": true
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          },
+          {
+            "name": "INTCHL",
+            "alias": "INTCHL",
+            "isnumber": true
+          },
+          {
+            "name": "INTPHAEO",
+            "alias": "INTPHAEO",
+            "isnumber": true
+          },
+          {
+            "name": "STATION_NAME",
+            "alias": "STATION_NAME"
+          },
+          {
+            "name": "NET",
+            "alias": "NET",
+            "isnumber": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": true,
+      "layersymbolfrom": "server"
+    },
+    {
+      "name": "NUTRIENT RECORDS",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/6",
+      "definitionexpression": "",
+      "spatialsearchlayer": true,
+      "export2Csv": false,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": true,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "HAUL ID",
+            "textsearchlabel": "HAUL ID",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "HAUL_ID",
+                    "label": "HAUL_ID",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "valueObj": {
+                    "value": ""
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "Upper(HAUL_ID) LIKE Upper('%%')",
+                  "operation": "stringOperatorContains"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "H_ID",
+            "alias": "H_ID",
+            "isnumber": true
+          },
+          {
+            "name": "HAUL_ID",
+            "alias": "HAUL_ID"
+          },
+          {
+            "name": "CTD_ID",
+            "alias": "CTD_ID",
+            "isnumber": true
+          },
+          {
+            "name": "PO4",
+            "alias": "PO4",
+            "isnumber": true
+          },
+          {
+            "name": "SIO4",
+            "alias": "SIO4",
+            "isnumber": true
+          },
+          {
+            "name": "NO2",
+            "alias": "NO2",
+            "isnumber": true
+          },
+          {
+            "name": "NH4",
+            "alias": "NH4",
+            "isnumber": true
+          },
+          {
+            "name": "QUALITY",
+            "alias": "QUALITY"
+          },
+          {
+            "name": "DILUTION_FACTOR",
+            "alias": "DILUTION_FACTOR",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_DEPTH",
+            "alias": "SAMPLE_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "BOTTLE_NUM",
+            "alias": "BOTTLE_NUM",
+            "isnumber": true
+          },
+          {
+            "name": "NUT_ID",
+            "alias": "NUT_ID"
+          },
+          {
+            "name": "NO3",
+            "alias": "NO3",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_NUTRIENT",
+            "alias": "COMMENTS_NUTRIENT"
+          },
+          {
+            "name": "CTDB_ID",
+            "alias": "CTDB_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_ID",
+            "alias": "SAMPLE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "FOCI_SAMPLE_ID",
+            "alias": "FOCI_SAMPLE_ID"
+          },
+          {
+            "name": "CRUISE",
+            "alias": "CRUISE"
+          },
+          {
+            "name": "HAUL_NAME",
+            "alias": "HAUL_NAME",
+            "isnumber": true
+          },
+          {
+            "name": "GEAR_NAME",
+            "alias": "GEAR_NAME"
+          },
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "PURPOSE",
+            "alias": "PURPOSE"
+          },
+          {
+            "name": "GEOGRAPHIC_AREA",
+            "alias": "GEOGRAPHIC_AREA"
+          },
+          {
+            "name": "LAT",
+            "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LON",
+            "alias": "LON",
+            "isnumber": true
+          },
+          {
+            "name": "GMT_DATE_TIME",
+            "alias": "GMT_DATE_TIME",
+            "isdate": true
+          },
+          {
+            "name": "HAUL_ID_ZOO",
+            "alias": "HAUL_ID_ZOO"
+          },
+          {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "isnumber": true
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
+            "name": "STATION_NAME",
+            "alias": "STATION_NAME"
+          },
+          {
+            "name": "NET",
+            "alias": "NET",
+            "isnumber": true
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": [],
+      "showattachments": false,
+      "hidenullvalue": true,
       "layersymbolfrom": "server"
     },
     {
       "name": "CTDB RECORDS",
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/8",
       "definitionexpression": "",
-      "spatialsearchlayer": false,
-      "export2Csv": true,
+      "spatialsearchlayer": true,
+      "export2Csv": false,
       "export2Geo": false,
       "export2FC": false,
       "zoomScale": 10000,
       "forceZoomScale": false,
       "shareResult": true,
-      "addToAttrib": false,
+      "addToAttrib": true,
       "expressions": {
         "expression": [
           {
@@ -3289,21 +3319,21 @@
       },
       "orderByFields": [],
       "showattachments": false,
-      "hidenullvalue": false,
+      "hidenullvalue": true,
       "layersymbolfrom": "server"
     },
     {
       "name": "DIET RECORDS",
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/7",
       "definitionexpression": "",
-      "spatialsearchlayer": false,
-      "export2Csv": true,
+      "spatialsearchlayer": true,
+      "export2Csv": false,
       "export2Geo": false,
       "export2FC": false,
       "zoomScale": 10000,
       "forceZoomScale": false,
       "shareResult": true,
-      "addToAttrib": false,
+      "addToAttrib": true,
       "expressions": {
         "expression": [
           {
@@ -3969,7 +3999,7 @@
       },
       "orderByFields": [],
       "showattachments": false,
-      "hidenullvalue": false,
+      "hidenullvalue": true,
       "layersymbolfrom": "server"
     },
     {
@@ -3977,13 +4007,13 @@
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/13",
       "definitionexpression": "",
       "spatialsearchlayer": false,
-      "export2Csv": true,
+      "export2Csv": false,
       "export2Geo": false,
       "export2FC": false,
       "zoomScale": 10000,
       "forceZoomScale": false,
-      "shareResult": false,
-      "addToAttrib": false,
+      "shareResult": true,
+      "addToAttrib": true,
       "expressions": {
         "expression": [
           {
@@ -4055,21 +4085,21 @@
       },
       "orderByFields": [],
       "showattachments": false,
-      "hidenullvalue": false,
-      "layersymbolfrom": "server"
+      "hidenullvalue": true,
+      "layersymbolfrom": null
     },
     {
       "name": "GEAR TABLE",
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/20",
       "definitionexpression": "",
       "spatialsearchlayer": false,
-      "export2Csv": true,
+      "export2Csv": false,
       "export2Geo": false,
       "export2FC": false,
       "zoomScale": 10000,
       "forceZoomScale": false,
-      "shareResult": false,
-      "addToAttrib": false,
+      "shareResult": true,
+      "addToAttrib": true,
       "expressions": {
         "expression": [
           {
@@ -4183,21 +4213,21 @@
       },
       "orderByFields": null,
       "showattachments": false,
-      "hidenullvalue": false,
-      "layersymbolfrom": "server"
+      "hidenullvalue": true,
+      "layersymbolfrom": null
     },
     {
       "name": "TAXON CODE TABLE",
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/21",
       "definitionexpression": "",
       "spatialsearchlayer": false,
-      "export2Csv": true,
+      "export2Csv": false,
       "export2Geo": false,
       "export2FC": false,
       "zoomScale": 10000,
       "forceZoomScale": false,
-      "shareResult": false,
-      "addToAttrib": false,
+      "shareResult": true,
+      "addToAttrib": true,
       "expressions": {
         "expression": [
           {
@@ -4320,21 +4350,21 @@
       },
       "orderByFields": null,
       "showattachments": false,
-      "hidenullvalue": false,
-      "layersymbolfrom": "server"
+      "hidenullvalue": true,
+      "layersymbolfrom": null
     },
     {
       "name": "SPECIES CODE TABLE",
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/22",
       "definitionexpression": "",
       "spatialsearchlayer": false,
-      "export2Csv": true,
+      "export2Csv": false,
       "export2Geo": false,
       "export2FC": false,
       "zoomScale": 10000,
       "forceZoomScale": false,
-      "shareResult": false,
-      "addToAttrib": false,
+      "shareResult": true,
+      "addToAttrib": true,
       "expressions": {
         "expression": [
           {
@@ -4560,21 +4590,20 @@
       },
       "orderByFields": null,
       "showattachments": false,
-      "hidenullvalue": false,
-      "layersymbolfrom": "server"
+      "hidenullvalue": true,
+      "layersymbolfrom": null
     }
   ],
   "initialView": "text",
   "selectfilter": "contains",
   "disabledtabs": [
-    "spatial"
   ],
   "enablePopupsOnResultClick": true,
   "disablePopups": false,
   "disableuvcache": false,
   "exportsearchurlchecked": false,
   "limitsearch2mapextentchecked": false,
-  "autozoomtoresults": true,
+  "autozoomtoresults": false,
   "mouseovergraphics": false,
   "bufferDefaults": {
     "addtolegend": false,
@@ -4640,15 +4669,15 @@
     "enableextentselect": true,
     "enablecircleselect": true,
     "enablepolyselect": true,
-    "showmultigraphicsgraphicaloption": false,
+    "showmultigraphicsgraphicaloption": true,
     "showaddtolerancegraphicaloption": true,
     "showaddsqltextgraphicaloption": true,
     "showbuffergraphicaloption": true,
     "buffercheckedbydefaultgraphicaloption": false,
-    "multipartgraphicsearchchecked": false,
+    "multipartgraphicsearchchecked": true,
     "addpointtolerancechecked": false,
     "toleranceforpointgraphicalselection": 6,
-    "keepgraphicalsearchenabled": true
+    "keepgraphicalsearchenabled": false
   },
   "symbols": {
     "simplemarkersymbol": null,

@@ -669,7 +669,7 @@ define([
       },
 
       _getNormalHeight: function() {
-        var h = document.body.clientHeight;
+        var h = document.body.clientHeight - 170;
         return window.appInfo.isRunInMobile ? h / 2 : h / 3;
       },
 

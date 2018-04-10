@@ -67,7 +67,7 @@ define(['dojo/_base/declare',
           return;
         }
         this.items.push(item);
-        var div = domConstruct.create("div");
+        /*var div = domConstruct.create("div");
         domAttr.set(div, "id", this.id.toLowerCase()+item.id);
 
         var iconDiv = domConstruct.create("div");
@@ -194,7 +194,7 @@ define(['dojo/_base/declare',
             domClass.add(linkImg, 'linkIcon');
           }
         });
-        domConstruct.place(div, this._listContainer);
+        domConstruct.place(div, this._listContainer);*/
       },
 
       addComplete: function() {
@@ -283,12 +283,12 @@ define(['dojo/_base/declare',
         query('.search-list-item').forEach(function(node){
           domClass.remove(node, "alt");
         });
-        array.map(this.items, lang.hitch(this, function(item, index){
+        /*array.map(this.items, lang.hitch(this, function(item, index){
           item.alt = (index % 2 === 0);
           if(item.alt){
             domClass.add(this.id.toLowerCase() + item.id + "", "alt");
           }
-        }));
+        }));*/
       },
 
       setSelectedItem: function(id) {

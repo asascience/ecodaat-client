@@ -63,9 +63,11 @@
         </div>
       </div>
       <div class="jimu-r-row play-section">
-        <div class="col-1-3">
-          <div class="search-btn" data-dojo-attach-point="btnSearch" data-dojo-attach-event="onclick:onSearch">${nls.search}</div>
-        </div>
+        <div class="search-btn" data-dojo-attach-point="btnSearch" style="margin-left: 30px !important;" data-dojo-attach-event="onclick:onSearch">Catch w/ Zeros</div>
+        <div class="search-btn hidden" data-dojo-attach-point="btnSearch" data-dojo-attach-event="onclick:onSearch">Trawl Length</div>
+        <div class="search-btn" data-dojo-attach-point="btnSearch" style="font-weight: bold;text-decoration: underline;" data-dojo-attach-event="onclick:onSearch">${nls.search}</div>
+        <div class="search-btn hidden" data-dojo-attach-point="btnSearch" data-dojo-attach-event="onclick:onSearch">Ich Abundance/Occurance</div>
+        <div class="search-btn" data-dojo-attach-point="btnSearch" style="font-weight: bold" data-dojo-attach-event="onclick:clear">Clear</div>
         <div class="col-2-3">
           <div data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="limitMapExtentCbx" style="margin-top: 14px;" data-dojo-props="label:'${nls.limit2mapextent}'"></div>
         </div>
@@ -73,29 +75,56 @@
     </div>
     <div class="search-tab-node-hidden" data-dojo-attach-point="tabNode3">
       <div>
-        <label>${nls.searchDistance}</label>
+        <label style="font-weight: bold;margin-left: 45%;">Filter by Time</label>
         <br>
-        <div style="height:50px;white-space:nowrap;">
-          <input type="text" data-dojo-type="dijit/form/NumberTextBox" data-dojo-attach-point="txtBufferValueSpat" data-dojo-props="required:true,intermediateChanges:true" style="width:80px;padding-right:5px;margin-top:-50px;" />
-          <select style="width:120px;padding-right:5px;margin-top:-50px;" data-dojo-attach-point="bufferUnitsSpat" data-dojo-type="dijit/form/Select"></select>
-          <div style="display: inline-block;" title="${nls.applyBuffer}" class="buffer-icon" data-dojo-attach-event="click:_bufferFeatures"></div>
-          <a style="float:right; margin-right:10px" href="#" data-dojo-attach-point="btnClearBuffer3">${nls.clearBuffer}</a>
+        <br>
+        <label>Month</label>
+        <select multiple="true" data-dojo-attach-point="monthselect" id="monthselect" name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
+            <option value="0" selected="selected">January</option>
+            <option value="1" selected="selected">February</option>
+            <option value="2" selected="selected">March</option>
+            <option value="3" selected="selected">April</option>
+            <option value="4" selected="selected">May</option>
+            <option value="5" selected="selected">June</option>
+            <option value="6" selected="selected">July</option>
+            <option value="7" selected="selected">August</option>
+            <option value="8" selected="selected">September</option>
+            <option value="9" selected="selected">October</option>
+            <option value="10" selected="selected">November</option>
+            <option value="11" selected="selected">December</option>
+       </select>
+       <label>Day</label>
+       <select multiple="true" id="dayselect" data-dojo-attach-point="dayselect"  name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
+            <option value="1"  selected="selected">1 - 15</option>
+            <option value="15" selected="selected">16 - 31</option>
+       </select>
+       <label>Year</label>
+       <select multiple="true" data-dojo-attach-point="yearselect" id="yearselect" name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
+            
+       </select>
+      <div class="col-1-3">
+          <div class="search-btn" style="margin-top: 10px;margin-left: 45%;" data-dojo-attach-point="btnSearch" data-dojo-attach-event="onclick:onSearch">${nls.search}</div>
         </div>
-      </div>
-      <hr style="clear:both;">
+    </div>
+    <div class="search-tab-node-hidden" data-dojo-attach-point="tabNode5">
       <div>
-        <label>${nls.searchEntities}</label>
+        <label style="font-weight: bold;margin-left: 36%;">Choose Pre-Selected List</label>
         <br>
-        <label class="label-layer-spatial hidden" style="margin-bottom:10px;float:left;line-height:30px;" data-dojo-attach-point="labelLayerSpatial"></label>
-        <select class="select-layer-spatial" data-dojo-attach-point="selectLayerSpatial" data-dojo-type="dijit/form/Select"></select>
-      </div>
-      <label>${nls.searchSpatialRelationship}</label>
-      <br>
-      <div class="hcenter">
-        <div class="spatial-items" data-dojo-attach-point="spatialItems"></div>
-      </div>
+        <select class="esearch-select-graphic" style="font-size:11px; width: 150px;margin-left: 36%;" id="fieldselectType"  data-dojo-attach-point="fieldselectType" data-dojo-type="dijit/form/Select">
+          <option value="0" selected="selected">NONE</option>
+          <option value="1" selected="selected">ICH</option>
+          <option value="2" selected="selected">ZOOP</option>
+          <option value="3" selected="selected">TRAWL</option>
+        </select>
+        <br><br>
+        <select multiple="true" style="margin-left: 26%;width: 250px" data-dojo-attach-point="fieldselect" id="fieldselect" name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
+       </select>
+        <div class="col-1-3">
+          <div class="search-btn" style="margin-top: 10px;margin-left: 45%;" data-dojo-attach-point="btnSearch" data-dojo-attach-event="onclick:onSearch">${nls.search}</div>
+        </div>
     </div>
     <div class="search-tab-node-hidden" data-dojo-attach-point="tabNode4" style="overflow: hidden;">
+      <label style="font-weight: bold;margin-left: 20%;">Click Search and Result information will be listed here.</label>
       <div data-dojo-attach-point="progressbar"></div>
       <div data-dojo-attach-point="divResultMessage" class="esearch-noResults"></div>
       <div class="popup-menu-button esearch-result-action-button" data-dojo-attach-event="click:_onBtnMenuClicked" data-dojo-attach-point="divOptions" title="${nls.resultactions}" style="display:none;"></div>
