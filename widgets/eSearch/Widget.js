@@ -222,6 +222,232 @@ define([
         this.fieldselectType.onChange = lang.hitch(this, this._onfieldSelctChange);
       },
 
+      populateAllDropDowns: function(){
+        // Cruise
+        var queryTaskCruise = new QueryTask(this.config.dataproviders.cruiseArray);
+        var queryCruise = new Query();
+        queryCruise.where = "1=1";
+        queryCruise.returnGeometry = false;
+        queryCruise.returnDistinctValues = true;
+        queryTaskCruise.execute(queryCruise,function(e){     
+          $('#cruiseDD').multipleSelect({placeholder: "Search Cruise",filter: true});     
+          for (var i = 0; i < e.features.length;  i++) {
+            console.log(e.features[i].attributes[e.displayFieldName] )
+            $('#cruiseDD').append("<option value=\"" + e.features[i].attributes[e.displayFieldName] + "\">" + e.features[i].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#cruiseDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+
+        // projectArray
+        var queryTaskproject = new QueryTask(this.config.dataproviders.projectArray);
+        var queryproject = new Query();
+        queryproject.where = "1=1";
+        queryproject.returnGeometry = false;
+        queryproject.returnDistinctValues = true;
+        queryTaskproject.execute(queryproject,function(e){     
+          $('#projectDD').multipleSelect({placeholder: "Search Project",filter: true});     
+          for (var p = 0; p < e.features.length;  p++) {
+            console.log(e.features[p].attributes[e.displayFieldName] )
+            $('#projectDD').append("<option value=\"" + e.features[p].attributes[e.displayFieldName] + "\">" + e.features[p].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#projectDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // ichSpeciesArray
+        var queryTaskichSpecies = new QueryTask(this.config.dataproviders.ichSpeciesArray);
+        var queryichSpecies = new Query();
+        queryichSpecies.where = "1=1";
+        queryichSpecies.returnGeometry = false;
+        queryTaskichSpecies.execute(queryichSpecies,function(e){     
+          $('#ichSpeciesDD').multipleSelect({placeholder: "Search Species",filter: true});     
+          for (var a = 0; a < e.features.length;  a++) {
+            $('#ichSpeciesDD').append("<option value=\"" + e.features[a].attributes[e.displayFieldName] + "\">" + e.features[a].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#ichSpeciesDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // trawlSpeciesArray
+        var queryTasktrawlSpecies = new QueryTask(this.config.dataproviders.trawlSpeciesArray);
+        var querytrawlSpecies = new Query();
+        querytrawlSpecies.where = "1=1";
+        querytrawlSpecies.returnGeometry = false;
+        queryTasktrawlSpecies.execute(querytrawlSpecies,function(e){     
+          $('#trawlSpeciesDD').multipleSelect({placeholder: "Search Species",filter: true});     
+          for (var b = 0; b < e.features.length;  b++) {
+            $('#trawlSpeciesDD').append("<option value=\"" + e.features[b].attributes[e.displayFieldName] + "\">" + e.features[b].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#trawlSpeciesDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // taxonArray
+        var queryTasktaxon = new QueryTask(this.config.dataproviders.taxonArray);
+        var querytaxon = new Query();
+        querytaxon.where = "1=1";
+        querytaxon.returnGeometry = false;
+        queryTasktaxon.execute(querytaxon,function(e){     
+          $('#taxonDD').multipleSelect({placeholder: "Search Taxon Code",filter: true});     
+          for (var c = 0; c < e.features.length;  c++) {
+            $('#taxonDD').append("<option value=\"" + e.features[c].attributes[e.displayFieldName] + "\">" + e.features[c].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#taxonDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // geo_loc
+        var queryTaskCruisegeo_loc = new QueryTask(this.config.dataproviders.geo_loc);
+        var queryCruisegeo_loc = new Query();
+        queryCruisegeo_loc.where = "1=1";
+        queryCruisegeo_loc.returnGeometry = false;
+        queryTaskCruisegeo_loc.execute(queryCruisegeo_loc,function(e){     
+          $('#geo_locDD').multipleSelect({placeholder: "Search GeoLoc",filter: true});     
+          for (var d = 0; d < e.features.length;  d++) {
+            $('#geo_locDD').append("<option value=\"" + e.features[d].attributes[e.displayFieldName] + "\">" + e.features[d].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#geo_locDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // gearArray
+        var queryTaskgear = new QueryTask(this.config.dataproviders.gearArray);
+        var queryCruisegear = new Query();
+        queryCruisegear.where = "1=1";
+        queryCruisegear.returnGeometry = false;
+        queryTaskgear.execute(queryCruisegear,function(e){     
+          $('#gearDD').multipleSelect({placeholder: "Search Gear",filter: true});     
+          for (var f = 0; f < e.features.length;  f++) {
+            $('#gearDD').append("<option value=\"" + e.features[f].attributes[e.displayFieldName] + "\">" + e.features[f].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#gearDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // cruiseArray_seacat
+        var queryTaskCruiseSeacat = new QueryTask(this.config.dataproviders.cruiseArray_seacat);
+        var queryCruiseSeacat = new Query();
+        queryCruiseSeacat.where = "1=1";
+        queryCruiseSeacat.returnGeometry = false;
+        queryTaskCruiseSeacat.execute(queryCruiseSeacat,function(e){     
+          $('#cruiseSeacatDD').multipleSelect({placeholder: "Search Cruise",filter: true});     
+          for (var g = 0; g < e.features.length;  g++) {
+            $('#cruiseSeacatDD').append("<option value=\"" + e.features[g].attributes[e.displayFieldName] + "\">" + e.features[g].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#cruiseSeacatDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // cruiseArray_chlor
+        var queryTaskCruisechlor = new QueryTask(this.config.dataproviders.cruiseArray_chlor);
+        var queryCruisechlor = new Query();
+        queryCruisechlor.where = "1=1";
+        queryCruisechlor.returnGeometry = false;
+        queryTaskCruisechlor.execute(queryCruisechlor,function(e){     
+          $('#cruisechlorDD').multipleSelect({placeholder: "Search Cruise",filter: true});     
+          for (var h = 0; h < e.features.length;  h++) {
+            $('#cruisechlorDD').append("<option value=\"" + e.features[h].attributes[e.displayFieldName] + "\">" + e.features[h].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#cruisechlorDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // cruiseArray_nutrient
+        var queryTaskCruiseNut = new QueryTask(this.config.dataproviders.cruiseArray_nutrient);
+        var queryCruiseNut = new Query();
+        queryCruiseNut.where = "1=1";
+        queryCruiseNut.returnGeometry = false;
+        queryTaskCruiseNut.execute(queryCruiseNut,function(e){     
+          $('#cruisenutrientDD').multipleSelect({placeholder: "Search Cruise",filter: true});     
+          for (var j = 0; j < e.features.length;  j++) {
+            $('#cruisenutrientDD').append("<option value=\"" + e.features[j].attributes[e.displayFieldName] + "\">" + e.features[j].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#cruisenutrientDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // cruiseArray_ctdb
+        var queryTaskCruiseCTDB = new QueryTask(this.config.dataproviders.cruiseArray_ctdb);
+        var queryCruiseCTDB = new Query();
+        queryCruiseCTDB.where = "1=1";
+        queryCruiseCTDB.returnGeometry = false;
+        queryTaskCruiseCTDB.execute(queryCruiseCTDB,function(e){     
+          $('#cruisectdbDD').multipleSelect({placeholder: "Search Cruise",filter: true});     
+          for (var j = 0; j < e.features.length;  j++) {
+            $('#cruisectdbDD').append("<option value=\"" + e.features[j].attributes[e.displayFieldName] + "\">" + e.features[j].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#cruisectdbDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // purposeArray
+        var queryTaskpurpose = new QueryTask(this.config.dataproviders.purposeArray);
+        var querypurpose = new Query();
+        querypurpose.where = "1=1";
+        querypurpose.returnGeometry = false;
+        queryTaskpurpose.execute(querypurpose,function(e){     
+          $('#purposeDD').multipleSelect({placeholder: "Search Purpose",filter: true});     
+          for (var k = 0; k < e.features.length;  k++) {
+            $('#purposeDD').append("<option value=\"" + e.features[k].attributes[e.displayFieldName] + "\">" + e.features[k].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#purposeDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // ichStageArray
+        var queryTaskichStage = new QueryTask(this.config.dataproviders.ichStageArray);
+        var queryichStage = new Query();
+        queryichStage.where = "1=1";
+        queryichStage.returnGeometry = false;
+        queryTaskichStage.execute(queryichStage,function(e){     
+          $('#ichStageDD').multipleSelect({placeholder: "Search Stage",filter: true});     
+          for (var q = 0; q < e.features.length;  q++) {
+            $('#ichStageDD').append("<option value=\"" + e.features[q].attributes[e.displayFieldName] + "\">" + e.features[q].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#ichStageDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // bobSizeArray
+        var queryTaskbobSize = new QueryTask(this.config.dataproviders.bobSizeArray);
+        var querybobSize = new Query();
+        querybobSize.where = "1=1";
+        querybobSize.returnGeometry = false;
+        querybobSize.returnDistinctValues = true;
+        queryTaskbobSize.execute(querybobSize,function(e){     
+          $('#bobSizeDD').multipleSelect({placeholder: "Search Size",filter: true});     
+          for (var v = 0; v < e.features.length;  v++) {
+            $('#bobSizeDD').append("<option value=\"" + e.features[v].attributes[e.displayFieldName] + "\">" + e.features[v].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#bobSizeDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+        // bobStageArray
+        var queryTaskbobStage = new QueryTask(this.config.dataproviders.bobStageArray);
+        var querybobStage = new Query();
+        querybobStage.where = "1=1";
+        querybobStage.returnDistinctValues = true;
+        querybobStage.returnGeometry = false;
+        queryTaskbobStage.execute(querybobStage,function(e){     
+          $('#bobStageDD').multipleSelect({placeholder: "Search Stage",filter: true});     
+          for (var x = 0; x < e.features.length;  x++) {
+            $('#bobStageDD').append("<option value=\"" + e.features[x].attributes[e.displayFieldName] + "\">" + e.features[x].attributes[e.displayFieldName] + "</option>");
+          }
+          $('#bobStageDD').multipleSelect( 'refresh' );
+        },function(error){
+          console.log(error);
+        });
+
+        $('#performanceDD').multipleSelect();  
+        $('#sexDD').multipleSelect();  //SEX = value
+        $('#meshDD').multipleSelect();  
+        $('#primaryNetDD').multipleSelect();  
+        $('#netDD').multipleSelect();  
+      },
+
       startup: function(){
         this.inherited(arguments);
         this.fetchData();
@@ -896,8 +1122,10 @@ define([
 
         this.updateFieldDropdownAtt(newValue);
         this.AttributeLayerIndex = newValue;
+        //set the graphical layer to be the same
+        this.graphicLayerIndex = newValue;
 
-        if(newValue>8){
+        /*if(newValue>8){
           this._initSelectedLayerExpressions();
           var valuesObj = lang.clone(this.config.layers[newValue].expressions.expression[0].values.value);
           html.empty(this.textsearchlabel);
@@ -912,8 +1140,6 @@ define([
                                  this.config.layers[newValue].definitionexpression);
           this.paramsDijit.setFocusOnFirstParam();
           this.expressIndex = 0;
-          //set the graphical layer to be the same
-          this.graphicLayerIndex = newValue;
           //this.selectLayerGraphical.set('value', newValue);
           //determine if this layer has any sum field(s)
           this._getSumFields(newValue);
@@ -924,7 +1150,7 @@ define([
             html.removeClass(this.list.domNode, 'sum');
             html.setStyle(this.divSum, 'display', 'none');
           }
-        }
+        }*/
       },
 
       onAttributeLayerExpressionChange: function (newValue) {
@@ -1268,7 +1494,7 @@ define([
         }
 
         if (len > 0) {
-          this.paramsDijit = new Parameters({
+          /*this.paramsDijit = new Parameters({
             nls: this.nls,
             layerUniqueCache: this.layerUniqueCache,
             disableuvcache: this.config.disableuvcache,
@@ -1278,15 +1504,15 @@ define([
           this.paramsDijit.startup();
           this.paramsDijit.on('enter-pressed', lang.hitch(this, function () {
             this.search(null, this.AttributeLayerIndex, this.expressIndex);
-          }));
-          this.shelter.show();
+          }));*/
+          //this.shelter.show();
 
           var defs = array.map(this.config.layers, lang.hitch(this, function (layerConfig) {
             return this._getLayerInfoWithRelationships(layerConfig.url);
           }));
 
           all(defs).then(lang.hitch(this, function (results) {
-            this.shelter.hide();
+            //this.shelter.hide();
             array.forEach(results, lang.hitch(this, function (result, j) {
               if(result.state === 'success'){
                 var layerInfo = result.value;
@@ -1418,7 +1644,7 @@ define([
               if(attribOptions.length > 0){
                 var aIndex = attribOptions[0].value;
                 this.AttributeLayerIndex = aIndex;
-                this._initSelectedLayerExpressions();
+                /*this._initSelectedLayerExpressions();
                 if(this.config.layers[aIndex].expressions.expression.length > 0){
                   var valuesObj = lang.clone(this.config.layers[aIndex].expressions.expression[0].values.value);
                   html.empty(this.textsearchlabel);
@@ -1442,7 +1668,7 @@ define([
                 }else{
                   html.removeClass(this.list.domNode, 'sum');
                   html.setStyle(this.divSum, 'display', 'none');
-                }
+                }*/
               }
             }
 
@@ -1486,8 +1712,10 @@ define([
         this.own(on(this.selectLayerGraphical, "change", lang.hitch(this, this.onGraphicalLayerChange)));
         this.own(on(this.selectLayerAttribute, "change", lang.hitch(this, this.onAttributeLayerChange)));
         //this.own(on(this.selectLayerSpatial, "change", lang.hitch(this, this.onSpatialLayerChange)));
-        this.own(on(this.selectExpression, "change", lang.hitch(this, this.onAttributeLayerExpressionChange)));
+        //this.own(on(this.selectExpression, "change", lang.hitch(this, this.onAttributeLayerExpressionChange)));
         this.own(on(this.list, 'remove', lang.hitch(this, this._removeResultItem)));
+
+        this.populateAllDropDowns();
       },
 
       _relateResultItem: function(index, item) {

@@ -4354,6 +4354,76 @@
       "layersymbolfrom": null
     },
     {
+      "name": "PRESERVATIVE TABLE",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/11",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": false,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": true,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "FOCI PRESERVE ID",
+            "textsearchlabel": "FOCI PRESERVE ID",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "FOCI_PRESERVE_ID",
+                    "label": "FOCI_PRESERVE_ID",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "FOCI_PRESERVE_ID = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "FOCI_PRESERVE_ID"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "FOCI_PRESERVE_ID",
+            "alias": "FOCI_PRESERVE_ID"
+          },
+          {
+            "name": "PRESERVATIVE",
+            "alias": "PRESERVATIVE"
+          },
+          {
+            "name": "PRESERVE_COMMENTS",
+            "alias": "PRESERVE_COMMENTS"
+          },
+          {
+            "name": "ORIG_DB",
+            "alias": "ORIG_DB"
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": null,
+      "showattachments": false,
+      "hidenullvalue": true,
+      "layersymbolfrom": null
+    },
+    {
       "name": "SPECIES CODE TABLE",
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/22",
       "definitionexpression": "",
@@ -4580,6 +4650,201 @@
             "alias": "DOC",
             "isdate": true
           }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": null,
+      "showattachments": false,
+      "hidenullvalue": true,
+      "layersymbolfrom": null
+    },
+    {
+      "name": "FLOWMETER TABLE",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/10",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": false,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": true,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "FLOWMETER_NUMBER",
+            "textsearchlabel": "FLOWMETER_NUMBER",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "CRUISE_NAME",
+                    "label": "CRUISE_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "CRUISE_NAME = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "CRUISE_NAME"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "SLOPE",
+            "alias": "SLOPE"
+          },
+          {
+            "name": "INTERCEPT",
+            "alias": "INTERCEPT"
+          },
+          {
+            "name": "AVEREV_PERSEC",
+            "alias": "AVEREV_PERSEC"
+          },
+          {
+            "name": "FLOWMETER_NUMBER",
+            "alias": "FLOWMETER_NUMBER"
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": null,
+      "showattachments": false,
+      "hidenullvalue": true,
+      "layersymbolfrom": null
+    },
+    {
+      "name": "PROJECTS TABLE",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/12",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": false,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": true,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "PROJECT_CODE",
+            "textsearchlabel": "PROJECT_CODE",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "PROJECT_CODE",
+                    "label": "PROJECT_CODE",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "PROJECT_CODE = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "PROJECT_CODE"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          {
+            "name": "SLOPE",
+            "alias": "SLOPE"
+          },
+          {
+            "name": "INTERCEPT",
+            "alias": "INTERCEPT"
+          },
+          {
+            "name": "AVEREV_PERSEC",
+            "alias": "AVEREV_PERSEC"
+          },
+          {
+            "name": "FLOWMETER_NUMBER",
+            "alias": "FLOWMETER_NUMBER"
+          }
+        ]
+      },
+      "links": {
+        "link": []
+      },
+      "relates": {
+        "relate": []
+      },
+      "orderByFields": null,
+      "showattachments": false,
+      "hidenullvalue": true,
+      "layersymbolfrom": null
+    },
+    {
+      "name": "CRUISE TABLE",
+      "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/19",
+      "definitionexpression": "",
+      "spatialsearchlayer": false,
+      "export2Csv": false,
+      "export2Geo": false,
+      "export2FC": false,
+      "zoomScale": 10000,
+      "forceZoomScale": false,
+      "shareResult": true,
+      "addToAttrib": true,
+      "expressions": {
+        "expression": [
+          {
+            "alias": "CRUISE_NAME",
+            "textsearchlabel": "CRUISE_NAME",
+            "values": {
+              "value": [
+                {
+                  "fieldObj": {
+                    "name": "CRUISE_NAME",
+                    "label": "CRUISE_NAME",
+                    "shortType": "string",
+                    "type": "esriFieldTypeString"
+                  },
+                  "prompt": "",
+                  "textsearchhint": "",
+                  "sqltext": "CRUISE_NAME = ''",
+                  "operation": "stringOperatorIs",
+                  "uniquevalsfromfield": "CRUISE_NAME"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "titlefield": null,
+      "fields": {
+        "all": false,
+        "field": [
+          
         ]
       },
       "links": {

@@ -51,18 +51,111 @@
             <div data-dojo-type="dijit/MenuItem" data-dojo-attach-event="onClick:onRemoveSelection2" iconclass="removeSelIcon">${nls.removefromselection}</div>
           </div>
         </div>
-        <div data-dojo-attach-point="expressionDiv" style="display:none;clear: both;">
+        <div data-dojo-attach-point="searchDivCTD">
+          <select id="cruiseSeacatDD" style="width: 120px" multiple="multiple">
+          </select>
+          <select id="cruisectdbDD" style="width: 120px" multiple="multiple">
+          </select>
+          <select id="cruisenutrientDD" style="width: 120px" multiple="multiple">
+          </select>
+          <select id="cruisechlorDD" style="width: 120px" multiple="multiple">
+          </select>
+        </div>
+        <div>
+        <label for="firstname">HAUL ID</label>
+        <input type="text" name="haulidtext" value="HAUL ID"
+            data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="haulidtext"
+            data-dojo-props="trim:true, propercase:true" id="firstname" />
+
+        </div>
+        <div data-dojo-attach-point="searchDiv">
+          <select id="cruiseDD" style="width: 120px" multiple="multiple">
+          </select>
+          <select id="projectDD" style="width: 120px" multiple="multiple">
+          </select>
+          <select id="trawlSpeciesDD" style="width: 200px" multiple="multiple">
+          </select>
+          <select id="taxonDD" style="width: 200px" multiple="multiple">
+          </select>
+          <select id="geo_locDD" style="width: 130px" multiple="multiple">
+          </select>
+          <select id="gearDD" style="width: 120px" multiple="multiple">
+          </select>
+          <select id="purposeDD" style="width: 140px" multiple="multiple">
+          </select>
+          <select id="ichStageDD" style="width: 120px" multiple="multiple">
+          </select>
+          <select id="bobSizeDD" style="width: 150px" multiple="multiple">
+          </select>
+          <select id="bobStageDD" style="width: 120px" multiple="multiple">
+          </select>
+          <select id="ichSpeciesDD" style="width: 200px" multiple="multiple">
+          </select>
+          <!-- hard coded dropdowns -->
+          <select id="netDD" style="width: 100px" multiple="multiple">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
+          <select id="primaryNetDD" style="width: 120px" multiple="multiple">
+            <option value="H">Haul</option>
+            <option value="Y">Yes</option>
+            <option value="NPNQ">NPNQ</option>
+            <option value="NPQ">NPQ</option>
+          </select>
+          <select id="meshDD" style="width: 120px" multiple="multiple">
+            <option value="0">0</option>
+            <option value="3">3</option>
+            <option value="32">32</option>
+            <option value="41">41</option>
+            <option value="53">53</option>
+            <option value="150">150</option>
+            <option value="215">215</option>
+            <option value="253">253</option>
+            <option value="300">300</option>
+            <option value="333">333</option>
+            <option value="335">335</option>
+            <option value="500">500</option>
+            <option value="505">505</option>
+            <option value="1000">1000</option>
+            <option value="1153">1153</option>
+            <option value="1410">1410</option>
+            <option value="1500">1500</option>
+            <option value="3000">3000</option>
+            <option value="6000">6000</option>
+            <option value="32000">32000</option>
+          </select>
+          <select id="performanceDD" style="width: 120px" multiple="multiple">
+            <option value="GOOD">Good</option>
+            <option value="LOST">Lost</option>
+            <option value="FAIL">Fail</option>
+            <option value="QUEST">Quest</option>
+          </select>
+          <select id="sexDD" style="width: 120px" multiple="multiple">
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+            <option value="3">Not Determined</option>
+            <option value="999">Female w Spermatophores</option>
+          </select>
+        </div>
+        <!-- <div data-dojo-attach-point="expressionDiv" style="display:none;clear: both;">
           <label>${nls.searchType}</label>
           <br>
           <select class="esearch-select" data-dojo-attach-point="selectExpression" data-dojo-type="dijit/form/Select"></select>
-        </div>
+        </div> -->
       </div>
-      <div class="params-container" data-dojo-attach-point="paramsContainer" style="width:96%;margin:10px 0;clear: both;">
+      <!-- <div class="params-container" data-dojo-attach-point="paramsContainer" style="width:96%;margin:10px 0;clear: both;">
         <div class="attributes-section" data-dojo-attach-point="parametersDiv">
           <span style="display:block;margin-bottom:10px;" data-dojo-attach-point="textsearchlabel"></span>
         </div>
-      </div>
-      <div class="jimu-r-row play-section">
+      </div> -->
+      <div class="jimu-r-row play-section" style="margin-top:15px">
         <div class="search-btn" data-dojo-attach-point="btnSearch" style="margin-left: 30px !important;" data-dojo-attach-event="onclick:onSearch">Catch w/ Zeros</div>
         <div class="search-btn hidden" data-dojo-attach-point="btnSearch" data-dojo-attach-event="onclick:onSearch">Trawl Length</div>
         <div class="search-btn" data-dojo-attach-point="btnSearch" style="font-weight: bold;text-decoration: underline;" data-dojo-attach-event="onclick:onSearch">${nls.search}</div>
