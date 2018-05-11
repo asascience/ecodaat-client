@@ -14,6 +14,7 @@ define([
     'jimu/utils',
     'esri/urlUtils',
     'esri/tasks/query',
+    "esri/tasks/Geoprocessor",
     'esri/tasks/QueryTask',
     'esri/tasks/RelationshipQuery',
     'esri/layers/CodedValueDomain',
@@ -77,11 +78,12 @@ define([
     'dojox/form/CheckedMultiSelect',
     'jimu/dijit/CheckBox',
     'dijit/form/DropDownButton',
+    "dijit/form/NumberSpinner",
     'dijit/Menu',
     'dijit/MenuItem'
   ],
   function (
-    declare, _WidgetsInTemplateMixin, BaseWidget, TabContainer, List, Parameters, RelateChooser, Message, jimuUtils, urlUtils, Query, QueryTask,
+    declare, _WidgetsInTemplateMixin, BaseWidget, TabContainer, List, Parameters, RelateChooser, Message, jimuUtils, urlUtils, Query, Geoprocessor,QueryTask,
     RelationshipQuery, CodedValueDomain, Domain, GraphicsLayer, FeatureLayer, FeatureType, Field, RangeDomain, BufferParameters, GeometryService,
     esriConfig, Graphic, graphicsUtils, Point, SimpleMarkerSymbol, PictureMarkerSymbol, Polyline, SimpleLineSymbol, Polygon, Multipoint, Extent,
     SimpleFillSymbol, symUtils, SimpleRenderer, jsonUtil, Draw, PopupTemplate, esriRequest, Color, Deferred, ProgressBar, lang, on, html, array,
@@ -101,6 +103,7 @@ define([
       expressIndex: 0,
       progressBar: null,
       tabContainer: null,
+      SAMPLETYPE: 'BOB',
       list: null,
       selTab: null,
       garr: [],
@@ -220,19 +223,36 @@ define([
 
         this.fieldselectType = dijit.byId("fieldselectType");
         this.fieldselectType.onChange = lang.hitch(this, this._onfieldSelctChange);
+
+        that = this;
       },
 
       populateAllDropDowns: function(){
+
+        $('#trawlSpeciesDD').multipleSelect({placeholder: "Search Species",filter: true});  
+        $('#cruiseDD').multipleSelect({placeholder: "Search Cruise",filter: true}); 
+        $('#projectDD').multipleSelect({placeholder: "Search Project",filter: true}); 
+        $('#ichSpeciesDD').multipleSelect({placeholder: "Search Species",filter: true});  
+        $('#taxonDD').multipleSelect({placeholder: "Search Taxon Code",filter: true});  
+        $('#geo_locDD').multipleSelect({placeholder: "Search GeoLoc",filter: true}); 
+        $('#gearDD').multipleSelect({placeholder: "Search Gear",filter: true}); 
+        $('#cruiseSeacatDD').multipleSelect({placeholder: "Search Cruise",filter: true}); 
+        $('#cruisechlorDD').multipleSelect({placeholder: "Search Cruise",filter: true}); 
+        $('#cruisenutrientDD').multipleSelect({placeholder: "Search Cruise",filter: true});   
+        $('#cruisectdbDD').multipleSelect({placeholder: "Search Cruise",filter: true});   
+        $('#purposeDD').multipleSelect({placeholder: "Search Purpose",filter: true});    
+        $('#bobSizeDD').multipleSelect({placeholder: "Search Size",filter: true});     
+        $('#bobStageDD').multipleSelect({placeholder: "Search Stage",filter: true});  
+        $('#ichStageDD').multipleSelect({placeholder: "Search Stage",filter: true});    
+
         // Cruise
         var queryTaskCruise = new QueryTask(this.config.dataproviders.cruiseArray);
         var queryCruise = new Query();
         queryCruise.where = "1=1";
         queryCruise.returnGeometry = false;
         queryCruise.returnDistinctValues = true;
-        queryTaskCruise.execute(queryCruise,function(e){     
-          $('#cruiseDD').multipleSelect({placeholder: "Search Cruise",filter: true});     
+        queryTaskCruise.execute(queryCruise,function(e){         
           for (var i = 0; i < e.features.length;  i++) {
-            console.log(e.features[i].attributes[e.displayFieldName] )
             $('#cruiseDD').append("<option value=\"" + e.features[i].attributes[e.displayFieldName] + "\">" + e.features[i].attributes[e.displayFieldName] + "</option>");
           }
           $('#cruiseDD').multipleSelect( 'refresh' );
@@ -246,10 +266,8 @@ define([
         queryproject.where = "1=1";
         queryproject.returnGeometry = false;
         queryproject.returnDistinctValues = true;
-        queryTaskproject.execute(queryproject,function(e){     
-          $('#projectDD').multipleSelect({placeholder: "Search Project",filter: true});     
+        queryTaskproject.execute(queryproject,function(e){         
           for (var p = 0; p < e.features.length;  p++) {
-            console.log(e.features[p].attributes[e.displayFieldName] )
             $('#projectDD').append("<option value=\"" + e.features[p].attributes[e.displayFieldName] + "\">" + e.features[p].attributes[e.displayFieldName] + "</option>");
           }
           $('#projectDD').multipleSelect( 'refresh' );
@@ -261,12 +279,12 @@ define([
         var queryichSpecies = new Query();
         queryichSpecies.where = "1=1";
         queryichSpecies.returnGeometry = false;
-        queryTaskichSpecies.execute(queryichSpecies,function(e){     
-          $('#ichSpeciesDD').multipleSelect({placeholder: "Search Species",filter: true});     
+        queryTaskichSpecies.execute(queryichSpecies,function(e){        
           for (var a = 0; a < e.features.length;  a++) {
             $('#ichSpeciesDD').append("<option value=\"" + e.features[a].attributes[e.displayFieldName] + "\">" + e.features[a].attributes[e.displayFieldName] + "</option>");
           }
           $('#ichSpeciesDD').multipleSelect( 'refresh' );
+          $('#ichSpeciesDD').next().hide();
         },function(error){
           console.log(error);
         });
@@ -275,12 +293,12 @@ define([
         var querytrawlSpecies = new Query();
         querytrawlSpecies.where = "1=1";
         querytrawlSpecies.returnGeometry = false;
-        queryTasktrawlSpecies.execute(querytrawlSpecies,function(e){     
-          $('#trawlSpeciesDD').multipleSelect({placeholder: "Search Species",filter: true});     
+        queryTasktrawlSpecies.execute(querytrawlSpecies,function(e){        
           for (var b = 0; b < e.features.length;  b++) {
             $('#trawlSpeciesDD').append("<option value=\"" + e.features[b].attributes[e.displayFieldName] + "\">" + e.features[b].attributes[e.displayFieldName] + "</option>");
           }
           $('#trawlSpeciesDD').multipleSelect( 'refresh' );
+          $('#trawlSpeciesDD').next().hide();
         },function(error){
           console.log(error);
         });
@@ -289,12 +307,12 @@ define([
         var querytaxon = new Query();
         querytaxon.where = "1=1";
         querytaxon.returnGeometry = false;
-        queryTasktaxon.execute(querytaxon,function(e){     
-          $('#taxonDD').multipleSelect({placeholder: "Search Taxon Code",filter: true});     
+        queryTasktaxon.execute(querytaxon,function(e){        
           for (var c = 0; c < e.features.length;  c++) {
             $('#taxonDD').append("<option value=\"" + e.features[c].attributes[e.displayFieldName] + "\">" + e.features[c].attributes[e.displayFieldName] + "</option>");
           }
           $('#taxonDD').multipleSelect( 'refresh' );
+          $('#taxonDD').next().hide();
         },function(error){
           console.log(error);
         });
@@ -303,8 +321,7 @@ define([
         var queryCruisegeo_loc = new Query();
         queryCruisegeo_loc.where = "1=1";
         queryCruisegeo_loc.returnGeometry = false;
-        queryTaskCruisegeo_loc.execute(queryCruisegeo_loc,function(e){     
-          $('#geo_locDD').multipleSelect({placeholder: "Search GeoLoc",filter: true});     
+        queryTaskCruisegeo_loc.execute(queryCruisegeo_loc,function(e){         
           for (var d = 0; d < e.features.length;  d++) {
             $('#geo_locDD').append("<option value=\"" + e.features[d].attributes[e.displayFieldName] + "\">" + e.features[d].attributes[e.displayFieldName] + "</option>");
           }
@@ -317,8 +334,7 @@ define([
         var queryCruisegear = new Query();
         queryCruisegear.where = "1=1";
         queryCruisegear.returnGeometry = false;
-        queryTaskgear.execute(queryCruisegear,function(e){     
-          $('#gearDD').multipleSelect({placeholder: "Search Gear",filter: true});     
+        queryTaskgear.execute(queryCruisegear,function(e){         
           for (var f = 0; f < e.features.length;  f++) {
             $('#gearDD').append("<option value=\"" + e.features[f].attributes[e.displayFieldName] + "\">" + e.features[f].attributes[e.displayFieldName] + "</option>");
           }
@@ -331,12 +347,12 @@ define([
         var queryCruiseSeacat = new Query();
         queryCruiseSeacat.where = "1=1";
         queryCruiseSeacat.returnGeometry = false;
-        queryTaskCruiseSeacat.execute(queryCruiseSeacat,function(e){     
-          $('#cruiseSeacatDD').multipleSelect({placeholder: "Search Cruise",filter: true});     
+        queryTaskCruiseSeacat.execute(queryCruiseSeacat,function(e){         
           for (var g = 0; g < e.features.length;  g++) {
             $('#cruiseSeacatDD').append("<option value=\"" + e.features[g].attributes[e.displayFieldName] + "\">" + e.features[g].attributes[e.displayFieldName] + "</option>");
           }
           $('#cruiseSeacatDD').multipleSelect( 'refresh' );
+          $('#cruiseSeacatDD').next().hide();
         },function(error){
           console.log(error);
         });
@@ -345,12 +361,12 @@ define([
         var queryCruisechlor = new Query();
         queryCruisechlor.where = "1=1";
         queryCruisechlor.returnGeometry = false;
-        queryTaskCruisechlor.execute(queryCruisechlor,function(e){     
-          $('#cruisechlorDD').multipleSelect({placeholder: "Search Cruise",filter: true});     
+        queryTaskCruisechlor.execute(queryCruisechlor,function(e){       
           for (var h = 0; h < e.features.length;  h++) {
             $('#cruisechlorDD').append("<option value=\"" + e.features[h].attributes[e.displayFieldName] + "\">" + e.features[h].attributes[e.displayFieldName] + "</option>");
           }
           $('#cruisechlorDD').multipleSelect( 'refresh' );
+          $('#cruisechlorDD').next().hide();
         },function(error){
           console.log(error);
         });
@@ -359,12 +375,12 @@ define([
         var queryCruiseNut = new Query();
         queryCruiseNut.where = "1=1";
         queryCruiseNut.returnGeometry = false;
-        queryTaskCruiseNut.execute(queryCruiseNut,function(e){     
-          $('#cruisenutrientDD').multipleSelect({placeholder: "Search Cruise",filter: true});     
+        queryTaskCruiseNut.execute(queryCruiseNut,function(e){        
           for (var j = 0; j < e.features.length;  j++) {
             $('#cruisenutrientDD').append("<option value=\"" + e.features[j].attributes[e.displayFieldName] + "\">" + e.features[j].attributes[e.displayFieldName] + "</option>");
           }
           $('#cruisenutrientDD').multipleSelect( 'refresh' );
+          $('#cruisenutrientDD').next().hide();
         },function(error){
           console.log(error);
         });
@@ -373,12 +389,12 @@ define([
         var queryCruiseCTDB = new Query();
         queryCruiseCTDB.where = "1=1";
         queryCruiseCTDB.returnGeometry = false;
-        queryTaskCruiseCTDB.execute(queryCruiseCTDB,function(e){     
-          $('#cruisectdbDD').multipleSelect({placeholder: "Search Cruise",filter: true});     
+        queryTaskCruiseCTDB.execute(queryCruiseCTDB,function(e){       
           for (var j = 0; j < e.features.length;  j++) {
             $('#cruisectdbDD').append("<option value=\"" + e.features[j].attributes[e.displayFieldName] + "\">" + e.features[j].attributes[e.displayFieldName] + "</option>");
           }
           $('#cruisectdbDD').multipleSelect( 'refresh' );
+          $('#cruisectdbDD').next().hide();
         },function(error){
           console.log(error);
         });
@@ -387,8 +403,7 @@ define([
         var querypurpose = new Query();
         querypurpose.where = "1=1";
         querypurpose.returnGeometry = false;
-        queryTaskpurpose.execute(querypurpose,function(e){     
-          $('#purposeDD').multipleSelect({placeholder: "Search Purpose",filter: true});     
+        queryTaskpurpose.execute(querypurpose,function(e){      
           for (var k = 0; k < e.features.length;  k++) {
             $('#purposeDD').append("<option value=\"" + e.features[k].attributes[e.displayFieldName] + "\">" + e.features[k].attributes[e.displayFieldName] + "</option>");
           }
@@ -401,12 +416,12 @@ define([
         var queryichStage = new Query();
         queryichStage.where = "1=1";
         queryichStage.returnGeometry = false;
-        queryTaskichStage.execute(queryichStage,function(e){     
-          $('#ichStageDD').multipleSelect({placeholder: "Search Stage",filter: true});     
+        queryTaskichStage.execute(queryichStage,function(e){        
           for (var q = 0; q < e.features.length;  q++) {
             $('#ichStageDD').append("<option value=\"" + e.features[q].attributes[e.displayFieldName] + "\">" + e.features[q].attributes[e.displayFieldName] + "</option>");
           }
           $('#ichStageDD').multipleSelect( 'refresh' );
+          $('#ichStageDD').next().hide();
         },function(error){
           console.log(error);
         });
@@ -416,12 +431,12 @@ define([
         querybobSize.where = "1=1";
         querybobSize.returnGeometry = false;
         querybobSize.returnDistinctValues = true;
-        queryTaskbobSize.execute(querybobSize,function(e){     
-          $('#bobSizeDD').multipleSelect({placeholder: "Search Size",filter: true});     
+        queryTaskbobSize.execute(querybobSize,function(e){       
           for (var v = 0; v < e.features.length;  v++) {
             $('#bobSizeDD').append("<option value=\"" + e.features[v].attributes[e.displayFieldName] + "\">" + e.features[v].attributes[e.displayFieldName] + "</option>");
           }
           $('#bobSizeDD').multipleSelect( 'refresh' );
+          $('#bobSizeDD').next().hide();
         },function(error){
           console.log(error);
         });
@@ -432,20 +447,36 @@ define([
         querybobStage.returnDistinctValues = true;
         querybobStage.returnGeometry = false;
         queryTaskbobStage.execute(querybobStage,function(e){     
-          $('#bobStageDD').multipleSelect({placeholder: "Search Stage",filter: true});     
           for (var x = 0; x < e.features.length;  x++) {
             $('#bobStageDD').append("<option value=\"" + e.features[x].attributes[e.displayFieldName] + "\">" + e.features[x].attributes[e.displayFieldName] + "</option>");
           }
           $('#bobStageDD').multipleSelect( 'refresh' );
+          $('#bobStageDD').next().hide();
         },function(error){
           console.log(error);
         });
 
-        $('#performanceDD').multipleSelect();  
-        $('#sexDD').multipleSelect();  //SEX = value
-        $('#meshDD').multipleSelect();  
-        $('#primaryNetDD').multipleSelect();  
-        $('#netDD').multipleSelect();  
+        $('#performanceDD').multipleSelect({placeholder: "Performance"});  
+        $('#zoopProtocolDD').multipleSelect({placeholder: "Zoop Protocol"});  //ZOOP_PROTOCOL 
+        $('#zoopProtocolDD').next().hide();
+        $('#sexDD').multipleSelect({placeholder: "Search Sex"});  //SEX = value
+        $('#meshDD').multipleSelect({placeholder: "Search Mesh"});  
+        $('#primaryNetDD').multipleSelect({placeholder: "Primary Net"});  
+        $('#netDD').multipleSelect({placeholder: "Search Net"});  
+        $('#specieTypeDD').multipleSelect({placeholder: "Database",
+          single: true,
+          onClick: function(view) {
+                /*
+              view.label: the text of the checkbox item
+              view.checked: the checked of the checkbox item
+              */
+              that.SAMPLETYPE = view.value;
+              that.onAttributeLayerChange(2); //sample_TYPE
+          }});//orig_db
+        $('#sampleTypeDD').multipleSelect({
+          placeholder: "Sample Type"
+        });
+        $('#specieTypeDD').next().hide();
       },
 
       startup: function(){
@@ -1118,6 +1149,7 @@ define([
         }
       },
 
+      //update table list
       onAttributeLayerChange: function (newValue) {
 
         this.updateFieldDropdownAtt(newValue);
@@ -1125,32 +1157,147 @@ define([
         //set the graphical layer to be the same
         this.graphicLayerIndex = newValue;
 
-        /*if(newValue>8){
-          this._initSelectedLayerExpressions();
-          var valuesObj = lang.clone(this.config.layers[newValue].expressions.expression[0].values.value);
-          html.empty(this.textsearchlabel);
-          if(this.config.layers[newValue].expressions.expression[0].textsearchlabel !== ""){
-            html.place(html.toDom(this.config.layers[newValue].expressions.expression[0].textsearchlabel), this.textsearchlabel);
-            html.style(this.textsearchlabel, 'display', 'block');
-          }else{
-            html.style(this.textsearchlabel, 'display', 'none');
+        /*all values
+        $('#cruiseSeacatDD').multipleSelect('getSelects');
+        $('#cruisectdbDD').multipleSelect('getSelects');
+        $('#cruisenutrientDD').multipleSelect('getSelects');
+        $('#cruisechlorDD').multipleSelect('getSelects');
+        
+        $('#geo_locDD').multipleSelect('getSelects');
+        $('#gearDD').multipleSelect('getSelects');
+
+        $('#specieTypeDD').multipleSelect('getSelects');
+        $('#sampleTypeDD').multipleSelect('getSelects');
+        $('#cruiseDD').multipleSelect('getSelects');
+        $('#projectDD').multipleSelect('getSelects');
+        $('#purposeDD').multipleSelect('getSelects');
+        $('#netDD').multipleSelect('getSelects');
+        $('#primaryNetDD').multipleSelect('getSelects');
+        $('#meshDD').multipleSelect('getSelects');
+        $('#performanceDD').multipleSelect('getSelects');
+        $('#sexDD').multipleSelect('getSelects');
+
+        $('#ichStageDD').multipleSelect('getSelects');
+        $('#bobSizeDD').multipleSelect('getSelects');
+        $('#bobStageDD').multipleSelect('getSelects');
+        $('#ichSpeciesDD').multipleSelect('getSelects');
+        $('#trawlSpeciesDD').multipleSelect('getSelects');
+        $('#taxonDD').multipleSelect('getSelects');
+
+        minBottom
+        maxBottom
+        minGearDepth
+        maxGearDepth
+
+        btnSearchCatchwZero
+        btnSearchTrawlLength
+        btnSearchAbundance
+        btnSearchFrequency
+        
+        haulidtext
+
+        depthSpinners
+        */
+        
+        $('#haulidtext').show();
+        $('#searchDiv').show();
+        $('#tableSearch').hide();
+        $('#btnSearchCatchwZero').hide();
+        $('#btnSearchTrawlLength').hide();
+        $('#btnSearchAbundance').hide();
+        $('#btnSearchFrequency').hide();
+        $('#limitMapExtentDiv').show();
+        $('#specieTypeDD').next().hide();
+        $('#cruiseSeacatDD').next().hide();
+        $('#cruisechlorDD').next().hide();
+        $('#cruisenutrientDD').next().hide();
+        $('#cruisectdbDD').next().hide();
+
+        $('#cruiseDD').next().show();
+        $('#projectDD').next().show();
+        $('#netDD').next().show();
+        $('#primaryNetDD').next().show();
+        $('#meshDD').next().show();
+        $('#performanceDD').next().show();
+        $('#sexDD').next().show();
+        $('#gearSpinners').show();
+
+        $('#bobSizeDD').next().hide();
+        $('#bobStageDD').next().hide();
+        $('#zoopProtocolDD').next().hide();
+        
+        $('#trawlSpeciesDD').next().hide();
+        
+        $('#ichStageDD').next().hide();
+        $('#ichSpeciesDD').next().hide();
+        $('#taxonDD').next().hide();
+
+        $('#sampleTypeDD').next().hide();
+        $('#gearSpinners').show();
+
+        if(newValue == 0){//sample
+          $('#sampleTypeDD').next().show();
+        }
+        else if(newValue == 1){//haul
+            $('#haulidtext').show();
+        }
+        else if(newValue == 2){//specimen
+          if(that.SAMPLETYPE == "TRAWL"){
+            $('#trawlSpeciesDD').next().show();
+            $('#btnSearchTrawlLength').show();
           }
-          this.paramsDijit.clear();
-          this.paramsDijit.build(valuesObj, this.resultLayers[newValue], this.config.layers[newValue].url,
-                                 this.config.layers[newValue].definitionexpression);
-          this.paramsDijit.setFocusOnFirstParam();
-          this.expressIndex = 0;
-          //this.selectLayerGraphical.set('value', newValue);
-          //determine if this layer has any sum field(s)
-          this._getSumFields(newValue);
-          if(this.sumFields.length > 0){
-            html.addClass(this.list.domNode, 'sum');
-            html.setStyle(this.divSum, 'display', '');
-          }else{
-            html.removeClass(this.list.domNode, 'sum');
-            html.setStyle(this.divSum, 'display', 'none');
+          else if(that.SAMPLETYPE == "ICHBASE"){
+            $('#ichStageDD').next().show();
+            $('#ichSpeciesDD').next().show();
+            $('#btnSearchAbundance').show();
           }
-        }*/
+          else{
+            $('#bobSizeDD').next().show();
+            $('#bobStageDD').next().show();
+            $('#taxonDD').next().show();
+            $('#zoopProtocolDD').next().show();
+          }
+
+          $('#btnSearchCatchwZero').show();
+          $('#specieTypeDD').next().show();
+        }
+        else if(newValue == 3){//sub spec
+          $('#btnSearchFrequency').show();
+        }
+        else if(newValue>3 && newValue <8){
+          $('#specieTypeDD').next().hide();
+          $('#sampleTypeDD').next().hide();
+          $('#cruiseDD').next().hide();
+          $('#projectDD').next().hide();
+          $('#netDD').next().hide();
+          $('#primaryNetDD').next().hide();
+          $('#meshDD').next().hide();
+          $('#performanceDD').next().hide();
+          $('#sexDD').next().hide();
+          $('#gearSpinners').hide();
+
+          if(newValue == 4){//seacat
+            $('#cruiseSeacatDD').next().show();
+          }
+          else if(newValue == 5){//chlor
+            $('#cruisechlorDD').next().show();
+          }
+          else if(newValue == 6){//nutrient
+            $('#cruisenutrientDD').next().show();
+          }
+          else {//ctdb
+            $('#cruisectdbDD').next().show();
+          }
+        }
+        else if(newValue == 8){//diet
+          
+        }
+        else{
+          //table display all
+          $('#searchDiv').hide();
+          $('#tableSearch').show();
+          $('#limitMapExtentDiv').hide();
+        }
       },
 
       onAttributeLayerExpressionChange: function (newValue) {
@@ -1429,7 +1576,7 @@ define([
         this.own(on(this.tabContainer, "tabChanged", lang.hitch(this, function (title) {
           if(title.toUpperCase().search('SEARCH')>-1){
             //set to samples
-            this.selectLayerAttribute.set('value', 0);
+            //this.selectLayerAttribute.set('value', 0);
           }
           if (title !== this.nls.results) {
             this.selTab = title;
@@ -1539,7 +1686,7 @@ define([
                 if (!layerInfo.drawingInfo) {
                   layerInfo.drawingInfo = {};
                 }
-                layerInfo.name = this.nls.search + ' ' + this.nls.results + ': ' + layerConfig.name;
+                layerInfo.name = this.nls.search + ' ' + this.nls.resultsWord + ': ' + layerConfig.name;
                 layerInfo._titleForLegend = layerInfo.name;
                 layerInfo.minScale = 0;
                 layerInfo.maxScale = 0;
@@ -1587,6 +1734,9 @@ define([
               }else{
                 //this.selectLayerSpatial.addOption(spatialOptions);
               }
+
+              //delay to be sure all dropdowns are created
+              this.populateAllDropDowns();
             }), 100);
 
             if(spatialOptions.length > 0){
@@ -1714,8 +1864,6 @@ define([
         //this.own(on(this.selectLayerSpatial, "change", lang.hitch(this, this.onSpatialLayerChange)));
         //this.own(on(this.selectExpression, "change", lang.hitch(this, this.onAttributeLayerExpressionChange)));
         this.own(on(this.list, 'remove', lang.hitch(this, this._removeResultItem)));
-
-        this.populateAllDropDowns();
       },
 
       _relateResultItem: function(index, item) {
@@ -2310,12 +2458,6 @@ define([
         if (this.config.graphicalsearchoptions.enablepolylineselect) {
           enabledButtons.push('POLYLINE');
         }
-        if (this.config.graphicalsearchoptions.enablefreehandlineselect) {
-          enabledButtons.push('FREEHAND_POLYLINE');
-        }
-        if (this.config.graphicalsearchoptions.enabletriangleselect) {
-          enabledButtons.push('TRIANGLE');
-        }
         if (this.config.graphicalsearchoptions.enableextentselect) {
           enabledButtons.push('EXTENT');
         }
@@ -2327,9 +2469,6 @@ define([
         }
         if (this.config.graphicalsearchoptions.enablepolyselect) {
           enabledButtons.push('POLYGON');
-        }
-        if (this.config.graphicalsearchoptions.enablefreehandpolyselect) {
-          enabledButtons.push('FREEHAND_POLYGON');
         }
         this.drawBox.geoTypes = enabledButtons;
         this.drawBox._initTypes();
@@ -2435,11 +2574,89 @@ define([
         }
       },
 
+      error4GP:function(error){
+        html.empty(this.divResultMessage);
+        html.place(html.toDom("An error has occured running the geoprocessing tool.  Please try again."), this.divResultMessage);
+      },
+
+      returnGPFile:function(result){
+        var win = window.open('google.com', '_blank');
+        win.focus();
+      },
+
+      onSearchCatchZero:function(){
+          
+          var inputData = {};
+          inputData['stage'] = 'nostagen';
+          inputData['InputQueryHaul'] = '';
+
+          if(this.SAMPLETYPE == 'BOB'){
+            var gp_url = this.config.gp_data_tools.catchzeroBob;
+            inputData['InputSpeciesQuery'] = '';
+            inputData['Taxa_List'] = '';
+          }
+          else{
+            var gp_url = this.config.gp_data_tools.catchzero;
+            inputData['InputSpeciesQuery'] = '';
+            inputData['Species_List'] = '';
+          }
+
+          var gps = new Geoprocessor(gp_url);
+          gps.on("execute-complete", this.returnGPFile, this.error4GP);
+          gps.execute(inputData);
+
+          html.empty(this.divResultMessage);
+          html.place(html.toDom("Running Catch w/ Zero Calculations. Please be patient."), this.divResultMessage);
+          this.tabContainer.selectTab(this.nls.results);
+      },
+
+      onSearchTrawlLength:function(){
+        var inputData = {};
+        inputData['SQL_Query'] = 'nostagen';
+        var gp_url = this.config.gp_data_tools.trawllength;
+        var gps = new Geoprocessor(gp_url);
+        gps.on("execute-complete", this.returnGPFile, this.error4GP);
+        gps.execute(inputData);
+
+        html.empty(this.divResultMessage);
+        html.place(html.toDom("Running Catch w/ Zero Calculations. Please be patient."), this.divResultMessage);
+        this.tabContainer.selectTab(this.nls.results);
+      },
+
+      onSearchIchFreq:function(){
+        var inputData = {};
+        inputData['Input_Query'] = 'nostagen';
+        var gp_url = this.config.gp_data_tools.ichlength;
+
+        var gps = new Geoprocessor(gp_url);
+        gps.on("execute-complete", this.returnGPFile, this.error4GP);
+        gps.execute(inputData);
+
+        html.empty(this.divResultMessage);
+        html.place(html.toDom("Running Catch w/ Zero Calculations. Please be patient."), this.divResultMessage);
+        this.tabContainer.selectTab(this.nls.results);
+      }, 
+
+      onSearchAbud:function(){
+        var inputData = {};
+        inputData['Input_Query'] = 'nostagen';
+        var gp_url = this.config.gp_data_tools.ichabundance;
+
+        var gps = new Geoprocessor(gp_url);
+        gps.on("execute-complete", this.returnGPFile, this.error4GP);
+        gps.execute(inputData);
+
+        html.empty(this.divResultMessage);
+        html.place(html.toDom("Running Catch w/ Zero Calculations. Please be patient."), this.divResultMessage);
+        this.tabContainer.selectTab(this.nls.results);
+      }, 
+
+      ///BIG SEARCH
       onSearch: function () {
-        var content = this.paramsDijit.getSingleParamValues();
-        if (!content || content.length === 0 || !this.config.layers.length) {
+        //var content = this.paramsDijit.getSingleParamValues();
+        /*if (!content || content.length === 0 || !this.config.layers.length) {
           return;
-        }
+        }*/
         this.search(null, this.AttributeLayerIndex, this.expressIndex);
       },
 
@@ -2669,6 +2886,7 @@ define([
       },
 
       search: function (geometry, layerIndex, /* optional */ expressIndex, theValue, spatialRelationship, closeOnComplete) {
+        
         var adding = false,
             removing = false;
         if (typeof closeOnComplete === 'undefined') {
@@ -2736,21 +2954,23 @@ define([
           }
         } else {
           this.initiator = 'attribute';
+          
+
           var where = this.buildWhereClause(layerIndex, expressIndex, theValue);
           queryParams.where = this.lastWhere = where;
           if (this.limitMapExtentCbx.getValue()) {
             queryParams.geometry = this.map.extent;
           }
-          if (layerConfig.definitionexpression && this.lastWhere.indexOf(layerConfig.definitionexpression) === -1) {
+          /*if (layerConfig.definitionexpression && this.lastWhere.indexOf(layerConfig.definitionexpression) === -1) {
             queryParams.where = layerConfig.definitionexpression + ' AND ' + this.lastWhere;
-          }
+          }*/
         }
 
         if(queryParams.where == ""){
           queryParams.where = "1=1";
         }
         //check for required fields
-        if(this.initiator === 'attribute' || this.initiator === 'graphic' && this.cbxAddTextQuery.getValue()){
+        /*if(this.initiator === 'attribute' || this.initiator === 'graphic' && this.cbxAddTextQuery.getValue()){
           if(!this.checkForRequiredFieldsEntered()){
             new Message({
               titleLabel: this.nls.requiredWarning,
@@ -2758,7 +2978,7 @@ define([
             });
             return;
           }
-        }
+        }*/
 
         if (this.rsltsTab) {
           this.tabContainer.selectTab(this.nls.results);
@@ -2788,13 +3008,6 @@ define([
           }
         }
 
-        if(layerIndex>8){
-          queryParams.returnGeometry = false;  
-        }
-        else{
-          queryParams.returnGeometry = true;
-        }
-
         queryParams.outSpatialReference = this.map.spatialReference;
         queryParams.outFields = fields;
 
@@ -2818,46 +3031,19 @@ define([
             }));
           }
         }
+        if(layerIndex>8){
+          queryParams.returnGeometry = false;  
+          queryParams.outFields = ['*'];
+        }
+        else{
+          queryParams.returnGeometry = true;
+        }
 
         var queryTask = new QueryTask(layerConfig.url);
         html.empty(this.divResultMessage);
         html.place(html.toDom(this.nls.searching), this.divResultMessage);
         queryTask.execute(queryParams, lang.hitch(this, this._onSearchFinish, layerIndex, closeOnComplete, removing, adding),
           lang.hitch(this, this._onSearchError));
-      },
-
-      checkForRequiredFieldsEntered: function() {
-        var content = this.paramsDijit.getSingleParamValues();
-        //console.info(content);
-        if (!content || content.length === 0 || !this.config.layers.length) {
-          return false;
-        }
-        //loop though the single params
-        for (var s = 0; s < content.length; s++) {
-          var spRequired = this.config.layers[this.AttributeLayerIndex].expressions.expression[this.expressIndex].values.value[s].required || false;
-
-          //console.info("Is required:", spRequired, "Single Param Value:", content[s].value);
-          var hasAValue = false;
-          if (!content[s].hasOwnProperty('value') || content[s].value === null) {
-            if(!content[s].hasOwnProperty('value1') || content[s].value1 === null){
-              continue;
-            }
-            if (content[s].value1.toString() !== "NaN" && content[s].value2.toString() !== "NaN") {
-              hasAValue = false;
-            }
-          }else{
-            if(content[s].value === "" || content[s].value.toString().toLowerCase() === "nan"){
-              hasAValue = false;
-            }else{
-              hasAValue = true;
-            }
-          }
-          //console.info("Is required:", spRequired, "Has a value:", hasAValue);
-          if(spRequired && !hasAValue){
-             return false;
-          }
-        }
-        return true;
       },
 
       isSelTabVisible: function () {
@@ -2953,6 +3139,37 @@ define([
             }
           }
         }
+
+        $('#cruiseSeacatDD').multipleSelect('uncheckAll');
+        $('#cruisectdbDD').multipleSelect('uncheckAll');
+        $('#cruisenutrientDD').multipleSelect('uncheckAll');
+        $('#cruisechlorDD').multipleSelect('uncheckAll');
+        $('#specieTypeDD').multipleSelect('uncheckAll');
+        $('#sampleTypeDD').multipleSelect('uncheckAll');
+        $('#geo_locDD').multipleSelect('uncheckAll');
+        $('#taxonDD').multipleSelect('uncheckAll');
+        $('#cruiseDD').multipleSelect('uncheckAll');
+        $('#projectDD').multipleSelect('uncheckAll');
+        $('#trawlSpeciesDD').multipleSelect('uncheckAll');
+        $('#gearDD').multipleSelect('uncheckAll');
+        $('#purposeDD').multipleSelect('uncheckAll');
+        $('#ichStageDD').multipleSelect('uncheckAll');
+        $('#bobSizeDD').multipleSelect('uncheckAll');
+        $('#bobStageDD').multipleSelect('uncheckAll');
+        $('#zoopProtocolDD').multipleSelect('uncheckAll');
+        $('#ichSpeciesDD').multipleSelect('uncheckAll');
+        $('#netDD').multipleSelect('uncheckAll');
+        $('#primaryNetDD').multipleSelect('uncheckAll');
+        $('#meshDD').multipleSelect('uncheckAll');
+        $('#performanceDD').multipleSelect('uncheckAll');
+        $('#sexDD').multipleSelect('uncheckAll');
+        
+        $('#minBottom').val(0);
+        $('#maxBottom').val(1400);
+        $('#minGearDepth').val(0);
+        $('#maxGearDepth').val(1400);
+        $('#haulidtext').val('Search FOCI ID');
+
         return false;
       },
 
@@ -2963,140 +3180,90 @@ define([
         return false;
       },
 
+      buildQueryValue: function(d){
+        return true;
+      },
+
       buildWhereClause: function (layerIndex, expressIndex, /* optional */ theValue) {
-        var myPattern = /\[value\]/g;
-        var myPattern1 = /\[value1\]/g;
-        var myPattern2 = /\[value2\]/g;
-        var myPattern3 = /\[value\]/;
-        var expr = "";
-        var eVal;
-        var eVal1;
-        var eVal2;
-        var criteriaFromValue;
-        var content = theValue || this.paramsDijit.getSingleParamValues();
-        if (!content || content.length === 0 || !this.config.layers.length) {
-          return;
+        //WHEERRE
+        var expr = "1=1";
+
+        var minBottom = $('#minBottom').val(0);
+        var maxBottom = $('#maxBottom').val(1400);
+        var minGearDepth = $('#minGearDepth').val(0);
+        var maxGearDepth = $('#maxGearDepth').val(1400);
+        var haulidtext = $('#haulidtext').val('Search FOCI ID');
+
+        if(!buildQueryValue($('#cruiseSeacatDD').multipleSelect('getSelects'))){
+
+          }
+        if(!buildQueryValue($('#cruisectdbDD').multipleSelect('getSelects'))){
+
         }
-        //loop though the SPs and assemble the where clause
-        for (var s = 0; s < content.length; s++) {
-          var tOperator = (this.config.layers[layerIndex].expressions.expression[expressIndex].values.value[s] &&
-            typeof this.config.layers[layerIndex].expressions.expression[expressIndex].values.value[s].operator !== 'undefined') ? this.config.layers[layerIndex].expressions.expression[expressIndex].values.value[s].operator : 'OR';
-          var tOperation = this.config.layers[layerIndex].expressions.expression[expressIndex].values.value[s].operation;
-          var queryExpr = this.config.layers[layerIndex].expressions.expression[expressIndex].values.value[s].sqltext;
-          if (!content[s].hasOwnProperty('value') || content[s].value === null) {
-            if(!content[s].hasOwnProperty('value1') || content[s].value1 === null){
-              continue;
-            }
-            if (content[s].value1.toString() !== "NaN" && content[s].value2.toString() !== "NaN") {
-              eVal1 = content[s].value1.toString();
-              eVal2 = content[s].value2.toString();
-              criteriaFromValue = queryExpr.replace(myPattern1, eVal1);
-              criteriaFromValue = criteriaFromValue.replace(myPattern2, eVal2);
-              expr = this.AppendTo(expr, criteriaFromValue, tOperator);
-              continue;
-            } else {
-              continue;
-            }
-          }
+        if(!buildQueryValue($('#cruisenutrientDD').multipleSelect('getSelects'))){
 
-          if (tOperation === 'stringOperatorContains') {
-            var sa = content[s].value.toString().split(" "), word;
-            for(w=0; w < sa.length; w++){
-              word = sa[w];
-              criteriaFromValue = queryExpr.replace(myPattern, word);
-              expr = this.AppendTo(expr, criteriaFromValue, "AND");
-            }
-            continue;
-          }
+        }
+        if(!buildQueryValue($('#cruisechlorDD').multipleSelect('getSelects'))){
 
-          if (tOperation === 'dateOperatorIsOn' || tOperation === 'dateOperatorIsNotOn') {
-            eVal = content[s].value.toString();
-            criteriaFromValue = queryExpr.replace(myPattern3, eVal);
-            criteriaFromValue = criteriaFromValue.replace(myPattern3, eVal.replace('00:00:00', '23:59:59'));
-            expr = this.AppendTo(expr, criteriaFromValue, tOperator);
-            continue;
-          } else if (tOperation === 'dateOperatorIsAfter') {
-            eVal = content[s].value.toString();
-            criteriaFromValue = queryExpr.replace(myPattern, eVal.replace('00:00:00', '23:59:59'));
-            expr = this.AppendTo(expr, criteriaFromValue, tOperator);
-            continue;
-          }
+        }
+        if(!buildQueryValue($('#specieTypeDD').multipleSelect('getSelects'))){
 
-          if (queryExpr === "[value]" || queryExpr.toLowerCase().indexOf(" in (") > 0) {
-            //meaning an open SQL expression or an SQL with an IN Statement
-            eVal = content[s].value.toString();
-          } else {
-            eVal = content[s].value.toString().replace(/'/g, "''");
-          }
+        }
+        if(!buildQueryValue($('#sampleTypeDD').multipleSelect('getSelects'))){
 
-          /*If the expression is an IN Statement and the the value is a string then
-          replace the user defines comma seperated values with single quoted values*/
-          if (queryExpr.toLowerCase().indexOf(" in (") > 0 && queryExpr.toLowerCase().indexOf("'[value]'") > -1) {
-            //replace the begining and trailing single qoutes if they exist
-            eVal = eVal.replace(/^'|'$/g, "").replace(/,|','/g, "','");
-          }
+        }
+        if(!buildQueryValue($('#geo_locDD').multipleSelect('getSelects'))){
 
-          if (content[s].value.toString().toLowerCase().trim() === "all") {
-            var mExpr;
-            if (queryExpr.indexOf("=") > -1) {
-              mExpr = queryExpr.replace("=", "IN(") + ")";
-            } else {
-              mExpr = queryExpr;
-            }
-            var uList = this.config.layers[layerIndex].expressions.expression[expressIndex].values.value[s].userlist;
-            var myPat;
-            var uaList;
-            if (uList.indexOf("','") > -1) {
-              myPat = /,\s*'all'/gi;
-              uList = uList.replace(myPat, "");
-              uaList = this.trimArray(uList.split("','"));
-              if (String(uaList[0]).substring(0, 1) === "'") {
-                uaList[0] = String(uaList[0]).substring(1);
-              }
-              var lVal = String(uaList[uaList.length - 1]);
-              if (lVal.substring(lVal.length - 1) === "'") {
-                uaList[uaList.length - 1] = lVal.substring(0, lVal.length - 1);
-              }
-            } else {
-              myPat = /,\s*all/gi;
-              uList = uList.replace(myPat, "");
-              uaList = this.trimArray(uList.split(","));
-            }
+        }
+        if(!buildQueryValue($('#taxonDD').multipleSelect('getSelects'))){
 
-            if (mExpr.indexOf("'[value]'") > -1) {
-              uList = uaList.join("','");
-            }
-            criteriaFromValue = mExpr.replace(myPattern, uList);
-            expr = this.AppendTo(expr, criteriaFromValue, tOperator);
-          } else if (content[s].value.toString().toLowerCase() === "allu") {
-            expr = this.AppendTo(expr, "1=1", tOperator);
-          } else if (content[s].value.toString().toLowerCase() === "null" || content[s].value.toString().toLowerCase() === "nan"){
-            //console.info(content[s].value.toString().toLowerCase());
-            if (content[s].isValueRequired === true){
-              var mExpr2 = queryExpr.substr(0, queryExpr.indexOf("=")) + " is null";
-              expr = this.AppendTo(expr, mExpr2, tOperator);
-            }
-          } else {
-            //don't add the expression if there is no user input
-            if (eVal !== "") {
-              criteriaFromValue = queryExpr.replace(myPattern, eVal);
-              expr = this.AppendTo(expr, criteriaFromValue, tOperator);
-            }
-            //unless we are using isblank or notisblank
-            if (tOperation === 'stringOperatorIsBlank' ||
-                tOperation === 'stringOperatorIsNotBlank' ||
-                tOperation === 'numberOperatorIsBlank' ||
-                tOperation === 'numberOperatorIsNotBlank' ||
-                tOperation === 'dateOperatorIsBlank' ||
-                tOperation === 'dateOperatorIsNotBlank') {
-              expr = this.AppendTo(expr, queryExpr, tOperator);
-            }
-          }
+        }
+        if(!buildQueryValue($('#cruiseDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#projectDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#trawlSpeciesDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#gearDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#purposeDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#ichStageDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#bobSizeDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#bobStageDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#zoopProtocolDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#ichSpeciesDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#netDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#primaryNetDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#meshDD').multipleSelect('uncheckAll'))){
+
+        }
+        if(!buildQueryValue($('#performanceDD').multipleSelect('getSelects'))){
+
+        }
+        if(!buildQueryValue($('#sexDD').multipleSelect('getSelects'))){
+
         }
 
-        /*if(expr == '1=1'){
-          expr = '';
-        }*/
         //add dynmiac Time
         if(layerIndex<9){
           //day
@@ -3647,13 +3814,7 @@ define([
           }));*/
         //}
         if(this.layerValueforFieldArray>8){
-          var layerInfo = {};
-          layerInfo['layerObject'] = this.resultLayers[this.currentLayerIndex];
-
-          layerInfo['originOperLayer'] = {};
-          layerInfo['originOperLayer']['layerObject'] = this.resultLayers[this.currentLayerIndex];
-          layerInfo['originOperLayer']['title'] = this.resultLayers[this.currentLayerIndex].name;
-          
+          var layerInfo = this.operLayerInfos.getTableInfoById("EcoDAAT Layers_"+String(currentLayer.layerId));
         }else{
           var layerInfo = this.operLayerInfos.getLayerInfoById(currentLayer.id);
         }

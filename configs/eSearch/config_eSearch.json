@@ -25,7 +25,7 @@
   "gp_data_tools":{
     "ichlength":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ICHLengthFrequency/GPServer/ICH_Length_Frequency",
     "trawllength":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/TRAWLLengthFrequency/GPServer/TRAWL_Length_Frequency",
-    "catchzero":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/MultiSpeciesCatchZero/GPServer/Multi_Species_Catch_Zero",
+    "catchzero":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/MultiSpeciesCatchZeroDEV_2018KB/GPServer/Multi_Species_Catch_Zero",
     "catchzeroBob":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/MultiSpeciesCatchZeroBOB/GPServer/Multi_Species_Catch_ZeroBOB",
     "ichabundance":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ICH_Abundance_Occurance/GPServer/ICH_Abundance_Occurance"
   },
@@ -4007,7 +4007,7 @@
       "url": "https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ecodaat_production/MapServer/13",
       "definitionexpression": "",
       "spatialsearchlayer": false,
-      "export2Csv": false,
+      "export2Csv": true,
       "export2Geo": false,
       "export2FC": false,
       "zoomScale": 10000,

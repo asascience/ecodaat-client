@@ -985,6 +985,9 @@ define([
             (params.layerInfo && params.layerInfo.id) ||
             (params.layer && params.layer.id)
           );
+        if(!layerInfo){
+          layerInfo = params.layer;
+        }
         layerInfo.getLayerObject().then(lang.hitch(this, function(layerObject) {
           if (layerObject) {
             layerObject.id = params.layer.id;

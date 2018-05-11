@@ -1,3 +1,37 @@
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: grey;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+label{
+  font-size: 12px;
+}
+label[title]:hover:after {
+  content: attr(title);
+  position: absolute;
+    background-color: grey;
+    color: #fff;
+    font-size: 11px;
+    z-index: 1;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+}
+.ms-parent {
+  margin:5px !important;
+}
+#widget_haulidtext{
+  margin-left: 35%;
+}
 .widget-esearch {
   position: relative;
   width: 100%;
@@ -344,6 +378,7 @@
   /*z-index: 3;*/
   position: absolute;
   width: 100%;
+  padding-top: 12px;
 }
 
 .widget-esearch .esearch-list.sum {

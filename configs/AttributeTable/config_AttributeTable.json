@@ -299,5 +299,5 @@
   },
   "hideExportButton": false,
   "initiallyExpand": true,
-  "filterByMapExtent": true
+  "filterByMapExtent": false
 }

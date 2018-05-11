@@ -51,24 +51,54 @@
             <div data-dojo-type="dijit/MenuItem" data-dojo-attach-event="onClick:onRemoveSelection2" iconclass="removeSelIcon">${nls.removefromselection}</div>
           </div>
         </div>
-        <div data-dojo-attach-point="searchDivCTD">
-          <select id="cruiseSeacatDD" style="width: 120px" multiple="multiple">
-          </select>
-          <select id="cruisectdbDD" style="width: 120px" multiple="multiple">
-          </select>
-          <select id="cruisenutrientDD" style="width: 120px" multiple="multiple">
-          </select>
-          <select id="cruisechlorDD" style="width: 120px" multiple="multiple">
-          </select>
+        <div id="tableSearch" style="display: none;float: left;margin: 20px;">
+          This is a table, Click search to return all values in the Table Dictionary 
         </div>
-        <div>
-        <label for="firstname">HAUL ID</label>
-        <input type="text" name="haulidtext" value="HAUL ID"
+        <div id="searchDiv">
+          <input type="text" name="haulidtext" value="Search FOCI ID"
             data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="haulidtext"
-            data-dojo-props="trim:true, propercase:true" id="firstname" />
-
-        </div>
-        <div data-dojo-attach-point="searchDiv">
+            data-dojo-props="trim:true, propercase:true" id="haulidtext" />
+          <div id="searchDivCTD">
+            <select id="cruiseSeacatDD" style="width: 120px;display: none;" multiple="multiple">
+            </select>
+            <select id="cruisectdbDD" style="width: 120px;display: none;" multiple="multiple">
+            </select>
+            <select id="cruisenutrientDD" style="width: 120px;display: none;" multiple="multiple">
+            </select>
+            <select id="cruisechlorDD" style="width: 120px;display: none;" multiple="multiple">
+            </select>
+          </div>
+          <div>
+            <!-- data-dojo-type="dijit/form/Select" -->
+          <select id="specieTypeDD" style="width: 120px;display: none;">
+            <option selected value="BOB">Zooplankton</option>
+            <option value="ICHBASE">Ichthyoplankton</option>
+            <option value="TRAWL">Trawl</option>
+          </select>
+          <label title="FOCI Sample Type">Sample Type</label>
+          <select id="sampleTypeDD" style="width: 120px;display: none;" multiple="multiple">
+            <option value="1,4">Zooplankton</option>
+            <option value="2,4">Ichthyoplankton</option>
+            <option value="3">Trawl</option>
+            <option value="5">SEACAT</option>
+            <option value="6">CTD Bottle</option>
+            <option value="7">Phys Ocean</option>
+            <option value="8">Benthic</option>
+            <option value="9">Biological</option>
+            <option value="10">Other</option>
+            <option value="11">Discard</option>
+            <option value="12">NONE</option>
+            <option value="13">Not Sure</option>
+          </select>
+          <select id="zoopProtocolDD" style="width: 150px;display: none;" multiple="multiple">
+            <option value="1">Macrozooplankton</option>
+            <option value="2">Predator</option>
+            <option value="3">Pseudocalanus</option>
+            <option value="4">Microzooplankton</option>
+            <option value="5">Macrozooplankton and Predator</option>
+            <option value="6">Macrozooplankton and Pseudocalanus</option>
+            <option value="7">Macro and Microzooplankton</option>
+          </select>
           <select id="cruiseDD" style="width: 120px" multiple="multiple">
           </select>
           <select id="projectDD" style="width: 120px" multiple="multiple">
@@ -77,12 +107,6 @@
           </select>
           <select id="taxonDD" style="width: 200px" multiple="multiple">
           </select>
-          <select id="geo_locDD" style="width: 130px" multiple="multiple">
-          </select>
-          <select id="gearDD" style="width: 120px" multiple="multiple">
-          </select>
-          <select id="purposeDD" style="width: 140px" multiple="multiple">
-          </select>
           <select id="ichStageDD" style="width: 120px" multiple="multiple">
           </select>
           <select id="bobSizeDD" style="width: 150px" multiple="multiple">
@@ -90,6 +114,12 @@
           <select id="bobStageDD" style="width: 120px" multiple="multiple">
           </select>
           <select id="ichSpeciesDD" style="width: 200px" multiple="multiple">
+          </select>
+          <select id="geo_locDD" style="width: 130px" multiple="multiple">
+          </select>
+          <select id="gearDD" style="width: 120px" multiple="multiple">
+          </select>
+          <select id="purposeDD" style="width: 140px" multiple="multiple">
           </select>
           <!-- hard coded dropdowns -->
           <select id="netDD" style="width: 100px" multiple="multiple">
@@ -143,6 +173,41 @@
             <option value="3">Not Determined</option>
             <option value="999">Female w Spermatophores</option>
           </select>
+
+          <div id="depthSpinners" style="margin-top:10px">
+            <div id="bottomSpinners">
+              <label>Min Gear Depth</label>
+              <input data-dojo-type="dijit/form/NumberSpinner"
+                id="minBottom" style="margin-left: 20px;width:85px;margin-right: 10px;"
+                value="0" width="70px" 
+                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0}"
+                name="someNumber"
+              />
+              <label>Max Bottom Depth</label>
+              <input data-dojo-type="dijit/form/NumberSpinner"
+                id="maxBottom" style="margin-left: 20px;width:85px;margin-right: 10px;"
+                value="1400" width="70px"
+                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0}"
+                name="someNumber"
+              />
+            </div>
+            <div id="gearSpinners" style="margin-top:10px">
+              <label>Min Gear Depth</label>
+              <input data-dojo-type="dijit/form/NumberSpinner"
+                id="minGearDepth" style="margin-left: 20px;width:85px;margin-right: 10px;"
+                value="0" width="70px"
+                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0}"
+                name="someNumber"
+              />
+              <label>Max Gear Depth</label>
+              <input data-dojo-type="dijit/form/NumberSpinner"
+                id="maxGearDepth" style="margin-left: 35px;width:85px;margin-right: 10px;" 
+                value="1400" width="70px"
+                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0}"
+                name="someNumber"
+              />
+            </div>
+          </div>
         </div>
         <!-- <div data-dojo-attach-point="expressionDiv" style="display:none;clear: both;">
           <label>${nls.searchType}</label>
@@ -156,15 +221,17 @@
         </div>
       </div> -->
       <div class="jimu-r-row play-section" style="margin-top:15px">
-        <div class="search-btn" data-dojo-attach-point="btnSearch" style="margin-left: 30px !important;" data-dojo-attach-event="onclick:onSearch">Catch w/ Zeros</div>
-        <div class="search-btn hidden" data-dojo-attach-point="btnSearch" data-dojo-attach-event="onclick:onSearch">Trawl Length</div>
+        <div class="search-btn" data-dojo-attach-point="btnSearchCatchwZero" id="btnSearchCatchwZero" style="margin-left: 0px !important;display: none;" data-dojo-attach-event="onclick:onSearchCatchZero">Catch w/ Zeros</div>
+        <div class="search-btn hidden" style="margin-left: 0px !important;display: none;" data-dojo-attach-point="btnSearchTrawlLength" id="btnSearchTrawlLength" data-dojo-attach-event="onclick:onSearchTrawlLength">Trawl Length</div>
+        <div class="search-btn hidden" style="margin-left: 0px !important;display: none;" data-dojo-attach-point="btnSearchAbundance" id="btnSearchAbundance" data-dojo-attach-event="onclick:onSearchAbud">Ich Abundance/Occurance</div>        
+        <div class="search-btn hidden" style="margin-left: 0px !important;display: none;" data-dojo-attach-point="btnSearchFrequency" id="btnSearchFrequency" data-dojo-attach-event="onclick:onSearchIchFreq">Ich Lenth Frequency</div>
         <div class="search-btn" data-dojo-attach-point="btnSearch" style="font-weight: bold;text-decoration: underline;" data-dojo-attach-event="onclick:onSearch">${nls.search}</div>
-        <div class="search-btn hidden" data-dojo-attach-point="btnSearch" data-dojo-attach-event="onclick:onSearch">Ich Abundance/Occurance</div>
         <div class="search-btn" data-dojo-attach-point="btnSearch" style="font-weight: bold" data-dojo-attach-event="onclick:clear">Clear</div>
-        <div class="col-2-3">
+        <div class="col-2-3" id="limitMapExtentDiv">
           <div data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="limitMapExtentCbx" style="margin-top: 14px;" data-dojo-props="label:'${nls.limit2mapextent}'"></div>
         </div>
       </div>
+      <div style="padding-top:15px;padding-left:10px;font-style:italic;">READ ME - TBD</div>
     </div>
     <div class="search-tab-node-hidden" data-dojo-attach-point="tabNode3">
       <div>
