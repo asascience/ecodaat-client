@@ -27,7 +27,7 @@
     "trawllength":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/TRAWLLengthFrequency/GPServer/TRAWL_Length_Frequency",
     "catchzero":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/MultiSpeciesCatchZeroDEV_2018KB/GPServer/Multi_Species_Catch_Zero",
     "catchzeroBob":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/MultiSpeciesCatchZeroBOB/GPServer/Multi_Species_Catch_ZeroBOB",
-    "ichabundance":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ICH_Abundance_Occurance/GPServer/ICH_Abundance_Occurance"
+    "ichabundance":"https://webmap.afsc.noaa.gov/maps/rest/services/ecodaat/ICH_Abudance_Occurance/GPServer/ICH_Abundance_Occurance"
   },
   "layers": [
     {
@@ -1275,11 +1275,6 @@
             "alias": "CRUISE_NAME"
           },
           {
-            "name": "CTD_ID",
-            "alias": "CTD_ID",
-            "isnumber": true
-          },
-          {
             "name": "DATABASE_BOB",
             "alias": "DATABASE_BOB"
           },
@@ -1895,11 +1890,6 @@
             "alias": "SORTER_GROUP"
           },
           {
-            "name": "SORTER_ID",
-            "alias": "SORTER_ID",
-            "isnumber": true
-          },
-          {
             "name": "SORTER_NAME",
             "alias": "SORTER_NAME"
           },
@@ -2086,11 +2076,6 @@
           {
             "name": "TAXON_SIZE",
             "alias": "TAXON_SIZE"
-          },
-          {
-            "name": "TC_ID",
-            "alias": "TC_ID",
-            "isnumber": true
           },
           {
             "name": "TOTAL_NUMBER",

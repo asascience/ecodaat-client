@@ -209,7 +209,11 @@ define([
         var fieldsArray = [];
         this.layerValueforFieldArray = 0;
         for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
-            fieldsArray.push({disabled:false,label:this.config.layers[0].fields.field[e].name,selected:true,value:this.config.layers[0].fields.field[e].name});
+          var selectfieldDefault = false;
+            if(this.config.layers[0].fields.field[e].name.search('NAME')> -1 || this.config.layers[0].fields.field[e].name.search('SPECIMEN')> -1 || this.config.layers[0].fields.field[e].name.search('HAUL')> -1 || this.config.layers[0].fields.field[e].name.search('SAMPLE')> -1 || this.config.layers[0].fields.field[e].name.search('ID')> -1){
+              selectfieldDefault = true;
+            }
+            fieldsArray.push({disabled:false,label:this.config.layers[0].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[0].fields.field[e].name});
         }        
         this.fieldselectdropdown.addOption(fieldsArray.sort(this.comparesort));
 
@@ -224,6 +228,7 @@ define([
         this.fieldselectType = dijit.byId("fieldselectType");
         this.fieldselectType.onChange = lang.hitch(this, this._onfieldSelctChange);
 
+        esriConfig.defaults.io.timeout = 600000;
         that = this;
       },
 
@@ -284,7 +289,7 @@ define([
             $('#ichSpeciesDD').append("<option value=\"" + e.features[a].attributes[e.displayFieldName] + "\">" + e.features[a].attributes[e.displayFieldName] + "</option>");
           }
           $('#ichSpeciesDD').multipleSelect( 'refresh' );
-          $('#ichSpeciesDD').next().hide();
+          $('.ichSpeciesClass').hide();
         },function(error){
           console.log(error);
         });
@@ -298,21 +303,23 @@ define([
             $('#trawlSpeciesDD').append("<option value=\"" + e.features[b].attributes[e.displayFieldName] + "\">" + e.features[b].attributes[e.displayFieldName] + "</option>");
           }
           $('#trawlSpeciesDD').multipleSelect( 'refresh' );
-          $('#trawlSpeciesDD').next().hide();
+          $('.trawlSpeciesClass').hide();
         },function(error){
           console.log(error);
         });
         // taxonArray
         var queryTasktaxon = new QueryTask(this.config.dataproviders.taxonArray);
         var querytaxon = new Query();
+        querytaxon.orderByFields = ["TAXON_NAME"];
         querytaxon.where = "1=1";
         querytaxon.returnGeometry = false;
+        querytaxon.returnDistinctValues = true;
         queryTasktaxon.execute(querytaxon,function(e){        
           for (var c = 0; c < e.features.length;  c++) {
             $('#taxonDD').append("<option value=\"" + e.features[c].attributes[e.displayFieldName] + "\">" + e.features[c].attributes[e.displayFieldName] + "</option>");
           }
           $('#taxonDD').multipleSelect( 'refresh' );
-          $('#taxonDD').next().hide();
+          $('.taxonClass').hide();
         },function(error){
           console.log(error);
         });
@@ -421,7 +428,7 @@ define([
             $('#ichStageDD').append("<option value=\"" + e.features[q].attributes[e.displayFieldName] + "\">" + e.features[q].attributes[e.displayFieldName] + "</option>");
           }
           $('#ichStageDD').multipleSelect( 'refresh' );
-          $('#ichStageDD').next().hide();
+          $('.ichStageClass').hide();
         },function(error){
           console.log(error);
         });
@@ -436,7 +443,7 @@ define([
             $('#bobSizeDD').append("<option value=\"" + e.features[v].attributes[e.displayFieldName] + "\">" + e.features[v].attributes[e.displayFieldName] + "</option>");
           }
           $('#bobSizeDD').multipleSelect( 'refresh' );
-          $('#bobSizeDD').next().hide();
+          $('.bobSizeClass').hide();
         },function(error){
           console.log(error);
         });
@@ -451,14 +458,14 @@ define([
             $('#bobStageDD').append("<option value=\"" + e.features[x].attributes[e.displayFieldName] + "\">" + e.features[x].attributes[e.displayFieldName] + "</option>");
           }
           $('#bobStageDD').multipleSelect( 'refresh' );
-          $('#bobStageDD').next().hide();
+          $('.bobStageClass').hide();
         },function(error){
           console.log(error);
         });
 
         $('#performanceDD').multipleSelect({placeholder: "Performance"});  
         $('#zoopProtocolDD').multipleSelect({placeholder: "Zoop Protocol"});  //ZOOP_PROTOCOL 
-        $('#zoopProtocolDD').next().hide();
+        $('.zoopProtocolClass').hide();
         $('#sexDD').multipleSelect({placeholder: "Search Sex"});  //SEX = value
         $('#meshDD').multipleSelect({placeholder: "Search Mesh"});  
         $('#primaryNetDD').multipleSelect({placeholder: "Primary Net"});  
@@ -476,7 +483,8 @@ define([
         $('#sampleTypeDD').multipleSelect({
           placeholder: "Sample Type"
         });
-        $('#specieTypeDD').next().hide();
+        $('.specieTypeClass').hide();
+        $('.sexClass').hide();
       },
 
       startup: function(){
@@ -492,7 +500,11 @@ define([
         //no filter
         if(type == 0){
           for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
-            fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:true,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});  
+            var selectfieldDefault = false;
+            if(this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1){
+              selectfieldDefault = true;
+            }
+            fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});  
           }
         }
         //ICH
@@ -551,9 +563,12 @@ define([
         this.fieldselectType.set('value', 0);
         
         this.selectLayerAttribute.set('value', layerval);
-
         for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
-          fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:true,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});
+          var selectfieldDefault = false;
+          if(this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1  || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1){
+              selectfieldDefault = true;
+            }
+          fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});
         }
         this.fieldselectdropdown.addOption(fieldsArray.sort(this.comparesort));
       },
@@ -567,9 +582,12 @@ define([
         if(layerval < 9){
           this.selectLayerGraphical.set('value', layerval);  
         }
-
         for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
-          fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:true,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});
+          var selectfieldDefault = false;
+          if(this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1){
+              selectfieldDefault = true;
+            }
+          fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});
         }
         this.fieldselectdropdown.addOption(fieldsArray.sort(this.comparesort));
       },
@@ -1202,79 +1220,80 @@ define([
         $('#haulidtext').show();
         $('#searchDiv').show();
         $('#tableSearch').hide();
+
         $('#btnSearchCatchwZero').hide();
         $('#btnSearchTrawlLength').hide();
         $('#btnSearchAbundance').hide();
         $('#btnSearchFrequency').hide();
         $('#limitMapExtentDiv').show();
-        $('#specieTypeDD').next().hide();
+
         $('#cruiseSeacatDD').next().hide();
         $('#cruisechlorDD').next().hide();
         $('#cruisenutrientDD').next().hide();
         $('#cruisectdbDD').next().hide();
 
-        $('#cruiseDD').next().show();
-        $('#projectDD').next().show();
-        $('#netDD').next().show();
-        $('#primaryNetDD').next().show();
-        $('#meshDD').next().show();
-        $('#performanceDD').next().show();
-        $('#sexDD').next().show();
-        $('#gearSpinners').show();
+        $('.specieTypeClass').hide();
+        $('.cruiseClass').not('select').show();
+        $('.projectClass').not('select').show();
+        $('.netClass').not('select').show();
+        $('.primaryNetClass').not('select').show();
+        $('.meshClass').not('select').show();
+        $('.performanceClass').not('select').show();
+        $('.sexClass').not('select').show();
+        $('.gearSpinneClass');
+        $('.bobSizeClass').hide();
+        $('.bobStageClass').hide();
+        $('.zoopProtocolClass').hide();
+        $('.trawlSpeciesClass').hide();
+        $('.ichStageClass').hide();
+        $('.ichSpeciesClass').hide();
+        $('.taxonClass').hide();
+        $('.sampleTypeClass').hide();
 
-        $('#bobSizeDD').next().hide();
-        $('#bobStageDD').next().hide();
-        $('#zoopProtocolDD').next().hide();
-        
-        $('#trawlSpeciesDD').next().hide();
-        
-        $('#ichStageDD').next().hide();
-        $('#ichSpeciesDD').next().hide();
-        $('#taxonDD').next().hide();
-
-        $('#sampleTypeDD').next().hide();
         $('#gearSpinners').show();
 
         if(newValue == 0){//sample
-          $('#sampleTypeDD').next().show();
+          $('.sampleTypeClass').not('select').show();
+          $('.sexClass').hide();
         }
         else if(newValue == 1){//haul
-            $('#haulidtext').show();
+            $('#haulidtext').not('select').show();
+            $('.sexClass').hide();
         }
         else if(newValue == 2){//specimen
           if(that.SAMPLETYPE == "TRAWL"){
-            $('#trawlSpeciesDD').next().show();
-            $('#btnSearchTrawlLength').show();
+            $('.trawlSpeciesClass').not('select').show();
+            $('#btnSearchTrawlLength').not('select').show();
           }
           else if(that.SAMPLETYPE == "ICHBASE"){
-            $('#ichStageDD').next().show();
-            $('#ichSpeciesDD').next().show();
-            $('#btnSearchAbundance').show();
+            $('.ichStageClass').not('select').show();
+            $('.ichSpeciesClass').not('select').show();
+            $('#btnSearchAbundance').not('select').show();
           }
-          else{
-            $('#bobSizeDD').next().show();
-            $('#bobStageDD').next().show();
-            $('#taxonDD').next().show();
-            $('#zoopProtocolDD').next().show();
+          else{//BOB
+            $('.bobSizeClass').not('select').show();
+            $('.bobStageClass').not('select').show();
+            $('.taxonClass').not('select').show();
+            $('.zoopProtocolClass').not('select').show();
           }
 
-          $('#btnSearchCatchwZero').show();
-          $('#specieTypeDD').next().show();
+          $('#btnSearchCatchwZero').not('select').show();
+          $('.specieTypeClass').not('select').show();
         }
         else if(newValue == 3){//sub spec
-          $('#btnSearchFrequency').show();
+          $('#btnSearchFrequency').not('select').show();
         }
-        else if(newValue>3 && newValue <8){
-          $('#specieTypeDD').next().hide();
-          $('#sampleTypeDD').next().hide();
-          $('#cruiseDD').next().hide();
-          $('#projectDD').next().hide();
-          $('#netDD').next().hide();
-          $('#primaryNetDD').next().hide();
-          $('#meshDD').next().hide();
-          $('#performanceDD').next().hide();
-          $('#sexDD').next().hide();
-          $('#gearSpinners').hide();
+        else if(newValue>3 && newValue <9){
+          $('.specieTypeClass').hide();
+          $('.sampleTypeClass').hide();
+          $('.cruiseClass').hide();
+          $('.projectClass').hide();
+          $('.netClass').hide();
+          $('.primaryNetClass').hide();
+          $('.meshClass').hide();
+          $('.performanceClass').hide();
+          $('.sexClass').hide();
+          $('.gearSpinneClass');
 
           if(newValue == 4){//seacat
             $('#cruiseSeacatDD').next().show();
@@ -1285,12 +1304,12 @@ define([
           else if(newValue == 6){//nutrient
             $('#cruisenutrientDD').next().show();
           }
+          else if(newValue == 8){//diet
+            $('.cruiseClass').show();
+          }
           else {//ctdb
             $('#cruisectdbDD').next().show();
           }
-        }
-        else if(newValue == 8){//diet
-          
         }
         else{
           //table display all
@@ -2077,7 +2096,7 @@ define([
         var layerConfig = this.config.layers[this.currentLayerIndex];
         this.currentFeatures.splice(this.currentFeatures.indexOf(sResult.graphic), 1);
         if(this.currentFeatures.length === 0){
-          this.clear();
+          //this.clear();
           if (this.isSelTabVisible()) {
             this.tabContainer.selectTab(this.selTab);
           }
@@ -2575,80 +2594,254 @@ define([
       },
 
       error4GP:function(error){
-        html.empty(this.divResultMessage);
-        html.place(html.toDom("An error has occured running the geoprocessing tool.  Please try again."), this.divResultMessage);
+        html.empty(that.divResultMessage);
+        html.place(html.toDom("An error has occured running the geoprocessing tool.  Please try again."), that.divResultMessage);
+
+        new Message({
+                  titleLabel: "GP Error",
+                  message: "There was an error completing the processing, please try again or adjust your query."
+                });
+        that.tabContainer.selectTab(that.nls.results);
+        html.setStyle(that.progressBar.domNode, 'display', 'none');
       },
 
       returnGPFile:function(result){
-        var win = window.open('google.com', '_blank');
-        win.focus();
+
+        if(result.jobInfo.jobStatus == "esriJobSucceeded"){
+
+            result.target.getResultData(result.jobInfo.jobId, "output_catch_zero", function(e){
+              var url = e.value.url;
+              var win = window.open(url, '_blank');
+              win.focus();
+            });
+            new Message({
+                  titleLabel: "Process Successfull",
+                  message: "File Downloaded."
+                });
+        }
+        else{
+            new Message({
+                  titleLabel: "GP Error",
+                  message: "Problem downloading data."
+                });
+        }
+        
+        that.tabContainer.selectTab(that.nls.results);
+        html.setStyle(that.progressBar.domNode, 'display', 'none');        
+      },
+
+      returnGPFileTrawl:function(result){
+
+        if(result.jobInfo.jobStatus == "esriJobSucceeded"){
+
+            //standardlength_freq_trawl_xls  //totallength_freq_trawl_xls //forklength_freq_trawl_xls //lengthsea_freq_trawl_xls 
+
+            /* removed per Lauren's request
+            result.target.getResultData(result.jobInfo.jobId, "standardlength_freq_trawl_xls", function(e){
+              var url = e;
+              var win = window.open(url, '_blank');
+              win.focus();
+            });
+            result.target.getResultData(result.jobInfo.jobId, "totallength_freq_trawl_xls", function(e){
+              var url = e;
+              var win = window.open(url, '_blank');
+              win.focus();
+            });
+            result.target.getResultData(result.jobInfo.jobId, "forklength_freq_trawl_xls", function(e){
+              var url = e;
+              var win = window.open(url, '_blank');
+              win.focus();
+            });*/
+            result.target.getResultData(result.jobInfo.jobId, "lengthsea_freq_trawl_xls", function(e){
+              var url = e.value.url;
+              var win = window.open(url, '_blank');
+              win.focus();
+            });
+
+            new Message({
+                  titleLabel: "Process Successfull",
+                  message: "File Downloaded."
+                });
+        }
+        else{
+            new Message({
+                  titleLabel: "GP Error",
+                  message: "Problem downloading data."
+                });
+        }
+        
+        that.tabContainer.selectTab(that.nls.results);
+        html.setStyle(that.progressBar.domNode, 'display', 'none');        
+      },
+
+      returnGPFileIchAbundance:function(result){
+
+        if(result.jobInfo.jobStatus == "esriJobSucceeded"){
+
+            result.target.getResultData(result.jobInfo.jobId, "Output_Table", function(e){
+              var url = e.value.url;
+              var win = window.open(url, '_blank');
+              win.focus();
+            });
+            new Message({
+                  titleLabel: "Process Successfull",
+                  message: "File Downloaded."
+                });
+        }
+        else{
+            new Message({
+                  titleLabel: "GP Error",
+                  message: "Problem downloading data."
+                });
+        }
+        
+        that.tabContainer.selectTab(that.nls.results);
+        html.setStyle(that.progressBar.domNode, 'display', 'none');        
+      },
+
+       returnGPFileIchFrequ:function(result){
+
+        if(result.jobInfo.jobStatus == "esriJobSucceeded"){
+
+            result.target.getResultData(result.jobInfo.jobId, "Output_Excel_FIle", function(e){
+              var url = e.value.url;
+              var win = window.open(url, '_blank');
+              win.focus();
+            });
+            new Message({
+                  titleLabel: "Process Successfull",
+                  message: "File Downloaded."
+                });
+        }
+        else{
+            new Message({
+                  titleLabel: "GP Error",
+                  message: "Problem downloading data."
+                });
+        }
+        
+        that.tabContainer.selectTab(that.nls.results);
+        html.setStyle(that.progressBar.domNode, 'display', 'none');        
       },
 
       onSearchCatchZero:function(){
           
           var inputData = {};
           inputData['stage'] = 'nostagen';
-          inputData['InputQueryHaul'] = '';
+          inputData['InputQueryHaul'] = this.buildWhereClause('haul');
 
-          if(this.SAMPLETYPE == 'BOB'){
+          if(this.SAMPLETYPE == 'BOB' && $('#taxonDD').multipleSelect('getSelects').length > 0){
             var gp_url = this.config.gp_data_tools.catchzeroBob;
-            inputData['InputSpeciesQuery'] = '';
-            inputData['Taxa_List'] = '';
+            inputData['InputSpeciesQuery'] = this.buildWhereClause('species') + " and taxon_name = '%taxa%'";
+            var taxonlist = [];
+            for(var r=0; r < $('#taxonDD').multipleSelect('getSelects').length; r++){
+              taxonlist.push($('#taxonDD').multipleSelect('getSelects')[r])              
+            }
+            inputData['Taxa_List'] = taxonlist;
+          }
+          else if(this.SAMPLETYPE == 'ICHBASE' && $('#ichSpeciesDD').multipleSelect('getSelects').length > 0 ){
+            var gp_url = this.config.gp_data_tools.catchzero;
+            inputData['InputSpeciesQuery'] = this.buildWhereClause('species') + " and species_name = '%specie%'";
+            var specieslist = [];
+            for(var s=0; s < $('#ichSpeciesDD').multipleSelect('getSelects').length; s++){
+              specieslist.push($('#ichSpeciesDD').multipleSelect('getSelects')[s])              
+            }
+            inputData['Species_List'] = specieslist;
           }
           else{
-            var gp_url = this.config.gp_data_tools.catchzero;
-            inputData['InputSpeciesQuery'] = '';
-            inputData['Species_List'] = '';
+              new Message({
+                  titleLabel: "Error",
+                  message: "Please Select ICH Species or BOB Taxon Codes"
+                });
+              return;
           }
 
           var gps = new Geoprocessor(gp_url);
-          gps.on("execute-complete", this.returnGPFile, this.error4GP);
-          gps.execute(inputData);
+          gps.on("job-complete", this.returnGPFile); //output_catch_zero 
+          gps.on('error', this.error4GP);
+          gps.token = this.map.config.layers.layer[1].token;
+          gps.submitJob(inputData);
 
           html.empty(this.divResultMessage);
-          html.place(html.toDom("Running Catch w/ Zero Calculations. Please be patient."), this.divResultMessage);
+          html.place(html.toDom("Running Catch w/ Zero Calculations. Please be patient. The output File will be downloaded as a spreadsheet."), this.divResultMessage);
           this.tabContainer.selectTab(this.nls.results);
+          html.setStyle(this.progressBar.domNode, 'display', 'block');
       },
 
       onSearchTrawlLength:function(){
-        var inputData = {};
-        inputData['SQL_Query'] = 'nostagen';
-        var gp_url = this.config.gp_data_tools.trawllength;
-        var gps = new Geoprocessor(gp_url);
-        gps.on("execute-complete", this.returnGPFile, this.error4GP);
-        gps.execute(inputData);
+        if($('#trawlSpeciesDD').multipleSelect('getSelects').length > 0){
+          var inputData = {};
+          inputData['SQL_Query'] = this.buildWhereClause('species');
+          var gp_url = this.config.gp_data_tools.trawllength;
+          var gps = new Geoprocessor(gp_url);
+          gps.on("job-complete", this.returnGPFileTrawl); //standardlength_freq_trawl_xls  //totallength_freq_trawl_xls //forklength_freq_trawl_xls //lengthsea_freq_trawl_xls 
+          gps.on('error', this.error4GP);
+          gps.token = this.map.config.layers.layer[1].token;
+          gps.submitJob(inputData);
 
-        html.empty(this.divResultMessage);
-        html.place(html.toDom("Running Catch w/ Zero Calculations. Please be patient."), this.divResultMessage);
-        this.tabContainer.selectTab(this.nls.results);
+          html.empty(this.divResultMessage);
+          html.place(html.toDom("Running Trawl Length Calculations. Please be patient. Four (4) Files will be downloaded showing different length Summaries"), this.divResultMessage);
+          this.tabContainer.selectTab(this.nls.results);
+          html.setStyle(this.progressBar.domNode, 'display', 'block');
+        }
+        else{
+          new Message({
+                  titleLabel: "Query Error",
+                  message: "Please Select Trawl Species for Length Calculations"
+                });
+        }
+        
       },
 
       onSearchIchFreq:function(){
-        var inputData = {};
-        inputData['Input_Query'] = 'nostagen';
-        var gp_url = this.config.gp_data_tools.ichlength;
+        if($('#ichSpeciesDD').multipleSelect('getSelects').length > 0 ){
+          var inputData = {};
+          inputData['Input_Query'] = this.buildWhereClause('species');
+          var gp_url = this.config.gp_data_tools.ichlength;
 
-        var gps = new Geoprocessor(gp_url);
-        gps.on("execute-complete", this.returnGPFile, this.error4GP);
-        gps.execute(inputData);
+          var gps = new Geoprocessor(gp_url);
+          gps.on("job-complete", this.returnGPFileIchFrequ);//Output_Excel_FIle 
+          gps.on('error', this.error4GP);
+          gps.token = this.map.config.layers.layer[1].token;
+          gps.submitJob(inputData);
 
-        html.empty(this.divResultMessage);
-        html.place(html.toDom("Running Catch w/ Zero Calculations. Please be patient."), this.divResultMessage);
-        this.tabContainer.selectTab(this.nls.results);
+          html.empty(this.divResultMessage);
+          html.place(html.toDom("Running Ich Frequency Calculations. Please be patient. The output File will be downloaded as a spreadsheet."), this.divResultMessage);
+          this.tabContainer.selectTab(this.nls.results);
+          html.setStyle(this.progressBar.domNode, 'display', 'block');
+        }
+        else{
+          new Message({
+                  titleLabel: "Query Error",
+                  message: "Please Select Ich Species for Frequency Calculations"
+                });
+        }
       }, 
 
       onSearchAbud:function(){
-        var inputData = {};
-        inputData['Input_Query'] = 'nostagen';
-        var gp_url = this.config.gp_data_tools.ichabundance;
+        if($('#ichSpeciesDD').multipleSelect('getSelects').length > 0){
+          var inputData = {};
+          inputData['Input_Query'] = this.buildWhereClause('species');
+          var gp_url = this.config.gp_data_tools.ichabundance;
 
-        var gps = new Geoprocessor(gp_url);
-        gps.on("execute-complete", this.returnGPFile, this.error4GP);
-        gps.execute(inputData);
+          var gps = new Geoprocessor(gp_url);
+          gps.on("job-complete", this.returnGPFileIchAbundance);
+          gps.on('error', this.error4GP); //Output_Table 
+          gps.token = this.map.config.layers.layer[1].token;
+          gps.submitJob(inputData);
 
-        html.empty(this.divResultMessage);
-        html.place(html.toDom("Running Catch w/ Zero Calculations. Please be patient."), this.divResultMessage);
-        this.tabContainer.selectTab(this.nls.results);
+          html.empty(this.divResultMessage);
+          html.place(html.toDom("Running Ich Abundance Calculations. Please be patient. The output File will be downloaded as a spreadsheet."), this.divResultMessage);
+          this.tabContainer.selectTab(this.nls.results);
+          html.setStyle(this.progressBar.domNode, 'display', 'block');
+        }
+        else{
+          new Message({
+                  titleLabel: "Error",
+                  message: "Please Select Species Types for Abudance Query"
+                });
+        }
+        
       }, 
 
       ///BIG SEARCH
@@ -2919,7 +3112,7 @@ define([
         }
         var queryParams = new Query();
         if(!adding && !removing){
-          this.clear();
+          //this.clear();
         }else{
           this._clearLayers();
           this._clearRelateLayers();
@@ -2937,38 +3130,35 @@ define([
           this.initiator = 'graphic';
           queryParams.geometry = geometry;
           queryParams.spatialRelationship = spatialRelationship || Query.SPATIAL_REL_INTERSECTS;
-          if (this.cbxAddTextQuery.getValue()) {
-            var gwhere = this.buildWhereClause(layerIndex, this.expressIndex, theValue);
-            queryParams.where = this.lastWhere = gwhere;
-            if(!gwhere){
-              console.info('No SQL expression found');
-            }else{
-              console.info(gwhere);
-            }
-          }
-          if (layerConfig.definitionexpression) {
-            queryParams.where = layerConfig.definitionexpression;
-            if (this.lastWhere) {
-              queryParams.where += ' AND ' + this.lastWhere;
-            }
-          }
-        } else {
-          this.initiator = 'attribute';
-          
+          if(this.cbxAddTextQuery.getValue()){
 
-          var where = this.buildWhereClause(layerIndex, expressIndex, theValue);
-          queryParams.where = this.lastWhere = where;
-          if (this.limitMapExtentCbx.getValue()) {
-            queryParams.geometry = this.map.extent;
+            this.tabContainer.selectTab(this.nls.selectByAttribute);
+            queryParams.where = this.buildWhereClause('');  
           }
-          /*if (layerConfig.definitionexpression && this.lastWhere.indexOf(layerConfig.definitionexpression) === -1) {
-            queryParams.where = layerConfig.definitionexpression + ' AND ' + this.lastWhere;
-          }*/
-        }
+        } 
+        else{
 
-        if(queryParams.where == ""){
-          queryParams.where = "1=1";
+          this.tabContainer.selectTab(this.nls.selectByAttribute);
+          queryParams.where = this.buildWhereClause('');  
         }
+        if(layerIndex>8){
+          queryParams.where = '1=1';
+        }
+        else if(queryParams.where == ""){
+          new Message({
+            titleLabel: "Query Error",
+            message: "Please Make a Query Selection from the Dropdown lists"
+          });
+          this.tabContainer.selectTab(this.nls.selectByAttribute);
+          return;
+        }
+        else{
+
+          if (this.rsltsTab) {
+            this.tabContainer.selectTab(this.nls.results);
+          }
+        }
+        
         //check for required fields
         /*if(this.initiator === 'attribute' || this.initiator === 'graphic' && this.cbxAddTextQuery.getValue()){
           if(!this.checkForRequiredFieldsEntered()){
@@ -2980,9 +3170,6 @@ define([
           }
         }*/
 
-        if (this.rsltsTab) {
-          this.tabContainer.selectTab(this.nls.results);
-        }
         html.setStyle(this.progressBar.domNode, 'display', 'block');
         html.setStyle(this.divOptions, 'display', 'none');
         var fields = [];
@@ -3180,101 +3367,131 @@ define([
         return false;
       },
 
-      buildQueryValue: function(d){
-        return true;
+      buildQueryValue: function(d, number){
+        var queryTextFromDropDown = "";
+        if(d.length == 1){
+          if(number){//for sampletype that has commas
+            queryTextFromDropDown = " IN (" + d[0]+ ') ';
+          }
+          else{
+            queryTextFromDropDown = " = '" + d[0] +"' ";  
+          }
+          
+          return queryTextFromDropDown;
+        }
+        else{
+          var queryTextFromDropDown = " IN (";
+          for(var r=0; r < d.length; r++){
+            if(number){
+              queryTextFromDropDown += d[r] + ",";  
+            }
+            else{
+              queryTextFromDropDown += "'" + d[r] + "',";
+            }
+          }
+          return queryTextFromDropDown.slice(0, -1) + ') ';
+        }
       },
 
-      buildWhereClause: function (layerIndex, expressIndex, /* optional */ theValue) {
+      buildWhereClause: function (layerIndex, expressIndex, theValue) {
         //WHEERRE
-        var expr = "1=1";
+        var expr = "";//"1=1";
 
-        var minBottom = $('#minBottom').val(0);
-        var maxBottom = $('#maxBottom').val(1400);
-        var minGearDepth = $('#minGearDepth').val(0);
-        var maxGearDepth = $('#maxGearDepth').val(1400);
-        var haulidtext = $('#haulidtext').val('Search FOCI ID');
-
-        if(!buildQueryValue($('#cruiseSeacatDD').multipleSelect('getSelects'))){
-
+        //HAUL related
+        if($('#depthSpinners').is(":visible")){
+          if($('#minBottom').val() != 0 || $('#maxBottom').val() != 1400){
+            expr+= "BOTTOM_DEPTH > " + Number($('#minBottom').val())  + " AND BOTTOM_DEPTH <"+Number($('#maxBottom').val()) + " ";
           }
-        if(!buildQueryValue($('#cruisectdbDD').multipleSelect('getSelects'))){
-
+          if($('#minGearDepth').val() != 0 || $('#maxGearDepth').val() != 1400){
+            expr+= "AND MIN_GEAR_DEPTH > " + Number($('#minGearDepth').val())  + " AND MAX_GEAR_DEPTH <"+Number($('#maxGearDepth').val())  + " "; 
+          }
+          if($('#haulidtext').val() != 'Search FOCI ID' && $('#haulidtext').val() != ""){
+            expr+= "AND HAUL_ID LIKE %'"+ $('#haulidtext').val()+"'%";
+          }
         }
-        if(!buildQueryValue($('#cruisenutrientDD').multipleSelect('getSelects'))){
+        
 
+        if($("#cruiseSeacatDD option:selected").index() > -1 && $('.cruiseSeacatClass').is(":visible")){
+          expr+= "AND CRUISE"+this.buildQueryValue($('#cruiseSeacatDD').multipleSelect('getSelects'));
         }
-        if(!buildQueryValue($('#cruisechlorDD').multipleSelect('getSelects'))){
-
+        if($("#cruisectdbDD option:selected").index() > -1 && $('.cruisectdClass').is(":visible")){
+          expr+= "AND CRUISE"+this.buildQueryValue($('#cruisectdbDD').multipleSelect('getSelects'));
         }
-        if(!buildQueryValue($('#specieTypeDD').multipleSelect('getSelects'))){
-
+        if($("#cruisenutrientDD option:selected").index() > -1 && $('.cruisenutrientClass').is(":visible")){
+          expr+= "AND CRUISE"+this.buildQueryValue($('#cruisenutrientDD').multipleSelect('getSelects'));
         }
-        if(!buildQueryValue($('#sampleTypeDD').multipleSelect('getSelects'))){
-
+        if($("#cruisechlorDD option:selected").index() > -1 && $('.cruisechlorClass').is(":visible")){
+          expr+= "AND CRUISE"+this.buildQueryValue($('#cruisechlorDD').multipleSelect('getSelects'));
         }
-        if(!buildQueryValue($('#geo_locDD').multipleSelect('getSelects'))){
-
+        if($("#specieTypeDD option:selected").index() > -1 && $('.specieTypeClass').is(":visible")){
+          expr+= "AND ORIG_DB"+this.buildQueryValue($('#specieTypeDD').multipleSelect('getSelects'));
         }
-        if(!buildQueryValue($('#taxonDD').multipleSelect('getSelects'))){
-
+        if($("#sampleTypeDD option:selected").index() > -1 && $('.sampleTypeClass').is(":visible") && layerIndex != 'haul' && this.layerValueforFieldArray !=1){
+          expr+= "AND SAMPLE_TYPE"+this.buildQueryValue($('#sampleTypeDD').multipleSelect('getSelects'),true);
         }
-        if(!buildQueryValue($('#cruiseDD').multipleSelect('getSelects'))){
-
+        if($("#geo_locDD option:selected").index() > -1 && $('.geo_locClass').is(":visible")){
+          expr+= "AND GEOGRAPHIC_AREA"+this.buildQueryValue($('#geo_locDD').multipleSelect('getSelects'));
         }
-        if(!buildQueryValue($('#projectDD').multipleSelect('getSelects'))){
-
+        if($("#taxonDD option:selected").index() > -1 && $('.taxonClass').is(":visible") && layerIndex != 'haul' && layerIndex != 'species'){
+          expr+= "AND TAXON_NAME"+this.buildQueryValue($('#taxonDD').multipleSelect('getSelects')); //TAXON_NAME
         }
-        if(!buildQueryValue($('#trawlSpeciesDD').multipleSelect('getSelects'))){
-
+        if($("#cruiseDD option:selected").index() > -1 && $('.cruiseClass').is(":visible")){
+          expr+= "AND CRUISE"+this.buildQueryValue($('#cruiseDD').multipleSelect('getSelects'));
         }
-        if(!buildQueryValue($('#gearDD').multipleSelect('getSelects'))){
-
+        if($("#projectDD option:selected").index() > -1 && $('.projectClass').is(":visible")){
+          expr+= "AND PROJECT"+this.buildQueryValue($('#projectDD').multipleSelect('getSelects')); //PROJECT
         }
-        if(!buildQueryValue($('#purposeDD').multipleSelect('getSelects'))){
-
+        if($("#trawlSpeciesDD option:selected").index() > -1 && $('.trawlSpeciesClass').is(":visible") && layerIndex != 'haul'){
+          expr+= "AND SPECIES_NAME"+this.buildQueryValue($('#trawlSpeciesDD').multipleSelect('getSelects')); //SPECIES_NAME
         }
-        if(!buildQueryValue($('#ichStageDD').multipleSelect('getSelects'))){
-
+        if($("#gearDD option:selected").index() > -1 && $('.gearClass').is(":visible")){
+          expr+= "AND GEAR_NAME"+this.buildQueryValue($('#gearDD').multipleSelect('getSelects')); //GEAR_NAME
         }
-        if(!buildQueryValue($('#bobSizeDD').multipleSelect('getSelects'))){
-
+        if($("#purposeDD option:selected").index() > -1 && $('.purposeClass').is(":visible")){
+          expr+= "AND PURPOSE"+this.buildQueryValue($('#purposeDD').multipleSelect('getSelects')); //PURPOSE
         }
-        if(!buildQueryValue($('#bobStageDD').multipleSelect('getSelects'))){
-
+        if($("#ichStageDD option:selected").index() > -1 && $('.ichStageClass').is(":visible") && layerIndex != 'haul'){
+          expr+= "AND STAGE_NAME"+this.buildQueryValue($('#ichStageDD').multipleSelect('getSelects')); //STAGE_NAME
         }
-        if(!buildQueryValue($('#zoopProtocolDD').multipleSelect('getSelects'))){
-
+        if($("#bobSizeDD option:selected").index() > -1 && $('.bobSizeClass').is(":visible") && layerIndex != 'haul'){
+          expr+= "AND TAXON_SIZE"+this.buildQueryValue($('#bobSizeDD').multipleSelect('getSelects'));//TAXON_SIZE 
         }
-        if(!buildQueryValue($('#ichSpeciesDD').multipleSelect('getSelects'))){
-
+        if($("#bobStageDD option:selected").index() > -1 && $('.bobStageClass').is(":visible") && layerIndex != 'haul'){
+          expr+= "AND STAGE_NAME"+this.buildQueryValue($('#bobStageDD').multipleSelect('getSelects')); //STAGE_NAME
         }
-        if(!buildQueryValue($('#netDD').multipleSelect('getSelects'))){
-
+        if($("#zoopProtocolDD option:selected").index() > -1 && $('.zoopProtocolClass').is(":visible") && layerIndex != 'haul'){
+          expr+= "AND ZOOP_PROTOCOL"+this.buildQueryValue($('#zoopProtocolDD').multipleSelect('getSelects')); //ZOOP_PROTOCOL 
         }
-        if(!buildQueryValue($('#primaryNetDD').multipleSelect('getSelects'))){
-
+        if($("#ichSpeciesDD option:selected").index() > -1 && $('.ichSpeciesClass').is(":visible") && layerIndex != 'haul' && layerIndex != 'species'){
+          expr+= "AND SPECIES_NAME"+this.buildQueryValue($('#ichSpeciesDD').multipleSelect('getSelects'));//SPECIES_NAME
         }
-        if(!buildQueryValue($('#meshDD').multipleSelect('uncheckAll'))){
-
+        if($("#netDD option:selected").index() > -1 && $('.netClass').is(":visible") && $('#netDD').is(":visible")){
+          expr+= "AND NET"+this.buildQueryValue($('#netDD').multipleSelect('getSelects'),true); //NET
         }
-        if(!buildQueryValue($('#performanceDD').multipleSelect('getSelects'))){
-
+        if($("#primaryNetDD option:selected").index() > -1 && $('.primaryNetClass').is(":visible")){
+          expr+= "AND PRIMARY_NET"+this.buildQueryValue($('#primaryNetDD').multipleSelect('getSelects')); ////PRIMARY_NET
         }
-        if(!buildQueryValue($('#sexDD').multipleSelect('getSelects'))){
-
+        if($("#meshDD option:selected").index() > -1 && $('.meshClass').is(":visible")){
+          expr+= "AND MESH"+this.buildQueryValue($('#meshDD').multipleSelect('getSelects'),true); //MESH
+        }
+        if($("#performanceDD option:selected").index() > -1 && $('.performanceClass').is(":visible")&& $('#performanceDD').is(":visible")){
+          expr+= "AND HAUL_PERFORMANCE"+this.buildQueryValue($('#performanceDD').multipleSelect('getSelects'));//HAUL_PERFORMANCE
+        }
+        if($("#sexDD option:selected").index() > -1 && $('.sexClass').is(":visible") && layerIndex != 'haul'){
+          expr+= "AND SEX"+this.buildQueryValue($('#cruiseDD').multipleSelect('getSelects'),true);
         }
 
         //add dynmiac Time
-        if(layerIndex<9){
+        if(this.layerValueforFieldArray<9){
           //day
           var dayselected = this.dayselect.getOptions();
           if(dayselected[0].selected && dayselected[1].selected){
           }
           else if(dayselected[0].selected){
-            expr += ' AND EXTRACT(DAY FROM "GMT_DATE_TIME") > 14';  
+            expr += 'AND EXTRACT(DAY FROM "GMT_DATE_TIME") > 14 ';  
           }
           else{
-            expr += ' AND EXTRACT(DAY FROM "GMT_DATE_TIME") < 15';   
+            expr += 'AND EXTRACT(DAY FROM "GMT_DATE_TIME") < 15 ';   
           }
           
           //month
@@ -3291,7 +3508,7 @@ define([
             }
           }
           if(!allmonths){
-            expr += ' AND EXTRACT(MONTH FROM "GMT_DATE_TIME") in ('+ monthlist.slice( 0, -1 )+')';
+            expr += 'AND EXTRACT(MONTH FROM "GMT_DATE_TIME") in ('+ monthlist.slice( 0, -1 )+') ';
           }
 
           //year 
@@ -3307,8 +3524,12 @@ define([
             }
           }
           if(!allyears){
-            expr += ' AND EXTRACT(YEAR FROM "GMT_DATE_TIME") in ('+yearlist.slice( 0, -1 )+')';
+            expr += 'AND EXTRACT(YEAR FROM "GMT_DATE_TIME") in ('+yearlist.slice( 0, -1 )+') ';
           }
+        }
+
+        if(expr.substring(0,3) == "AND"){
+          expr = expr.substring(3);
         }
 
         return expr;
@@ -3377,11 +3598,12 @@ define([
       },
 
       _onSearchError: function (error) {
-        this.clear();
+        //this.clear();
         this.drawBox.clear(); 
         html.setStyle(this.progressBar.domNode, 'display', 'none');
-        //html.setStyle(this.divOptions, 'display', 'block');
+        this.tabContainer.selectTab(this.nls.selectByAttribute);
         new Message({
+          title: "Search Problem",
           message: this.nls.searchError
         });
         console.debug(error);
@@ -3817,10 +4039,11 @@ define([
           var layerInfo = this.operLayerInfos.getTableInfoById("EcoDAAT Layers_"+String(currentLayer.layerId));
         }else{
           var layerInfo = this.operLayerInfos.getLayerInfoById(currentLayer.id);
-        }
-        layerInfo.originOperLayer.popupInfo = {
+          layerInfo.originOperLayer.popupInfo = {
             fieldInfos: adjFldInfos
           }
+        }
+        
 
         this.publishData({
           'target': 'AttributeTable',

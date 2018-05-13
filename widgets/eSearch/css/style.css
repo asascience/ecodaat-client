@@ -15,6 +15,10 @@
 label{
   font-size: 12px;
 }
+
+.jimu-message{
+  z-index:1111621 !important;
+}
 label[title]:hover:after {
   content: attr(title);
   position: absolute;
@@ -30,7 +34,7 @@ label[title]:hover:after {
   margin:5px !important;
 }
 #widget_haulidtext{
-  margin-left: 35%;
+  /*margin-left: 35%;*/
 }
 .widget-esearch {
   position: relative;

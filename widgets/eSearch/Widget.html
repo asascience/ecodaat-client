@@ -59,151 +59,186 @@
             data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="haulidtext"
             data-dojo-props="trim:true, propercase:true" id="haulidtext" />
           <div id="searchDivCTD">
-            <select id="cruiseSeacatDD" style="width: 120px;display: none;" multiple="multiple">
+            <select id="cruiseSeacatDD" style="width: 120px;" class="cruiseSeacatClass" multiple="multiple">
             </select>
-            <select id="cruisectdbDD" style="width: 120px;display: none;" multiple="multiple">
+            <select id="cruisectdbDD" style="width: 120px;" class="cruisectdClass"  multiple="multiple">
             </select>
-            <select id="cruisenutrientDD" style="width: 120px;display: none;" multiple="multiple">
+            <select id="cruisenutrientDD" style="width: 120px;" class="cruisenutrientClass"  multiple="multiple">
             </select>
-            <select id="cruisechlorDD" style="width: 120px;display: none;" multiple="multiple">
+            <select id="cruisechlorDD" style="width: 120px;" class="cruisechlorClass"  multiple="multiple">
             </select>
           </div>
           <div>
-            <!-- data-dojo-type="dijit/form/Select" -->
-          <select id="specieTypeDD" style="width: 120px;display: none;">
-            <option selected value="BOB">Zooplankton</option>
-            <option value="ICHBASE">Ichthyoplankton</option>
-            <option value="TRAWL">Trawl</option>
-          </select>
-          <label title="FOCI Sample Type">Sample Type</label>
-          <select id="sampleTypeDD" style="width: 120px;display: none;" multiple="multiple">
-            <option value="1,4">Zooplankton</option>
-            <option value="2,4">Ichthyoplankton</option>
-            <option value="3">Trawl</option>
-            <option value="5">SEACAT</option>
-            <option value="6">CTD Bottle</option>
-            <option value="7">Phys Ocean</option>
-            <option value="8">Benthic</option>
-            <option value="9">Biological</option>
-            <option value="10">Other</option>
-            <option value="11">Discard</option>
-            <option value="12">NONE</option>
-            <option value="13">Not Sure</option>
-          </select>
-          <select id="zoopProtocolDD" style="width: 150px;display: none;" multiple="multiple">
-            <option value="1">Macrozooplankton</option>
-            <option value="2">Predator</option>
-            <option value="3">Pseudocalanus</option>
-            <option value="4">Microzooplankton</option>
-            <option value="5">Macrozooplankton and Predator</option>
-            <option value="6">Macrozooplankton and Pseudocalanus</option>
-            <option value="7">Macro and Microzooplankton</option>
-          </select>
-          <select id="cruiseDD" style="width: 120px" multiple="multiple">
-          </select>
-          <select id="projectDD" style="width: 120px" multiple="multiple">
-          </select>
-          <select id="trawlSpeciesDD" style="width: 200px" multiple="multiple">
-          </select>
-          <select id="taxonDD" style="width: 200px" multiple="multiple">
-          </select>
-          <select id="ichStageDD" style="width: 120px" multiple="multiple">
-          </select>
-          <select id="bobSizeDD" style="width: 150px" multiple="multiple">
-          </select>
-          <select id="bobStageDD" style="width: 120px" multiple="multiple">
-          </select>
-          <select id="ichSpeciesDD" style="width: 200px" multiple="multiple">
-          </select>
-          <select id="geo_locDD" style="width: 130px" multiple="multiple">
-          </select>
-          <select id="gearDD" style="width: 120px" multiple="multiple">
-          </select>
-          <select id="purposeDD" style="width: 140px" multiple="multiple">
-          </select>
-          <!-- hard coded dropdowns -->
-          <select id="netDD" style="width: 100px" multiple="multiple">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-          </select>
-          <select id="primaryNetDD" style="width: 120px" multiple="multiple">
-            <option value="H">Haul</option>
-            <option value="Y">Yes</option>
-            <option value="NPNQ">NPNQ</option>
-            <option value="NPQ">NPQ</option>
-          </select>
-          <select id="meshDD" style="width: 120px" multiple="multiple">
-            <option value="0">0</option>
-            <option value="3">3</option>
-            <option value="32">32</option>
-            <option value="41">41</option>
-            <option value="53">53</option>
-            <option value="150">150</option>
-            <option value="215">215</option>
-            <option value="253">253</option>
-            <option value="300">300</option>
-            <option value="333">333</option>
-            <option value="335">335</option>
-            <option value="500">500</option>
-            <option value="505">505</option>
-            <option value="1000">1000</option>
-            <option value="1153">1153</option>
-            <option value="1410">1410</option>
-            <option value="1500">1500</option>
-            <option value="3000">3000</option>
-            <option value="6000">6000</option>
-            <option value="32000">32000</option>
-          </select>
-          <select id="performanceDD" style="width: 120px" multiple="multiple">
-            <option value="GOOD">Good</option>
-            <option value="LOST">Lost</option>
-            <option value="FAIL">Fail</option>
-            <option value="QUEST">Quest</option>
-          </select>
-          <select id="sexDD" style="width: 120px" multiple="multiple">
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-            <option value="3">Not Determined</option>
-            <option value="999">Female w Spermatophores</option>
-          </select>
+          <div style="width:100%;">
+            <label class="specieTypeClass" title="FOCI Speicies Type">Speicies Type</label>
+            <select id="specieTypeDD" class="specieTypeClass" style="width: 120px;display: none;">
+              <option selected value="BOB">Zooplankton</option>
+              <option value="ICHBASE">Ichthyoplankton</option>
+              <option value="TRAWL">Trawl</option>
+            </select>
+            <label class="sampleTypeClass" style="padding-left: 0px;" title="FOCI Sample Type">Sample Type</label>
+            <select class="sampleTypeClass" id="sampleTypeDD" style="width: 120px;display: none;" multiple="multiple">
+              <option value="1,4">Zooplankton</option>
+              <option value="2,4">Ichthyoplankton</option>
+              <option value="3">Trawl</option>
+              <option value="5">SEACAT</option>
+              <option value="6">CTD Bottle</option>
+              <option value="7">Phys Ocean</option>
+              <option value="8">Benthic</option>
+              <option value="9">Biological</option>
+              <option value="10">Other</option>
+              <option value="11">Discard</option>
+              <option value="12">NONE</option>
+              <option value="13">Not Sure</option>
+            </select>
+          </div>
+          <div style="width:100%;">
+            <label  class="trawlSpeciesClass" title="Trawl Species">Trawl Species</label>
+            <select id="trawlSpeciesDD" class="trawlSpeciesClass" style="width: 200px" multiple="multiple">
+            </select>
+            <label class="zoopProtocolClass" title="Zoop Protocol">Zoop Protocol</label>
+            <select class="zoopProtocolClass" id="zoopProtocolDD" style="width: 150px;display: none;" multiple="multiple">
+              <option value="1">Macrozooplankton</option>
+              <option value="2">Predator</option>
+              <option value="3">Pseudocalanus</option>
+              <option value="4">Microzooplankton</option>
+              <option value="5">Macrozooplankton and Predator</option>
+              <option value="6">Macrozooplankton and Pseudocalanus</option>
+              <option value="7">Macro and Microzooplankton</option>
+            </select>
+            <label style="padding-left: 17px;" class="taxonClass" title="Taxon Code">Taxon Code</label>
+            <select id="taxonDD" class="taxonClass" style="width: 200px" multiple="multiple">
+            </select>
+          </div>
+          <div style="width:100%;">
+            <label  class="ichStageClass" title="Ich Stage">Ich Stage</label>
+            <select id="ichStageDD" class="ichStageClass" style="width: 120px" multiple="multiple">
+            </select>
+            <label style="padding-left: 74px;" class="ichSpeciesClass" title="Ich Species">Ich Species</label>
+            <select id="ichSpeciesDD" class="ichSpeciesClass" style="width: 200px" multiple="multiple">
+            </select>
+          </div>
+          <div style="width:100%;">
+            <label  class="bobStageClass" title="Bob Stage">Bob Stage</label>
+            <select id="bobStageDD" class="bobStageClass" style="width: 170px" multiple="multiple">
+            </select>
+            <label style="padding-left: 68px;" class="bobSizeClass" title="Bob Size">Bob Size</label>
+            <select id="bobSizeDD" class="bobSizeClass" style="width: 110px" multiple="multiple">
+            </select>
+          </div>
+          <div style="width:100%;">
+            <label class="cruiseClass" title="Cruise">Cruise</label>
+            <select id="cruiseDD" class="cruiseClass" style="width: 120px" multiple="multiple">
+            </select>
+            <label style="padding-left: 89px;" class="projectClass" title="Project">Project</label>
+            <select id="projectDD" class="projectClass" style="width: 120px" multiple="multiple">
+            </select>
+          </div>
+          <div style="width:100%;">
+            <label class="geo_locClass" title="Geographic Location">Geo Location</label>
+            <select id="geo_locDD" class="geo_locClass" style="width: 130px" multiple="multiple">
+            </select>
+            <label style="padding-left: 41px;" class="gearClass" title="Gear">Gear</label>
+            <select id="gearDD" class="gearClass" style="width: 120px" multiple="multiple">
+            </select>
+          </div>
+          <div style="width:100%;">
+            <label class="purposeClass" title="Purpose">Purpose</label>
+            <select id="purposeDD" class="purposeClass" style="width: 140px" multiple="multiple">
+            </select>
+            <!-- hard coded dropdowns -->
+            <label style="padding-left: 60px;" class="netClass" title="Net">Net</label>
+            <select id="netDD" class="netClass" style="width: 110px" multiple="multiple">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+          </div>
+          <div style="width:100%;">
+            <label style="width: 100px;" class="primaryNetClass" title="Primary Net">Primary Net</label>
+            <select id="primaryNetDD" class="primaryNetClass" style="width: 120px" multiple="multiple">
+              <option value="H">Haul</option>
+              <option value="Y">Yes</option>
+              <option value="NPNQ">NPNQ</option>
+              <option value="NPQ">NPQ</option>
+            </select>
+            <label style="padding-left: 60px;" class="meshClass" title="Mesh">Mesh</label>
+            <select id="meshDD" style="width: 120px" class="meshClass" multiple="multiple">
+              <option value="0">0</option>
+              <option value="3">3</option>
+              <option value="32">32</option>
+              <option value="41">41</option>
+              <option value="53">53</option>
+              <option value="150">150</option>
+              <option value="215">215</option>
+              <option value="253">253</option>
+              <option value="300">300</option>
+              <option value="333">333</option>
+              <option value="335">335</option>
+              <option value="500">500</option>
+              <option value="505">505</option>
+              <option value="1000">1000</option>
+              <option value="1153">1153</option>
+              <option value="1410">1410</option>
+              <option value="1500">1500</option>
+              <option value="3000">3000</option>
+              <option value="6000">6000</option>
+              <option value="32000">32000</option>
+            </select>
+          </div>
+          <div style="width:100%;">
+            <label class="performanceClass" title="Performance">Performance</label>
+            <select id="performanceDD" class="performanceClass" style="width: 120px" multiple="multiple">
+              <option value="GOOD">Good</option>
+              <option value="LOST">Lost</option>
+              <option value="FAIL">Fail</option>
+              <option value="QUEST">Quest</option>
+            </select>
+            <label style="padding-left: 53px;" class="sexClass" title="Sex">Sex</label>
+            <select id="sexDD" style="width: 120px" class="sexClass" multiple="multiple">
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+              <option value="3">Not Determined</option>
+              <option value="999">Female w Spermatophores</option>
+            </select>
+          </div>
 
           <div id="depthSpinners" style="margin-top:10px">
             <div id="bottomSpinners">
               <label>Min Gear Depth</label>
               <input data-dojo-type="dijit/form/NumberSpinner"
-                id="minBottom" style="margin-left: 20px;width:85px;margin-right: 10px;"
+                id="minBottom" style="margin-left: 20px;width:85px;margin-right: 60px;"
                 value="0" width="70px" 
-                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0}"
+                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0,pattern:'#'}"
                 name="someNumber"
               />
               <label>Max Bottom Depth</label>
               <input data-dojo-type="dijit/form/NumberSpinner"
                 id="maxBottom" style="margin-left: 20px;width:85px;margin-right: 10px;"
                 value="1400" width="70px"
-                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0}"
+                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0,pattern:'#'}"
                 name="someNumber"
               />
             </div>
             <div id="gearSpinners" style="margin-top:10px">
               <label>Min Gear Depth</label>
               <input data-dojo-type="dijit/form/NumberSpinner"
-                id="minGearDepth" style="margin-left: 20px;width:85px;margin-right: 10px;"
+                id="minGearDepth" style="margin-left: 20px;width:85px;margin-right: 60px;"
                 value="0" width="70px"
-                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0}"
+                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0,pattern:'#'}"
                 name="someNumber"
               />
               <label>Max Gear Depth</label>
               <input data-dojo-type="dijit/form/NumberSpinner"
                 id="maxGearDepth" style="margin-left: 35px;width:85px;margin-right: 10px;" 
                 value="1400" width="70px"
-                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0}"
+                data-dojo-props="smallDelta:5, constraints:{min:0,max:1400,places:0,pattern:'#'}"
                 name="someNumber"
               />
             </div>
@@ -221,10 +256,10 @@
         </div>
       </div> -->
       <div class="jimu-r-row play-section" style="margin-top:15px">
-        <div class="search-btn" data-dojo-attach-point="btnSearchCatchwZero" id="btnSearchCatchwZero" style="margin-left: 0px !important;display: none;" data-dojo-attach-event="onclick:onSearchCatchZero">Catch w/ Zeros</div>
-        <div class="search-btn hidden" style="margin-left: 0px !important;display: none;" data-dojo-attach-point="btnSearchTrawlLength" id="btnSearchTrawlLength" data-dojo-attach-event="onclick:onSearchTrawlLength">Trawl Length</div>
-        <div class="search-btn hidden" style="margin-left: 0px !important;display: none;" data-dojo-attach-point="btnSearchAbundance" id="btnSearchAbundance" data-dojo-attach-event="onclick:onSearchAbud">Ich Abundance/Occurance</div>        
-        <div class="search-btn hidden" style="margin-left: 0px !important;display: none;" data-dojo-attach-point="btnSearchFrequency" id="btnSearchFrequency" data-dojo-attach-event="onclick:onSearchIchFreq">Ich Lenth Frequency</div>
+        <div title="Catch With Zeros" class="search-btn" data-dojo-attach-point="btnSearchCatchwZero" id="btnSearchCatchwZero" style="margin-left: 0px !important;display: none;" data-dojo-attach-event="onclick:onSearchCatchZero">Catch w/ Zeros</div>
+        <div class="search-btn hidden" style="margin-left: 0px !important;display: none;" data-dojo-attach-point="btnSearchTrawlLength" title="Trawl Length Calculations" id="btnSearchTrawlLength" data-dojo-attach-event="onclick:onSearchTrawlLength">Trawl Length</div>
+        <div class="search-btn hidden" style="margin-left: 0px !important;display: none;" data-dojo-attach-point="btnSearchAbundance" title="Ich Abundance" id="btnSearchAbundance" data-dojo-attach-event="onclick:onSearchAbud">Ich Abundance/Occurance</div>        
+        <div class="search-btn hidden" style="margin-left: 0px !important;display: none;" data-dojo-attach-point="btnSearchFrequency" title="Lenth Frequency" id="btnSearchFrequency" data-dojo-attach-event="onclick:onSearchIchFreq">Ich Lenth Frequency</div>
         <div class="search-btn" data-dojo-attach-point="btnSearch" style="font-weight: bold;text-decoration: underline;" data-dojo-attach-event="onclick:onSearch">${nls.search}</div>
         <div class="search-btn" data-dojo-attach-point="btnSearch" style="font-weight: bold" data-dojo-attach-event="onclick:clear">Clear</div>
         <div class="col-2-3" id="limitMapExtentDiv">
