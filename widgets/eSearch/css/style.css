@@ -57,6 +57,7 @@ label[title]:hover:after {
 
 #widgets_eSearch_Widget_28_panel{
   top: 5px !important;
+  /*z-index: 99999999 !important;*/
 }
 
 #jimu_dijit_TabContainer_0{

@@ -55,7 +55,7 @@
           This is a table, Click search to return all values in the Table Dictionary 
         </div>
         <div id="searchDiv">
-          <input type="text" name="haulidtext" value="Search FOCI ID"
+          <input type="text" name="haulidtext" value="Search FOCI HAUL ID"
             data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="haulidtext"
             data-dojo-props="trim:true, propercase:true" id="haulidtext" />
           <div id="searchDivCTD">
@@ -270,40 +270,59 @@
     </div>
     <div class="search-tab-node-hidden" data-dojo-attach-point="tabNode3">
       <div>
-        <label style="font-weight: bold;margin-left: 45%;">Filter by Time</label>
+        <label style="font-weight: bold;margin-left: 45%;font-size: 15px;">Filter by Time</label>
         <br>
         <br>
-        <label>Month</label>
-        <select multiple="true" data-dojo-attach-point="monthselect" id="monthselect" name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
-            <option value="0" selected="selected">January</option>
-            <option value="1" selected="selected">February</option>
-            <option value="2" selected="selected">March</option>
-            <option value="3" selected="selected">April</option>
-            <option value="4" selected="selected">May</option>
-            <option value="5" selected="selected">June</option>
-            <option value="6" selected="selected">July</option>
-            <option value="7" selected="selected">August</option>
-            <option value="8" selected="selected">September</option>
-            <option value="9" selected="selected">October</option>
-            <option value="10" selected="selected">November</option>
-            <option value="11" selected="selected">December</option>
-       </select>
-       <label>Day</label>
-       <select multiple="true" id="dayselect" data-dojo-attach-point="dayselect"  name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
-            <option value="1"  selected="selected">1 - 15</option>
-            <option value="15" selected="selected">16 - 31</option>
-       </select>
-       <label>Year</label>
-       <select multiple="true" data-dojo-attach-point="yearselect" id="yearselect" name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
-            
-       </select>
+        <div  style="float: left;padding-left: 13%;">
+          <div>
+            <label style="padding-bottom: 10px;font-size: 14px; font-weight: bold;">Month</label>
+          </div>
+          <div data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="checkBoxMonth" checked data-dojo-props="label:'Select All Months'"></div>
+          <div>
+            <select multiple="true" data-dojo-attach-point="monthselect" id="monthselect" name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
+                <option value="0" selected="selected">January</option>
+                <option value="1" selected="selected">February</option>
+                <option value="2" selected="selected">March</option>
+                <option value="3" selected="selected">April</option>
+                <option value="4" selected="selected">May</option>
+                <option value="5" selected="selected">June</option>
+                <option value="6" selected="selected">July</option>
+                <option value="7" selected="selected">August</option>
+                <option value="8" selected="selected">September</option>
+                <option value="9" selected="selected">October</option>
+                <option value="10" selected="selected">November</option>
+                <option value="11" selected="selected">December</option>
+           </select>
+          </div>
+        </div>
+      <div  style="float: left;padding-left: 50px;">
+        <div>
+          <label style="padding-bottom: 10px;font-size: 14px; font-weight: bold;">Day</label>
+        </div>
+       <div>
+         <select multiple="true" style="padding-top:20px;" id="dayselect" data-dojo-attach-point="dayselect"  name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
+              <option value="1"  selected="selected">1 - 15</option>
+              <option value="15" selected="selected">16 - 31</option>
+         </select>
+        </div>
+      </div>
+      <div style="float: left;padding-left: 50px;">
+        <div>
+          <label  style="padding-bottom: 10px;font-size: 14px; font-weight: bold;">Year</label>
+        </div>
+         <div data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="checkBoxYear" data-dojo-props="label:'Select All Years'"></div>
+         <div>
+           <select multiple="true" data-dojo-attach-point="yearselect" id="yearselect" name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
+           </select>
+          </div>
+      </div>
       <div class="col-1-3">
           <div class="search-btn" style="margin-top: 10px;margin-left: 45%;" data-dojo-attach-point="btnSearch" data-dojo-attach-event="onclick:onSearch">${nls.search}</div>
         </div>
     </div>
     <div class="search-tab-node-hidden" data-dojo-attach-point="tabNode5">
       <div>
-        <label style="font-weight: bold;margin-left: 36%;">Choose Pre-Selected List</label>
+        <label style="font-weight: bold;margin-left: 34%;font-size: 15px;">Choose Pre-Selected List</label>
         <br>
         <select class="esearch-select-graphic" style="font-size:11px; width: 150px;margin-left: 36%;" id="fieldselectType"  data-dojo-attach-point="fieldselectType" data-dojo-type="dijit/form/Select">
           <option value="0" selected="selected">NONE</option>
@@ -312,6 +331,8 @@
           <option value="3" selected="selected">TRAWL</option>
         </select>
         <br><br>
+        <div data-dojo-type="jimu/dijit/CheckBox" style="margin-left: 40%;" data-dojo-attach-point="checkBoxFields" data-dojo-props="label:'Select All Fields'"></div>
+        <br>
         <select multiple="true" style="margin-left: 26%;width: 250px" data-dojo-attach-point="fieldselect" id="fieldselect" name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
        </select>
         <div class="col-1-3">

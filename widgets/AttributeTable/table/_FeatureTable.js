@@ -1768,7 +1768,7 @@ define([
           }
         })));
 
-        if(this.layer.objectIdField) {
+        //if(this.layer.objectIdField) {
           // bind grid evnt
 
           //show header menu: ASC,DSC,Statistics
@@ -1808,7 +1808,7 @@ define([
           if (this.syncSelection && inMap) {
             this.own(on(inMap, 'click', lang.hitch(this, this._onFeaturelayerClick)));
           }
-        }
+        //}
       }
 
       if (this.layer.objectIdField) {

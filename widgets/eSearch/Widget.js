@@ -230,6 +230,30 @@ define([
 
         esriConfig.defaults.io.timeout = 600000;
         that = this;
+
+
+        this.checkBoxMonth.onChange = lang.hitch(this, function(e){
+          that.monthselect.set("value",[]);
+          if(e){
+            that.monthselect.invertSelection();
+          }
+          that.monthselect._updateSelection();
+        });
+        
+        this.checkBoxYear.onChange = lang.hitch(this, function(e){
+          that.yearselect.set("value",[]);
+          if(e){
+            that.yearselect.invertSelection();
+          }
+          that.yearselect._updateSelection();
+        });
+        this.checkBoxFields.onChange = lang.hitch(this, function(e){
+          that.fieldselect.set("value",[]);
+          if(e){
+            that.fieldselect.invertSelection();
+          }
+          that.fieldselect._updateSelection();
+        });
       },
 
       populateAllDropDowns: function(){
@@ -255,7 +279,8 @@ define([
         var queryCruise = new Query();
         queryCruise.where = "1=1";
         queryCruise.returnGeometry = false;
-        queryCruise.returnDistinctValues = true;
+        queryCruise.orderByFields = ['SHIP_LEAVE_DATE'];
+        //queryCruise.returnDistinctValues = true;
         queryTaskCruise.execute(queryCruise,function(e){         
           for (var i = 0; i < e.features.length;  i++) {
             $('#cruiseDD').append("<option value=\"" + e.features[i].attributes[e.displayFieldName] + "\">" + e.features[i].attributes[e.displayFieldName] + "</option>");
@@ -270,10 +295,12 @@ define([
         var queryproject = new Query();
         queryproject.where = "1=1";
         queryproject.returnGeometry = false;
+        queryproject.orderByFields = ["PROJECT"];
+        queryproject.outFields = ["PROJECT"];
         queryproject.returnDistinctValues = true;
         queryTaskproject.execute(queryproject,function(e){         
           for (var p = 0; p < e.features.length;  p++) {
-            $('#projectDD').append("<option value=\"" + e.features[p].attributes[e.displayFieldName] + "\">" + e.features[p].attributes[e.displayFieldName] + "</option>");
+            $('#projectDD').append("<option value=\"" + e.features[p].attributes['PROJECT'] + "\">" + e.features[p].attributes['PROJECT'] + "</option>");
           }
           $('#projectDD').multipleSelect( 'refresh' );
         },function(error){
@@ -327,6 +354,7 @@ define([
         var queryTaskCruisegeo_loc = new QueryTask(this.config.dataproviders.geo_loc);
         var queryCruisegeo_loc = new Query();
         queryCruisegeo_loc.where = "1=1";
+        queryCruisegeo_loc.orderByFields = ["GEOGRAPHIC_AREA"];
         queryCruisegeo_loc.returnGeometry = false;
         queryTaskCruisegeo_loc.execute(queryCruisegeo_loc,function(e){         
           for (var d = 0; d < e.features.length;  d++) {
@@ -353,6 +381,7 @@ define([
         var queryTaskCruiseSeacat = new QueryTask(this.config.dataproviders.cruiseArray_seacat);
         var queryCruiseSeacat = new Query();
         queryCruiseSeacat.where = "1=1";
+        queryCruiseSeacat.orderByFields = ['CRUISE'];
         queryCruiseSeacat.returnGeometry = false;
         queryTaskCruiseSeacat.execute(queryCruiseSeacat,function(e){         
           for (var g = 0; g < e.features.length;  g++) {
@@ -368,6 +397,7 @@ define([
         var queryCruisechlor = new Query();
         queryCruisechlor.where = "1=1";
         queryCruisechlor.returnGeometry = false;
+        queryCruisechlor.orderByFields = ['CRUISE'];
         queryTaskCruisechlor.execute(queryCruisechlor,function(e){       
           for (var h = 0; h < e.features.length;  h++) {
             $('#cruisechlorDD').append("<option value=\"" + e.features[h].attributes[e.displayFieldName] + "\">" + e.features[h].attributes[e.displayFieldName] + "</option>");
@@ -382,6 +412,7 @@ define([
         var queryCruiseNut = new Query();
         queryCruiseNut.where = "1=1";
         queryCruiseNut.returnGeometry = false;
+        queryCruiseNut.orderByFields = ['CRUISE'];
         queryTaskCruiseNut.execute(queryCruiseNut,function(e){        
           for (var j = 0; j < e.features.length;  j++) {
             $('#cruisenutrientDD').append("<option value=\"" + e.features[j].attributes[e.displayFieldName] + "\">" + e.features[j].attributes[e.displayFieldName] + "</option>");
@@ -396,6 +427,7 @@ define([
         var queryCruiseCTDB = new Query();
         queryCruiseCTDB.where = "1=1";
         queryCruiseCTDB.returnGeometry = false;
+        queryCruiseCTDB.orderByFields = ['CRUISE'];
         queryTaskCruiseCTDB.execute(queryCruiseCTDB,function(e){       
           for (var j = 0; j < e.features.length;  j++) {
             $('#cruisectdbDD').append("<option value=\"" + e.features[j].attributes[e.displayFieldName] + "\">" + e.features[j].attributes[e.displayFieldName] + "</option>");
@@ -1269,6 +1301,7 @@ define([
             $('.ichStageClass').not('select').show();
             $('.ichSpeciesClass').not('select').show();
             $('#btnSearchAbundance').not('select').show();
+            $('.sexClass').not('select').hide();
           }
           else{//BOB
             $('.bobSizeClass').not('select').show();
@@ -1282,6 +1315,7 @@ define([
         }
         else if(newValue == 3){//sub spec
           $('#btnSearchFrequency').not('select').show();
+          $('.sexClass').not('select').hide();
         }
         else if(newValue>3 && newValue <9){
           $('.specieTypeClass').hide();
@@ -3229,7 +3263,7 @@ define([
         var queryTask = new QueryTask(layerConfig.url);
         html.empty(this.divResultMessage);
         html.place(html.toDom(this.nls.searching), this.divResultMessage);
-        queryTask.execute(queryParams, lang.hitch(this, this._onSearchFinish, layerIndex, closeOnComplete, removing, adding),
+        queryTask.execute(queryParams, lang.hitch(this, this._onSearchFinish, layerIndex, closeOnComplete, removing, adding, queryParams.where),
           lang.hitch(this, this._onSearchError));
       },
 
@@ -3355,7 +3389,7 @@ define([
         $('#maxBottom').val(1400);
         $('#minGearDepth').val(0);
         $('#maxGearDepth').val(1400);
-        $('#haulidtext').val('Search FOCI ID');
+        $('#haulidtext').val('Search FOCI HAUL ID');
 
         return false;
       },
@@ -3405,8 +3439,8 @@ define([
           if($('#minGearDepth').val() != 0 || $('#maxGearDepth').val() != 1400){
             expr+= "AND MIN_GEAR_DEPTH > " + Number($('#minGearDepth').val())  + " AND MAX_GEAR_DEPTH <"+Number($('#maxGearDepth').val())  + " "; 
           }
-          if($('#haulidtext').val() != 'Search FOCI ID' && $('#haulidtext').val() != ""){
-            expr+= "AND HAUL_ID LIKE %'"+ $('#haulidtext').val()+"'%";
+          if($('#haulidtext').val() != 'Search FOCI HAUL ID' && $('#haulidtext').val() != ""){
+            expr+= "AND HAUL_ID LIKE '%"+ $('#haulidtext').val().toUpperCase()+"%' ";
           }
         }
         
@@ -3474,7 +3508,7 @@ define([
         if($("#meshDD option:selected").index() > -1 && $('.meshClass').is(":visible")){
           expr+= "AND MESH"+this.buildQueryValue($('#meshDD').multipleSelect('getSelects'),true); //MESH
         }
-        if($("#performanceDD option:selected").index() > -1 && $('.performanceClass').is(":visible")&& $('#performanceDD').is(":visible")){
+        if($("#performanceDD option:selected").index() > -1 && $('.performanceClass').is(":visible")){
           expr+= "AND HAUL_PERFORMANCE"+this.buildQueryValue($('#performanceDD').multipleSelect('getSelects'));//HAUL_PERFORMANCE
         }
         if($("#sexDD option:selected").index() > -1 && $('.sexClass').is(":visible") && layerIndex != 'haul'){
@@ -3648,7 +3682,7 @@ define([
         return tempFlds;
       },
 
-      _onSearchFinish: function (layerIndex, closeOnComplete, removing, adding, results) {
+      _onSearchFinish: function (layerIndex, closeOnComplete, removing, adding, where, results) {
         var layerConfig = this.config.layers[layerIndex];
         var currentLayer;
         array.map(this.currentSearchLayer.fields, lang.hitch(this, function (element) {
@@ -3718,9 +3752,13 @@ define([
 
         var listLen = this.list.items.length;
         var len = results.features.length;
+
+        if(where == "1=1"){
+          where = ' ALL Records';
+        }
         if (this.currentFeatures.length === 0) {
           html.empty(this.divResultMessage);
-          html.place(html.toDom(this.nls.noResults), this.divResultMessage);
+          html.place(html.toDom(this.nls.noResults+ "<br><br><b>Results from Search Query</b><br><br>"+where), this.divResultMessage);
           this.list.clear();
           this.gSelectTypeVal = 'new';
           this.aSelectTypeVal = 'new';
@@ -3732,7 +3770,7 @@ define([
           return;
         } else {
           html.empty(this.divResultMessage);
-          html.place(html.toDom("<label>" + this.nls.featuresSelected + this.currentFeatures.length + "</label>"), this.divResultMessage);
+          html.place(html.toDom("<label>" + this.nls.featuresSelected + this.currentFeatures.length + "</label><br><br><b>Results from Search Query</b><br><br>"+where), this.divResultMessage);
         }
         var i, slen, sumTotal, numFormat, currFormat, args, sValue, args2;
         //determine if this layer has any sum field(s)
@@ -3928,8 +3966,10 @@ define([
         if(layerIndex < 9){
           this._drawResults(layerIndex, results, currentLayer, closeOnComplete);  
         }
-        var layerConfig = this.config.layers[layerIndex];
-        this.addlayerToAttributeTable(layerConfig, currentLayer);
+        else{
+          var layerConfig = this.config.layers[layerIndex];
+          this.addlayerToAttributeTable(layerConfig, currentLayer);
+        }
       },
 
       _returnListIndexFromOID: function (OID) {
@@ -4036,7 +4076,34 @@ define([
           }));*/
         //}
         if(this.layerValueforFieldArray>8){
-          var layerInfo = this.operLayerInfos.getTableInfoById("EcoDAAT Layers_"+String(currentLayer.layerId));
+          var index4layer = 13;//stage 9
+
+          if(this.layerValueforFieldArray == 10){
+            index4layer = 20; //gear
+          }
+          else if(this.layerValueforFieldArray == 11){
+            index4layer = 21;//taxon
+          }
+          else if(this.layerValueforFieldArray == 12){
+            index4layer = 11;// preserv
+          }
+          else if(this.layerValueforFieldArray == 13){
+            index4layer = 22;// species
+          }
+          else if(this.layerValueforFieldArray == 14){
+            index4layer = 10; //flow
+          }
+          else if(this.layerValueforFieldArray == 15){
+            index4layer = 12;//project
+          }
+          else if(this.layerValueforFieldArray == 16){
+            index4layer = 19;//cruise
+          }
+          var layerInfo = this.operLayerInfos.getTableInfoById("EcoDAAT Layers_"+String(index4layer));
+          layerInfo['originOperLayer'] = {};
+          layerInfo.originOperLayer.popupInfo = {
+            fieldInfos: adjFldInfos
+          }
         }else{
           var layerInfo = this.operLayerInfos.getLayerInfoById(currentLayer.id);
           layerInfo.originOperLayer.popupInfo = {
@@ -4302,31 +4369,34 @@ define([
         for (var i = 0, len = this.currentFeatures.length; i < len; i++) {
           var feature = this.currentFeatures[i];
           var listItem = this.list.items[this._returnListIndexFromOID(feature.attributes[layerConfig.objectIdField])];
-          type = feature.geometry.type;
-          switch (type) {
-          case "multipoint":
-          case "point":
-            centerpoint = feature.geometry;
-            break;
-          case "polyline":
-            centerpoint = feature.geometry.getPoint(0, 0);
-            break;
-          case "extent":
-          case "polygon":
-            centerpoint = feature.geometry.getExtent().getCenter();
-            break;
-          default:
-            break;
-          }
-          //listItem.centerpoint = centerpoint;
-          var lyrDisablePopupsAndTrue = (layerConfig.hasOwnProperty("disablePopups") && layerConfig.disablePopups)?true:false;
-          if((!this.config.disablePopups && !lyrDisablePopupsAndTrue) && !currentLayer._hasInfoTemplate){
-            feature.setInfoTemplate(this._configurePopupTemplate(listItem));
-          }
-          feature.setSymbol(listItem.sym);
-          if (feature.geometry) {
-            currentLayer.add(feature);
-            listItem.graphic = feature;
+          if(feature.geometry){
+            type = feature.geometry.type;
+          
+            switch (type) {
+              case "multipoint":
+              case "point":
+                centerpoint = feature.geometry;
+                break;
+              case "polyline":
+                centerpoint = feature.geometry.getPoint(0, 0);
+                break;
+              case "extent":
+              case "polygon":
+                centerpoint = feature.geometry.getExtent().getCenter();
+                break;
+              default:
+                break;
+            }
+            //listItem.centerpoint = centerpoint;
+            var lyrDisablePopupsAndTrue = (layerConfig.hasOwnProperty("disablePopups") && layerConfig.disablePopups)?true:false;
+            if((!this.config.disablePopups && !lyrDisablePopupsAndTrue) && !currentLayer._hasInfoTemplate){
+              feature.setInfoTemplate(this._configurePopupTemplate(listItem));
+            }
+            feature.setSymbol(listItem.sym);
+            if (feature.geometry) {
+              currentLayer.add(feature);
+              listItem.graphic = feature;
+            }
           }
         }
         this.zoomAttempt = 0;
