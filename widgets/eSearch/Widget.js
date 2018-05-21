@@ -2762,7 +2762,6 @@ define([
           
           var inputData = {};
           inputData['stage'] = 'nostagen';
-          inputData['InputQueryHaul'] = this.buildWhereClause('haul');
 
           if(this.SAMPLETYPE == 'BOB' && $('#taxonDD').multipleSelect('getSelects').length > 0){
             var gp_url = this.config.gp_data_tools.catchzeroBob;
@@ -2771,6 +2770,7 @@ define([
             for(var r=0; r < $('#taxonDD').multipleSelect('getSelects').length; r++){
               taxonlist.push($('#taxonDD').multipleSelect('getSelects')[r])              
             }
+            inputData['InputQueryHaul'] = this.buildWhereClause('haul') +" and ZOOP_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
             inputData['Taxa_List'] = taxonlist;
           }
           else if(this.SAMPLETYPE == 'ICHBASE' && $('#ichSpeciesDD').multipleSelect('getSelects').length > 0 ){
@@ -2780,6 +2780,9 @@ define([
             for(var s=0; s < $('#ichSpeciesDD').multipleSelect('getSelects').length; s++){
               specieslist.push($('#ichSpeciesDD').multipleSelect('getSelects')[s])              
             }
+
+            inputData['InputQueryHaul'] = this.buildWhereClause('haul') + " and ICH_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
+
             inputData['Species_List'] = specieslist;
           }
           else{
