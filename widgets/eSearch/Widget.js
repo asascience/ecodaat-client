@@ -1314,6 +1314,8 @@ define([
           $('.specieTypeClass').not('select').show();
         }
         else if(newValue == 3){//sub spec
+          $('.ichStageClass').not('select').show();
+          $('.ichSpeciesClass').not('select').show();
           $('#btnSearchFrequency').not('select').show();
           $('.sexClass').not('select').hide();
         }
@@ -2628,15 +2630,17 @@ define([
       },
 
       error4GP:function(error){
+
+        that.tabContainer.selectTab(that.nls.results);
         html.empty(that.divResultMessage);
         html.place(html.toDom("An error has occured running the geoprocessing tool.  Please try again."), that.divResultMessage);
-
-        new Message({
-                  titleLabel: "GP Error",
-                  message: "There was an error completing the processing, please try again or adjust your query."
-                });
-        that.tabContainer.selectTab(that.nls.results);
         html.setStyle(that.progressBar.domNode, 'display', 'none');
+
+        
+        new Message({
+          titleLabel: "GP Error",
+          message: "There was an error completing the processing, please try again or adjust your query."
+        });
       },
 
       returnGPFile:function(result){
@@ -2765,23 +2769,23 @@ define([
 
           if(this.SAMPLETYPE == 'BOB' && $('#taxonDD').multipleSelect('getSelects').length > 0){
             var gp_url = this.config.gp_data_tools.catchzeroBob;
-            inputData['InputSpeciesQuery'] = this.buildWhereClause('species') + " and taxon_name = '%taxa%'";
+            inputData['InputSpeciesQuery'] = this.buildWhereClause('species') + "and taxon_name = '%taxa%'";
             var taxonlist = [];
             for(var r=0; r < $('#taxonDD').multipleSelect('getSelects').length; r++){
               taxonlist.push($('#taxonDD').multipleSelect('getSelects')[r])              
             }
-            inputData['InputQueryHaul'] = this.buildWhereClause('haul') +" and ZOOP_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
+            inputData['InputQueryHaul'] = this.buildWhereClause('haul') +"and ZOOP_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
             inputData['Taxa_List'] = taxonlist;
           }
           else if(this.SAMPLETYPE == 'ICHBASE' && $('#ichSpeciesDD').multipleSelect('getSelects').length > 0 ){
             var gp_url = this.config.gp_data_tools.catchzero;
-            inputData['InputSpeciesQuery'] = this.buildWhereClause('species') + " and species_name = '%specie%'";
+            inputData['InputSpeciesQuery'] = this.buildWhereClause('species') + "and species_name = '%specie%'";
             var specieslist = [];
             for(var s=0; s < $('#ichSpeciesDD').multipleSelect('getSelects').length; s++){
               specieslist.push($('#ichSpeciesDD').multipleSelect('getSelects')[s])              
             }
 
-            inputData['InputQueryHaul'] = this.buildWhereClause('haul') + " and ICH_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
+            inputData['InputQueryHaul'] = this.buildWhereClause('haul') + "and ICH_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
 
             inputData['Species_List'] = specieslist;
           }
@@ -3460,7 +3464,7 @@ define([
         if($("#cruisechlorDD option:selected").index() > -1 && $('.cruisechlorClass').is(":visible")){
           expr+= "AND CRUISE"+this.buildQueryValue($('#cruisechlorDD').multipleSelect('getSelects'));
         }
-        if($("#specieTypeDD option:selected").index() > -1 && $('.specieTypeClass').is(":visible")){
+        if($("#specieTypeDD option:selected").index() > -1 && $('.specieTypeClass').is(":visible") && layerIndex != 'haul'){
           expr+= "AND ORIG_DB"+this.buildQueryValue($('#specieTypeDD').multipleSelect('getSelects'));
         }
         if($("#sampleTypeDD option:selected").index() > -1 && $('.sampleTypeClass').is(":visible") && layerIndex != 'haul' && this.layerValueforFieldArray !=1){
@@ -3988,6 +3992,7 @@ define([
 
       _setCurentLayerRenderer: function (symFromWhere) {
         if (symFromWhere === 'server') {
+          this.resultLayers[this.currentLayerIndex].drawingInfo.renderer.symbol.size = 6;
           return jsonUtil.fromJson(this.resultLayers[this.currentLayerIndex].drawingInfo.renderer);
         } else {
           var symbol,
