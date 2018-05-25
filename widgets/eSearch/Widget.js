@@ -1059,7 +1059,7 @@ define([
       closeDDs: function () {
         this.selectLayerAttribute.closeDropDown();
         this.selectLayerGraphical.closeDropDown();
-        this.selectExpression.closeDropDown();
+        //this.selectExpression.closeDropDown();
         //this.selectLayerSpatial.closeDropDown();
         this.gSelectType.closeDropDown();
         this.aSelectType.closeDropDown();
@@ -3192,7 +3192,7 @@ define([
         if(layerIndex>8){
           queryParams.where = '1=1';
         }
-        else if(queryParams.where == ""){
+        else if(queryParams.where == "" && !geometry){
           new Message({
             titleLabel: "Query Error",
             message: "Please Make a Query Selection from the Dropdown lists"
