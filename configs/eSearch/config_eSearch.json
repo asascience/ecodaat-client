@@ -4707,6 +4707,30 @@
           {
             "name": "FLOWMETER_NUMBER",
             "alias": "FLOWMETER_NUMBER"
+          },
+          {
+            "name": "CALIBRATION_DATE",
+            "alias": "CALIBRATION_DATE"
+          },
+          {
+            "name": "CRUISE_NAME",
+            "alias": "CRUISE_NAME"
+          },
+          {
+            "name": "COMMENTS_FLOWMETER",
+            "alias": "COMMENTS_FLOWMETER"
+          },
+          {
+            "name": "CALIBRATION_FACTOR",
+            "alias": "CALIBRATION_FACTOR"
+          },
+          {
+            "name": "DOE",
+            "alias": "DOE"
+          },
+          {
+            "name": "DOC",
+            "alias": "DOC"
           }
         ]
       },
@@ -4763,20 +4787,44 @@
         "all": false,
         "field": [
           {
-            "name": "SLOPE",
-            "alias": "SLOPE"
+            "name": "DOC",
+            "alias": "DOC"
           },
           {
-            "name": "INTERCEPT",
-            "alias": "INTERCEPT"
+            "name": "DOE",
+            "alias": "DOE"
           },
           {
-            "name": "AVEREV_PERSEC",
-            "alias": "AVEREV_PERSEC"
+            "name": "PROJECT_CODE",
+            "alias": "PROJECT_CODE"
           },
           {
-            "name": "FLOWMETER_NUMBER",
-            "alias": "FLOWMETER_NUMBER"
+            "name": "PROJECT",
+            "alias": "PROJECT"
+          },
+          {
+            "name": "PROJECT_DESC",
+            "alias": "PROJECT_DESC"
+          },
+          {
+            "name": "PROJECT_OWNER",
+            "alias": "PROJECT_OWNER"
+          },
+          {
+            "name": "PROJECT_OWNER",
+            "alias": "PROJECT_OWNER"
+          },
+          {
+            "name": "PROJECT_EMAIL",
+            "alias": "PROJECT_EMAIL"
+          },
+          {
+            "name": "COMPONENT",
+            "alias": "COMPONENT"
+          },
+          {
+            "name": "COMMENTS_PROJECTS",
+            "alias": "COMMENTS_PROJECTS"
           }
         ]
       },
@@ -4832,7 +4880,37 @@
       "fields": {
         "all": false,
         "field": [
-          
+          {
+            "name": "SHIP_CRUISE_NAME",
+            "alias": "SHIP_CRUISE_NAME"
+          },{
+            "name": "CRUISE_ALT_NAME",
+            "alias": "CRUISE_ALT_NAME"
+          },{
+            "name": "CRUISE_NAME",
+            "alias": "CRUISE_NAME"
+          },{
+            "name": "SHIP_NAME",
+            "alias": "SHIP_NAME"
+          },{
+            "name": "NOTES",
+            "alias": "NOTES"
+          },{
+            "name": "DOCUMENTS",
+            "alias": "DOCUMENTS"
+          },{
+            "name": "PUBLICATIONS",
+            "alias": "PUBLICATIONS"
+          },{
+            "name": "SHIP_RETURN_DATE",
+            "alias": "SHIP_RETURN_DATE"
+          },{
+            "name": "SHIP_LEAVE_DATE",
+            "alias": "SHIP_LEAVE_DATE"
+          },{
+            "name": "SHIP_NAME",
+            "alias": "SHIP_NAME"
+          }
         ]
       },
       "links": {

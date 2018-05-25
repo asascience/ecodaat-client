@@ -597,7 +597,7 @@ define([
         this.selectLayerAttribute.set('value', layerval);
         for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
           var selectfieldDefault = false;
-          if(this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1  || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1){
+          if(layerval > 8 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1  || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1){
               selectfieldDefault = true;
             }
           fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});
@@ -616,7 +616,7 @@ define([
         }
         for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
           var selectfieldDefault = false;
-          if(this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1){
+          if(layerval > 8 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1){
               selectfieldDefault = true;
             }
           fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});
@@ -2765,34 +2765,41 @@ define([
       onSearchCatchZero:function(){
           
           var inputData = {};
-          inputData['stage'] = 'nostagen';
 
-          if(this.SAMPLETYPE == 'BOB' && $('#taxonDD').multipleSelect('getSelects').length > 0){
+          if(this.SAMPLETYPE == 'BOB' && $('#taxonDD').multipleSelect('getSelects').length > 0 && $('#bobStageDD').multipleSelect('getSelects').length > 0){
             var gp_url = this.config.gp_data_tools.catchzeroBob;
             inputData['InputSpeciesQuery'] = this.buildWhereClause('species') + "and taxon_name = '%taxa%'";
             var taxonlist = [];
             for(var r=0; r < $('#taxonDD').multipleSelect('getSelects').length; r++){
               taxonlist.push($('#taxonDD').multipleSelect('getSelects')[r])              
             }
+            var stagelist = [];
+            for(var sb=0; sb < $('#bobStageDD').multipleSelect('getSelects').length; sb++){
+              stagelist.push($('#bobStageDD').multipleSelect('getSelects')[sb])              
+            }
             inputData['InputQueryHaul'] = this.buildWhereClause('haul') +"and ZOOP_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
             inputData['Taxa_List'] = taxonlist;
+            inputData['stage'] = stagelist[0];
           }
-          else if(this.SAMPLETYPE == 'ICHBASE' && $('#ichSpeciesDD').multipleSelect('getSelects').length > 0 ){
+          else if(this.SAMPLETYPE == 'ICHBASE' && $('#ichSpeciesDD').multipleSelect('getSelects').length > 0 && $('#ichStageDD').multipleSelect('getSelects').length > 0){
             var gp_url = this.config.gp_data_tools.catchzero;
             inputData['InputSpeciesQuery'] = this.buildWhereClause('species') + "and species_name = '%specie%'";
             var specieslist = [];
             for(var s=0; s < $('#ichSpeciesDD').multipleSelect('getSelects').length; s++){
               specieslist.push($('#ichSpeciesDD').multipleSelect('getSelects')[s])              
             }
-
+            var stagelist = [];
+            for(var sb=0; sb < $('#ichStageDD').multipleSelect('getSelects').length; sb++){
+              stagelist.push($('#ichStageDD').multipleSelect('getSelects')[sb])              
+            }
+            inputData['stage'] = stagelist[0];
             inputData['InputQueryHaul'] = this.buildWhereClause('haul') + "and ICH_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
-
             inputData['Species_List'] = specieslist;
           }
           else{
               new Message({
                   titleLabel: "Error",
-                  message: "Please Select ICH Species or BOB Taxon Codes"
+                  message: "Please Select ICH Species or BOB Taxon Codes and 1 Stage"
                 });
               return;
           }
@@ -2862,7 +2869,7 @@ define([
       onSearchAbud:function(){
         if($('#ichSpeciesDD').multipleSelect('getSelects').length > 0){
           var inputData = {};
-          inputData['Input_Query'] = this.buildWhereClause('species');
+          inputData['Input_Query'] = this.buildWhereClause('');
           var gp_url = this.config.gp_data_tools.ichabundance;
 
           var gps = new Geoprocessor(gp_url);
@@ -3198,6 +3205,9 @@ define([
           if (this.rsltsTab) {
             this.tabContainer.selectTab(this.nls.results);
           }
+
+          //Clear ecodaat layer
+          this.map.getLayer('EcoDAAT Layers').setVisibleLayers([-1]);
         }
         
         //check for required fields
@@ -3368,6 +3378,8 @@ define([
           }
         }
 
+        this.map.getLayer('EcoDAAT Layers').setVisibleLayers([0]);
+
         $('#cruiseSeacatDD').multipleSelect('uncheckAll');
         $('#cruisectdbDD').multipleSelect('uncheckAll');
         $('#cruisenutrientDD').multipleSelect('uncheckAll');
@@ -3450,7 +3462,6 @@ define([
             expr+= "AND HAUL_ID LIKE '%"+ $('#haulidtext').val().toUpperCase()+"%' ";
           }
         }
-        
 
         if($("#cruiseSeacatDD option:selected").index() > -1 && $('.cruiseSeacatClass').is(":visible")){
           expr+= "AND CRUISE"+this.buildQueryValue($('#cruiseSeacatDD').multipleSelect('getSelects'));
