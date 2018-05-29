@@ -942,7 +942,7 @@ define([
       }
 
       //export geometry if shape type of layer is point
-      if ('datas' in options && this.layer.geometryType === 'esriGeometryPoint') {
+      /*if ('datas' in options && this.layer.geometryType === 'esriGeometryPoint') {
         var datas = lang.clone(options.datas);
         array.forEach(datas, function(d) {
           var geometry = d.geometry;
@@ -996,7 +996,7 @@ define([
           show: true,
           type: "esriFieldTypeDouble"
         });
-      }
+      }*/
 
       options.fromClient = false;
       options.withGeometry = this.layer.geometryType === 'esriGeometryPoint';

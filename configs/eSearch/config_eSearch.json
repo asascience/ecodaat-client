@@ -644,8 +644,7 @@
           },
           {
             "name": "YEAR",
-            "alias": "YEAR",
-            "isnumber": true
+            "alias": "YEAR"
           },
           {
             "name": "ZOOP_PROC",
@@ -2966,11 +2965,6 @@
             "alias": "HAUL_ID"
           },
           {
-            "name": "CTD_ID",
-            "alias": "CTD_ID",
-            "isnumber": true
-          },
-          {
             "name": "PO4",
             "alias": "PO4",
             "isnumber": true
@@ -3010,10 +3004,6 @@
             "isnumber": true
           },
           {
-            "name": "NUT_ID",
-            "alias": "NUT_ID"
-          },
-          {
             "name": "NO3",
             "alias": "NO3",
             "isnumber": true
@@ -3021,11 +3011,6 @@
           {
             "name": "COMMENTS_NUTRIENT",
             "alias": "COMMENTS_NUTRIENT"
-          },
-          {
-            "name": "CTDB_ID",
-            "alias": "CTDB_ID",
-            "isnumber": true
           },
           {
             "name": "SAMPLE_ID",
@@ -3909,11 +3894,6 @@
           {
             "name": "DAY",
             "alias": "DAY",
-            "isnumber": true
-          },
-          {
-            "name": "DIET_ID",
-            "alias": "DIET_ID",
             "isnumber": true
           },
           {

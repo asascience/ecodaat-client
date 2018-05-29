@@ -254,6 +254,17 @@ define([
           }
           that.fieldselect._updateSelection();
         });
+        this.checkBoxSortFields.onChange = lang.hitch(this, function(e){
+          //that.fieldselect.set("value",[]);
+          var fieldsArray = this.fieldselectdropdown.getOptions();
+          this.fieldselectdropdown.removeOption(this.fieldselectdropdown.getOptions());
+          if(e){
+            this.fieldselectdropdown.addOption(fieldsArray.sort(this.comparesortselected));
+          }
+          else{
+            this.fieldselectdropdown.addOption(fieldsArray.sort(this.comparesort));
+          }
+        });        
       },
 
       populateAllDropDowns: function(){
@@ -525,18 +536,34 @@ define([
         this.list.parentWidget = this;
       },
 
+      _containsObject: function (obj, list) {
+          var i;
+          for (i = 0; i < list.length; i++) {
+              if (list[i].label === obj) {
+                  return true;
+              }
+          }
+          return false;
+      },
+
       _onfieldSelctChange: function(type){
-        this.fieldselectdropdown.removeOption(this.fieldselectdropdown.getOptions());
-        var fieldsArray = [];
+        if(type>0){
+          this.fieldselectdropdown.removeOption(this.fieldselectdropdown.getOptions());
+          var fieldsArray = []; 
+        }
 
         //no filter
         if(type == 0){
+          var fieldsArray = this.fieldselectdropdown.getOptions();
+          this.fieldselectdropdown.removeOption(this.fieldselectdropdown.getOptions());
           for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
             var selectfieldDefault = false;
             if(this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1){
               selectfieldDefault = true;
             }
-            fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});  
+            if(!that._containsObject(this.config.layers[this.layerValueforFieldArray].fields.field[e].name,fieldsArray)){
+              fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});    
+            }            
           }
         }
         //ICH
@@ -577,6 +604,14 @@ define([
         }
                 
         this.fieldselectdropdown.addOption(fieldsArray.sort(this.comparesort));
+      },
+
+      comparesortselected: function (a,b) {
+        if (a.selected < b.selected)
+          return 1;
+        if (a.selected > b.selected)
+          return -1;
+        return 0;
       },
 
       comparesort: function (a,b) {
@@ -1341,7 +1376,10 @@ define([
             $('#cruisenutrientDD').next().show();
           }
           else if(newValue == 8){//diet
-            $('.cruiseClass').show();
+            $('#cruiseDD').next().show();
+            $('.ichStageClass').not('select').show();
+            $('.ichSpeciesClass').not('select').show();
+            //$('.cruiseClass').show();
           }
           else {//ctdb
             $('#cruisectdbDD').next().show();
@@ -2777,6 +2815,13 @@ define([
             for(var sb=0; sb < $('#bobStageDD').multipleSelect('getSelects').length; sb++){
               stagelist.push($('#bobStageDD').multipleSelect('getSelects')[sb])              
             }
+            if(stagelist.length > 1){
+              new Message({
+                  titleLabel: "Error",
+                  message: "Please Select Only one Stage for Catch with Zero"
+                });
+              return;
+            }
             inputData['InputQueryHaul'] = this.buildWhereClause('haul') +"and ZOOP_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
             inputData['Taxa_List'] = taxonlist;
             inputData['stage'] = stagelist[0];
@@ -2791,6 +2836,13 @@ define([
             var stagelist = [];
             for(var sb=0; sb < $('#ichStageDD').multipleSelect('getSelects').length; sb++){
               stagelist.push($('#ichStageDD').multipleSelect('getSelects')[sb])              
+            }
+            if(stagelist.length > 1){
+              new Message({
+                  titleLabel: "Error",
+                  message: "Please Select Only one Stage for Catch with Zero"
+                });
+              return;
             }
             inputData['stage'] = stagelist[0];
             inputData['InputQueryHaul'] = this.buildWhereClause('haul') + "and ICH_PROC IS NOT NULL AND NUMBER_OF_JARS >0";
@@ -2819,7 +2871,7 @@ define([
       onSearchTrawlLength:function(){
         if($('#trawlSpeciesDD').multipleSelect('getSelects').length > 0){
           var inputData = {};
-          inputData['SQL_Query'] = this.buildWhereClause('species');
+          inputData['SQL_Query'] = this.buildWhereClause('');
           var gp_url = this.config.gp_data_tools.trawllength;
           var gps = new Geoprocessor(gp_url);
           gps.on("job-complete", this.returnGPFileTrawl); //standardlength_freq_trawl_xls  //totallength_freq_trawl_xls //forklength_freq_trawl_xls //lengthsea_freq_trawl_xls 
@@ -2844,7 +2896,7 @@ define([
       onSearchIchFreq:function(){
         if($('#ichSpeciesDD').multipleSelect('getSelects').length > 0 ){
           var inputData = {};
-          inputData['Input_Query'] = this.buildWhereClause('species');
+          inputData['Input_Query_Filter'] = this.buildWhereClause('');
           var gp_url = this.config.gp_data_tools.ichlength;
 
           var gps = new Geoprocessor(gp_url);

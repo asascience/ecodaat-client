@@ -31,7 +31,7 @@
       </div>
       <div style="white-space: nowrap;" data-dojo-attach-point="bufferGraDiv">
         <div data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="cbxBufferGraphic" data-dojo-props="label:'${nls.bufferGraphic}'" style="margin-top: 8px;"></div>
-        <input type="text" data-dojo-type="dijit/form/NumberTextBox" data-dojo-attach-point="txtBufferValue" data-dojo-props="required:true,intermediateChanges:true" style="width:50px;padding-right:5px;margin-top:-8px;" />
+        <input type="text" data-dojo-type="dijit/form/NumberTextBox" data-dojo-attach-point="txtBufferValue" data-dojo-props="required:true,intermediateChanges:true" style="width:200px;padding-right:5px;margin-top:-8px;" />
         <select style="width:120px;padding-right:5px;margin-top:-8px;" data-dojo-attach-point="bufferUnits" data-dojo-type="dijit/form/Select"></select>
         <a style="float:right; margin-right:10px" href="#" data-dojo-attach-point="btnClearBuffer2">${nls.clearBuffer}</a>
       </div>
@@ -331,7 +331,8 @@
           <option value="3" selected="selected">TRAWL</option>
         </select>
         <br><br>
-        <div data-dojo-type="jimu/dijit/CheckBox" style="margin-left: 40%;" data-dojo-attach-point="checkBoxFields" data-dojo-props="label:'Select All Fields'"></div>
+        <div data-dojo-type="jimu/dijit/CheckBox" style="margin-left: 28%;" data-dojo-attach-point="checkBoxFields" data-dojo-props="label:'Select All Fields'"></div>
+        <div data-dojo-type="jimu/dijit/CheckBox" style="" data-dojo-attach-point="checkBoxSortFields" data-dojo-props="label:'Sort by Checked'"></div>
         <br>
         <select multiple="true" style="margin-left: 26%;width: 250px" data-dojo-attach-point="fieldselect" id="fieldselect" name="multiselect" data-dojo-type="dojox.form.CheckedMultiSelect">
        </select>

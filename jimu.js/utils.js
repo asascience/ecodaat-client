@@ -1805,9 +1805,11 @@ function(lang, array, html, has, config, ioQuery, query, nlt, Deferred, all, on,
       var patchStr = Array.prototype.join.call({
         length: places > 0 ? (places + 1) : decimalLen
       }, '0');
-      _pattern = "#,###,###,##0.0" + patchStr;
+      //_pattern = "#,###,###,##0.0" + patchStr;
+      _pattern = "#########0.0" + patchStr;
     }else {
-      _pattern = "#,###,###,##0";
+      //_pattern = "#,###,###,##0";
+      _pattern = "#########0";
     }
 
     var _options = {
@@ -1934,7 +1936,7 @@ function(lang, array, html, has, config, ioQuery, query, nlt, Deferred, all, on,
         date: d instanceof Date ? d.getTime() : d
       };
       var dateFormat = lang.exists('format.dateFormat', fieldInfo) ?
-      fieldInfo.format.dateFormat : 'longMonthDayYear';
+      fieldInfo.format.dateFormat : 'shortDateLongTime24';
 
       var substOptions = {
         dateFormat: {

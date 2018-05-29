@@ -176,10 +176,17 @@
   width: auto;
 }
 .jimu-widget-attributetable .dgrid-row .dgrid-cell {
-  border:medium none;
+  /*border:medium none;*/
   padding: 7px 3px;
   border-right: 1px solid #CCCCCC;
 }
+
+/*.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+  border: 1px solid #d3d3d3; 
+  background: '' !important;
+    /* font-weight: normal; */
+    /* color: #555; 
+}*/
 .jimu-rtl .jimu-widget-attributetable .dgrid-rtl-swap .dgrid-header-row {
     right: 0;
     left: 17px;
