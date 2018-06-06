@@ -29,7 +29,7 @@ define({
     featuresSelected: "Features selected: ",
     noResults: "No results.",
     searching: "Searching...",
-    searchError: "The Search failed, please check your inputs and try again.",
+    searchError: "The Search failed, please check your inputs and try again. Try selecting less fields for output file.",
     searchResult: "Search result",
     useMultiGraphics: "Enable multi-part graphics",
     addTolerance: "Add search tolerance to point selection",

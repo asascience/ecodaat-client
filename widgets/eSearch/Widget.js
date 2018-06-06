@@ -1377,8 +1377,8 @@ define([
           }
           else if(newValue == 8){//diet
             $('#cruiseDD').next().show();
-            $('.ichStageClass').not('select').show();
-            $('.ichSpeciesClass').not('select').show();
+            //$('.ichStageClass').not('select').show();
+            //$('.ichSpeciesClass').not('select').show();
             //$('.cruiseClass').show();
           }
           else {//ctdb
@@ -3259,7 +3259,7 @@ define([
           }
 
           //Clear ecodaat layer
-          this.map.getLayer('EcoDAAT Layers').setVisibleLayers([-1]);
+          //this.map.getLayer('EcoDAAT Layers').setVisibleLayers([-1]);
         }
         
         //check for required fields
@@ -3292,6 +3292,7 @@ define([
         }*/
 
         var fieldsselected = this.fieldselectdropdown.getOptions();
+        fields.push(layerConfig.objectIdField);
         for (var i = 0, len = fieldsselected.length; i < len; i++) {
           if(fieldsselected[i].selected){
             fields.push(fieldsselected[i].value);
@@ -3324,6 +3325,9 @@ define([
         if(layerIndex>8){
           queryParams.returnGeometry = false;  
           queryParams.outFields = ['*'];
+        }
+        else if(this.checkBox4LargeQuery.checked){
+          queryParams.returnGeometry = false;
         }
         else{
           queryParams.returnGeometry = true;
@@ -3430,7 +3434,9 @@ define([
           }
         }
 
-        this.map.getLayer('EcoDAAT Layers').setVisibleLayers([0]);
+        this.checkBox4LargeQuery.setValue(false);
+
+        //this.map.getLayer('EcoDAAT Layers').setVisibleLayers([0]);
 
         $('#cruiseSeacatDD').multipleSelect('uncheckAll');
         $('#cruisectdbDD').multipleSelect('uncheckAll');
@@ -3515,73 +3521,73 @@ define([
           }
         }
 
-        if($("#cruiseSeacatDD option:selected").index() > -1 && $('.cruiseSeacatClass').is(":visible")){
+        if($(".cruiseSeacatClass span").text() != "All selected" && $("#cruiseSeacatDD option:selected").index() > -1 && $('.cruiseSeacatClass').is(":visible")){
           expr+= "AND CRUISE"+this.buildQueryValue($('#cruiseSeacatDD').multipleSelect('getSelects'));
         }
-        if($("#cruisectdbDD option:selected").index() > -1 && $('.cruisectdClass').is(":visible")){
+        if($(".cruisectdClass span").text() != "All selected" && $("#cruisectdbDD option:selected").index() > -1 && $('.cruisectdClass').is(":visible")){
           expr+= "AND CRUISE"+this.buildQueryValue($('#cruisectdbDD').multipleSelect('getSelects'));
         }
-        if($("#cruisenutrientDD option:selected").index() > -1 && $('.cruisenutrientClass').is(":visible")){
+        if($(".cruisenutrientClass span").text() != "All selected" && $("#cruisenutrientDD option:selected").index() > -1 && $('.cruisenutrientClass').is(":visible")){
           expr+= "AND CRUISE"+this.buildQueryValue($('#cruisenutrientDD').multipleSelect('getSelects'));
         }
-        if($("#cruisechlorDD option:selected").index() > -1 && $('.cruisechlorClass').is(":visible")){
+        if($(".cruisechlorClass span").text() != "All selected" && $("#cruisechlorDD option:selected").index() > -1 && $('.cruisechlorClass').is(":visible")){
           expr+= "AND CRUISE"+this.buildQueryValue($('#cruisechlorDD').multipleSelect('getSelects'));
         }
         if($("#specieTypeDD option:selected").index() > -1 && $('.specieTypeClass').is(":visible") && layerIndex != 'haul'){
           expr+= "AND ORIG_DB"+this.buildQueryValue($('#specieTypeDD').multipleSelect('getSelects'));
         }
-        if($("#sampleTypeDD option:selected").index() > -1 && $('.sampleTypeClass').is(":visible") && layerIndex != 'haul' && this.layerValueforFieldArray !=1){
+        if($(".sampleTypeClass span").text() != "All selected" && $("#sampleTypeDD option:selected").index() > -1 && $('.sampleTypeClass').is(":visible") && layerIndex != 'haul' && this.layerValueforFieldArray !=1){
           expr+= "AND SAMPLE_TYPE"+this.buildQueryValue($('#sampleTypeDD').multipleSelect('getSelects'),true);
         }
-        if($("#geo_locDD option:selected").index() > -1 && $('.geo_locClass').is(":visible")){
+        if($(".geo_locClass span").text() != "All selected" && $("#geo_locDD option:selected").index() > -1 && $('.geo_locClass').is(":visible")){
           expr+= "AND GEOGRAPHIC_AREA"+this.buildQueryValue($('#geo_locDD').multipleSelect('getSelects'));
         }
-        if($("#taxonDD option:selected").index() > -1 && $('.taxonClass').is(":visible") && layerIndex != 'haul' && layerIndex != 'species'){
+        if($(".taxonClass span").text() != "All selected" && $("#taxonDD option:selected").index() > -1 && $('.taxonClass').is(":visible") && layerIndex != 'haul' && layerIndex != 'species'){
           expr+= "AND TAXON_NAME"+this.buildQueryValue($('#taxonDD').multipleSelect('getSelects')); //TAXON_NAME
         }
-        if($("#cruiseDD option:selected").index() > -1 && $('.cruiseClass').is(":visible")){
+        if($(".cruiseClass span").text() != "All selected" && $("#cruiseDD option:selected").index() > -1 && $('.cruiseClass').is(":visible")){
           expr+= "AND CRUISE"+this.buildQueryValue($('#cruiseDD').multipleSelect('getSelects'));
         }
-        if($("#projectDD option:selected").index() > -1 && $('.projectClass').is(":visible")){
+        if($(".projectClass span").text() != "All selected" && $("#projectDD option:selected").index() > -1 && $('.projectClass').is(":visible")){
           expr+= "AND PROJECT"+this.buildQueryValue($('#projectDD').multipleSelect('getSelects')); //PROJECT
         }
-        if($("#trawlSpeciesDD option:selected").index() > -1 && $('.trawlSpeciesClass').is(":visible") && layerIndex != 'haul'){
+        if($(".trawlSpeciesClass span").text() != "All selected" && $("#trawlSpeciesDD option:selected").index() > -1 && $('.trawlSpeciesClass').is(":visible") && layerIndex != 'haul'){
           expr+= "AND SPECIES_NAME"+this.buildQueryValue($('#trawlSpeciesDD').multipleSelect('getSelects')); //SPECIES_NAME
         }
-        if($("#gearDD option:selected").index() > -1 && $('.gearClass').is(":visible")){
+        if($(".gearClass span").text() != "All selected" && $("#gearDD option:selected").index() > -1 && $('.gearClass').is(":visible")){
           expr+= "AND GEAR_NAME"+this.buildQueryValue($('#gearDD').multipleSelect('getSelects')); //GEAR_NAME
         }
-        if($("#purposeDD option:selected").index() > -1 && $('.purposeClass').is(":visible")){
+        if($(".purposeClass span").text() != "All selected" && $("#purposeDD option:selected").index() > -1 && $('.purposeClass').is(":visible")){
           expr+= "AND PURPOSE"+this.buildQueryValue($('#purposeDD').multipleSelect('getSelects')); //PURPOSE
         }
-        if($("#ichStageDD option:selected").index() > -1 && $('.ichStageClass').is(":visible") && layerIndex != 'haul'){
+        if($(".ichStageClass span").text() != "All selected" && $("#ichStageDD option:selected").index() > -1 && $('.ichStageClass').is(":visible") && layerIndex != 'haul'){
           expr+= "AND STAGE_NAME"+this.buildQueryValue($('#ichStageDD').multipleSelect('getSelects')); //STAGE_NAME
         }
-        if($("#bobSizeDD option:selected").index() > -1 && $('.bobSizeClass').is(":visible") && layerIndex != 'haul'){
+        if($(".bobSizeClass span").text() != "All selected" && $("#bobSizeDD option:selected").index() > -1 && $('.bobSizeClass').is(":visible") && layerIndex != 'haul'){
           expr+= "AND TAXON_SIZE"+this.buildQueryValue($('#bobSizeDD').multipleSelect('getSelects'));//TAXON_SIZE 
         }
-        if($("#bobStageDD option:selected").index() > -1 && $('.bobStageClass').is(":visible") && layerIndex != 'haul'){
+        if($(".bobStageClass span").text() != "All selected" && $("#bobStageDD option:selected").index() > -1 && $('.bobStageClass').is(":visible") && layerIndex != 'haul'){
           expr+= "AND STAGE_NAME"+this.buildQueryValue($('#bobStageDD').multipleSelect('getSelects')); //STAGE_NAME
         }
-        if($("#zoopProtocolDD option:selected").index() > -1 && $('.zoopProtocolClass').is(":visible") && layerIndex != 'haul'){
+        if($(".zoopProtocolClass span").text() != "All selected" && $("#zoopProtocolDD option:selected").index() > -1 && $('.zoopProtocolClass').is(":visible") && layerIndex != 'haul'){
           expr+= "AND ZOOP_PROTOCOL"+this.buildQueryValue($('#zoopProtocolDD').multipleSelect('getSelects')); //ZOOP_PROTOCOL 
         }
-        if($("#ichSpeciesDD option:selected").index() > -1 && $('.ichSpeciesClass').is(":visible") && layerIndex != 'haul' && layerIndex != 'species'){
+        if($(".ichSpeciesClass span").text() != "All selected" && $("#ichSpeciesDD option:selected").index() > -1 && $('.ichSpeciesClass').is(":visible") && layerIndex != 'haul' && layerIndex != 'species'){
           expr+= "AND SPECIES_NAME"+this.buildQueryValue($('#ichSpeciesDD').multipleSelect('getSelects'));//SPECIES_NAME
         }
-        if($("#netDD option:selected").index() > -1 && $('.netClass').is(":visible") && $('#netDD').is(":visible")){
+        if($(".netClass span").text() != "All selected" && $("#netDD option:selected").index() > -1 && $('.netClass').is(":visible") && $('#netDD').is(":visible")){
           expr+= "AND NET"+this.buildQueryValue($('#netDD').multipleSelect('getSelects'),true); //NET
         }
-        if($("#primaryNetDD option:selected").index() > -1 && $('.primaryNetClass').is(":visible")){
+        if($(".primaryNetClass span").text() != "All selected" && $("#primaryNetDD option:selected").index() > -1 && $('.primaryNetClass').is(":visible")){
           expr+= "AND PRIMARY_NET"+this.buildQueryValue($('#primaryNetDD').multipleSelect('getSelects')); ////PRIMARY_NET
         }
-        if($("#meshDD option:selected").index() > -1 && $('.meshClass').is(":visible")){
+        if($(".meshClass span").text() != "All selected" && $("#meshDD option:selected").index() > -1 && $('.meshClass').is(":visible")){
           expr+= "AND MESH"+this.buildQueryValue($('#meshDD').multipleSelect('getSelects'),true); //MESH
         }
-        if($("#performanceDD option:selected").index() > -1 && $('.performanceClass').is(":visible")){
+        if($(".performanceClass span").text() != "All selected" && $("#performanceDD option:selected").index() > -1 && $('.performanceClass').is(":visible")){
           expr+= "AND HAUL_PERFORMANCE"+this.buildQueryValue($('#performanceDD').multipleSelect('getSelects'));//HAUL_PERFORMANCE
         }
-        if($("#sexDD option:selected").index() > -1 && $('.sexClass').is(":visible") && layerIndex != 'haul'){
+        if($(".sexClass span").text() != "All selected" && $("#sexDD option:selected").index() > -1 && $('.sexClass').is(":visible") && layerIndex != 'haul'){
           expr+= "AND SEX"+this.buildQueryValue($('#cruiseDD').multipleSelect('getSelects'),true);
         }
 
@@ -3899,7 +3905,11 @@ define([
             value = "",
             csvRow = {},
             oidVal;
-          //ensure fields are ordered the same way they are configuraed in the json (this is an issue for ArcGIS Server 10.2.x)
+          
+          oidVal = featureAttributes[objectIdField];
+          title =featureAttributes[titlefield];
+          
+          /*//ensure fields are ordered the same way they are configuraed in the json (this is an issue for ArcGIS Server 10.2.x)
           var tempFlds = lang.clone(this.config.layers[layerIndex].fields.field);
           if(this.config.layers[layerIndex].fields.all){
             var tempFlds = this._getAllLyrFields();
@@ -3909,7 +3919,7 @@ define([
               {"name": objectIdField}
             );
           }
-          /*array.map(tempFlds, lang.hitch(this, function (attr) {
+          array.map(tempFlds, lang.hitch(this, function (attr) {
             var att = attr.name;
             var fld = this._getField(results, att);
             
@@ -4002,8 +4012,10 @@ define([
           } else {
             rsltcontent = rsltcontent;
           }*/
-          var symbol = currentLayer.renderer.getSymbol(results.features[i]);
 
+          var symbol = currentLayer.renderer.getSymbol(results.features[i]);
+          
+          //oidVal = i + listLen;
           if(!removing){
             csvData.push(csvRow);
             this.list.add({
@@ -4429,17 +4441,15 @@ define([
 
       _drawResults: function (layerIndex, results, currentLayer, closeOnComplete) {
         var layerConfig = this.config.layers[layerIndex];
+        
         if (this.graphicsLayerBuffer instanceof FeatureLayer) {
           this._addOperationalLayer(this.graphicsLayerBuffer);
         }
-        if (currentLayer instanceof FeatureLayer) {
-          this._addOperationalLayer(currentLayer);
-        }
-
         var type, centerpoint;
         for (var i = 0, len = this.currentFeatures.length; i < len; i++) {
           var feature = this.currentFeatures[i];
           var listItem = this.list.items[this._returnListIndexFromOID(feature.attributes[layerConfig.objectIdField])];
+          //var listItem = this.list.items[this._returnListIndexFromOID(i)];
           if(feature.geometry){
             type = feature.geometry.type;
           
@@ -4465,16 +4475,33 @@ define([
             }
             feature.setSymbol(listItem.sym);
             if (feature.geometry) {
-              currentLayer.add(feature);
               listItem.graphic = feature;
+              currentLayer.add(feature);
             }
+          }
+          else{
+            currentLayer.add(feature);
           }
         }
         this.zoomAttempt = 0;
 
+        if (currentLayer instanceof FeatureLayer) {
+          this._addOperationalLayer(currentLayer);
+        }
         if (this.mouseovergraphics) {
           on(currentLayer, 'mouse-over', lang.hitch(this, this.onMouseOverGraphic));
         }
+        
+        /*if(results.features.length < 30000){
+          
+        }
+        else{
+          this.operationalLayers.push(currentLayer);
+          for (var i = 0, len = this.currentFeatures.length; i < len; i++) {
+            var feature = this.currentFeatures[i];
+            currentLayer.add(feature);
+          }
+        }*/
         this.currentLayerAdded = currentLayer;
 
         this.addlayerToAttributeTable(layerConfig, this.currentLayerAdded);

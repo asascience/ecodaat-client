@@ -51,6 +51,14 @@ define([
       this._bindEvents();
     },
 
+    updateNoTable: function() {
+      this._extraSetLayerInfos();
+      this._clearAddedFlag(this._layerInfos);
+      //this._initFinalTableInfos();
+      this._initFinalLayerInfos(this._layerInfos);
+      this._markFirstOrLastNode();
+    },
+
     update: function() {
       this._extraSetLayerInfos();
       this._clearAddedFlag(this._layerInfos);
@@ -143,7 +151,7 @@ define([
       if(newLayerInfo) {
         newLayerInfo._extraOfWebmapLayerInfo = true;
         this._layerInfos.push(newLayerInfo);
-        this.update();
+        this.updateNoTable();
         this._onUpdated();
       }
 
@@ -868,7 +876,7 @@ define([
         evt.layer.declaredClass !== "esri.layers.LabelLayer" &&
         !evt.layer._basemapGalleryLayerType) {
         if (changedType === "added") {
-          this.update();
+          this.updateNoTable();
           layerInfo = this._findTopLayerInfoById(evt.layer.id);
           layerInfoSelf = this._findLayerInfoById(evt.layer.id);
         } else {
@@ -877,7 +885,7 @@ define([
           if(layerInfoSelf) {
             layerInfoSelf.destroyLayerInfo();
           }
-          this.update();
+          this.updateNoTable();
         }
         // layerInfos top layer changed.
         this._emitEvent('layerInfosChanged', layerInfo, changedType, layerInfoSelf);

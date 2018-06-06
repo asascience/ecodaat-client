@@ -680,125 +680,6 @@
       "expressions": {
         "expression": [
           {
-            "alias": "Cruise Name",
-            "textsearchlabel": "Cruise Name",
-            "values": {
-              "value": [
-                {
-                  "fieldObj": {
-                    "name": "CRUISE",
-                    "label": "CRUISE",
-                    "shortType": "string",
-                    "type": "esriFieldTypeString"
-                  },
-                  "valueObj": {
-                    "value": "allu"
-                  },
-                  "prompt": "",
-                  "textsearchhint": "",
-                  "sqltext": "CRUISE = 'allu'",
-                  "operation": "stringOperatorIs",
-                  "uniquevalsfromfield": "CRUISE"
-                }
-              ]
-            }
-          },
-          {
-            "alias": "Net",
-            "textsearchlabel": "Net",
-            "values": {
-              "value": [
-                {
-                  "fieldObj": {
-                    "name": "NET",
-                    "label": "NET",
-                    "shortType": "number",
-                    "type": "esriFieldTypeDouble"
-                  },
-                  "valueObj": {
-                    "value": null
-                  },
-                  "prompt": "",
-                  "textsearchhint": "",
-                  "sqltext": "NET =",
-                  "operation": "numberOperatorIs",
-                  "uniquevalsfromfield": "NET"
-                }
-              ]
-            }
-          },
-          {
-            "alias": "Primary Net",
-            "textsearchlabel": "Primary Net",
-            "values": {
-              "value": [
-                {
-                  "fieldObj": {
-                    "name": "PRIMARY_NET",
-                    "label": "PRIMARY_NET",
-                    "shortType": "string",
-                    "type": "esriFieldTypeString"
-                  },
-                  "valueObj": {
-                    "value": "allu"
-                  },
-                  "prompt": "",
-                  "textsearchhint": "",
-                  "sqltext": "PRIMARY_NET = 'allu'",
-                  "operation": "stringOperatorIs",
-                  "uniquevalsfromfield": "PRIMARY_NET"
-                }
-              ]
-            }
-          },
-          {
-            "alias": "Geographic Area",
-            "textsearchlabel": "Geographic Area",
-            "values": {
-              "value": [
-                {
-                  "fieldObj": {
-                    "name": "GEOGRAPHIC_AREA",
-                    "label": "GEOGRAPHIC_AREA",
-                    "shortType": "string",
-                    "type": "esriFieldTypeString"
-                  },
-                  "valueObj": {
-                    "value": "allu"
-                  },
-                  "prompt": "",
-                  "textsearchhint": "",
-                  "sqltext": "GEOGRAPHIC_AREA = 'allu'",
-                  "operation": "stringOperatorIs",
-                  "uniquevalsfromfield": "GEOGRAPHIC_AREA"
-                }
-              ]
-            }
-          },
-          {
-            "alias": "Haul ID",
-            "textsearchlabel": "Haul ID",
-            "values": {
-              "value": [
-                {
-                  "fieldObj": {
-                    "name": "HAUL_ID",
-                    "label": "HAUL_ID",
-                    "shortType": "string",
-                    "type": "esriFieldTypeString"
-                  },
-                  "valueObj": {
-                    "value": ""
-                  },
-                  "prompt": "",
-                  "textsearchhint": "",
-                  "sqltext": "Upper(HAUL_ID) LIKE Upper('%%')",
-                  "operation": "stringOperatorContains"
-                }
-              ]
-            }
-          },
-          {
             "alias": "Purpose",
             "textsearchlabel": "Purpose",
             "values": {
@@ -822,7 +703,7 @@
           }
         ]
       },
-      "titlefield": null,
+      "titlefield": "HAUL_ID",
       "fields": {
         "all": false,
         "field": [
@@ -1097,24 +978,6 @@
             "isdate": true
           },
           {
-            "name": "PRIMARY_NET_OLD",
-            "alias": "PRIMARY_NET_OLD"
-          },
-          {
-            "name": "GMT_DATE_TIME_TEXT",
-            "alias": "GMT_DATE_TIME_TEXT"
-          },
-          {
-            "name": "DOE",
-            "alias": "DOE",
-            "isdate": true
-          },
-          {
-            "name": "DOC",
-            "alias": "DOC",
-            "isdate": true
-          },
-          {
             "name": "MONTH_NAME",
             "alias": "MONTH_NAME"
           },
@@ -1184,7 +1047,7 @@
           }
         ]
       },
-      "titlefield": null,
+      "titlefield": "FOCI_SAMPLE_ID",
       "fields": {
         "all": false,
         "field": [
@@ -2272,7 +2135,7 @@
           }
         ]
       },
-      "titlefield": null,
+      "titlefield": "FOCI_SAMPLE_ID",
       "fields": {
         "all": false,
         "field": [
@@ -2500,7 +2363,7 @@
           }
         ]
       },
-      "titlefield": null,
+      "titlefield": "CRUISE",
       "fields": {
         "all": false,
         "field": [
@@ -2703,7 +2566,7 @@
           }
         ]
       },
-      "titlefield": null,
+      "titlefield": "CRUISE",
       "fields": {
         "all": false,
         "field": [
@@ -2951,7 +2814,7 @@
           }
         ]
       },
-      "titlefield": null,
+      "titlefield": "CRUISE",
       "fields": {
         "all": false,
         "field": [
@@ -3141,7 +3004,7 @@
           }
         ]
       },
-      "titlefield": null,
+      "titlefield": "CRUISE",
       "fields": {
         "all": false,
         "field": [
@@ -3333,17 +3196,116 @@
           }
         ]
       },
-      "titlefield": null,
+      "titlefield": "CRUISE",
       "fields": {
         "all": false,
         "field": [
+          {
+            "name": "DIET_SPECIES_NAME",
+            "alias": "DIET_SPECIES_NAME"
+          },
+          {
+            "name": "PREY_CODE_TRAWL",
+            "alias": "PREY_CODE_TRAWL"
+          },
+          {
+            "name": "PREY_COMMENTS",
+            "alias": "PREY_COMMENTS"
+          },
+          {
+            "name": "PREY_COUNT",
+            "alias": "PREY_COUNT",
+            "isnumber": true
+          },
+          {
+            "name": "PREY_QUALITY",
+            "alias": "PREY_QUALITY",
+            "isnumber": true
+          },
+          {
+            "name": "PREY_WEIGHT",
+            "alias": "PREY_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "ABBR_NAME",
+            "alias": "ABBR_NAME"
+          },
           {
             "name": "AGE_GROWTH_SAMPLE",
             "alias": "AGE_GROWTH_SAMPLE"
           },
           {
+            "name": "ALT_COMMON_NAME_TRAWL",
+            "alias": "ALT_COMMON_NAME_TRAWL"
+          },
+          {
+            "name": "ALT_GENUS",
+            "alias": "ALT_GENUS"
+          },
+          {
+            "name": "ALT_SPECIMEN_NAME",
+            "alias": "ALT_SPECIMEN_NAME"
+          },
+          {
+            "name": "ALT_SPECIMEN_NUMBER",
+            "alias": "ALT_SPECIMEN_NUMBER",
+            "isnumber": true
+          },
+          {
             "name": "ALT_STATION_NAME",
             "alias": "ALT_STATION_NAME"
+          },
+          {
+            "name": "BOTTOM_DEPTH",
+            "alias": "BOTTOM_DEPTH",
+            "isnumber": true
+          },
+          {
+            "name": "CARBON_DRY_WEIGHT",
+            "alias": "CARBON_DRY_WEIGHT",
+            "isnumber": true
+          },
+          {
+            "name": "COMMENTS_HAUL",
+            "alias": "COMMENTS_HAUL"
+          },
+          {
+            "name": "COMMENTS_ICHBASE",
+            "alias": "COMMENTS_ICHBASE"
+          },
+          {
+            "name": "COMMENTS_SAMPLES",
+            "alias": "COMMENTS_SAMPLES"
+          },
+          {
+            "name": "COMMENTS_SPECIES_CODE",
+            "alias": "COMMENTS_SPECIES_CODE"
+          },
+          {
+            "name": "COMMENTS_SPECIMEN",
+            "alias": "COMMENTS_SPECIMEN"
+          },
+          {
+            "name": "COMMON_NAME",
+            "alias": "COMMON_NAME"
+          },
+          {
+            "name": "COMMON_NAME_ICHBASE",
+            "alias": "COMMON_NAME_ICHBASE"
+          },
+          {
+            "name": "COMMON_NAME_IIS",
+            "alias": "COMMON_NAME_IIS"
+          },
+          {
+            "name": "COMMON_NAME_RACEBASE",
+            "alias": "COMMON_NAME_RACEBASE"
+          },
+          {
+            "name": "CPUE",
+            "alias": "CPUE",
+            "isnumber": true
           },
           {
             "name": "CRUISE",
@@ -3354,6 +3316,31 @@
             "alias": "CRUISE_NAME"
           },
           {
+            "name": "DATABASE_BOB",
+            "alias": "DATABASE_BOB"
+          },
+          {
+            "name": "DATABASE_ICHBASE",
+            "alias": "DATABASE_ICHBASE"
+          },
+          {
+            "name": "DATABASE_IIS",
+            "alias": "DATABASE_IIS"
+          },
+          {
+            "name": "DATABASE_RACEBASE",
+            "alias": "DATABASE_RACEBASE"
+          },
+          {
+            "name": "DATABASE_TRAWL",
+            "alias": "DATABASE_TRAWL"
+          },
+          {
+            "name": "DAY",
+            "alias": "DAY",
+            "isnumber": true
+          },
+          {
             "name": "DESCRIPTION",
             "alias": "DESCRIPTION"
           },
@@ -3362,12 +3349,38 @@
             "alias": "DIEL"
           },
           {
-            "name": "DIET_SPECIES_NAME",
-            "alias": "DIET_SPECIES_NAME"
-          },
-          {
             "name": "DIGESTION",
             "alias": "DIGESTION"
+          },
+          {
+            "name": "DIS_PERVOLM2",
+            "alias": "DIS_PERVOLM2",
+            "isnumber": true
+          },
+          {
+            "name": "DIS_PERVOLM3",
+            "alias": "DIS_PERVOLM3",
+            "isnumber": true
+          },
+          {
+            "name": "DISTANCE_FISHED_0",
+            "alias": "DISTANCE_FISHED_0",
+            "isnumber": true
+          },
+          {
+            "name": "DISTANCE_FISHED_1",
+            "alias": "DISTANCE_FISHED_1",
+            "isnumber": true
+          },
+          {
+            "name": "DOC",
+            "alias": "DOC",
+            "isdate": true
+          },
+          {
+            "name": "DOE",
+            "alias": "DOE",
+            "isdate": true
           },
           {
             "name": "DOOR",
@@ -3388,8 +3401,49 @@
             "isnumber": true
           },
           {
+            "name": "EQUILIBRIUM",
+            "alias": "EQUILIBRIUM",
+            "isnumber": true
+          },
+          {
+            "name": "EST_NUM_PERM2",
+            "alias": "EST_NUM_PERM2",
+            "isnumber": true
+          },
+          {
+            "name": "EST_NUM_PERM3",
+            "alias": "EST_NUM_PERM3",
+            "isnumber": true
+          },
+          {
+            "name": "EST_NUM_PERSAMPLE",
+            "alias": "EST_NUM_PERSAMPLE",
+            "isnumber": true
+          },
+          {
             "name": "EXAMINER",
             "alias": "EXAMINER"
+          },
+          {
+            "name": "FAMILY",
+            "alias": "FAMILY"
+          },
+          {
+            "name": "FAMILY_CODE_IIS",
+            "alias": "FAMILY_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "FAMILY_COM_IIS",
+            "alias": "FAMILY_COM_IIS"
+          },
+          {
+            "name": "FAMILY_COMMON_NAME",
+            "alias": "FAMILY_COMMON_NAME"
+          },
+          {
+            "name": "FAMILY_IIS",
+            "alias": "FAMILY_IIS"
           },
           {
             "name": "FLOWMETER",
@@ -3402,12 +3456,20 @@
             "isnumber": true
           },
           {
+            "name": "FOCI_GEAR_ID",
+            "alias": "FOCI_GEAR_ID"
+          },
+          {
             "name": "FOCI_GRID",
             "alias": "FOCI_GRID"
           },
           {
             "name": "FOCI_ID",
             "alias": "FOCI_ID"
+          },
+          {
+            "name": "FOCI_PRESERVE_ID",
+            "alias": "FOCI_PRESERVE_ID"
           },
           {
             "name": "FOCI_SAMPLE_ID",
@@ -3439,6 +3501,31 @@
             "alias": "GENETIC_SAMPLE"
           },
           {
+            "name": "GENUS",
+            "alias": "GENUS"
+          },
+          {
+            "name": "GENUS_CODE_IIS",
+            "alias": "GENUS_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "GENUS_COM_IIS",
+            "alias": "GENUS_COM_IIS"
+          },
+          {
+            "name": "GENUS_COMMON_NAME",
+            "alias": "GENUS_COMMON_NAME"
+          },
+          {
+            "name": "GENUS_ICHBASE",
+            "alias": "GENUS_ICHBASE"
+          },
+          {
+            "name": "GENUS_IIS",
+            "alias": "GENUS_IIS"
+          },
+          {
             "name": "GEOGRAPHIC_AREA",
             "alias": "GEOGRAPHIC_AREA"
           },
@@ -3446,6 +3533,19 @@
             "name": "GMT_DATE_TIME",
             "alias": "GMT_DATE_TIME",
             "isdate": true
+          },
+          {
+            "name": "GMT_DATE_TIME_END",
+            "alias": "GMT_DATE_TIME_END",
+            "isdate": true
+          },
+          {
+            "name": "GROUP_TRAWL",
+            "alias": "GROUP_TRAWL"
+          },
+          {
+            "name": "GSID_IIS",
+            "alias": "GSID_IIS"
           },
           {
             "name": "H_ID",
@@ -3466,8 +3566,47 @@
             "alias": "HAUL_PERFORMANCE"
           },
           {
+            "name": "ICH_FAMILY_ICHBASE",
+            "alias": "ICH_FAMILY_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "ICH_GENUS_ICHBASE",
+            "alias": "ICH_GENUS_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "ICH_ORDER_ICHBASE",
+            "alias": "ICH_ORDER_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "ICH_SPECIES_ICHBASE",
+            "alias": "ICH_SPECIES_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "ITIS_CODE",
+            "alias": "ITIS_CODE"
+          },
+          {
+            "name": "LARVALCATCHPER1000M3",
+            "alias": "LARVALCATCHPER1000M3",
+            "isnumber": true
+          },
+          {
+            "name": "LARVALCATCHPER10M2",
+            "alias": "LARVALCATCHPER10M2",
+            "isnumber": true
+          },
+          {
             "name": "LAT",
             "alias": "LAT",
+            "isnumber": true
+          },
+          {
+            "name": "LAT_END",
+            "alias": "LAT_END",
             "isnumber": true
           },
           {
@@ -3508,6 +3647,11 @@
             "isnumber": true
           },
           {
+            "name": "LON_END",
+            "alias": "LON_END",
+            "isnumber": true
+          },
+          {
             "name": "MAX_GEAR_DEPTH",
             "alias": "MAX_GEAR_DEPTH",
             "isnumber": true
@@ -3533,9 +3677,18 @@
             "isnumber": true
           },
           {
+            "name": "MONTH",
+            "alias": "MONTH",
+            "isnumber": true
+          },
+          {
             "name": "MOUTH_AREA",
             "alias": "MOUTH_AREA",
             "isnumber": true
+          },
+          {
+            "name": "MULTIPLE_REQ",
+            "alias": "MULTIPLE_REQ"
           },
           {
             "name": "NET",
@@ -3557,13 +3710,32 @@
             "isnumber": true
           },
           {
+            "name": "NODC_CODE",
+            "alias": "NODC_CODE"
+          },
+          {
             "name": "NON_SUBSAMPLE_WEIGHT",
             "alias": "NON_SUBSAMPLE_WEIGHT",
             "isnumber": true
           },
           {
+            "name": "NUMBER_CAUGHT",
+            "alias": "NUMBER_CAUGHT",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_EGGS",
+            "alias": "NUMBER_EGGS",
+            "isnumber": true
+          },
+          {
             "name": "NUMBER_MEASURED_COUNTED",
             "alias": "NUMBER_MEASURED_COUNTED",
+            "isnumber": true
+          },
+          {
+            "name": "NUMBER_MEASURED_COUNTED_COPY",
+            "alias": "NUMBER_MEASURED_COUNTED_COPY",
             "isnumber": true
           },
           {
@@ -3582,13 +3754,66 @@
             "isnumber": true
           },
           {
+            "name": "OLD_PREY_CODE_TRAWL",
+            "alias": "OLD_PREY_CODE_TRAWL",
+            "isnumber": true
+          },
+          {
+            "name": "ORDER_CODE_IIS",
+            "alias": "ORDER_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "ORDER_COM_IIS",
+            "alias": "ORDER_COM_IIS"
+          },
+          {
+            "name": "ORDER_IIS",
+            "alias": "ORDER_IIS"
+          },
+          {
             "name": "ORGANISM_TYPE",
             "alias": "ORGANISM_TYPE"
+          },
+          {
+            "name": "ORIG_DB",
+            "alias": "ORIG_DB"
+          },
+          {
+            "name": "PHYLOGENY_CODE_IIS",
+            "alias": "PHYLOGENY_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "PHYLOGENY_CODE_OLD_IIS",
+            "alias": "PHYLOGENY_CODE_OLD_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "PHYTO_ASSESS",
+            "alias": "PHYTO_ASSESS"
+          },
+          {
+            "name": "PHYTO_ASSESS_ID",
+            "alias": "PHYTO_ASSESS_ID",
+            "isnumber": true
+          },
+          {
+            "name": "PI_COMPONENT",
+            "alias": "PI_COMPONENT"
           },
           {
             "name": "POLYGONAL_AREA",
             "alias": "POLYGONAL_AREA",
             "isnumber": true
+          },
+          {
+            "name": "PRESERVATIVE",
+            "alias": "PRESERVATIVE"
+          },
+          {
+            "name": "PRESERVE_COMMENTS",
+            "alias": "PRESERVE_COMMENTS"
           },
           {
             "name": "PRESERVE_ID",
@@ -3600,23 +3825,8 @@
             "alias": "PREY_CODE_TRAWL"
           },
           {
-            "name": "PREY_COMMENTS",
-            "alias": "PREY_COMMENTS"
-          },
-          {
-            "name": "PREY_COUNT",
-            "alias": "PREY_COUNT",
-            "isnumber": true
-          },
-          {
-            "name": "PREY_QUALITY",
-            "alias": "PREY_QUALITY",
-            "isnumber": true
-          },
-          {
-            "name": "PREY_WEIGHT",
-            "alias": "PREY_WEIGHT",
-            "isnumber": true
+            "name": "PREY_GROUP_CODE_TRAWL",
+            "alias": "PREY_GROUP_CODE_TRAWL"
           },
           {
             "name": "PRIMARY_NET",
@@ -3628,16 +3838,59 @@
             "isdate": true
           },
           {
+            "name": "PROJECT",
+            "alias": "PROJECT"
+          },
+          {
+            "name": "PROJECT_CODE",
+            "alias": "PROJECT_CODE"
+          },
+          {
+            "name": "PROVIDER_OWNER",
+            "alias": "PROVIDER_OWNER"
+          },
+          {
+            "name": "PURPOSE",
+            "alias": "PURPOSE"
+          },
+          {
+            "name": "REC_HIST_SPECIES_IIS",
+            "alias": "REC_HIST_SPECIES_IIS"
+          },
+          {
             "name": "SAMPLE_ABBREV",
             "alias": "SAMPLE_ABBREV"
+          },
+          {
+            "name": "SAMPLE_DEPTH",
+            "alias": "SAMPLE_DEPTH",
+            "isnumber": true
           },
           {
             "name": "SAMPLE_DESC",
             "alias": "SAMPLE_DESC"
           },
           {
+            "name": "SAMPLE_ID",
+            "alias": "SAMPLE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SAMPLE_ORIG_DB",
+            "alias": "SAMPLE_ORIG_DB"
+          },
+          {
             "name": "SAMPLE_TYPE",
             "alias": "SAMPLE_TYPE"
+          },
+          {
+            "name": "SAMPLE_VOLUME",
+            "alias": "SAMPLE_VOLUME",
+            "isnumber": true
+          },
+          {
+            "name": "SE_ANNO_CAD_DATA",
+            "alias": "SE_ANNO_CAD_DATA"
           },
           {
             "name": "SEA_SURFACE_TEMP_C",
@@ -3654,8 +3907,16 @@
             "alias": "SEX_NAME"
           },
           {
+            "name": "SHIP_CRUISE_NAME",
+            "alias": "SHIP_CRUISE_NAME"
+          },
+          {
             "name": "SHIP_NAME",
             "alias": "SHIP_NAME"
+          },
+          {
+            "name": "SHRINKAGE_SPECIMEN_NUMBER",
+            "alias": "SHRINKAGE_SPECIMEN_NUMBER"
           },
           {
             "name": "SIZE_NAME",
@@ -3666,21 +3927,103 @@
             "alias": "SORTER_CODE"
           },
           {
+            "name": "SORTER_GROUP",
+            "alias": "SORTER_GROUP"
+          },
+          {
             "name": "SORTER_NAME",
             "alias": "SORTER_NAME"
+          },
+          {
+            "name": "SPECIES",
+            "alias": "SPECIES"
+          },
+          {
+            "name": "SPECIES_CODE_ICHBASE",
+            "alias": "SPECIES_CODE_ICHBASE",
+            "isnumber": true
+          },
+          {
+            "name": "SPECIES_CODE_ID",
+            "alias": "SPECIES_CODE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "SPECIES_CODE_IIS",
+            "alias": "SPECIES_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "SPECIES_CODE_RACEBASE",
+            "alias": "SPECIES_CODE_RACEBASE"
+          },
+          {
+            "name": "SPECIES_CODE_TRAWL",
+            "alias": "SPECIES_CODE_TRAWL"
+          },
+          {
+            "name": "SPECIES_ICHBASE",
+            "alias": "SPECIES_ICHBASE"
+          },
+          {
+            "name": "SPECIES_IIS",
+            "alias": "SPECIES_IIS"
           },
           {
             "name": "SPECIES_NAME",
             "alias": "SPECIES_NAME"
           },
           {
+            "name": "SPECIES_NAME_BOB",
+            "alias": "SPECIES_NAME_BOB"
+          },
+          {
+            "name": "SPECIES_NAME_ICHBASE",
+            "alias": "SPECIES_NAME_ICHBASE"
+          },
+          {
+            "name": "SPECIES_NAME_RACEBASE",
+            "alias": "SPECIES_NAME_RACEBASE"
+          },
+          {
+            "name": "SPECIES_ORDER",
+            "alias": "SPECIES_ORDER"
+          },
+          {
             "name": "SPECIMEN_FORM",
             "alias": "SPECIMEN_FORM"
+          },
+          {
+            "name": "SPECIMEN_NUMBER",
+            "alias": "SPECIMEN_NUMBER",
+            "isnumber": true
           },
           {
             "name": "SPECIMEN_SIZE",
             "alias": "SPECIMEN_SIZE",
             "isnumber": true
+          },
+          {
+            "name": "STAGE",
+            "alias": "STAGE",
+            "isnumber": true
+          },
+          {
+            "name": "STAGE_COMMENTS",
+            "alias": "STAGE_COMMENTS"
+          },
+          {
+            "name": "STAGE_GROUP",
+            "alias": "STAGE_GROUP"
+          },
+          {
+            "name": "STAGE_ID",
+            "alias": "STAGE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "STAGE_NAME",
+            "alias": "STAGE_NAME"
           },
           {
             "name": "STATION_NAME",
@@ -3726,6 +4069,19 @@
             "alias": "STOMACHEXAMINER"
           },
           {
+            "name": "SUBFAM_CODE_IIS",
+            "alias": "SUBFAM_CODE_IIS",
+            "isnumber": true
+          },
+          {
+            "name": "SUBFAM_COM_IIS",
+            "alias": "SUBFAM_COM_IIS"
+          },
+          {
+            "name": "SUBFAM_IIS",
+            "alias": "SUBFAM_IIS"
+          },
+          {
             "name": "SUBSAMPLE_FACTOR",
             "alias": "SUBSAMPLE_FACTOR",
             "isnumber": true
@@ -3741,6 +4097,28 @@
             "isnumber": true
           },
           {
+            "name": "TAXON_CODE_BOB",
+            "alias": "TAXON_CODE_BOB",
+            "isnumber": true
+          },
+          {
+            "name": "TAXON_CODE_ID",
+            "alias": "TAXON_CODE_ID",
+            "isnumber": true
+          },
+          {
+            "name": "TAXON_NAME",
+            "alias": "TAXON_NAME"
+          },
+          {
+            "name": "TAXON_ORIG_DB",
+            "alias": "TAXON_ORIG_DB"
+          },
+          {
+            "name": "TAXON_SIZE",
+            "alias": "TAXON_SIZE"
+          },
+          {
             "name": "TOTAL_NUMBER",
             "alias": "TOTAL_NUMBER",
             "isnumber": true
@@ -3753,6 +4131,11 @@
           {
             "name": "TOW_SECONDS",
             "alias": "TOW_SECONDS",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_CATCH",
+            "alias": "TRAWL_CATCH",
             "isnumber": true
           },
           {
@@ -3776,8 +4159,32 @@
             "isdate": true
           },
           {
+            "name": "TRAWL_HAULBACK_START_LAT",
+            "alias": "TRAWL_HAULBACK_START_LAT",
+            "isnumber": true
+          },
+          {
+            "name": "TRAWL_HAULBACK_START_LON",
+            "alias": "TRAWL_HAULBACK_START_LON",
+            "isnumber": true
+          },
+          {
             "name": "VIAL_NUMBER",
             "alias": "VIAL_NUMBER",
+            "isnumber": true
+          },
+          {
+            "name": "VOLUME_DISPLACEMENT",
+            "alias": "VOLUME_DISPLACEMENT"
+          },
+          {
+            "name": "VOLUME_FILTERED",
+            "alias": "VOLUME_FILTERED",
+            "isnumber": true
+          },
+          {
+            "name": "VOLUME_FISHED",
+            "alias": "VOLUME_FISHED",
             "isnumber": true
           },
           {
@@ -3800,113 +4207,8 @@
             "isnumber": true
           },
           {
-            "name": "COMMENTS_SPECIMEN",
-            "alias": "COMMENTS_SPECIMEN"
-          },
-          {
-            "name": "COMMENTS_SPECIES_CODE",
-            "alias": "COMMENTS_SPECIES_CODE"
-          },
-          {
-            "name": "LON_END",
-            "alias": "LON_END",
-            "isnumber": true
-          },
-          {
-            "name": "LAT_END",
-            "alias": "LAT_END",
-            "isnumber": true
-          },
-          {
-            "name": "TRAWL_HAULBACK_START_LAT",
-            "alias": "TRAWL_HAULBACK_START_LAT",
-            "isnumber": true
-          },
-          {
-            "name": "TRAWL_HAULBACK_START_LON",
-            "alias": "TRAWL_HAULBACK_START_LON",
-            "isnumber": true
-          },
-          {
-            "name": "COMMENTS_SAMPLES",
-            "alias": "COMMENTS_SAMPLES"
-          },
-          {
-            "name": "LARVACATCHPER10M2",
-            "alias": "LARVACATCHPER10M2",
-            "isnumber": true
-          },
-          {
-            "name": "LARVALCATCHPER1000M3",
-            "alias": "LARVALCATCHPER1000M3",
-            "isnumber": true
-          },
-          {
-            "name": "CPUE",
-            "alias": "CPUE",
-            "isnumber": true
-          },
-          {
-            "name": "TRAWL_CATCH",
-            "alias": "TRAWL_CATCH",
-            "isnumber": true
-          },
-          {
-            "name": "VOLUME_FISHED",
-            "alias": "VOLUME_FISHED",
-            "isnumber": true
-          },
-          {
-            "name": "DISTANCE_FISHED_0",
-            "alias": "DISTANCE_FISHED_0",
-            "isnumber": true
-          },
-          {
-            "name": "DISTANCE_FISHED_1",
-            "alias": "DISTANCE_FISHED_1",
-            "isnumber": true
-          },
-          {
-            "name": "EQUILIBRIUM",
-            "alias": "EQUILIBRIUM",
-            "isnumber": true
-          },
-          {
-            "name": "DOE",
-            "alias": "DOE",
-            "isdate": true
-          },
-          {
-            "name": "DOC",
-            "alias": "DOC",
-            "isdate": true
-          },
-          {
-            "name": "MONTH",
-            "alias": "MONTH",
-            "isnumber": true
-          },
-          {
             "name": "YEAR",
             "alias": "YEAR",
-            "isnumber": true
-          },
-          {
-            "name": "DAY",
-            "alias": "DAY",
-            "isnumber": true
-          },
-          {
-            "name": "ZOOP_COPEPOD_NAUPLIUS",
-            "alias": "ZOOP_COPEPOD_NAUPLIUS"
-          },
-          {
-            "name": "ZOOP_EUPHAUSIID_EGG",
-            "alias": "ZOOP_EUPHAUSIID_EGG"
-          },
-          {
-            "name": "NUMBER_MEASURED_COUNTED_COPY",
-            "alias": "NUMBER_MEASURED_COUNTED_COPY",
             "isnumber": true
           },
           {
@@ -3914,48 +4216,26 @@
             "alias": "ZOOP_COPEPOD_NAUPLII"
           },
           {
-            "name": "LARVALCATCHPER10M2",
-            "alias": "LARVALCATCHPER10M2",
+            "name": "ZOOP_EUPHAUSIID_EGG",
+            "alias": "ZOOP_EUPHAUSIID_EGG"
+          },
+          {
+            "name": "ZOOP_INDIVIDUAL_NUMBER",
+            "alias": "ZOOP_INDIVIDUAL_NUMBER",
             "isnumber": true
           },
           {
-            "name": "GMT_DATE_TIME_END",
-            "alias": "GMT_DATE_TIME_END",
-            "isdate": true
+            "name": "ZOOP_PROTOCOL",
+            "alias": "ZOOP_PROTOCOL"
           },
           {
-            "name": "COMMENTS_HAUL",
-            "alias": "COMMENTS_HAUL"
+            "name": "ZOOP_VIAL_NUMBER",
+            "alias": "ZOOP_VIAL_NUMBER"
           },
           {
-            "name": "SHIP_CRUISE_NAME",
-            "alias": "SHIP_CRUISE_NAME"
-          },
-          {
-            "name": "PHYTO_ASSESS_ID",
-            "alias": "PHYTO_ASSESS_ID",
+            "name": "ZOOP_WET_WEIGHT",
+            "alias": "ZOOP_WET_WEIGHT",
             "isnumber": true
-          },
-          {
-            "name": "PHYTO_ASSESS",
-            "alias": "PHYTO_ASSESS"
-          },
-          {
-            "name": "STAGE",
-            "alias": "STAGE",
-            "isnumber": true
-          },
-          {
-            "name": "STAGE_NAME",
-            "alias": "STAGE_NAME"
-          },
-          {
-            "name": "STAGE_GROUP",
-            "alias": "STAGE_GROUP"
-          },
-          {
-            "name": "STAGE_COMMENTS",
-            "alias": "STAGE_COMMENTS"
           }
         ]
       },
