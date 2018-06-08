@@ -210,7 +210,7 @@ define([
         this.layerValueforFieldArray = 0;
         for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
           var selectfieldDefault = false;
-            if(this.config.layers[0].fields.field[e].name.search('NAME')> -1 || this.config.layers[0].fields.field[e].name.search('SPECIMEN')> -1 || this.config.layers[0].fields.field[e].name.search('HAUL')> -1 || this.config.layers[0].fields.field[e].name.search('SAMPLE')> -1 || this.config.layers[0].fields.field[e].name.search('ID')> -1){
+            if(this.config.layers[0].fields.field[e].name.search('NAME')> -1 ){//|| this.config.layers[0].fields.field[e].name.search('SPECIMEN')> -1 || this.config.layers[0].fields.field[e].name.search('HAUL')> -1 || this.config.layers[0].fields.field[e].name.search('SAMPLE')> -1 || this.config.layers[0].fields.field[e].name.search('ID')> -1
               selectfieldDefault = true;
             }
             fieldsArray.push({disabled:false,label:this.config.layers[0].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[0].fields.field[e].name});
@@ -558,9 +558,9 @@ define([
           this.fieldselectdropdown.removeOption(this.fieldselectdropdown.getOptions());
           for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
             var selectfieldDefault = false;
-            if(this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1){// this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1 ||
+            /*if(this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1){// this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1 ||
               selectfieldDefault = true;
-            }
+            }*/
             if(!that._containsObject(this.config.layers[this.layerValueforFieldArray].fields.field[e].name,fieldsArray)){
               fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});    
             }            
@@ -632,9 +632,9 @@ define([
         this.selectLayerAttribute.set('value', layerval);
         for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
           var selectfieldDefault = false;
-          if(layerval > 8 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1  || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1){
-              selectfieldDefault = true;
-            }
+          if(layerval > 8 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1){// || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1  || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1
+            selectfieldDefault = true;
+          }
           fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});
         }
         this.fieldselectdropdown.addOption(fieldsArray.sort(this.comparesort));
@@ -651,9 +651,9 @@ define([
         }
         for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
           var selectfieldDefault = false;
-          if(layerval > 8 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1){
-              selectfieldDefault = true;
-            }
+          if(layerval > 8 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1){// || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1  || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1
+            selectfieldDefault = true;
+          }
           fieldsArray.push({disabled:false,label:this.config.layers[this.layerValueforFieldArray].fields.field[e].name,selected:selectfieldDefault,value:this.config.layers[this.layerValueforFieldArray].fields.field[e].name});
         }
         this.fieldselectdropdown.addOption(fieldsArray.sort(this.comparesort));
@@ -3297,6 +3297,15 @@ define([
           if(fieldsselected[i].selected){
             fields.push(fieldsselected[i].value);
           }
+        }
+
+        if(fields.length ==1){
+            new Message({
+                titleLabel: "No Fields Selected",
+                message: "Please Select the Fields for output table."
+              });
+              this.tabContainer.selectTab(this.nls.selectByAttribute);
+            return;
         }
 
         queryParams.outSpatialReference = this.map.spatialReference;
