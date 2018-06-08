@@ -558,7 +558,7 @@ define([
           this.fieldselectdropdown.removeOption(this.fieldselectdropdown.getOptions());
           for (var e = 0; e < this.config.layers[this.layerValueforFieldArray].fields.field.length; e++) {
             var selectfieldDefault = false;
-            if(this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1){
+            if(this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('NAME')> -1){// this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('HAUL')> -1 || this.config.layers[this.layerValueforFieldArray].fields.field[e].name.search('ID')> -1 ||
               selectfieldDefault = true;
             }
             if(!that._containsObject(this.config.layers[this.layerValueforFieldArray].fields.field[e].name,fieldsArray)){
@@ -4451,7 +4451,7 @@ define([
           var listItem = this.list.items[this._returnListIndexFromOID(feature.attributes[layerConfig.objectIdField])];
           //var listItem = this.list.items[this._returnListIndexFromOID(i)];
           if(feature.geometry){
-            type = feature.geometry.type;
+            /*type = feature.geometry.type;
           
             switch (type) {
               case "multipoint":
@@ -4467,7 +4467,7 @@ define([
                 break;
               default:
                 break;
-            }
+            }*/
             //listItem.centerpoint = centerpoint;
             var lyrDisablePopupsAndTrue = (layerConfig.hasOwnProperty("disablePopups") && layerConfig.disablePopups)?true:false;
             if((!this.config.disablePopups && !lyrDisablePopupsAndTrue) && !currentLayer._hasInfoTemplate){
