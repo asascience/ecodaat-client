@@ -3477,6 +3477,23 @@ define([
         $('#maxGearDepth').val(1400);
         $('#haulidtext').val('Search FOCI HAUL ID');
 
+        //check all date checkboxes
+        that.checkBoxMonth.setValue(true);
+        that.monthselect.set("value",[]);
+        that.monthselect.invertSelection();
+        that.monthselect._updateSelection();
+
+        
+        that.checkBoxYear.setValue(true);
+        that.yearselect.set("value",[]);
+        that.yearselect.invertSelection();
+        that.yearselect._updateSelection();
+
+        that.dayselect.set("value",[]);
+        that.dayselect.invertSelection();
+        that.dayselect._updateSelection();
+        
+
         return false;
       },
 
