@@ -1330,7 +1330,7 @@ define([
         else if(newValue == 2){//specimen
           if(that.SAMPLETYPE == "TRAWL"){
             $('.trawlSpeciesClass').not('select').show();
-            $('#btnSearchTrawlLength').not('select').show();
+            //$('#btnSearchTrawlLength').not('select').show();
           }
           else if(that.SAMPLETYPE == "ICHBASE"){
             $('.ichStageClass').not('select').show();

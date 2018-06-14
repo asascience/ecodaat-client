@@ -4293,6 +4293,9 @@
         "all": false,
         "field": [
           {
+            "name": "STAGE_ID",
+            "alias": "STAGE_ID"
+          },{
             "name": "STAGE_NAME",
             "alias": "STAGE_NAME"
           },
@@ -4507,6 +4510,10 @@
         "all": false,
         "field": [
           {
+            "name": "TC_ID",
+            "alias": "TC_ID"
+          },
+          {
             "name": "COMMENTS_TAXON_CODE",
             "alias": "COMMENTS_TAXON_CODE"
           },
@@ -4657,6 +4664,10 @@
           {
             "name": "ORIG_DB",
             "alias": "ORIG_DB"
+          },
+          {
+            "name": "PRESERVE_ID",
+            "alias": "PRESERVE_ID"
           }
         ]
       },
@@ -4991,6 +5002,10 @@
           {
             "name": "DOC",
             "alias": "DOC"
+          },
+          {
+            "name": "FLOWMETER_ID",
+            "alias": "FLOWMETER_ID"
           }
         ]
       },
@@ -5085,6 +5100,10 @@
           {
             "name": "COMMENTS_PROJECTS",
             "alias": "COMMENTS_PROJECTS"
+          },
+          {
+            "name": "PROJECT_ID",
+            "alias": "PROJECT_ID"
           }
         ]
       },
@@ -5170,6 +5189,9 @@
           },{
             "name": "SHIP_NAME",
             "alias": "SHIP_NAME"
+          },{
+            "name": "CRUISE_ID",
+            "alias": "CRUISE_ID"
           }
         ]
       },
